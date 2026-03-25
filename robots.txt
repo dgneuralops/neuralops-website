@@ -3,6 +3,8 @@
 User-agent: *
 Allow: /
 Disallow: /og-gen.html
+Disallow: /proposta-certificacao.html
+Disallow: /proposta-kiss.html
 
 # ── Bots de IA Generativa ───────────────────────────────
 # Permitir que ChatGPT, Gemini, Perplexity e outros indexem o site
