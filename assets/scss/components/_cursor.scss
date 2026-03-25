@@ -1,0 +1,69 @@
+@use '../utils' as *;
+
+/*=============================
+    	05. cursor scss
+===============================*/
+.mouse-follower {
+	z-index: 10;
+	span {
+		z-index: 10;
+		opacity: 1;
+		top: -10px;
+		left: -10px;
+		transform: translate(-50%, -50%);
+		border-radius: 50%;
+		position: fixed;
+		transition: 180ms ease-in-out;
+		pointer-events: none;
+	}
+	.cursor-outline {
+		height: 30px;
+		width: 30px;
+		border: 1px solid #000;
+	}
+	.cursor-dot {
+		height: 6px;
+		width: 6px;
+		background: #000;
+	}
+	&.hide-cursor {
+		span {
+			border-color: transparent;
+			background: transparent;
+		}
+	}
+	&.highlight-cursor-head {
+		cursor: none;
+		.cursor-outline {
+			height: 0;
+			width: 0;
+		}
+		.cursor-dot {
+			height: 150px;
+			width: 150px;
+			background: #fff;
+			mix-blend-mode: difference;
+			@media (max-width: 991px) {
+				height: 80px;
+				width: 80px;
+			}
+		}
+	}
+	&.highlight-cursor-para {
+		cursor: none;
+		.cursor-outline {
+			height: 0;
+			width: 0;
+		}
+		.cursor-dot {
+			height: 100px;
+			width: 100px;
+			background: #fff;
+			mix-blend-mode: difference;
+			@media (max-width: 991px) {
+				height: 60px;
+				width: 60px;
+			}
+		}
+	}
+}

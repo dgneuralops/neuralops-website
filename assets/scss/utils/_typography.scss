@@ -1,0 +1,24 @@
+
+
+
+// font url
+
+$font-url: 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bellefair&family=Roboto:ital,wght@0,100..900;1,100..900&family=DM+Serif+Display:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Teko:wght@300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap';
+
+
+// font family
+$font-family: (
+    'ff': (
+        'body': '"Inter", serif',
+        'heading': '"Plus Jakarta Sans", serif',
+        'dm': '"DM Serif Display", serif',
+        'dm-sans': '"DM Sans", sans-serif',
+        'manrope': '"Manrope", serif',
+        'bebas': '"Bebas Neue", serif',
+        'teko': '"Teko", sans-serif',
+        'rethink': '"Rethink Sans", serif',
+        'bellefair': '"Bellefair", serif',
+        'roboto': '"Roboto", serif',
+        'fontawesome': '"Font Awesome 6 Pro"',
+    )
+);

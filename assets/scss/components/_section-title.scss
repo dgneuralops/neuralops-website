@@ -1,0 +1,350 @@
+@use '../utils' as *;
+
+/*=============================
+	13. Section Title
+===============================*/
+.td-section{
+	&-subtitle{
+		font-weight: 600;
+		font-size: 18px;
+		color: var(--td-common-black);
+	}
+	&-title{
+		font-weight: 800;
+		font-size: 160px;
+		letter-spacing: -0.03em;
+		@media #{$xl} {
+			font-size: 140px;
+		}
+		@media #{$lg,$md,$sm,$xs} {
+			font-size: 115px;
+		}
+		@media #{$sm,$xs} {
+			font-size: 80px;
+		}
+		&-capi{
+			font-weight: 800;
+			font-size: 160px;
+			letter-spacing: -0.03em;
+			font-family: var(--td-ff-dm);
+			font-style: italic;
+			font-weight: 400;
+			transform: translateY(-20px);
+			margin-left: 270px;
+			@media #{$lg,$md,$sm,$xs} {
+				font-size: 115px;
+			}
+			@media #{$sm,$xs} {
+				margin-left: 0;
+				font-size: 80px;
+			}
+		}
+	}
+	&-text{
+		@media #{$lg,$md,$sm,$xs} {
+			margin-right: 40px;
+		}
+	}
+	&-2{
+		&-subtitle{
+			font-weight: 600;
+			font-size: 18px;
+			letter-spacing: -0.04em;
+			color: #595c61;
+		}
+		&-title{
+			font-family: var(--td-ff-dm-sans);
+			font-weight: 600;
+			font-size: 70px;
+			line-height: 1;
+			@media #{$xl,$lg} {
+				font-size: 60px;
+			}
+			@media #{$md} {
+				font-size: 50px;
+			}
+			@media #{$sm,$xs} {
+				font-size: 40px;
+				& br{
+					display: none;
+				}
+			}
+			& span{
+				color: rgba(10, 17, 25, 0.6);
+				font-weight: 600;
+				font-size: 60px;
+				line-height: 1;
+				@media #{$md} {
+					font-size: 50px;
+				}
+				@media #{$sm,$xs} {
+					font-size: 40px;
+				}
+			}
+		}
+	}
+	&-3{
+		&-subtitle{
+			font-family: var(--td-ff-manrope);
+			font-weight: 700;
+			font-size: 18px;
+			color: var(--td-common-black-2);
+		}
+		&-title{
+			font-family: var(--td-ff-manrope);
+			font-weight: 700;
+			font-size: 65px;
+			line-height: 1;
+			letter-spacing: -0.04em;
+			color: var(--td-common-black-2);
+			@media #{$xl,$lg,$md,$sm,$xs} {
+				font-size: 55px;
+			}
+			@media #{$xs} {
+				font-size: 40px;
+			}
+			@media #{$md,$sm,$xs} {
+				& br{
+					display: none;
+				}
+			}
+			&-white{
+				color: var(--td-common-white);
+			}
+			& span{
+				font-family: var(--td-ff-dm);
+				font-style: italic;
+				font-weight: 400;
+			}
+		}
+	}
+	&-4{
+		&-title{
+			font-family: var(--td-ff-teko);
+			font-weight: 400;
+			font-size: 80px;
+			line-height: 94%;
+			text-transform: uppercase;
+			color: var(--td-common-white);
+			@media #{$xl} {
+				font-size: 70px;
+			}
+			@media #{$lg,$md,$sm} {
+				font-size: 60px;
+				& br{
+					display: none;
+				}
+			}
+			@media #{$xs} {
+				font-size: 40px;
+			}
+			& span{
+				color: var(--td-common-green-2);
+			}
+		}
+		&-subtitle{
+			font-weight: 400;
+			font-size: 18px;
+			display: inline-block;
+			color: var(--td-common-green-2);
+		}
+		&-text{
+			color: var(--td-grey-3);
+		}
+	}
+	&-5{
+		&-title{
+			font-family: var(--td-ff-bebas);
+			font-weight: 400;
+			font-size: 80px;
+			line-height: 1;
+			color: var(--td-common-black-4);
+			& span{
+				color: var(--td-grey-4);
+			}
+			@media #{$xl} {
+				font-size: 70px;
+			}
+			@media #{$lg,$md,$sm} {
+				font-size: 60px;
+				& br{
+					display: none;
+				}
+			}
+			@media #{$xs} {
+				font-size: 40px;
+			}
+		}
+		&-bigtitle{
+			font-family: var(--td-ff-bebas);
+			font-weight: 400;
+			font-size: 180px;
+			line-height: 1;
+			color: var(--td-common-black-4);
+			@media #{$lg,$md,$sm} {
+				font-size: 140px;
+			}
+			@media #{$xs} {
+				font-size: 70px;
+			}
+			& span{
+				color: #787875;
+				margin-left: 250px;
+				@media #{$sm,$sm,$xs} {
+					margin-left: 0px;
+				}
+			}
+		}
+	}
+	&-6{
+		&-subtitle{
+			font-weight: 600;
+			font-size: 18px;
+			letter-spacing: -0.04em;
+			color: var(--td-theme-3);
+			position: relative;
+			padding-left: 20px;
+			&::before{
+				position: absolute;
+				content: "";
+				width: 10px;
+				height: 10px;
+				background: #ffbf43;
+				border-radius: 30px;
+				top: 50%;
+				transform: translateY(-50%);
+				left: 0;
+			}
+		}
+		&-title{
+			font-family: var(--td-ff-rethink);
+			font-weight: 700;
+			font-size: 50px;
+			line-height: 110%;
+			text-transform: uppercase;
+			color: var(--td-theme-3);
+			@media #{$lg,$md,$sm,$xs} {
+				& br{
+					display: none;
+				}
+			}
+			@media #{$xs} {
+				font-size: 40px;
+			}
+		}
+		&-text{
+			font-weight: 400;
+			color: var(--td-grey-5);
+		}
+		&-bigtitle{
+			font-family: var(--td-ff-rethink);
+			font-weight: 800;
+			font-size: 100px;
+			line-height: 1;
+			color: var(--td-theme-3);
+			@media #{$xl} {
+				font-size: 80px;
+			}
+			@media #{$lg,$md} {
+				font-size:70px;
+			}
+			@media #{$sm} {
+				font-size:60px;
+			}
+			@media #{$xs} {
+				font-size: 50px;
+			}
+		}
+	}
+	&-7{
+		&-title{
+			font-family: var(--td-ff-bellefair);
+			font-weight: 400;
+			font-size: 50px;
+			line-height: 120%;
+			letter-spacing: -0.02em;
+			text-transform: uppercase;
+			color: var(--td-common-black);
+			@media #{$xs} {
+				font-size: 35px;
+			}
+			&-white{
+				color: var(--td-common-white);
+			}
+		}
+		&-subtitle{
+			color: #756c63;
+			&::before{
+				background: var(--td-theme-4);
+			}
+		}
+	}
+	&-page{
+		&-title{
+			font-size: 79px;
+			letter-spacing: -0.03em;
+			line-height: 1;
+			@media #{$xl,$lg} {
+				font-size: 60px;
+			}
+			@media #{$lg,$md,$sm,$xs} {
+				& br{
+					display: none;
+				}
+			}
+			@media #{$md,$sm} {
+				font-size: 50px;
+			}
+			@media #{$xs} {
+				font-size: 35px;
+			}
+			& span{
+				font-family: var(--td-ff-dm);
+				font-style: italic;
+				font-weight: 400;
+			}
+		}
+		&-bigtitle{
+			font-size: 120px;
+			@media #{$xl,$lg} {
+				font-size: 100px;
+			}
+			@media #{$md,$sm} {
+				font-size: 80px;
+			}
+			@media #{$xs} {
+				font-size: 60px;
+			}
+		}
+	}
+}
+.inner-subtitle{
+	font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.04em;
+    color: #595c61;
+}
+
+
+.td-text-invert{
+    line-height: 0.94;
+}
+.td-text-invert > div {
+    background-size: 200% 100%;
+    background-position-x: 100%;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(to right, rgba(28, 29, 31, 1) 50%, rgb(168, 169, 169) 50%);
+}
+.td-text-opacity{
+    line-height: 0.94;
+}
+.td-text-opacity > div {
+    background-size: 200% 100%;
+    background-position-x: 100%;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(to right, rgba(6, 50, 49, 1) 50%, rgb(168, 169, 169) 50%);
+}

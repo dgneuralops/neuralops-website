@@ -1,0 +1,156 @@
+@use '../utils' as *;
+
+/*=============================
+    01. Animation
+===============================*/
+.td-arrow-angle {
+	--qode-hover-move-x: 110%;
+	--qode-hover-move-y: 100%;
+}
+.td-arrow-svg-top-right {
+	fill: currentColor;
+	stroke: none;
+}
+.td-left-right{
+    & .td-text{
+        transform: translateY(1px);
+    }
+}
+.td-arrow-angle path {
+	transition: transform .38s cubic-bezier(.37,.08,.02,.93),opacity .18s ease-out;
+}
+.td-arrow-angle path:nth-of-type(1) {
+	transform: translateX(0) translateY(0);
+	opacity: 1;
+	transition-delay: .15s,.15s;
+}
+.td-arrow-angle path:nth-of-type(2) {
+	transform: translateX(calc(-1 * var(--qode-hover-move-x))) translateY(var(--qode-hover-move-y));
+	opacity: .5;
+	transition-delay: 0s,0s;
+}
+.td-left-right:hover .td-arrow-angle path:nth-of-type(2) {
+	transform: translateX(0) translateY(0);
+	opacity: 1;
+	transition-delay: .15s,.15s;
+}
+.td-left-right:hover .td-arrow-angle path:nth-of-type(1) {
+	transform: translateX(var(--qode-hover-move-x)) translateY(calc(-1 * var(--qode-hover-move-y)));
+	opacity: 0;
+	transition-delay: 0s,0s;
+}
+
+@keyframes zoom {
+	0% {
+			-webkit-transform: scale(1);
+			transform: scale(1)
+	}
+
+	50% {
+			-webkit-transform: scale(1.1);
+			transform: scale(1.1)
+	}
+
+	100% {
+			-webkit-transform: scale(1);
+			transform: scale(1)
+	}
+}
+
+@keyframes dash {
+	to {
+	  stroke-dashoffset: 0px;
+	  stroke-dasharray: 3000;
+	}
+  }
+
+
+  @keyframes td_animation_spin {
+    from {
+        transform: rotate(0)
+    }
+
+    to {
+        transform: rotate(360deg)
+    }
+}
+.td-live-anim-spin {
+  animation: td_animation_spin 6s linear infinite
+}
+
+@keyframes tdfadeUp {
+	0% {
+	  opacity: 0;
+	  -webkit-transform: translateY(50px);
+	  -ms-transform: translateY(50px);
+	  transform: translateY(50px);
+	}
+  
+	100% {
+	  opacity: 1;
+	  -webkit-transform: translateY(0);
+	  -ms-transform: translateY(0);
+	  transform: translateY(0);
+	}
+  }
+
+  //>>>>> Preloader Animation Start <<<<<//
+ @-webkit-keyframes spinner {
+	to {
+		-webkit-transform: rotateZ(360deg);
+		transform: rotateZ(360deg);
+	}
+}
+
+@keyframes spinner {
+	to {
+		-webkit-transform: rotateZ(360deg);
+		transform: rotateZ(360deg);
+	}
+}
+
+@-webkit-keyframes letters-loading {
+	0%,
+	75%,
+	100% {
+		opacity: 0;
+		transform: rotateY(-90deg);
+	}
+	25%,
+	50% {
+		opacity: 1;
+		transform: rotateY(0deg);
+	}
+}
+
+@keyframes letters-loading {
+	0%,
+	75%,
+	100% {
+		opacity: 0;
+		transform: rotateY(-90deg);
+	}
+	25%,
+	50% {
+		opacity: 1;
+		transform: rotateY(0deg);
+	}
+}
+
+//>>>>> Preloader Animation Start <<<<<//
+@keyframes loaderspin {
+	0% {
+	  transform: translate(-50%, -50%) rotate(0deg);
+	}
+	100% {
+	  transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
+@keyframes headerSlideDown {
+	0% {
+	 margin-top:-150px
+	}
+	100% {
+	 margin-top:0
+	}
+}

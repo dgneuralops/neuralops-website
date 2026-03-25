@@ -1,0 +1,166 @@
+@use '../utils' as *;
+
+/*=============================
+	14. spacing default responsive
+===============================*/
+
+.pt-170{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 115px;
+    }
+}
+.pt-165{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 110px;
+    }
+}
+.pt-160{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 100px;
+    }
+}
+.pt-155{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 100px;
+    }
+}
+.pt-150{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 100px;
+    }
+}
+.pt-145{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 100px;
+    }
+}
+.pt-140{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 100px;
+    }
+}
+.pt-135{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 95px;
+    }
+}
+.pt-130{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 90px;
+    }
+}
+.pt-125{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 85px;
+    }
+}
+.pt-120{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 80px;
+    }
+}
+.pt-115{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 75px;
+    }
+}
+.pt-110{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 70px;
+    }
+}
+.pt-105{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 65px;
+    }
+}
+.pt-100{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-top: 60px;
+    }
+}
+.pb-170{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 100px;
+    }
+}
+.pb-165{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 100px;
+    }
+}
+.pb-160{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 100px;
+    }
+}
+.pb-155{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 100px;
+    }
+}
+.pb-150{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 100px;
+    }
+}
+.pb-145{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 100px;
+    }
+}
+.pb-140{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 100px;
+    }
+}
+.pb-135{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 95px;
+    }
+}
+.pb-130{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 90px;
+    }
+}
+.pb-125{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 85px;
+    }
+}
+.pb-120{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 80px;
+    }
+}
+.pb-115{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 75px;
+    }
+}
+.pb-110{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 70px;
+    }
+}
+.pb-105{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 65px;
+    }
+}
+.pb-100{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 60px;
+    }
+}
+.pb-95{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 55px;
+    }
+}
+.pb-90{
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        padding-bottom: 50px;
+    }
+}

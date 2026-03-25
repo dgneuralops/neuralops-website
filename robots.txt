@@ -1,0 +1,47 @@
+# Neural Ops — neuralops.com.br
+
+User-agent: *
+Allow: /
+Disallow: /og-gen.html
+
+# ── Bots de IA Generativa ───────────────────────────────
+# Permitir que ChatGPT, Gemini, Perplexity e outros indexem o site
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# ── Sitemap ─────────────────────────────────────────────
+Sitemap: https://neuralops.com.br/sitemap.xml

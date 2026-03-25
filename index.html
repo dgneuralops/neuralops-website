@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural Ops — Infraestrutura de Inteligência para Empresas</title>
+  <meta name="description" content="A Neural Ops projeta e implementa infraestruturas de inteligência artificial que transformam empresas em máquinas de crescimento previsível." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://neuralops.com.br/" />
+  <meta property="og:title"       content="Neural Ops — Instalamos o Cérebro Operacional da Sua Empresa" />
+  <meta property="og:description" content="Não vendemos ferramentas. Instalamos inteligência que transforma sua operação em uma máquina de crescimento previsível." />
+  <meta property="og:image"       content="https://neuralops.com.br/og-image.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale"      content="pt_BR" />
+  <meta property="og:site_name"   content="Neural Ops" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Neural Ops — Instalamos o Cérebro Operacional da Sua Empresa" />
+  <meta name="twitter:description" content="Não vendemos ferramentas. Instalamos inteligência que transforma sua operação em uma máquina de crescimento previsível." />
+  <meta name="twitter:image"       content="https://neuralops.com.br/og-image.png" />
+
+  <!-- SEO Avançado -->
+  <meta name="keywords" content="infraestrutura de IA para empresas, automação de processos com IA, agentes de IA, consultoria de inteligência artificial, gestão inteligente empresarial, implementar IA na empresa, crescimento com inteligência artificial, empresa de IA Brasil, operações com IA, neural ops, diagnóstico operacional, eficiência operacional, machine learning para empresas, LLM para negócios, automação inteligente" />
+  <meta name="author"      content="Neural Ops" />
+  <meta name="robots"      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="language"    content="pt-BR" />
+  <meta name="geo.region"  content="BR" />
+  <meta name="geo.country" content="Brazil" />
+  <link rel="canonical"    href="https://neuralops.com.br/" />
+
+  <!-- ══════════════════════════════════════════════════
+    JSON-LD SCHEMA MARKUP — SEO + GEO (AI Search)
+    Otimizado para Google, ChatGPT, Gemini, Perplexity
+  ══════════════════════════════════════════════════ -->
+
+  <!-- 1. Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://neuralops.com.br/#organization",
+    "name": "Neural Ops",
+    "alternateName": "NeuralOps",
+    "url": "https://neuralops.com.br",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://neuralops.com.br/favicon.svg",
+      "width": 36,
+      "height": 36
+    },
+    "image": "https://neuralops.com.br/og-image.png",
+    "description": "A Neural Ops é uma consultoria especializada em infraestrutura de inteligência artificial para empresas brasileiras. Projetamos e implementamos sistemas de IA, agentes inteligentes e automação de processos para empresas com faturamento a partir de R$50.000/mês que querem escalar operações sem aumentar custos proporcionalmente.",
+    "email": "contato@neuralops.com.br",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Brasil"
+    },
+    "foundingDate": "2024",
+    "knowsAbout": [
+      "Inteligência Artificial Empresarial",
+      "Automação de Processos com IA",
+      "Agentes de IA",
+      "Infraestrutura de IA",
+      "Gestão Inteligente",
+      "Large Language Models",
+      "Machine Learning",
+      "Operações com IA",
+      "Crescimento com Inteligência Artificial",
+      "Diagnóstico Operacional",
+      "Eficiência Operacional"
+    ],
+    "slogan": "Instalamos o Cérebro Operacional da Sua Empresa"
+  }
+  </script>
+
+  <!-- 2. WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://neuralops.com.br/#website",
+    "name": "Neural Ops",
+    "url": "https://neuralops.com.br",
+    "description": "Infraestrutura de Inteligência Artificial para empresas que querem crescer com previsibilidade.",
+    "publisher": {
+      "@id": "https://neuralops.com.br/#organization"
+    },
+    "inLanguage": "pt-BR"
+  }
+  </script>
+
+  <!-- 3. ProfessionalService -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://neuralops.com.br/#service",
+    "name": "Neural Ops — Infraestrutura de IA para Empresas",
+    "url": "https://neuralops.com.br",
+    "image": "https://neuralops.com.br/og-image.png",
+    "description": "Consultoria especializada em implementação de infraestrutura de inteligência artificial para empresas brasileiras. Automatizamos processos, criamos agentes de IA e instalamos sistemas inteligentes que transformam operações caóticas em máquinas de crescimento previsível.",
+    "priceRange": "$$$$",
+    "currenciesAccepted": "BRL",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Brasil"
+    },
+    "serviceType": "Consultoria de Inteligência Artificial",
+    "provider": {
+      "@id": "https://neuralops.com.br/#organization"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Serviços de Infraestrutura de IA",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Automação de Processos com IA",
+            "description": "Mapeamento e automação de processos operacionais repetitivos usando inteligência artificial, reduzindo retrabalho e aumentando a capacidade da equipe."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Agentes de IA Empresariais",
+            "description": "Criação de agentes de inteligência artificial personalizados que executam tarefas complexas de forma autônoma, integrados aos sistemas da empresa."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Gestão Inteligente com IA",
+            "description": "Implementação de dashboards, sistemas de decisão e fluxos de gestão alimentados por IA para que gestores tomem decisões baseadas em dados em tempo real."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Infraestrutura Neural de Crescimento",
+            "description": "Instalação completa da Infraestrutura Neural de Crescimento™ — o conjunto de sistemas, processos e integrações de IA que permite à empresa escalar sem aumentar custos proporcionalmente."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Diagnóstico Neural™",
+            "description": "Diagnóstico estratégico e operacional da empresa para mapear gargalos, oportunidades de automação e o plano de implementação de IA mais adequado para o negócio."
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- 4. FAQPage — Chave para Google AI Overview, ChatGPT, Perplexity -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O que é infraestrutura de IA para empresas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Infraestrutura de IA para empresas é o conjunto integrado de sistemas, agentes, automações e processos de inteligência artificial implementados na operação de um negócio. Ela permite que a empresa execute tarefas complexas de forma automática, tome decisões baseadas em dados em tempo real e escale sem aumentar custos proporcionalmente. A Neural Ops é especializada em projetar e instalar essa infraestrutura para empresas brasileiras com faturamento a partir de R$50.000/mês."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O que são agentes de IA e como funcionam nas empresas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Agentes de IA são sistemas de inteligência artificial autônomos capazes de executar tarefas complexas, tomar decisões e interagir com outras ferramentas sem intervenção humana constante. Nas empresas, os agentes de IA podem automatizar atendimento ao cliente, gestão de leads, processamento de documentos, análise de dados, criação de conteúdo e muito mais. A Neural Ops cria agentes de IA personalizados integrados aos sistemas já existentes da empresa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como a automação de processos com IA funciona?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A automação de processos com IA começa com o mapeamento dos fluxos operacionais da empresa para identificar tarefas repetitivas, gargalos e pontos de retrabalho. Em seguida, são implementados sistemas de IA que executam essas tarefas automaticamente — com mais velocidade, precisão e consistência do que o processo manual. O resultado é redução de até 60% no retrabalho operacional e aumento de 3x na capacidade da equipe sem novas contratações."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual a diferença entre automação tradicional e automação com IA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A automação tradicional (RPA) segue regras fixas e não consegue lidar com variações ou situações imprevistas. A automação com IA aprende, adapta e toma decisões contextuais — podendo processar linguagem natural, interpretar imagens, analisar dados não estruturados e interagir de forma inteligente. Isso permite automatizar processos que antes eram impossíveis de automatizar sem IA."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O que é gestão inteligente com inteligência artificial?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gestão inteligente com IA é o uso de inteligência artificial para auxiliar gestores na tomada de decisões estratégicas e operacionais. Isso inclui dashboards alimentados por IA com previsões e alertas, relatórios gerados automaticamente, análise de padrões de comportamento do negócio e sistemas que identificam oportunidades e riscos antes que se tornem problemas. A Neural Ops implementa camadas de gestão inteligente integradas à operação real da empresa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como a IA pode ajudar no crescimento empresarial?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A IA impulsiona o crescimento empresarial de diversas formas: automatizando processos que consomem tempo e energia da equipe, permitindo que o time foque em atividades estratégicas; aumentando a capacidade operacional sem novas contratações; melhorando a experiência do cliente com atendimento e comunicação mais rápidos e personalizados; e fornecendo insights de dados que guiam decisões de crescimento. Empresas que implementam infraestrutura de IA com a Neural Ops registram até 3x mais capacidade operacional."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Para quais tipos de empresa a Neural Ops atende?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Neural Ops atende empresas brasileiras com faturamento a partir de R$50.000/mês que enfrentam caos operacional, processos manuais repetitivos, gargalos que travam o crescimento ou que querem escalar sem aumentar proporcionalmente o time. Os setores atendidos incluem saúde, educação, serviços, e-commerce, tecnologia, construção civil, agências e qualquer negócio com operação estruturada."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O que é o Diagnóstico Neural™ da Neural Ops?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O Diagnóstico Neural™ é a metodologia proprietária da Neural Ops para avaliar a maturidade operacional de uma empresa e identificar onde a inteligência artificial pode gerar mais impacto. Em uma sessão estratégica de 45 minutos, os especialistas da Neural Ops mapeiam os processos, gargalos e oportunidades do negócio e apresentam um plano de implementação de IA personalizado e priorizado por ROI."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual o prazo para implementar infraestrutura de IA em uma empresa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O prazo varia de acordo com a complexidade da operação e o escopo do projeto. Em média, os primeiros resultados com automações de IA são visíveis entre 30 e 60 dias após o início da implementação. Uma infraestrutura completa de IA, com múltiplos agentes, integrações e dashboards inteligentes, pode ser implementada entre 60 e 120 dias. A Neural Ops entrega em fases, garantindo que a empresa já sinta os resultados durante o processo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como implementar IA na minha empresa sem trocar os sistemas atuais?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "É possível — e é exatamente assim que a Neural Ops trabalha. Nossa abordagem integra IA aos sistemas já existentes na empresa (CRM, ERP, planilhas, ferramentas de comunicação) sem necessidade de substituí-los. Usamos conectores, APIs e agentes que 'entendem' os sistemas atuais e adicionam uma camada de inteligência sem causar disrupção na operação."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- 5. ItemList — Serviços -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Serviços de Infraestrutura de IA — Neural Ops",
+    "description": "Lista completa de serviços de inteligência artificial para empresas oferecidos pela Neural Ops",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Automação de Processos com IA", "url": "https://neuralops.com.br/#servicos" },
+      { "@type": "ListItem", "position": 2, "name": "Agentes de IA Empresariais",      "url": "https://neuralops.com.br/#servicos" },
+      { "@type": "ListItem", "position": 3, "name": "Gestão Inteligente com IA",       "url": "https://neuralops.com.br/#servicos" },
+      { "@type": "ListItem", "position": 4, "name": "Infraestrutura Neural de Crescimento", "url": "https://neuralops.com.br/#infraestrutura" },
+      { "@type": "ListItem", "position": 5, "name": "Diagnóstico Neural™",             "url": "https://neuralops.com.br/diagnostico/" }
+    ]
+  }
+  </script>
+
+  <!-- 6. BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Neural Ops",
+        "item": "https://neuralops.com.br"
+      }
+    ]
+  }
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MB8HQX6X');</script>
+  <!-- End Google Tag Manager -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { lime: '#beff01', dark: '#0d0d0d', surface: '#111111' }, fontFamily: { sans: ['Inter','sans-serif'] } } }
+    }
+  </script>
+  <style>
+    :root { --lime: #beff01; --dark: #0d0d0d; --surface: #111111; }
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--dark); color: #fff; font-family: 'Inter',sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 3px; } ::-webkit-scrollbar-thumb { background: rgba(190,255,1,0.2); }
+
+    /* Preloader */
+    #preloader { position:fixed;inset:0;background:var(--dark);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .7s,visibility .7s; }
+    #preloader.out { opacity:0;visibility:hidden; }
+    .pre-word { font-size:clamp(28px,4vw,48px);font-weight:900;letter-spacing:-2px;color:#fff; }
+    .pre-word span { color:var(--lime); }
+    .pre-line { width:200px;height:1px;background:rgba(255,255,255,.07);overflow:hidden; }
+    .pre-line-fill { height:100%;background:var(--lime);animation:prefill 1.6s ease forwards; }
+    @keyframes prefill { 0%{width:0} 100%{width:100%} }
+
+    /* Cursor glow */
+    #glow { position:fixed;pointer-events:none;z-index:0;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(190,255,1,.05) 0%,transparent 70%);transform:translate(-50%,-50%);transition:left .2s,top .2s; }
+
+    /* Nav */
+    #nav { position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,border .3s; }
+    #nav.scrolled { background:rgba(13,13,13,.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06); }
+    .nav-inner { max-width:1300px;margin:0 auto;padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between; }
+    .nav-logo { display:flex;align-items:center;gap:10px;text-decoration:none; }
+    .nav-logo-text { font-size:18px;font-weight:900;letter-spacing:-.5px;color:#fff; }
+    .nav-logo-text em { font-style:normal;color:var(--lime); }
+    .nav-links { display:flex;gap:32px; }
+    .nav-link { font-size:12px;font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s; }
+    .nav-link:hover { color:var(--lime); }
+    .nav-cta { display:flex;align-items:center;gap:10px;background:var(--lime);color:#0d0d0d;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:12px 24px;text-decoration:none;transition:background .2s; }
+    .nav-cta:hover { background:#d4ff3a; }
+
+    /* Section container */
+    .wrap { max-width:1300px;margin:0 auto;padding:0 40px; }
+
+    /* Tags */
+    .tag { display:inline-block;background:rgba(190,255,1,.08);border:1px solid rgba(190,255,1,.2);color:var(--lime);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 14px; }
+
+    /* Headings */
+    .h-xl { font-size:clamp(34px,3.8vw,56px);font-weight:900;line-height:.95;letter-spacing:-1.5px;text-transform:uppercase; }
+    .h-lg { font-size:clamp(30px,3.5vw,52px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;text-transform:uppercase; }
+    .h-md { font-size:clamp(24px,2.2vw,34px);font-weight:900;line-height:1.1;letter-spacing:-1px;text-transform:uppercase; }
+    .green { color:var(--lime); }
+    .muted { color:rgba(255,255,255,.12); }
+
+    /* Buttons */
+    .btn { display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:18px 36px;text-decoration:none;transition:all .2s; }
+    .btn-lime { background:var(--lime);color:#0d0d0d; }
+    .btn-lime:hover { background:#d4ff3a;transform:translateY(-1px); }
+    .btn-ghost { border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5); }
+    .btn-ghost:hover { border-color:var(--lime);color:var(--lime); }
+
+    /* Sections */
+    .section { padding:96px 0; }
+    .section-sm { padding:56px 0; }
+    .divider { border:none;border-top:1px solid rgba(255,255,255,.06); }
+
+    /* Fade-up animation */
+    .fu { opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease; }
+    .fu.vis { opacity:1;transform:translateY(0); }
+    .fu.d1 { transition-delay:.1s; } .fu.d2 { transition-delay:.2s; } .fu.d3 { transition-delay:.3s; }
+
+    /* Ticker */
+    .ticker-wrap { overflow:hidden;background:var(--lime);padding:14px 0; }
+    .ticker-track { display:inline-flex;animation:tick 30s linear infinite;white-space:nowrap; }
+    @keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .ticker-item { font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0d0d0d;padding:0 32px;display:inline-flex;align-items:center;gap:32px; }
+    .ticker-dot { width:4px;height:4px;background:#0d0d0d;border-radius:50%;flex-shrink:0; }
+
+    /* Stats */
+    .stat-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:0; }
+    .stat-item { padding:32px 28px;border-right:1px solid rgba(255,255,255,.06);text-align:center; }
+    .stat-item:last-child { border-right:none; }
+    .stat-num { font-size:clamp(36px,4vw,54px);font-weight:900;color:var(--lime);line-height:1; }
+    .stat-label { font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px;line-height:1.6; }
+
+    /* Chaos cards */
+    .chaos-grid { display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.05); }
+    .chaos-card { background:var(--dark);padding:32px; }
+
+    /* Flow diagram */
+    .flow-container { position:relative;padding:60px 0; }
+    .flow-node { display:flex;flex-direction:column;align-items:center;gap:12px;position:relative;z-index:2; }
+    .flow-node-icon { width:72px;height:72px;background:#111;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;border-radius:4px;transition:all .3s; }
+    .flow-node:hover .flow-node-icon { border-color:var(--lime);background:rgba(190,255,1,.05); }
+    .flow-node-icon svg { width:28px;height:28px;color:rgba(255,255,255,.4); }
+    .flow-node:hover .flow-node-icon svg { color:var(--lime); }
+    .flow-node-label { font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center;max-width:90px; }
+
+    /* Connection line SVG */
+    .connection-svg { position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1; }
+    .connection-path { stroke:rgba(190,255,1,.15);stroke-width:1;fill:none;stroke-dasharray:6 4; }
+    .connection-dot { fill:var(--lime);animation:dotPulse 2s ease-in-out infinite; }
+    @keyframes dotPulse { 0%,100%{opacity:.3;r:3} 50%{opacity:1;r:5} }
+
+    /* Layers */
+    .layer { border:1px solid rgba(255,255,255,.07);padding:28px;transition:border-color .3s,background .3s;cursor:default; }
+    .layer:hover { border-color:rgba(190,255,1,.2);background:rgba(190,255,1,.02); }
+    .layer-num { font-size:10px;font-weight:700;letter-spacing:3px;color:var(--lime);margin-bottom:16px; }
+    .layer-title { font-size:20px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:-0.5px;margin-bottom:12px; }
+    .layer-desc { font-size:13px;color:rgba(255,255,255,.35);line-height:1.75; }
+    .layer-tags { display:flex;flex-wrap:wrap;gap:8px;margin-top:20px; }
+    .layer-tag { font-size:10px;font-weight:600;letter-spacing:1px;color:rgba(255,255,255,.25);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:4px 10px; }
+
+    /* Process steps */
+    .step { display:grid;grid-template-columns:56px 1fr;gap:24px;padding:32px 0;border-top:1px solid rgba(255,255,255,.07); }
+    .step:last-child { border-bottom:1px solid rgba(255,255,255,.07); }
+    .step-num { font-size:11px;font-weight:700;color:var(--lime);letter-spacing:2px;padding-top:4px; }
+    .step-badge { display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(190,255,1,.5);background:rgba(190,255,1,.07);padding:4px 10px;margin-bottom:10px; }
+    .step-title { font-size:18px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:-.5px;margin-bottom:8px; }
+    .step-desc { font-size:13px;color:rgba(255,255,255,.35);line-height:1.75; }
+    .step-tags { display:flex;flex-wrap:wrap;gap:8px;margin-top:16px; }
+    .step-tag { font-size:10px;font-weight:600;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.3);padding:4px 10px; }
+
+    /* Checklist */
+    .check { display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.04); }
+    .check:last-child { border-bottom:none; }
+    .check-icon { width:20px;height:20px;background:var(--lime);border-radius:50%;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center; }
+    .check-text { font-size:15px;color:rgba(255,255,255,.55);line-height:1.5; }
+
+    /* CTA */
+    .cta-section { background:var(--lime);text-align:center;padding:100px 40px; }
+    .cta-title { font-size:clamp(28px,2.6vw,38px);font-weight:900;line-height:1.05;letter-spacing:-1px;text-transform:uppercase;color:#0d0d0d; }
+    .cta-sub { font-size:16px;color:rgba(0,0,0,.45);margin-top:20px;margin-bottom:40px;line-height:1.65; }
+
+    /* Mobile typography */
+    @media (max-width:640px) {
+      .h-xl { font-size:34px;letter-spacing:-1px;line-height:1; }
+      .h-lg { font-size:30px;letter-spacing:-1px; }
+      .h-md { font-size:24px;letter-spacing:-0.5px; }
+      .cta-title { font-size:28px;letter-spacing:-0.8px;line-height:1.1; }
+    }
+
+    /* Logo infinite ticker */
+    .logo-ticker-outer {
+      position:relative;
+      overflow:hidden;
+    }
+    .logo-ticker-outer::before,
+    .logo-ticker-outer::after {
+      content:'';
+      position:absolute;
+      top:0; bottom:0;
+      width:140px;
+      z-index:2;
+      pointer-events:none;
+    }
+    .logo-ticker-outer::before {
+      left:0;
+      background:linear-gradient(to right, #0d0d0d 30%, transparent);
+    }
+    .logo-ticker-outer::after {
+      right:0;
+      background:linear-gradient(to left, #0d0d0d 30%, transparent);
+    }
+    .logo-ticker-track {
+      display:flex;
+      align-items:center;
+      width:max-content;
+      animation:logoTick 40s linear infinite;
+    }
+    .logo-ticker-track:hover { animation-play-state:paused; }
+    @keyframes logoTick {
+      from { transform:translateX(0); }
+      to   { transform:translateX(-50%); }
+    }
+    .logo-item {
+      flex-shrink:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px 52px;
+    }
+    .logo-item img {
+      height:48px;
+      width:auto;
+      max-width:160px;
+      object-fit:contain;
+      opacity:.5;
+      transition:opacity .35s;
+    }
+    .logo-item:hover img {
+      opacity:.95;
+    }
+
+    /* Interactive chart */
+    .chart-bar { transition:height .6s ease,background .3s; cursor:pointer; }
+    .chart-bar:hover { background: var(--lime) !important; }
+
+    /* Company logos row */
+    .logos-row { display:flex;align-items:center;gap:0;flex-wrap:nowrap;overflow:hidden; }
+    .logo-company { flex:1;text-align:center;padding:28px;border-right:1px solid rgba(255,255,255,.06);font-size:14px;font-weight:800;letter-spacing:1px;color:rgba(255,255,255,.15);text-transform:uppercase;transition:color .3s; }
+    .logo-company:last-child { border-right:none; }
+    .logo-company:hover { color:rgba(255,255,255,.5); }
+
+    /* Orbit animation for hero visual */
+    @keyframes orbit { 0%{transform:rotate(0deg) translateX(90px) rotate(0deg)} 100%{transform:rotate(360deg) translateX(90px) rotate(-360deg)} }
+    @keyframes orbitR { 0%{transform:rotate(0deg) translateX(130px) rotate(0deg)} 100%{transform:rotate(-360deg) translateX(130px) rotate(360deg)} }
+    .orbit-dot { position:absolute;width:8px;height:8px;border-radius:50%;background:var(--lime);animation:orbit 6s linear infinite; }
+    .orbit-dot.r { animation:orbitR 10s linear infinite reverse;background:rgba(190,255,1,.4); }
+
+    /* Mobile */
+    @media(max-width:768px) {
+      .wrap { padding:0 20px; }
+      .nav-inner { padding:0 20px; }
+      .nav-links { display:none; }
+      .section,.cta-section { padding:60px 0; }
+      .stat-grid { grid-template-columns:1fr 1fr; }
+      .stat-item:nth-child(2) { border-right:none; }
+      .stat-item:nth-child(3) { border-right:1px solid rgba(255,255,255,.06); }
+      .chaos-grid { grid-template-columns:1fr; }
+      [data-grid="2"] { grid-template-columns:1fr !important; }
+      .h-xl { letter-spacing:-2px; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MB8HQX6X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="glow"></div>
+
+<!-- ══════════════════════════════════════
+  PRELOADER
+══════════════════════════════════════ -->
+<div id="preloader">
+  <div class="pre-word">NEURAL<span>OPS</span></div>
+  <div class="pre-line"><div class="pre-line-fill"></div></div>
+  <div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.2);text-transform:uppercase;">Infraestrutura de Inteligência</div>
+</div>
+
+<!-- ══════════════════════════════════════
+  NAV
+══════════════════════════════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="6" fill="#beff01"/>
+        <line x1="0" y1="16" x2="32" y2="16" stroke="#0d0d0d" stroke-width="2.5"/>
+        <circle cx="10" cy="16" r="3.5" fill="#0d0d0d"/><circle cx="10" cy="16" r="1.5" fill="#beff01"/>
+        <rect x="19.5" y="6" width="2.5" height="20" fill="#0d0d0d"/>
+        <circle cx="20.75" cy="10" r="3.5" fill="#0d0d0d"/><circle cx="20.75" cy="10" r="1.5" fill="#beff01"/>
+        <circle cx="20.75" cy="22" r="3.5" fill="#0d0d0d"/><circle cx="20.75" cy="22" r="1.5" fill="#beff01"/>
+      </svg>
+      <span class="nav-logo-text">Neural<em>Ops</em></span>
+    </a>
+    <div class="nav-links">
+      <a href="#problema" class="nav-link">O Problema</a>
+      <a href="#infraestrutura" class="nav-link">Infraestrutura</a>
+      <a href="#processo" class="nav-link">Processo</a>
+      <a href="#resultados" class="nav-link">Resultados</a>
+    </div>
+    <a href="/diagnostico/" class="nav-cta">
+      Diagnóstico Neural
+      <svg width="14" height="12" viewBox="0 0 17 14" fill="none"><path d="M.247 6.576H15.144" stroke="currentColor" stroke-width="1.5"/><path d="M9.277 0c0 3.635 3.118 6.576 6.97 6.576" stroke="currentColor" stroke-width="1.5"/><path d="M16.247 6.576c-3.852 0-6.97 2.942-6.97 6.577" stroke="currentColor" stroke-width="1.5"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+  HERO
+══════════════════════════════════════ -->
+<section style="min-height:100vh;display:flex;align-items:center;padding:120px 0 60px;position:relative;overflow:hidden;">
+  <!-- Grid bg -->
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;"></div>
+  <!-- Radial glow -->
+  <div style="position:absolute;top:-100px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(190,255,1,.04) 0%,transparent 65%);pointer-events:none;"></div>
+
+  <div class="wrap" style="width:100%;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;" data-grid="2">
+
+      <!-- Left -->
+      <div class="fu">
+        <div class="tag" style="margin-bottom:32px;">// Infraestrutura de Inteligência</div>
+
+        <h1 class="h-xl" style="margin-bottom:32px;">
+          O futuro das<br>empresas não é<br>mais sobre <span class="green">pessoas.</span>
+        </h1>
+
+        <p style="font-size:18px;line-height:1.7;color:rgba(255,255,255,.45);max-width:480px;margin-bottom:24px;">
+          É sobre sistemas inteligentes. Enquanto empresas tradicionais tentam crescer contratando mais pessoas, as empresas que dominam o futuro fazem algo diferente.
+        </p>
+
+        <!-- Systems chain -->
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:36px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="color:var(--lime);font-size:12px;">→</span>
+            <span style="font-size:12px;font-weight:600;letter-spacing:1px;color:rgba(255,255,255,.4);">Sistemas que executam processos</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="color:var(--lime);font-size:12px;">→</span>
+            <span style="font-size:12px;font-weight:600;letter-spacing:1px;color:rgba(255,255,255,.4);">Sistemas que integram dados</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="color:var(--lime);font-size:12px;">→</span>
+            <span style="font-size:12px;font-weight:600;letter-spacing:1px;color:rgba(190,255,1,.7);">Sistemas que tomam decisões</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:12px;">
+          <a href="/diagnostico/" class="btn btn-lime">
+            Iniciar Diagnóstico Gratuito
+            <svg width="14" height="12" viewBox="0 0 17 14" fill="none"><path d="M.247 6.576H15.144" stroke="currentColor" stroke-width="1.5"/><path d="M9.277 0c0 3.635 3.118 6.576 6.97 6.576" stroke="currentColor" stroke-width="1.5"/><path d="M16.247 6.576c-3.852 0-6.97 2.942-6.97 6.577" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right — Operational Intelligence Visual -->
+      <div class="fu d2" style="position:relative;">
+        <div style="background:#111;border:1px solid rgba(255,255,255,.07);padding:40px;position:relative;">
+
+          <!-- Header -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;">
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:6px;">Sistema Nervoso Operacional</div>
+              <img src="assets/img/logo/clarityops-logo.png" alt="ClarityOps" style="height:22px;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <div style="display:none;font-size:16px;font-weight:800;color:var(--lime);">ClarityOps</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:#beff01;animation:pulse-dot 2s infinite;"></div>
+              <span style="font-size:10px;color:rgba(255,255,255,.3);letter-spacing:1px;">LIVE</span>
+            </div>
+          </div>
+
+          <!-- Metrics row -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px;">
+            <div style="background:#0d0d0d;padding:16px;">
+              <div style="font-size:9px;color:rgba(255,255,255,.25);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Horas/mês</div>
+              <div style="font-size:26px;font-weight:900;color:var(--lime);line-height:1;" id="counter-hours">0</div>
+            </div>
+            <div style="background:#0d0d0d;padding:16px;">
+              <div style="font-size:9px;color:rgba(255,255,255,.25);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">ROI</div>
+              <div style="font-size:26px;font-weight:900;color:var(--lime);line-height:1;" id="counter-roi">0</div>
+            </div>
+            <div style="background:#0d0d0d;padding:16px;">
+              <div style="font-size:9px;color:rgba(255,255,255,.25);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Economia</div>
+              <div style="font-size:26px;font-weight:900;color:var(--lime);line-height:1;" id="counter-economy">R$0</div>
+            </div>
+          </div>
+
+          <!-- Chart interactive -->
+          <div style="margin-bottom:24px;">
+            <div style="font-size:9px;color:rgba(255,255,255,.2);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Eficiência Operacional vs Custo</div>
+            <div style="display:flex;align-items:flex-end;gap:6px;height:80px;position:relative;" id="bar-chart">
+              <!-- Bars rendered by JS -->
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:6px;">
+              <span style="font-size:9px;color:rgba(255,255,255,.2);">Jan</span>
+              <span style="font-size:9px;color:rgba(255,255,255,.2);">Mar</span>
+              <span style="font-size:9px;color:rgba(255,255,255,.2);">Jun</span>
+              <span style="font-size:9px;color:rgba(255,255,255,.2);">Set</span>
+              <span style="font-size:9px;color:rgba(255,255,255,.2);">Dez</span>
+            </div>
+          </div>
+
+          <!-- Progress bar -->
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+              <span style="font-size:10px;color:rgba(255,255,255,.3);">Automações ativas</span>
+              <span style="font-size:10px;color:var(--lime);font-weight:700;">78%</span>
+            </div>
+            <div style="height:3px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden;">
+              <div style="height:100%;width:78%;background:var(--lime);border-radius:2px;"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  TICKER
+══════════════════════════════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">Infraestrutura Neural™ <span class="ticker-dot"></span> Automação Operacional <span class="ticker-dot"></span> IA Operacional <span class="ticker-dot"></span> Diagnóstico Neural™ <span class="ticker-dot"></span> Sistema Nervoso Empresarial <span class="ticker-dot"></span> Visibilidade Estratégica <span class="ticker-dot"></span> Crescimento Previsível <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Infraestrutura Neural™ <span class="ticker-dot"></span> Automação Operacional <span class="ticker-dot"></span> IA Operacional <span class="ticker-dot"></span> Diagnóstico Neural™ <span class="ticker-dot"></span> Sistema Nervoso Empresarial <span class="ticker-dot"></span> Visibilidade Estratégica <span class="ticker-dot"></span> Crescimento Previsível <span class="ticker-dot"></span></span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+  STATS
+══════════════════════════════════════ -->
+<div style="background:#111;border-bottom:1px solid rgba(255,255,255,.06);">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat-item fu"><div class="stat-num">60%</div><div class="stat-label">Redução de tarefas<br>manuais</div></div>
+      <div class="stat-item fu d1"><div class="stat-num">488h</div><div class="stat-label">Economizadas<br>por mês</div></div>
+      <div class="stat-item fu d2"><div class="stat-num">+500%</div><div class="stat-label">ROI médio<br>estimado</div></div>
+      <div class="stat-item fu d3"><div class="stat-num">R$50k+</div><div class="stat-label">Faturamento mínimo<br>do cliente ideal</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+  O PROBLEMA
+══════════════════════════════════════ -->
+<section class="section" id="problema">
+  <div class="wrap">
+
+    <div class="fu" style="margin-bottom:48px;">
+      <div class="tag" style="margin-bottom:32px;">// O Problema que Quase Ninguém Percebe</div>
+      <p style="font-size:clamp(22px,2.6vw,38px);font-weight:900;line-height:1.1;letter-spacing:-1.5px;text-transform:uppercase;color:rgba(255,255,255,.12);">
+        Empresas não travam<br>
+        por falta de <span style="color:rgba(255,255,255,.9);">clientes.</span><br>
+        Elas travam porque a operação não<br><span style="color:var(--lime);">acompanha o crescimento.</span>
+      </p>
+    </div>
+
+    <!-- Chaos Grid -->
+    <div class="chaos-grid fu" style="margin-bottom:2px;">
+      <div class="chaos-card">
+        <div style="margin-bottom:16px;line-height:0;">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="6" cy="14" r="3.5" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+            <circle cx="22" cy="14" r="3.5" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+            <line x1="9.5" y1="14" x2="12" y2="14" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="16" y1="14" x2="18.5" y2="14" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="13" y1="11.5" x2="13" y2="10" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="15" y1="18" x2="15" y2="16.5" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px;">Sistemas não conversam</div>
+        <p style="font-size:14px;color:rgba(255,255,255,.25);line-height:1.75;">CRM em um lugar, financeiro em outro, atendimento em outro. Cada sistema é uma ilha de informação.</p>
+      </div>
+      <div class="chaos-card">
+        <div style="margin-bottom:16px;line-height:0;">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="9" r="4.5" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+            <path d="M 4 26 C 4 19.5 24 19.5 24 26" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px;">Processos dependem de pessoas</div>
+        <p style="font-size:14px;color:rgba(255,255,255,.25);line-height:1.75;">Cada tarefa precisa de alguém para executar. Quando a pessoa sai, o processo vai junto.</p>
+      </div>
+      <div class="chaos-card">
+        <div style="margin-bottom:16px;line-height:0;">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="4" y1="24" x2="24" y2="24" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="2 2"/>
+            <circle cx="7" cy="20" r="1.8" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="13" cy="15" r="1.8" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="19" cy="18" r="1.8" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="10" cy="9" r="1.8" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="22" cy="11" r="1.8" fill="rgba(255,255,255,0.4)"/>
+          </svg>
+        </div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px;">Decisões sem dados claros</div>
+        <p style="font-size:14px;color:rgba(255,255,255,.25);line-height:1.75;">Informações espalhadas. Relatórios manuais. Decisões baseadas em intuição, não em realidade.</p>
+      </div>
+      <div class="chaos-card">
+        <div style="margin-bottom:16px;line-height:0;">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="3,23 7,17 11,20 15,11 19,15 24,6" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="20,6 24,6 24,10" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px;">Crescimento gera caos</div>
+        <p style="font-size:14px;color:rgba(255,255,255,.25);line-height:1.75;">Cada novo cliente exige mais esforço humano. O crescimento vira peso, não vira escala.</p>
+      </div>
+    </div>
+    <div style="background:rgba(190,255,1,.04);border:1px solid rgba(190,255,1,.15);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;" class="fu">
+      <div>
+        <span style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--lime);margin-right:20px;">Resultado:</span>
+        <span style="font-size:16px;font-weight:600;color:rgba(255,255,255,.55);">o crescimento vira caos operacional. Cada novo cliente gera mais trabalho. Cada nova contratação aumenta o custo.</span>
+      </div>
+      <a href="#infraestrutura" style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--lime);text-decoration:none;white-space:nowrap;">A solução →</a>
+    </div>
+
+    <!-- NOVO PARADIGMA -->
+    <div style="margin-top:72px;" class="fu">
+      <div class="tag" style="margin-bottom:32px;">// O Novo Paradigma</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;" data-grid="2">
+        <div>
+          <h2 style="font-size:clamp(27px,2.4vw,36px);font-weight:900;line-height:1.1;letter-spacing:-1px;text-transform:uppercase;margin-bottom:24px;">
+            Empresas que<br>escalam operam<br>com <span class="green">infraestrutura.</span><br>Não equipe.
+          </h2>
+          <p style="font-size:16px;color:rgba(255,255,255,.4);line-height:1.8;">
+            Amazon. Stripe. Tesla. Netflix. Todas entenderam algo fundamental: empresas modernas não operam apenas com pessoas. Elas operam com infraestruturas inteligentes. Sistemas que automatizam processos, conectam dados e executam decisões. Elas escalam inteligência operacional. Não equipe.
+          </p>
+        </div>
+
+        <!-- Companies grid -->
+        <div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.05);">
+            <div style="background:#111;padding:36px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:rgba(255,255,255,.12);letter-spacing:-1px;transition:color .3s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.12)'">Amazon</div>
+            <div style="background:#111;padding:36px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:rgba(255,255,255,.12);letter-spacing:-1px;transition:color .3s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.12)'">Stripe</div>
+            <div style="background:#111;padding:36px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:rgba(255,255,255,.12);letter-spacing:-1px;transition:color .3s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.12)'">Tesla</div>
+            <div style="background:#111;padding:36px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:rgba(255,255,255,.12);letter-spacing:-1px;transition:color .3s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.12)'">Netflix</div>
+          </div>
+          <div style="background:rgba(190,255,1,.04);border:1px solid rgba(190,255,1,.1);padding:20px 28px;margin-top:1px;">
+            <p style="font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;">Sua empresa pode operar com a mesma lógica. A Neural Ops constrói essa infraestrutura para negócios em crescimento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+  O QUE A NEURAL OPS FAZ
+══════════════════════════════════════ -->
+<section class="section" style="background:#111;" id="sobre">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;" data-grid="2">
+      <div class="fu">
+        <div class="tag" style="margin-bottom:28px;">// O Que a Neural Ops Faz</div>
+        <h2 class="h-lg" style="margin-bottom:28px;">
+          Nós construímos o<br><span class="green">sistema nervoso</span><br>da sua empresa.
+        </h2>
+        <p style="font-size:16px;color:rgba(255,255,255,.4);line-height:1.8;margin-bottom:40px;">A Neural Ops projeta e implementa infraestruturas de inteligência artificial personalizadas para negócios.</p>
+
+        <div style="display:flex;flex-direction:column;gap:0;margin-bottom:40px;">
+          <div style="display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,.06);">
+            <div style="width:7px;height:7px;background:rgba(255,255,255,.15);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:rgba(255,255,255,.3);text-decoration:line-through;">Não vendemos ferramentas.</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,.06);">
+            <div style="width:7px;height:7px;background:rgba(255,255,255,.15);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:rgba(255,255,255,.3);text-decoration:line-through;">Não vendemos softwares isolados.</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);">
+            <div style="width:7px;height:7px;background:rgba(255,255,255,.15);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:rgba(255,255,255,.3);text-decoration:line-through;">Não vendemos automações soltas.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- What the company becomes -->
+      <div class="fu d2">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:24px;">// A empresa passa a funcionar assim:</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="background:#0d0d0d;border:1px solid rgba(255,255,255,.07);padding:24px;display:flex;align-items:center;gap:16px;">
+            <div style="width:36px;height:36px;background:rgba(190,255,1,.08);border:1px solid rgba(190,255,1,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#beff01" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span style="font-size:14px;color:rgba(255,255,255,.55);">Operar com menos intervenção humana</span>
+          </div>
+          <div style="background:#0d0d0d;border:1px solid rgba(255,255,255,.07);padding:24px;display:flex;align-items:center;gap:16px;">
+            <div style="width:36px;height:36px;background:rgba(190,255,1,.08);border:1px solid rgba(190,255,1,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#beff01" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span style="font-size:14px;color:rgba(255,255,255,.55);">Executar processos automaticamente</span>
+          </div>
+          <div style="background:#0d0d0d;border:1px solid rgba(255,255,255,.07);padding:24px;display:flex;align-items:center;gap:16px;">
+            <div style="width:36px;height:36px;background:rgba(190,255,1,.08);border:1px solid rgba(190,255,1,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#beff01" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span style="font-size:14px;color:rgba(255,255,255,.55);">Tomar decisões baseadas em dados</span>
+          </div>
+          <div style="background:#0d0d0d;border:1px solid rgba(255,255,255,.07);padding:24px;display:flex;align-items:center;gap:16px;">
+            <div style="width:36px;height:36px;background:rgba(190,255,1,.08);border:1px solid rgba(190,255,1,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#beff01" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span style="font-size:14px;color:rgba(255,255,255,.55);">Adaptar a operação conforme o crescimento</span>
+          </div>
+        </div>
+
+        <div style="background:var(--lime);padding:24px 28px;margin-top:12px;">
+          <p style="font-size:15px;font-weight:800;color:#0d0d0d;line-height:1.5;margin:0;">Sua empresa deixa de funcionar no improviso. E passa a funcionar como um organismo inteligente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+  INFRAESTRUTURA NEURAL — 4 LAYERS + FLOW
+══════════════════════════════════════ -->
+<section class="section" id="infraestrutura">
+  <div class="wrap">
+    <div class="fu" style="margin-bottom:48px;text-align:center;">
+      <div class="tag" style="margin-bottom:28px;">// A Infraestrutura Neural™</div>
+      <h2 class="h-lg">Nosso sistema proprietário que<br>transforma operações caóticas em<br>sistemas <span class="green">inteligentes de crescimento.</span></h2>
+      <p style="font-size:16px;color:rgba(255,255,255,.35);margin-top:24px;max-width:600px;margin-left:auto;margin-right:auto;">Ele conecta quatro camadas fundamentais da empresa.</p>
+    </div>
+
+    <!-- STATIC FLOW DIAGRAM -->
+    <div class="fu" style="margin-bottom:48px;">
+      <div style="background:#111;border:1px solid rgba(255,255,255,.07);padding:48px 32px;position:relative;overflow:hidden;">
+        <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(190,255,1,.06) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+        <div style="position:relative;z-index:2;">
+          <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:32px;">// Arquitetura de Integração Operacional</div>
+          <svg viewBox="0 0 900 330" width="100%" style="max-width:900px;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="nGlow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <filter id="nGlowS" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="1.8" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <style>
+                @keyframes nFlowD { from { stroke-dashoffset:0 } to { stroke-dashoffset:-14 } }
+                @keyframes nFlowR { from { stroke-dashoffset:0 } to { stroke-dashoffset:-14 } }
+                @keyframes nPulse { 0%,100% { opacity:.35 } 50% { opacity:1 } }
+                @keyframes nPulseC { 0%,100% { opacity:.7 } 50% { opacity:1 } }
+                .nl { stroke:rgba(190,255,1,.28); stroke-width:2; stroke-dasharray:6 8; fill:none }
+                .nl-v { animation:nFlowD 1.4s linear infinite }
+                .nl-h { animation:nFlowR 2.6s linear infinite }
+                .nl-spine { stroke:rgba(190,255,1,.6); stroke-width:2.5; stroke-dasharray:6 8; fill:none; animation:nFlowD .85s linear infinite }
+                .nd { fill:#beff01; filter:url(#nGlowS); animation:nPulse 2.6s ease-in-out infinite }
+                .nd-c { fill:#beff01; filter:url(#nGlow); animation:nPulseC 1.4s ease-in-out infinite }
+                .nb { fill:#0d0d0d; stroke:rgba(255,255,255,.12); stroke-width:1; cursor:default; transition:stroke .3s,stroke-width .3s }
+                .nb:hover { stroke:rgba(190,255,1,.7); stroke-width:1.5 }
+                .nb-t { fill:rgba(255,255,255,.42); font-family:monospace; font-size:9px; font-weight:700; letter-spacing:1.5px; text-anchor:middle; dominant-baseline:middle; pointer-events:none }
+                .nb-o { fill:#0d0d0d; stroke:rgba(255,255,255,.12); stroke-width:1; cursor:default; transition:stroke .3s,stroke-width .3s }
+                .nb-o:hover { stroke:rgba(190,255,1,.7); stroke-width:1.5 }
+                .nb-ot { fill:rgba(255,255,255,.58); font-family:sans-serif; font-size:10px; font-weight:700; letter-spacing:1px; text-anchor:middle; dominant-baseline:middle; pointer-events:none }
+              </style>
+            </defs>
+
+            <!-- ── INPUT BOXES ── -->
+            <rect class="nb" x="60" y="10" width="120" height="44"/>
+            <text class="nb-t" x="120" y="33">CRM</text>
+            <rect class="nb" x="192" y="10" width="120" height="44"/>
+            <text class="nb-t" x="252" y="33">ERP</text>
+            <rect class="nb" x="324" y="10" width="120" height="44"/>
+            <text class="nb-t" x="384" y="33">MARKETING</text>
+            <rect class="nb" x="456" y="10" width="120" height="44"/>
+            <text class="nb-t" x="516" y="33">FINANÇAS</text>
+            <rect class="nb" x="588" y="10" width="120" height="44"/>
+            <text class="nb-t" x="648" y="33">ATENDIMENTO</text>
+            <rect class="nb" x="720" y="10" width="120" height="44"/>
+            <text class="nb-t" x="780" y="33">DADOS</text>
+
+            <!-- ── VERTICAL STUBS → BUS 1 (staggered) ── -->
+            <line class="nl nl-v" style="animation-delay:0s"      x1="120" y1="54" x2="120" y2="110"/>
+            <line class="nl nl-v" style="animation-delay:-.23s"   x1="252" y1="54" x2="252" y2="110"/>
+            <line class="nl nl-v" style="animation-delay:-.47s"   x1="384" y1="54" x2="384" y2="110"/>
+            <line class="nl nl-v" style="animation-delay:-.7s"    x1="516" y1="54" x2="516" y2="110"/>
+            <line class="nl nl-v" style="animation-delay:-.93s"   x1="648" y1="54" x2="648" y2="110"/>
+            <line class="nl nl-v" style="animation-delay:-1.17s"  x1="780" y1="54" x2="780" y2="110"/>
+
+            <!-- ── HORIZONTAL BUS 1 ── -->
+            <line class="nl nl-h" x1="120" y1="110" x2="780" y2="110"/>
+
+            <!-- ── DOTS BUS 1 ── -->
+            <circle class="nd" style="animation-delay:0s"     cx="120" cy="110" r="3"/>
+            <circle class="nd" style="animation-delay:-.38s"  cx="252" cy="110" r="3"/>
+            <circle class="nd" style="animation-delay:-.76s"  cx="384" cy="110" r="3"/>
+            <circle class="nd-c"                              cx="450" cy="110" r="4.5"/>
+            <circle class="nd" style="animation-delay:-1.14s" cx="516" cy="110" r="3"/>
+            <circle class="nd" style="animation-delay:-1.52s" cx="648" cy="110" r="3"/>
+            <circle class="nd" style="animation-delay:-1.9s"  cx="780" cy="110" r="3"/>
+
+            <!-- ── SPINE IN: BUS 1 → CENTRAL NODE ── -->
+            <line stroke="rgba(190,255,1,.18)" stroke-width="3" x1="450" y1="110" x2="450" y2="148"/>
+            <line stroke="rgba(190,255,1,.75)" stroke-width="3" stroke-dasharray="6 8" fill="none" filter="url(#nGlow)" style="animation:nFlowD .85s linear infinite" x1="450" y1="110" x2="450" y2="148"/>
+
+            <!-- Traveling signal pulse (input) -->
+            <path id="sp1" d="M 450 54 L 450 148" fill="none"/>
+            <circle r="4.5" fill="#beff01" filter="url(#nGlow)">
+              <animateMotion dur="2s" repeatCount="indefinite"><mpath href="#sp1"/></animateMotion>
+              <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.08;0.15;0.9;1" dur="2s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- ── CENTRAL NODE ── -->
+            <rect fill="#beff01" x="280" y="148" width="340" height="58">
+              <animate attributeName="opacity" values=".88;1;.88" dur="2.8s" repeatCount="indefinite"/>
+            </rect>
+            <text fill="#0d0d0d" font-family="sans-serif" font-size="9" font-weight="700" letter-spacing="2" text-anchor="middle" dominant-baseline="middle" x="450" y="163">// NÚCLEO</text>
+            <text fill="#0d0d0d" font-family="sans-serif" font-size="17" font-weight="900" text-anchor="middle" dominant-baseline="middle" x="450" y="184">Infraestrutura Neural™</text>
+
+            <!-- ── SPINE OUT: CENTRAL NODE → BUS 2 ── -->
+            <line stroke="rgba(190,255,1,.18)" stroke-width="3" x1="450" y1="206" x2="450" y2="244"/>
+            <line stroke="rgba(190,255,1,.75)" stroke-width="3" stroke-dasharray="6 8" fill="none" filter="url(#nGlow)" style="animation:nFlowD .85s linear infinite;animation-delay:-.42s" x1="450" y1="206" x2="450" y2="244"/>
+
+            <!-- Traveling signal pulse (output) -->
+            <path id="sp2" d="M 450 206 L 450 264" fill="none"/>
+            <circle r="4.5" fill="#beff01" filter="url(#nGlow)">
+              <animateMotion dur="2s" repeatCount="indefinite" begin="1s"><mpath href="#sp2"/></animateMotion>
+              <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.08;0.15;0.9;1" dur="2s" repeatCount="indefinite" begin="1s"/>
+            </circle>
+
+            <!-- ── HORIZONTAL BUS 2 ── -->
+            <line class="nl nl-h" style="animation-delay:-.9s" x1="180" y1="244" x2="720" y2="244"/>
+
+            <!-- ── DOTS BUS 2 ── -->
+            <circle class="nd" style="animation-delay:-.2s"   cx="180" cy="244" r="3"/>
+            <circle class="nd" style="animation-delay:-.55s"  cx="360" cy="244" r="3"/>
+            <circle class="nd-c"                              cx="450" cy="244" r="4.5"/>
+            <circle class="nd" style="animation-delay:-.9s"   cx="540" cy="244" r="3"/>
+            <circle class="nd" style="animation-delay:-1.25s" cx="720" cy="244" r="3"/>
+
+            <!-- ── VERTICAL STUBS: BUS 2 → OUTPUT (staggered) ── -->
+            <line class="nl nl-v" style="animation-delay:-.15s" x1="180" y1="244" x2="180" y2="264"/>
+            <line class="nl nl-v" style="animation-delay:-.4s"  x1="360" y1="244" x2="360" y2="264"/>
+            <line class="nl nl-v" style="animation-delay:-.65s" x1="540" y1="244" x2="540" y2="264"/>
+            <line class="nl nl-v" style="animation-delay:-.9s"  x1="720" y1="244" x2="720" y2="264"/>
+
+            <!-- ── OUTPUT BOXES ── -->
+            <rect class="nb-o" x="100" y="264" width="160" height="44"/>
+            <text class="nb-ot" x="180" y="287">AUTOMAÇÕES</text>
+            <rect class="nb-o" x="280" y="264" width="160" height="44"/>
+            <text class="nb-ot" x="360" y="287">DASHBOARDS</text>
+            <rect class="nb-o" x="460" y="264" width="160" height="44"/>
+            <text class="nb-ot" x="540" y="287">IA OPERACIONAL</text>
+            <rect class="nb-o" x="640" y="264" width="160" height="44"/>
+            <text class="nb-ot" x="720" y="287">RELATÓRIOS</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Layers -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.05);" data-grid="2">
+
+      <div class="layer fu">
+        <div class="layer-num">// CAMADA 01</div>
+        <div class="layer-title">Integração Total de Sistemas</div>
+        <div class="layer-desc">Tudo conectado em uma única arquitetura operacional. Sem silos. Sem perda de informação. Sem retrabalho.</div>
+        <div class="layer-tags">
+          <span class="layer-tag">CRM</span>
+          <span class="layer-tag">ERP</span>
+          <span class="layer-tag">Financeiro</span>
+          <span class="layer-tag">Marketing</span>
+          <span class="layer-tag">Atendimento</span>
+          <span class="layer-tag">Dados</span>
+        </div>
+      </div>
+
+      <div class="layer fu d1">
+        <div class="layer-num">// CAMADA 02</div>
+        <div class="layer-title">Automação Operacional</div>
+        <div class="layer-desc">Processos repetitivos executados automaticamente. Fluxos operacionais programados para acontecer sem intervenção humana. A operação deixa de depender de tarefas manuais.</div>
+        <div class="layer-tags">
+          <span class="layer-tag">Fluxos automáticos</span>
+          <span class="layer-tag">Gatilhos inteligentes</span>
+          <span class="layer-tag">Zero intervenção</span>
+        </div>
+      </div>
+
+      <div class="layer fu d2">
+        <div class="layer-num">// CAMADA 03</div>
+        <div class="layer-title">Inteligência Artificial Operacional</div>
+        <div class="layer-desc">Modelos de IA monitoram a operação em tempo real. Identificam padrões, executam ações e geram insights. A empresa reage automaticamente ao que acontece no negócio.</div>
+        <div class="layer-tags">
+          <span class="layer-tag">Monitoramento real-time</span>
+          <span class="layer-tag">Detecção de padrões</span>
+          <span class="layer-tag">Ação automática</span>
+        </div>
+      </div>
+
+      <div class="layer fu d3">
+        <div class="layer-num">// CAMADA 04</div>
+        <div class="layer-title">Visibilidade Estratégica</div>
+        <div class="layer-desc">Dashboards inteligentes mostram exatamente onde estão os gargalos, onde o dinheiro está sendo perdido e onde está o crescimento. A gestão deixa de operar no escuro.</div>
+        <div class="layer-tags">
+          <span class="layer-tag">Dashboards</span>
+          <span class="layer-tag">KPIs em tempo real</span>
+          <span class="layer-tag">Alertas inteligentes</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+  PROCESSO
+══════════════════════════════════════ -->
+<section class="section" style="background:#111;" id="processo">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:64px;" data-grid="2">
+
+      <div>
+        <div class="tag fu" style="margin-bottom:28px;">// Nosso Processo</div>
+        <h2 style="font-size:clamp(23px,2vw,30px);font-weight:900;line-height:1.15;letter-spacing:-0.5px;text-transform:uppercase;margin-bottom:28px;" class="fu d1">Como<br>implementamos<br>a infraestrutura<br><span class="green">Neural Ops</span></h2>
+        <p class="fu d2" style="font-size:15px;color:rgba(255,255,255,.35);line-height:1.8;">Quatro etapas. Sem improviso. Do diagnóstico à operação contínua — com IA em cada passo.</p>
+
+        <!-- Mini chart: steps timeline -->
+        <div class="fu d3" style="margin-top:48px;">
+          <div style="position:relative;padding-left:24px;">
+            <div style="position:absolute;left:8px;top:0;bottom:0;width:1px;background:rgba(190,255,1,.15);"></div>
+            <div style="position:absolute;left:4px;top:0;width:9px;height:9px;border-radius:50%;background:var(--lime);animation:pulse-dot 2s infinite 0s;"></div>
+            <div style="position:absolute;left:4px;top:25%;width:9px;height:9px;border-radius:50%;background:var(--lime);animation:pulse-dot 2s infinite .5s;"></div>
+            <div style="position:absolute;left:4px;top:50%;width:9px;height:9px;border-radius:50%;background:var(--lime);animation:pulse-dot 2s infinite 1s;"></div>
+            <div style="position:absolute;left:4px;top:75%;width:9px;height:9px;border-radius:50%;background:var(--lime);animation:pulse-dot 2s infinite 1.5s;"></div>
+            <div style="height:240px;display:flex;flex-direction:column;justify-content:space-around;">
+              <span style="font-size:12px;color:rgba(255,255,255,.3);padding-left:12px;">01 — Diagnóstico Neural</span>
+              <span style="font-size:12px;color:rgba(255,255,255,.3);padding-left:12px;">02 — Arquitetura</span>
+              <span style="font-size:12px;color:rgba(255,255,255,.3);padding-left:12px;">03 — Implementação</span>
+              <span style="font-size:12px;color:rgba(255,255,255,.3);padding-left:12px;">04 — Evolução Contínua</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="step fu">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-badge">Diagnóstico Neural</div>
+            <div class="step-title">Analisamos profundamente a operação</div>
+            <p class="step-desc">Mapeamos processos, sistemas, fluxos de informação e tomada de decisão. Identificamos gargalos invisíveis e oportunidades de automação que a maioria não enxerga.</p>
+            <div class="step-tags">
+              <span class="step-tag">Processos</span>
+              <span class="step-tag">Sistemas</span>
+              <span class="step-tag">Fluxos de informação</span>
+              <span class="step-tag">Tomada de decisão</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step fu d1">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-badge">Arquitetura Operacional</div>
+            <div class="step-title">Blueprint da infraestrutura inteligente</div>
+            <p class="step-desc">Projetamos cada fluxo, integração, automação e ponto de IA operacional antes de qualquer implementação. Nada é construído sem arquitetura definida.</p>
+            <div class="step-tags">
+              <span class="step-tag">Fluxos</span>
+              <span class="step-tag">Integrações</span>
+              <span class="step-tag">Automação</span>
+              <span class="step-tag">IA Operacional</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step fu d2">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-badge">Implementação</div>
+            <div class="step-title">Conectamos tudo como um único organismo</div>
+            <p class="step-desc">Conectamos sistemas, criamos automações e integramos inteligência artificial à operação real. Não fazemos pilotos isolados — implementamos na operação completa.</p>
+          </div>
+        </div>
+
+        <div class="step fu d3">
+          <div class="step-num">04</div>
+          <div>
+            <div class="step-badge">Evolução Contínua</div>
+            <div class="step-title">A infraestrutura evolui com a empresa</div>
+            <p class="step-desc">Novos fluxos, novas automações e novos sistemas são integrados conforme o negócio cresce. A infraestrutura aprende e se adapta continuamente.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+  RESULTADOS + CHART
+══════════════════════════════════════ -->
+<section class="section" id="resultados">
+  <div class="wrap">
+
+    <div class="fu" style="margin-bottom:48px;">
+      <div class="tag" style="margin-bottom:28px;">// O Resultado</div>
+      <h2 class="h-lg">A empresa deixa de funcionar<br>como uma equipe sobrecarregada.<br>E passa a funcionar como<br>um <span class="green">sistema inteligente.</span></h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;" data-grid="2">
+
+      <!-- Before / After chart -->
+      <div class="fu">
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:24px;">// Transformação Operacional</div>
+
+        <!-- Interactive comparison chart -->
+        <div style="background:#111;border:1px solid rgba(255,255,255,.07);padding:32px;" id="comparison-chart">
+          <div style="display:flex;gap:20px;margin-bottom:28px;">
+            <button onclick="showBefore()" id="btn-before" style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.4);cursor:pointer;transition:all .2s;">Antes</button>
+            <button onclick="showAfter()" id="btn-after" style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;border:1px solid var(--lime);background:rgba(190,255,1,.1);color:var(--lime);cursor:pointer;transition:all .2s;">Depois</button>
+          </div>
+
+          <div id="chart-before" style="display:none;">
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:rgba(255,255,255,.4);">Tarefas manuais</span><span style="font-size:12px;color:rgba(255,100,100,.7);">85%</span></div>
+              <div style="height:8px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:85%;background:rgba(255,100,100,.4);border-radius:2px;transition:width .8s;"></div></div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:rgba(255,255,255,.4);">Dependência humana</span><span style="font-size:12px;color:rgba(255,100,100,.7);">90%</span></div>
+              <div style="height:8px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:90%;background:rgba(255,100,100,.4);border-radius:2px;transition:width .8s;"></div></div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:rgba(255,255,255,.4);">Erros operacionais</span><span style="font-size:12px;color:rgba(255,100,100,.7);">70%</span></div>
+              <div style="height:8px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:70%;background:rgba(255,100,100,.4);border-radius:2px;transition:width .8s;"></div></div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:rgba(255,255,255,.4);">Visibilidade de dados</span><span style="font-size:12px;color:rgba(255,100,100,.7);">20%</span></div>
+              <div style="height:8px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:20%;background:rgba(255,100,100,.4);border-radius:2px;transition:width .8s;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:rgba(255,255,255,.4);">Capacidade de escala</span><span style="font-size:12px;color:rgba(255,100,100,.7);">15%</span></div>
+              <div style="height:8px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:15%;background:rgba(255,100,100,.4);border-radius:2px;transition:width .8s;"></div></div>
+            </div>
+          </div>
+
+          <div id="chart-after">
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:rgba(255,255,255,.4);">Tarefas manuais</span><span style="font-size:12px;color:var(--lime);">25%</span></div>
+              <div style="height:8px;background:rgba(255,255,255,.06);border-radius:2px;"><div class="bar-after" style="height:100%;width:25%;background:var(--lime);border-radius:2px;transition:width 1s ease;"></div></div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:rgba(255,255,255,.4);">Dependência humana</span><span style="font-size:12px;color:var(--lime);">30%</span></div>
+              <div style="height:8px;background:rgba(255,255,255,.06);border-radius:2px;"><div class="bar-after" style="height:100%;width:30%;background:var(--lime);border-radius:2px;transition:width 1.1s ease;"></div></div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:rgba(255,255,255,.4);">Erros operacionais</span><span style="font-size:12px;color:var(--lime);">15%</span></div>
+              <div style="height:8px;background:rgba(255,255,255,.06);border-radius:2px;"><div class="bar-after" style="height:100%;width:15%;background:var(--lime);border-radius:2px;transition:width 1.2s ease;"></div></div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:rgba(255,255,255,.4);">Visibilidade de dados</span><span style="font-size:12px;color:var(--lime);">95%</span></div>
+              <div style="height:8px;background:rgba(255,255,255,.06);border-radius:2px;"><div class="bar-after" style="height:100%;width:95%;background:var(--lime);border-radius:2px;transition:width 1.3s ease;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:rgba(255,255,255,.4);">Capacidade de escala</span><span style="font-size:12px;color:var(--lime);">90%</span></div>
+              <div style="height:8px;background:rgba(255,255,255,.06);border-radius:2px;"><div class="bar-after" style="height:100%;width:90%;background:var(--lime);border-radius:2px;transition:width 1.4s ease;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Big number -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,.05);margin-top:1px;">
+          <div style="background:#0d0d0d;padding:28px;text-align:center;">
+            <div style="font-size:40px;font-weight:900;color:var(--lime);line-height:1;">60%</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.25);letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;">menos custo<br>operacional</div>
+          </div>
+          <div style="background:#0d0d0d;padding:28px;text-align:center;">
+            <div style="font-size:40px;font-weight:900;color:var(--lime);line-height:1;">+500%</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.25);letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;">velocidade<br>operacional</div>
+          </div>
+          <div style="background:#0d0d0d;padding:28px;text-align:center;">
+            <div style="font-size:40px;font-weight:900;color:var(--lime);line-height:1;">∞</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.25);letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;">capacidade<br>de escala</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checklist -->
+      <div class="fu d2">
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:24px;">// Empresas que instalam infraestrutura Neural Ops passam a operar com:</div>
+        <div>
+          <div class="check"><div class="check-icon"><svg viewBox="0 0 10 8" fill="none" width="10"><path d="M1 4L3.5 6.5L9 1" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-text">Menos custo operacional</span></div>
+          <div class="check"><div class="check-icon"><svg viewBox="0 0 10 8" fill="none" width="10"><path d="M1 4L3.5 6.5L9 1" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-text">Menos dependência de pessoas</span></div>
+          <div class="check"><div class="check-icon"><svg viewBox="0 0 10 8" fill="none" width="10"><path d="M1 4L3.5 6.5L9 1" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-text">Menos erros humanos</span></div>
+          <div class="check"><div class="check-icon"><svg viewBox="0 0 10 8" fill="none" width="10"><path d="M1 4L3.5 6.5L9 1" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-text">Mais previsibilidade</span></div>
+          <div class="check"><div class="check-icon"><svg viewBox="0 0 10 8" fill="none" width="10"><path d="M1 4L3.5 6.5L9 1" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-text">Mais velocidade operacional</span></div>
+          <div class="check"><div class="check-icon"><svg viewBox="0 0 10 8" fill="none" width="10"><path d="M1 4L3.5 6.5L9 1" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-text">Mais capacidade de escala</span></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+  QUANDO / QUEM + FILOSOFIA
+══════════════════════════════════════ -->
+<section class="section" style="background:#111;" id="para-quem">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;" data-grid="2">
+
+      <div class="fu">
+        <div class="tag" style="margin-bottom:28px;">// Quando uma empresa precisa da Neural Ops</div>
+        <h2 class="h-md" style="margin-bottom:40px;">Se sua empresa vive algum desses cenários:</h2>
+
+        <div style="display:flex;flex-direction:column;gap:0;">
+          <div style="padding:18px 0;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:16px;">
+            <div style="width:8px;height:8px;background:rgba(255,255,255,.15);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:15px;color:rgba(255,255,255,.5);">A equipe está sobrecarregada</span>
+          </div>
+          <div style="padding:18px 0;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:16px;">
+            <div style="width:8px;height:8px;background:rgba(255,255,255,.15);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:15px;color:rgba(255,255,255,.5);">Processos dependem de pessoas</span>
+          </div>
+          <div style="padding:18px 0;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:16px;">
+            <div style="width:8px;height:8px;background:rgba(255,255,255,.15);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:15px;color:rgba(255,255,255,.5);">Sistemas não conversam entre si</span>
+          </div>
+          <div style="padding:18px 0;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:16px;">
+            <div style="width:8px;height:8px;background:rgba(255,255,255,.15);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:15px;color:rgba(255,255,255,.5);">Há retrabalho constante</span>
+          </div>
+          <div style="padding:18px 0;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:16px;">
+            <div style="width:8px;height:8px;background:rgba(255,255,255,.15);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:15px;color:rgba(255,255,255,.5);">Decisões são tomadas sem dados claros</span>
+          </div>
+          <div style="padding:18px 0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:16px;">
+            <div style="width:8px;height:8px;background:rgba(255,255,255,.15);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:15px;color:rgba(255,255,255,.5);">Cada novo cliente aumenta a complexidade</span>
+          </div>
+        </div>
+
+        <div style="background:rgba(190,255,1,.05);border:1px solid rgba(190,255,1,.15);padding:28px;margin-top:32px;">
+          <p style="font-size:16px;color:rgba(255,255,255,.7);line-height:1.6;margin:0;">Então o problema não é esforço.<br><strong style="color:var(--lime);">O problema é arquitetura operacional.</strong></p>
+        </div>
+      </div>
+
+      <div class="fu d2">
+        <div class="tag" style="margin-bottom:28px;">// Quem trabalha com a Neural Ops</div>
+        <h2 class="h-md" style="margin-bottom:40px;">Empresas em fase de crescimento que:</h2>
+
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:40px;">
+          <div style="background:#0d0d0d;border:1px solid rgba(255,255,255,.07);padding:20px 24px;display:flex;align-items:center;gap:14px;">
+            <div style="width:6px;height:6px;background:var(--lime);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:rgba(255,255,255,.5);">Já validaram seu mercado</span>
+          </div>
+          <div style="background:#0d0d0d;border:1px solid rgba(255,255,255,.07);padding:20px 24px;display:flex;align-items:center;gap:14px;">
+            <div style="width:6px;height:6px;background:var(--lime);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:rgba(255,255,255,.5);">Já possuem operação ativa</span>
+          </div>
+          <div style="background:#0d0d0d;border:1px solid rgba(255,255,255,.07);padding:20px 24px;display:flex;align-items:center;gap:14px;">
+            <div style="width:6px;height:6px;background:var(--lime);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:rgba(255,255,255,.5);">Precisam escalar sem aumentar custo</span>
+          </div>
+          <div style="background:#0d0d0d;border:1px solid rgba(255,255,255,.07);padding:20px 24px;display:flex;align-items:center;gap:14px;">
+            <div style="width:6px;height:6px;background:var(--lime);border-radius:50%;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:rgba(255,255,255,.5);">Faturamento acima de R$50.000/mês</span>
+          </div>
+        </div>
+
+        <!-- Filosofia -->
+        <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:40px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:20px;">// Filosofia</div>
+          <p style="font-size:16px;color:rgba(255,255,255,.4);line-height:1.8;margin-bottom:20px;">A maioria das empresas compra ferramentas. Mas ferramentas não resolvem operações. Elas apenas adicionam mais complexidade.</p>
+          <p style="font-size:16px;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:20px;">O que realmente transforma empresas é arquitetura.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="font-size:11px;font-weight:700;color:rgba(190,255,1,.5);background:rgba(190,255,1,.06);border:1px solid rgba(190,255,1,.12);padding:6px 12px;">Arquitetura de processos</span>
+            <span style="font-size:11px;font-weight:700;color:rgba(190,255,1,.5);background:rgba(190,255,1,.06);border:1px solid rgba(190,255,1,.12);padding:6px 12px;">Arquitetura de dados</span>
+            <span style="font-size:11px;font-weight:700;color:rgba(190,255,1,.5);background:rgba(190,255,1,.06);border:1px solid rgba(190,255,1,.12);padding:6px 12px;">Arquitetura de inteligência</span>
+          </div>
+          <p style="font-size:16px;color:rgba(255,255,255,.55);line-height:1.8;margin-top:20px;margin-bottom:0;">É isso que a Neural Ops constrói.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  CLIENTES
+══════════════════════════════════════ -->
+<section class="section" id="clientes" style="background:#0d0d0d;">
+  <div class="container">
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:64px;" class="fu">
+      <div class="tag" style="margin-bottom:24px;">// Operações reais.</div>
+      <h2 class="h-lg" style="margin-bottom:20px;">Empresas que já operam<br>com <span class="green">inteligência</span></h2>
+      <p style="font-size:15px;color:rgba(255,255,255,.35);max-width:560px;margin:0 auto;line-height:1.75;">Empresas de diferentes setores já passaram pela Neural Ops para organizar processos, integrar sistemas e escalar sem aumentar complexidade operacional.</p>
+    </div>
+  </div>
+
+  <!-- Logo infinite slider — full width -->
+  <div class="logo-ticker-outer fu d1">
+      <div class="logo-ticker-track">
+        <!-- Set A -->
+        <div class="logo-item"><img src="assets/logos/b_nous_gray.png" alt="B Nous"></div>
+        <div class="logo-item"><img src="assets/logos/beast_mode_gray.png" alt="Beast Mode"></div>
+        <div class="logo-item"><img src="assets/logos/cleanlike_gray.png" alt="Cleanlike"></div>
+        <div class="logo-item"><img src="assets/logos/cliqmed_gray.png" alt="Cliqmed"></div>
+        <div class="logo-item"><img src="assets/logos/direta_gestao_contabil_gray.png" alt="Direta Gestão Contábil"></div>
+        <div class="logo-item"><img src="assets/logos/drink_id_gray.png" alt="Drink ID"></div>
+        <div class="logo-item"><img src="assets/logos/futture_hub_gray.png" alt="Futture Hub"></div>
+        <div class="logo-item"><img src="assets/logos/global_awakening_gray.png" alt="Global Awakening"></div>
+        <div class="logo-item"><img src="assets/logos/isomos_gray.png" alt="Isomos"></div>
+        <div class="logo-item"><img src="assets/logos/kalys_gray.png" alt="Kalys"></div>
+        <div class="logo-item"><img src="assets/logos/medprev_gray.png" alt="Medprev"></div>
+        <div class="logo-item"><img src="assets/logos/mercado_livre_gray.png" alt="Mercado Livre"></div>
+        <div class="logo-item"><img src="assets/logos/newcredi_gray.png" alt="Newcredi"></div>
+        <div class="logo-item"><img src="assets/logos/otimiza_beneficios_gray.png" alt="Otimiza Benefícios"></div>
+        <div class="logo-item"><img src="assets/logos/pacheco_gray.png" alt="Pacheco"></div>
+        <div class="logo-item"><img src="assets/logos/seu_patrimonio_gray.png" alt="Seu Patrimônio"></div>
+        <div class="logo-item"><img src="assets/logos/siconect_gray.png" alt="Siconect"></div>
+        <div class="logo-item"><img src="assets/logos/smartclean_gray.png" alt="Smartclean"></div>
+        <div class="logo-item"><img src="assets/logos/studio_immagine_gray.png" alt="Studio Immagine"></div>
+        <div class="logo-item"><img src="assets/logos/trois_gray.png" alt="Trois"></div>
+        <!-- Set B (duplicate for seamless loop) -->
+        <div class="logo-item"><img src="assets/logos/b_nous_gray.png" alt="B Nous"></div>
+        <div class="logo-item"><img src="assets/logos/beast_mode_gray.png" alt="Beast Mode"></div>
+        <div class="logo-item"><img src="assets/logos/cleanlike_gray.png" alt="Cleanlike"></div>
+        <div class="logo-item"><img src="assets/logos/cliqmed_gray.png" alt="Cliqmed"></div>
+        <div class="logo-item"><img src="assets/logos/direta_gestao_contabil_gray.png" alt="Direta Gestão Contábil"></div>
+        <div class="logo-item"><img src="assets/logos/drink_id_gray.png" alt="Drink ID"></div>
+        <div class="logo-item"><img src="assets/logos/futture_hub_gray.png" alt="Futture Hub"></div>
+        <div class="logo-item"><img src="assets/logos/global_awakening_gray.png" alt="Global Awakening"></div>
+        <div class="logo-item"><img src="assets/logos/isomos_gray.png" alt="Isomos"></div>
+        <div class="logo-item"><img src="assets/logos/kalys_gray.png" alt="Kalys"></div>
+        <div class="logo-item"><img src="assets/logos/medprev_gray.png" alt="Medprev"></div>
+        <div class="logo-item"><img src="assets/logos/mercado_livre_gray.png" alt="Mercado Livre"></div>
+        <div class="logo-item"><img src="assets/logos/newcredi_gray.png" alt="Newcredi"></div>
+        <div class="logo-item"><img src="assets/logos/otimiza_beneficios_gray.png" alt="Otimiza Benefícios"></div>
+        <div class="logo-item"><img src="assets/logos/pacheco_gray.png" alt="Pacheco"></div>
+        <div class="logo-item"><img src="assets/logos/seu_patrimonio_gray.png" alt="Seu Patrimônio"></div>
+        <div class="logo-item"><img src="assets/logos/siconect_gray.png" alt="Siconect"></div>
+        <div class="logo-item"><img src="assets/logos/smartclean_gray.png" alt="Smartclean"></div>
+        <div class="logo-item"><img src="assets/logos/studio_immagine_gray.png" alt="Studio Immagine"></div>
+        <div class="logo-item"><img src="assets/logos/trois_gray.png" alt="Trois"></div>
+      </div>
+    </div>
+
+  <!-- Bottom caption -->
+  <div class="container">
+    <div class="fu d2" style="text-align:center;margin-top:64px;padding-top:48px;">
+      <p style="font-size:clamp(16px,1.6vw,22px);font-weight:700;letter-spacing:-0.3px;color:rgba(255,255,255,.55);line-height:1.5;max-width:640px;margin:0 auto;">Infraestrutura Neural instalada em empresas<br>que decidiram <span class="green">escalar com inteligência.</span></p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════
+  CTA FINAL
+══════════════════════════════════════ -->
+<section class="cta-section" id="contato">
+  <div style="max-width:900px;margin:0 auto;" class="fu">
+    <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(0,0,0,.35);margin-bottom:32px;">// O Futuro das Empresas</div>
+    <h2 class="cta-title">
+      Empresas que escalam<br>no futuro não terão<br>mais <span style="text-decoration:line-through;opacity:.4;">pessoas.</span><br>Terão <em style="font-style:normal;background:#0d0d0d;color:var(--lime);padding:0 16px;">infraestruturas</em><br>inteligentes.
+    </h2>
+    <p class="cta-sub">
+      A pergunta não é se sua empresa precisará disso.<br>
+      A pergunta é <strong>quando.</strong>
+    </p>
+    <a href="/diagnostico/" style="display:inline-flex;align-items:center;gap:12px;background:#0d0d0d;color:var(--lime);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:22px 52px;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='#0d0d0d'">
+      Iniciar Diagnóstico Gratuito
+      <svg width="16" height="14" viewBox="0 0 17 14" fill="none"><path d="M.247 6.576H15.144" stroke="var(--lime)" stroke-width="1.5"/><path d="M9.277 0c0 3.635 3.118 6.576 6.97 6.576" stroke="var(--lime)" stroke-width="1.5"/><path d="M16.247 6.576c-3.852 0-6.97 2.942-6.97 6.577" stroke="var(--lime)" stroke-width="1.5"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  FOOTER
+══════════════════════════════════════ -->
+<footer style="background:#080808;padding:72px 40px 40px;border-top:1px solid rgba(255,255,255,.04);">
+  <div style="max-width:1300px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:60px;" data-grid="2">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#beff01"/><line x1="0" y1="16" x2="32" y2="16" stroke="#0d0d0d" stroke-width="2.5"/><circle cx="10" cy="16" r="3.5" fill="#0d0d0d"/><circle cx="10" cy="16" r="1.5" fill="#beff01"/><rect x="19.5" y="6" width="2.5" height="20" fill="#0d0d0d"/><circle cx="20.75" cy="10" r="3.5" fill="#0d0d0d"/><circle cx="20.75" cy="10" r="1.5" fill="#beff01"/><circle cx="20.75" cy="22" r="3.5" fill="#0d0d0d"/><circle cx="20.75" cy="22" r="1.5" fill="#beff01"/></svg>
+          <span style="font-size:18px;font-weight:900;color:#fff;">Neural<span style="color:var(--lime);">Ops</span></span>
+        </div>
+        <p style="font-size:13px;color:rgba(255,255,255,.2);line-height:1.7;max-width:300px;">Infraestrutura de Inteligência para Empresas que Querem Escalar.</p>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:20px;">Navegação</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <a href="#problema" class="nav-link">O Problema</a>
+          <a href="#infraestrutura" class="nav-link">Infraestrutura</a>
+          <a href="#processo" class="nav-link">Processo</a>
+          <a href="#resultados" class="nav-link">Resultados</a>
+          <a href="#para-quem" class="nav-link">Para Quem</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:20px;">Contato</div>
+        <a href="mailto:contato@neuralops.com.br" style="font-size:13px;color:rgba(255,255,255,.3);text-decoration:none;display:block;margin-bottom:20px;transition:color .2s;" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='rgba(255,255,255,.3)'">contato@neuralops.com.br</a>
+        <div style="display:flex;gap:10px;">
+          <a href="#" style="width:34px;height:34px;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:rgba(255,255,255,.25);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--lime)';this.style.color='var(--lime)'" onmouseout="this.style.borderColor='rgba(255,255,255,.08)';this.style.color='rgba(255,255,255,.25)'">in</a>
+          <a href="#" style="width:34px;height:34px;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:rgba(255,255,255,.25);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--lime)';this.style.color='var(--lime)'" onmouseout="this.style.borderColor='rgba(255,255,255,.08)';this.style.color='rgba(255,255,255,.25)'">ig</a>
+        </div>
+      </div>
+    </div>
+    <div style="padding-top:24px;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <span style="font-size:11px;color:rgba(255,255,255,.15);">© 2026 Neural Ops. Todos os direitos reservados.</span>
+      <span style="font-size:11px;color:rgba(255,255,255,.1);">Infraestrutura de Inteligência para Empresas</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  @keyframes pulse-dot { 0%,100%{opacity:.3;transform:scale(1)} 50%{opacity:1;transform:scale(1.3)} }
+</style>
+
+<script>
+(function() {
+  'use strict';
+
+  // ── Preloader ──
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.getElementById('preloader').classList.add('out');
+    }, 1800);
+  });
+
+  // ── Nav scroll ──
+  window.addEventListener('scroll', function () {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── Cursor glow ──
+  var glow = document.getElementById('glow');
+  document.addEventListener('mousemove', function(e) {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+
+  // ── Intersection Observer (fade-up) ──
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fu').forEach(function(el) { io.observe(el); });
+
+  // ── Smooth scroll ──
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var t = document.querySelector(this.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // ── Hero bar chart ──
+  var chartData = [22,28,35,38,42,48,55,58,64,70,76,78];
+  var barContainer = document.getElementById('bar-chart');
+  if (barContainer) {
+    chartData.forEach(function(v, i) {
+      var bar = document.createElement('div');
+      bar.style.cssText = 'flex:1;background:rgba(190,255,1,'+(0.15+v/120)+');border-radius:2px 2px 0 0;height:0;transition:height 1s ease '+(i*0.06)+'s;cursor:pointer;';
+      bar.setAttribute('data-val', v);
+      bar.title = v + '% eficiência';
+      bar.addEventListener('mouseenter', function() { this.style.background = '#beff01'; });
+      bar.addEventListener('mouseleave', function() { this.style.background = 'rgba(190,255,1,'+(0.15+parseInt(this.dataset.val)/120)+')'; });
+      barContainer.appendChild(bar);
+      setTimeout(function() { bar.style.height = v + '%'; }, 300 + i * 60);
+    });
+  }
+
+  // ── Hero counters ──
+  function animateCounter(el, target, suffix, duration) {
+    if (!el) return;
+    var start = 0, step = target / (duration / 16);
+    var timer = setInterval(function() {
+      start += step;
+      if (start >= target) { start = target; clearInterval(timer); }
+      el.textContent = (suffix === 'R$' ? 'R$' + Math.round(start) + 'k' : Math.round(start) + (suffix || ''));
+    }, 16);
+  }
+  setTimeout(function() {
+    animateCounter(document.getElementById('counter-hours'), 488, 'h', 1500);
+    animateCounter(document.getElementById('counter-roi'), 500, '%', 1500);
+    animateCounter(document.getElementById('counter-economy'), 20, 'R$', 1500);
+  }, 2000);
+
+  // ── Before/After chart ──
+  window.showBefore = function() {
+    document.getElementById('chart-before').style.display = 'block';
+    document.getElementById('chart-after').style.display = 'none';
+    document.getElementById('btn-before').style.borderColor = 'var(--lime)';
+    document.getElementById('btn-before').style.background = 'rgba(190,255,1,0.1)';
+    document.getElementById('btn-before').style.color = 'var(--lime)';
+    document.getElementById('btn-after').style.borderColor = 'rgba(255,255,255,0.15)';
+    document.getElementById('btn-after').style.background = 'transparent';
+    document.getElementById('btn-after').style.color = 'rgba(255,255,255,0.4)';
+  };
+  window.showAfter = function() {
+    document.getElementById('chart-before').style.display = 'none';
+    document.getElementById('chart-after').style.display = 'block';
+    document.getElementById('btn-after').style.borderColor = 'var(--lime)';
+    document.getElementById('btn-after').style.background = 'rgba(190,255,1,0.1)';
+    document.getElementById('btn-after').style.color = 'var(--lime)';
+    document.getElementById('btn-before').style.borderColor = 'rgba(255,255,255,0.15)';
+    document.getElementById('btn-before').style.background = 'transparent';
+    document.getElementById('btn-before').style.color = 'rgba(255,255,255,0.4)';
+  };
+
+})();
+</script>
+
+</body>
+</html>

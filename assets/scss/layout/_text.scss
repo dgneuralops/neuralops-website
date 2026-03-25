@@ -1,0 +1,59 @@
+@use '../utils' as *;
+
+/*=============================
+	27. text
+===============================*/
+
+.td-text{
+    &-2{
+        &-home{
+            &-slider{
+                & .swiper-slide{
+                    display: inline-block;
+                    width: auto;
+                }
+            }
+        }
+    }
+    &-home{
+        &-2{
+            & h2{
+                font-family: var(--td-ff-dm-sans);
+                font-weight: 500;
+                font-size: 200px;
+                line-height: 80%;
+                letter-spacing: -0.02em;
+                text-transform: uppercase;
+                color: rgba(10, 17, 25, 0.2);
+                @media #{$sm,$xs} {
+                    font-size: 100px;
+                }
+            }
+        }
+    }
+}
+.td-feature{
+    &-2{
+        &-slider{
+            & .swiper-slide{
+                width: auto;
+            }
+        }
+        &-spacing{
+            background: var(--td-common-black);
+            padding: 17px 0px;
+        }
+        &-item{
+            display: flex;
+            align-items: center;
+            & span{
+                font-weight: 500;
+                font-size: 18px;
+                letter-spacing: -0.02em;
+                color: var(--td-common-white);
+                display: inline-block;
+                margin-right: 12px;
+            }
+        }
+    }
+}

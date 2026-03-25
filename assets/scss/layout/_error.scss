@@ -1,0 +1,74 @@
+@use '../utils' as *;
+
+/*=============================
+	10. error
+===============================*/
+
+.td-error{
+    &-bg{
+        width: 100%;
+        height: 100vh;
+    }
+    &-thumb{
+        & img{
+            height: 100vh;
+            width: 100%;
+            object-fit: cover;
+            @media #{$md,$sm,$xs} {
+                height: 100%;
+            }
+        }
+    }
+    &-content{
+        margin-right: 300px;
+        margin-left: 65px;
+        @media #{$xxl} {
+            margin-right: 150px;
+        }
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            margin-right: 15px;
+        }
+        @media #{$lg,$md,$sm,$xs} {
+            margin-left: 15px;
+        }
+        @media #{$md,$sm,$xs} {
+            padding-top: 120px;
+            text-align: center;
+        }
+        & .td-btn-group {
+            @media #{$md,$sm,$xs} {
+                width: auto;
+                justify-content: center;
+            }
+        }
+        & h2{
+            font-weight: 800;
+            font-size: 240px;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            @media #{$lg,$md,$sm} {
+                font-size: 180px;
+            }
+            @media #{$xs} {
+                font-size: 100px;
+            }
+        }
+        & .sm-title{
+            font-weight: 600;
+            font-size: 40px;
+            letter-spacing: -0.03em;
+            border-bottom: 1px solid #1c1d1f;
+            padding-bottom: 55px;
+            margin-bottom: 30px;
+            @media #{$lg,$md,$sm,$xs} {
+                font-size: 30px;
+            }
+        }
+        & p{
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 30px;
+            color: var(--td-common-black);
+        }
+    }
+}

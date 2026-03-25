@@ -1,0 +1,114 @@
+@use '../utils' as *;
+
+/*=============================
+	22. project
+===============================*/
+
+.td-project{
+    &-title{
+        & .subtitle{
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--td-theme-primary);
+        }
+        & .title{
+            font-weight: 800;
+            font-size: 80px;
+            letter-spacing: -0.03em;
+            color: var(--td-common-white);
+            line-height: 1;
+            @media #{$sm,$xs} {
+                font-size: 40px;
+            }
+            & span{
+                font-family: var(--td-ff-dm);
+                font-style: italic;
+                font-weight: 400;
+                line-height: 1;
+            }
+        }
+    }
+    &-thumb{
+        & img{
+            border-radius: 10px;
+        }
+    }
+    &-content{
+        & a{
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 24px;
+            color: var(--td-common-white);
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+            &:hover{
+                opacity: 0.8;
+                & .icon{
+                    transform: rotate(45deg);
+                }
+            }
+            & .icon{
+                transition: all .4s ease;
+            }
+        }
+    }
+    &-item{
+        &.four{
+            margin-left: 225px;
+            margin-right: 25px;
+            @media #{$md,$sm,$xs} {
+                margin-left: 55px;
+            }
+            @media #{$sm,$xs} {
+                padding-top: 30px;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+        &.two{
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                margin-left: 50px;
+                margin-right: 50px; 
+            }
+            @media #{$sm,$xs} {
+                padding-top: 30px;
+                margin-left: 0;
+                margin-right: 0; 
+            }
+        }
+        &.three{
+            @media #{$md,$sm,$xs} {
+                padding-top: 30px;
+            }
+            @media #{$sm,$xs} {
+                margin-left: 0;
+            }
+        }
+        &.five{
+            padding-top: 276px;
+            margin-left: 225px;
+            margin-right: 200px;
+            @media #{$xl} {
+                margin-left: 185px;
+                margin-right: 150px; 
+            }
+            @media #{$lg,$md,$sm,$xs} {
+                margin-left: 125px;
+                margin-right: 110px; 
+            }
+            @media #{$md,$sm,$xs} {
+                padding-top: 30px;
+            }
+            @media #{$sm,$xs} {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    }
+}
+.td_image_animetion {
+    visibility: hidden;
+    overflow: hidden;
+}

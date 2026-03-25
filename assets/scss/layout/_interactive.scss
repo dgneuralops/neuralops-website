@@ -1,0 +1,96 @@
+@use '../utils' as *;
+
+/*=============================
+	16. interactive
+===============================*/
+.td-interactive{
+    &-links{
+        &-spacing{
+            padding-top: 210px;
+            @media #{$md,$sm,$xs} {
+                padding-top: 130px;
+            }
+        }
+        &-item{
+            margin-bottom: 10px;
+            @media #{$xl,$lg,$md} {
+                margin-right: 30px;
+            }
+            @media #{$sm,$xs} {
+                margin-right: 10px;
+            }
+            & .title{
+                font-family: var(--td-ff-teko);
+                font-weight: 400;
+                font-size: 180px;
+                line-height: 1;
+                background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.2) 100%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 0;
+                @media #{$xxl} {
+                    font-size: 160px;
+                }
+                @media #{$xl,$lg,$md,$sm,$xs} {
+                    font-size: 140px;
+                    padding-top: 5px;
+                }
+                @media #{$lg,$md} {
+                    font-size: 110px;
+                }
+                @media #{$sm,$xs} {
+                    font-size: 80px;
+                    padding-top: 10px;
+                }
+                & a{
+                    display: flex;
+                    align-items: start;
+                }
+                & span{
+                    font-size: 20px;
+                    color: var(--td-common-white);
+                    margin-top: 2px;
+                    margin-right: -15px;
+                    @media #{$xl,$lg,$md} {
+                        margin-top: -5px;
+                    }
+                    @media #{$sm,$xs} {
+                        margin-top: -10px;
+                    }
+                }
+            }
+            &:hover{
+                & .td-interactive-links-thumb{
+                    opacity: 1;
+                }
+            }
+        }
+        &-wrap{
+            &:not(:last-child){
+                margin-right: 80px;
+            }
+        }
+        &-thumb{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 360px;
+            height: 360px;
+            border-radius: 200px;
+            opacity: 0;
+            margin: -150px 0 0 -150px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 99;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: opacity 0.3s, transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+            @media #{$sm,$xs}{
+                height: 200px;
+                width: 200px;
+            }
+        }
+    }
+}

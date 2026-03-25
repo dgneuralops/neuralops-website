@@ -1,0 +1,50 @@
+@use '../utils' as *;
+
+/*=============================
+	02. achievement
+===============================*/
+
+.td-achievement{
+    &-title{
+        &-wrap{
+            & .td-section-2-subtitle{
+                color: var(--td-theme-secondary);
+            }
+            & .td-section-2-title{
+                color: var(--td-common-white);
+                & span{
+                    color: rgba(255, 255, 255, 0.65);
+                }
+            }
+        }
+    }
+    &-item{
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        padding: 40px 30px 30px 40px;
+        @media #{$lg} {
+            padding: 40px 20px 30px 20px;
+        }
+        &:hover{
+            & p{
+                color: var(--td-common-white);
+            }
+        }
+        & p{
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: rgba(248, 248, 248, 0.6);
+            transition: all .4s ease;
+            @media #{$xl} {
+                font-size: 14px;
+            }
+            @media #{$lg,$md,$sm,$xs} {
+                & br{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+

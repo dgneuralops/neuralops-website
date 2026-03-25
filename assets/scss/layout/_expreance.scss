@@ -1,0 +1,69 @@
+@use '../utils' as *;
+
+/*=============================
+	11. expreance
+===============================*/
+
+.td-expreance{
+    &-7{
+        &-icon{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            @media #{$lg,$md,$sm,$xs} {
+                padding-top: 40px;
+            }
+            &-inner{
+                border: 1px solid rgba(51, 51, 51, 0.15);
+                border-radius: 35px;
+                width: 138px;
+                padding-top: 40px;
+                padding-bottom: 30px;
+                margin-right: 20px;
+                @media #{$lg,$sm,$xs} {
+                    margin-right: 10px;
+                    width: 122px;
+                }
+                & .title{
+                    font-weight: 600;
+                    font-size: 26px;
+                    letter-spacing: -0.02em;
+                    color: var(--td-common-black-5);
+                }
+                & .skill{
+                    font-weight: 400;
+                    font-size: 14px;
+                    letter-spacing: -0.02em;
+                    color: var(--td-grey-6);
+                }
+            }
+        }
+        &-content{
+            & .title{
+                font-weight: 500;
+                font-size: 26px;
+                letter-spacing: -0.02em;
+                color: var(--td-common-black-5);
+            }
+            & .positions{
+                font-weight: 400;
+                font-size: 18px;
+                color: var(--td-grey-6);
+            }
+        }
+        &-item{
+            border-top: 1px solid #d9d9d9;
+            border-bottom: 1px solid #d9d9d9;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            margin-top: -1px;
+        }
+        &-year{
+            & .year{
+                font-weight: 400;
+                font-size: 18px;
+                color: var(--td-grey-6);
+            }
+        }
+    }
+}

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap');
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+  }
+
+  /* Grid bg */
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(190,255,1,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(190,255,1,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* Glow */
+  .glow {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(ellipse at center, rgba(190,255,1,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  /* Noise overlay */
+  .noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  .content {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 52px 72px;
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .logo-text {
+    font-size: 22px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+  .logo-text span { color: #beff01; }
+
+  /* Badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(190,255,1,0.08);
+    border: 1px solid rgba(190,255,1,0.2);
+    border-radius: 100px;
+    padding: 6px 16px;
+    margin-bottom: 24px;
+  }
+  .badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #beff01;
+  }
+  .badge-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: #beff01;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Heading */
+  .heading {
+    font-size: 64px;
+    font-weight: 900;
+    color: white;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    max-width: 780px;
+  }
+  .heading span { color: #beff01; }
+
+  /* Sub */
+  .sub {
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.45);
+    max-width: 560px;
+    line-height: 1.5;
+  }
+
+  /* Bottom bar */
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .stats {
+    display: flex;
+    gap: 40px;
+  }
+  .stat-value {
+    font-size: 28px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-value span { color: #beff01; }
+  .stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* CTA pill */
+  .cta {
+    background: #beff01;
+    color: #0d0d0d;
+    font-weight: 800;
+    font-size: 15px;
+    padding: 14px 28px;
+    border-radius: 100px;
+    letter-spacing: -0.2px;
+  }
+
+  /* Decorative right side nodes */
+  .nodes {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 360px;
+    opacity: 0.12;
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="noise"></div>
+
+  <!-- Decorative SVG neural nodes right side -->
+  <svg class="nodes" viewBox="0 0 360 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="180" cy="120" r="6" fill="#beff01"/>
+    <circle cx="280" cy="200" r="4" fill="#beff01"/>
+    <circle cx="100" cy="280" r="5" fill="#beff01"/>
+    <circle cx="300" cy="350" r="7" fill="#beff01"/>
+    <circle cx="150" cy="450" r="4" fill="#beff01"/>
+    <circle cx="260" cy="520" r="5" fill="#beff01"/>
+    <circle cx="80"  cy="180" r="3" fill="#beff01"/>
+    <circle cx="320" cy="460" r="3" fill="#beff01"/>
+    <line x1="180" y1="120" x2="280" y2="200" stroke="#beff01" stroke-width="1"/>
+    <line x1="280" y1="200" x2="300" y2="350" stroke="#beff01" stroke-width="1"/>
+    <line x1="100" y1="280" x2="300" y2="350" stroke="#beff01" stroke-width="1"/>
+    <line x1="100" y1="280" x2="150" y2="450" stroke="#beff01" stroke-width="1"/>
+    <line x1="300" y1="350" x2="260" y2="520" stroke="#beff01" stroke-width="1"/>
+    <line x1="150" y1="450" x2="260" y2="520" stroke="#beff01" stroke-width="1"/>
+    <line x1="80"  y1="180" x2="180" y2="120" stroke="#beff01" stroke-width="0.8"/>
+    <line x1="80"  y1="180" x2="100" y2="280" stroke="#beff01" stroke-width="0.8"/>
+    <line x1="320" y1="460" x2="300" y2="350" stroke="#beff01" stroke-width="0.8"/>
+    <line x1="320" y1="460" x2="260" y2="520" stroke="#beff01" stroke-width="0.8"/>
+  </svg>
+
+  <div class="content">
+
+    <!-- Top: Logo -->
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="8" fill="#0d0d0d" stroke="rgba(190,255,1,0.2)" stroke-width="1"/>
+        <line x1="8" y1="12" x2="18" y2="18" stroke="#beff01" stroke-width="1.2" stroke-opacity="0.45"/>
+        <line x1="8" y1="24" x2="18" y2="18" stroke="#beff01" stroke-width="1.2" stroke-opacity="0.45"/>
+        <line x1="28" y1="12" x2="18" y2="18" stroke="#beff01" stroke-width="1.2" stroke-opacity="0.45"/>
+        <line x1="28" y1="24" x2="18" y2="18" stroke="#beff01" stroke-width="1.2" stroke-opacity="0.45"/>
+        <line x1="8"  y1="12" x2="8"  y2="24" stroke="#beff01" stroke-width="1"   stroke-opacity="0.25"/>
+        <line x1="28" y1="12" x2="28" y2="24" stroke="#beff01" stroke-width="1"   stroke-opacity="0.25"/>
+        <circle cx="8"  cy="12" r="2.8" fill="#beff01"/>
+        <circle cx="8"  cy="24" r="2.8" fill="#beff01"/>
+        <circle cx="18" cy="18" r="3.6" fill="#beff01"/>
+        <circle cx="28" cy="12" r="2.8" fill="#beff01"/>
+        <circle cx="28" cy="24" r="2.8" fill="#beff01"/>
+        <circle cx="18" cy="18" r="1.8" fill="#0d0d0d"/>
+      </svg>
+      <div class="logo-text">Neural<span>Ops</span></div>
+    </div>
+
+    <!-- Middle: Headline -->
+    <div>
+      <div class="badge">
+        <div class="badge-dot"></div>
+        <div class="badge-text">Infraestrutura de IA para empresas</div>
+      </div>
+      <h1 class="heading">Instalamos o Cérebro<br/>Operacional da<br/><span>Sua Empresa.</span></h1>
+      <p class="sub">Não vendemos ferramentas. Instalamos inteligência que transforma sua operação em uma máquina de crescimento previsível.</p>
+    </div>
+
+    <!-- Bottom: Stats + CTA -->
+    <div class="bottom">
+      <div class="stats">
+        <div>
+          <div class="stat-value">60<span>%</span></div>
+          <div class="stat-label">Redução de retrabalho</div>
+        </div>
+        <div>
+          <div class="stat-value">3<span>×</span></div>
+          <div class="stat-label">Mais capacidade operacional</div>
+        </div>
+        <div>
+          <div class="stat-value">R$50<span>k+</span></div>
+          <div class="stat-label">Faturamento mínimo atendido</div>
+        </div>
+      </div>
+      <div class="cta">neuralops.com.br →</div>
+    </div>
+
+  </div>
+</body>
+</html>

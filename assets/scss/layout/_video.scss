@@ -1,0 +1,123 @@
+@use '../utils' as *;
+
+/*=============================
+	28. video
+===============================*/
+
+
+.td-video{
+    &-play{
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+        background: var(--td-common-yellow);
+        color: var(--td-common-black);
+        display: inline-block;
+        text-align: center;
+        line-height: 80px;
+    }
+    &-4{
+        &-wrap{
+            width: 650px;
+            background: var(--td-common-green-2);
+            padding: 55px 60px 50px 60px;
+            margin-top: 700px;
+            float: right;
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                margin-top: 400px;
+            }
+            @media #{$sm,$xs} {
+                width: 100%;
+            }
+            @media #{$xs} {
+                padding: 25px 20px 20px 20px;
+            }
+        }
+        &-title{
+            font-family: var(--td-ff-teko);
+            font-weight: 500;
+            font-size: 40px;
+            line-height: 1;
+            color: var(--td-theme-1);
+        }
+    }
+    &-5{
+        &-title{
+            &-wrap{
+                & .td-section-5-bigtitle{
+                    & span{
+                        margin-left: 370px;
+                        @media #{$md,$sm,$sm,$xs} {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+        &-shape{
+            position: absolute;
+            left: 170px;
+            bottom: 0;
+        }
+        &-content{
+            z-index: 2;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: #d8d8d4;
+            width: 720px;
+            @media #{$sm,$sm,$xs} {
+                width: 100%;
+            }
+            @media #{$xs} {
+                flex-direction: column;
+                & img{
+                    margin-bottom: 30px;
+                    margin-right: 0;
+                }
+            }
+            & p{
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 26px;
+                color: var(--td-common-black-4);
+                @media #{$sm,$sm,$xs} {
+                    & br{
+                        display: none;
+                    }
+                }
+            }
+        }
+        &-wrap{
+            & video{
+                width: 100%;
+                height: 930px;
+                object-fit: cover;
+                @media #{$xl,$lg,$md,$sm,$sm} {
+                    height: 600px;
+                }
+                @media #{$xs} {
+                    height: 500px;
+                }
+            }
+        }
+    }
+    &-6{
+        &-wrap{
+            padding-top: 540px;
+            padding-bottom: 100px;
+            @media #{$lg,$md,$sm,$xs} {
+                padding-top: 300px;
+            }
+        }
+        &-inner{
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            text-align: center;
+            line-height: 100px;
+            background: var(--td-common-green-2);
+            border-radius: 100px;
+        }
+    }
+}

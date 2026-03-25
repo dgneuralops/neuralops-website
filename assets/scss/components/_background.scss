@@ -1,0 +1,29 @@
+@use '../utils' as *;
+
+/*=============================
+    02. background
+===============================*/
+.blue-bg{
+    background: var(--td-common-blue);
+}
+.green-bg{
+    background: var(--td-theme-primary);
+}
+.green-bg-2{
+    background: var(--td-common-green);
+}
+.grey-bg{
+    background: #f2f7f7;
+}
+.grey-bg-2{
+    background: var(--td-grey-2);
+}
+.grey-bg-3{
+    background: #eee;
+}
+.black-bg{
+    background: var(--td-common-black);
+}
+.theme-bg{
+    background: var(--td-theme-1);
+}

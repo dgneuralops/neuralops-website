@@ -1,0 +1,115 @@
+@use '../utils' as *;
+
+/*=============================
+	20. pricing
+===============================*/
+
+
+.td-pricing{
+    &-6{
+        &-wrap{
+            border: 1px solid rgba(6, 50, 49, 0.15);
+            border-radius: 15px;
+            & .package{
+                font-weight: 600;
+                font-size: 26px;
+                color: var(--td-grey-5);
+            }
+            & .para{
+                font-weight: 600;
+                font-size: 26px;
+                line-height: 30px;
+                letter-spacing: -0.01em;
+                color: var(--td-theme-3);
+            }
+            & .price{
+                font-weight: 600;
+                font-size: 26px;
+                letter-spacing: -0.01em;
+                color: var(--td-theme-3);
+                & span{
+                    font-weight: 400;
+                    font-size: 18px;
+                }
+            }
+            & .price-btn{
+                font-weight: 600;
+                font-size: 18px;
+                letter-spacing: -0.01em;
+                color: var(--td-theme-3);
+                border: 1px solid rgba(28, 29, 31, 0.15);
+                border-radius: 10px;
+                padding: 13px 31px;
+                display: inline-block;
+                &.greens{
+                    border-color: var(--td-common-green-2);
+                    background: var(--td-common-green-2);
+                }
+                &:hover{
+                    border-color: var(--td-common-green-2);
+                    background: var(--td-common-green-2);
+                }
+            }
+        }
+        &-list{
+            padding: 30px 40px 40px 50px;
+            @media #{$xs} {
+                padding: 25px 20px 20px 20px;
+            }
+            & ul{
+                & li{
+                    font-weight: 500;
+                    font-size: 17px;
+                    color: var(--td-grey-5);
+                    position: relative;
+                    padding-left: 20px;
+                    &:not(:last-child){
+                        margin-bottom: 10px;
+                    }
+                    &::before{
+                        position: absolute;
+                        content: "";
+                        width: 4px;
+                        height: 4px;
+                        background: #555855;
+                        border-radius: 20px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        left: 0;
+                    }
+                }
+            }
+        }
+        &-top{
+            padding: 45px 80px 40px 50px;
+            border-bottom: 1px solid rgba(6, 50, 49, 0.15);
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                padding: 45px 40px 40px 50px;
+            }
+            @media #{$xs} {
+                padding: 25px 20px 20px 20px;
+            }
+        }
+    }
+    &-main{
+        &-wrap{
+            & .td-pricing-6-wrap .price {
+                color: var(--td-common-black);
+            }
+            & .td-pricing-6-wrap .para {
+                color: var(--td-common-black);
+            }
+            & .td-pricing-6-wrap .price-btn.greens {
+                border-color: var(--td-theme-primary);
+                background: var(--td-theme-primary);
+            }
+            & .td-pricing-6-wrap .price-btn:hover {
+                border-color: var(--td-theme-primary);
+                background: var(--td-theme-primary);
+            }
+            & .td-pricing-6-list ul li {
+                color: var(--td-grey-1);
+            }
+        }
+    }
+}

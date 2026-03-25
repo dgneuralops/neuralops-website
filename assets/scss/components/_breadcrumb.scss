@@ -1,0 +1,38 @@
+@use '../utils' as *;
+
+/*=========================
+      03. Breadcrumb
+===========================*/
+
+.td-breadcrumb{
+      &-spacing{
+            padding-top: 215px;
+            @media #{$md,$sm,$xs} {
+                padding-top: 140px;  
+            }
+      }
+      &-wrap{
+            @media #{$md,$sm,$xs} {
+                  margin-left: 0;
+              }
+            & .subtitle{
+                  font-weight: 600;
+                  font-size: 18px;
+                  color: var(--td-common-black);
+            }
+            & .text{
+                  margin-left: 340px;
+                  @media #{$sm,$xs} {
+                        margin-left: 0;
+                  }
+            }
+      }
+      &-2{
+            &-spacing{
+                  padding-top: 100px;
+                  @media #{$md,$sm,$xs}{
+                        padding-top: 90px;
+                  }
+            }
+      }
+}

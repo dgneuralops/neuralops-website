@@ -1,0 +1,110 @@
+@use '../utils' as *;
+
+/*=============================
+	03. awards
+===============================*/
+
+.td-awards{
+    &-4{
+        &-brands{
+            column-count: 2;
+            padding-left: 110px;
+            @media #{$sm,$xs} {
+                padding-left: 0;
+                margin-top: 30px;
+            }
+            & a{
+                margin-bottom: 60px;
+                display: inline-block;
+            }
+        }
+        &-para{
+            padding-left: 35px;
+            padding-right: 50px;
+            @media #{$lg,$md,$sm,$xs} {
+                padding: 0;
+            }
+            & p{
+                color: var(--td-grey-3);
+            }
+        }
+    }
+    &-5{
+        &-btn{
+            font-weight: 500;
+            font-size: 18px;
+            color: var(--td-common-white);
+            background: var(--td-common-black-4);
+            display: inline-block;
+            padding: 8px 33px;
+            &:hover{
+                color: var(--td-common-white);
+            }
+        }
+        &-list{
+            &-item{
+                border-top: 1px solid var(--td-common-black-4);
+                border-bottom: 1px solid var(--td-common-black-4);
+                padding: 17px 30px;
+                position: relative;
+                margin-bottom: -1px;
+                @media #{$xs} {
+                    padding: 17px 0px;
+                }
+                &::before{
+                    position: absolute;
+                    content: "";
+                    width: 100%;
+                    height: 0;
+                    transition: all .4s ease;
+                    background: var(--td-theme-2);
+                    top: auto;
+                    bottom: 0;
+                    z-index: -1;
+                    left: 0;
+                }
+                &:hover{
+                    &::before{
+                        height: 100%;
+                        top: 0;
+                        bottom: auto;
+                    }
+                }
+                & span{
+                    font-weight: 500;
+                    font-size: 18px;
+                    color: var(--td-common-black-4);
+                    display: inline-block;
+                }
+            }
+        }
+        &-text{
+            @media #{$xs} {
+                margin-right: 0;
+            }
+        }
+    }
+    &-about{
+        &-wrap{
+            & .td-awards-5-btn {
+                border-radius: 10px;
+            }
+            & .td-awards-5-list-item::before {
+                background: var(--td-theme-primary);
+            }
+            & .td-awards-5-list-item span {
+                color: var(--td-common-black);
+            }
+            & .td-awards-5-text {
+                @media #{$md,$sm,$xs} {
+                    margin-top: 0;
+                }
+            }
+            & .td-awards-5-thumb {
+                @media #{$md,$sm,$xs} {
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+}
