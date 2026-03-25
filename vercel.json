@@ -1,8 +1,7 @@
 {
+  "cleanUrls": true,
   "rewrites": [
-    { "source": "/diagnostico/(.*)", "destination": "/diagnostico/index.html" },
-    { "source": "/proposta-certificacao", "destination": "/proposta-certificacao.html" },
-    { "source": "/proposta-kiss", "destination": "/proposta-kiss.html" }
+    { "source": "/diagnostico/(.*)", "destination": "/diagnostico/index.html" }
   ],
   "headers": [
     {
