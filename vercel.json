@@ -1,6 +1,8 @@
 {
   "rewrites": [
-    { "source": "/diagnostico/(.*)", "destination": "/diagnostico/index.html" }
+    { "source": "/diagnostico/(.*)", "destination": "/diagnostico/index.html" },
+    { "source": "/proposta-certificacao", "destination": "/proposta-certificacao.html" },
+    { "source": "/proposta-kiss", "destination": "/proposta-kiss.html" }
   ],
   "headers": [
     {
