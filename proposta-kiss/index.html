@@ -1,0 +1,2375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta Kiss My Modas — NeuralOps</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #beff01;
+      --green-dim: rgba(190,255,1,0.12);
+      --green-glow: rgba(190,255,1,0.25);
+      --bg: #050505;
+      --bg-card: #0d0d0d;
+      --bg-card2: #111111;
+      --border: rgba(255,255,255,0.07);
+      --border-green: rgba(190,255,1,0.3);
+      --text: #ffffff;
+      --text-muted: rgba(255,255,255,0.45);
+      --text-sub: rgba(255,255,255,0.65);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ── PROGRESS BAR ── */
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--green);
+      z-index: 10000;
+      transition: width 0.1s linear;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(5,5,5,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .nav-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: var(--green-dim);
+      border: 1px solid var(--border-green);
+      padding: 5px 14px;
+      border-radius: 100px;
+    }
+
+    .nav-cta {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--green);
+      padding: 9px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    /* ── SECTIONS ── */
+    section { width: 100%; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 40px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(190,255,1,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--green-dim);
+      border: 1px solid var(--border-green);
+      padding: 7px 18px;
+      border-radius: 100px;
+      margin-bottom: 40px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .hero-eyebrow {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .hero-h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(44px, 7vw, 88px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+    }
+
+    .hero-h1 .accent { color: var(--green); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--text-sub);
+      max-width: 600px;
+      margin: 0 auto 56px;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 8px; }
+    .hero-meta strong { color: var(--text-sub); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      animation: scrollBounce 2s infinite;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--text-muted), transparent);
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      overflow: hidden;
+      background: var(--green);
+      padding: 14px 0;
+    }
+    .ticker-inner {
+      display: flex;
+      gap: 0;
+      animation: ticker 25s linear infinite;
+      white-space: nowrap;
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 32px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bg);
+    }
+    .ticker-item::after { content: '✦'; }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--green);
+    }
+
+    .section-h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .section-h2 .accent { color: var(--green); }
+
+    .section-lead {
+      font-size: 18px;
+      color: var(--text-sub);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    /* ── PROBLEM ── */
+    #problema {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .problema-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 72px;
+    }
+
+    .problema-text p {
+      font-size: 22px;
+      color: var(--text-sub);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+    .problema-text p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .problema-text p em {
+      color: var(--green);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .problema-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .loss-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .loss-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--green);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .loss-card:hover { border-color: var(--border-green); transform: translateX(4px); }
+    .loss-card:hover::before { opacity: 1; }
+
+    .loss-icon {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: rgba(255,60,60,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .loss-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .loss-card p { font-size: 13px; color: var(--text-muted); }
+
+    /* ── SYSTEM INTRO ── */
+    #sistema {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--bg-card2) 10%, var(--bg-card2) 90%, transparent);
+    }
+
+    .sistema-hero-text {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 80px;
+    }
+
+    .sistema-diagram {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .diag-item {
+      background: var(--bg-card);
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .diag-item:hover { background: rgba(190,255,1,0.05); }
+
+    .diag-verb {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--green);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .diag-sub { font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; }
+
+    /* ── PILARES ── */
+    #pilares {
+      padding: 120px 0;
+    }
+
+    .pilares-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .pilares-tabs {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .pilar-tab {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .pilar-tab.active, .pilar-tab:hover {
+      border-color: var(--border-green);
+      background: var(--green-dim);
+      color: var(--green);
+    }
+
+    .pilares-content {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .pilares-content.active { display: grid; }
+
+    .pilar-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 80px;
+      font-weight: 700;
+      color: var(--green-dim);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .pilar-num span { color: var(--green); }
+
+    .pilar-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .pilar-desc {
+      font-size: 17px;
+      color: var(--text-sub);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .pilar-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--green-dim);
+      border: 1px solid var(--border-green);
+      padding: 6px 14px;
+      border-radius: 6px;
+    }
+
+    .pilar-visual {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-card2);
+      margin-bottom: 8px;
+      transition: all 0.3s;
+      animation: fadeSlideIn 0.4s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateX(-12px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .flow-step:nth-child(1) { animation-delay: 0.1s; }
+    .flow-step:nth-child(2) { animation-delay: 0.2s; }
+    .flow-step:nth-child(3) { animation-delay: 0.3s; }
+    .flow-step:nth-child(4) { animation-delay: 0.4s; }
+    .flow-step:nth-child(5) { animation-delay: 0.5s; }
+
+    .flow-step:last-child { border-color: var(--border-green); background: var(--green-dim); }
+    .flow-step:last-child .flow-label { color: var(--green); }
+
+    .flow-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .flow-step:last-child .flow-dot { background: var(--green); }
+
+    .flow-label {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* ── CHANGES ── */
+    #mudancas {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--bg-card2) 10%, var(--bg-card2) 90%, transparent);
+    }
+
+    .mudancas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 72px;
+    }
+
+    .mudanca-item {
+      background: var(--bg-card);
+      padding: 40px 32px;
+      transition: all 0.3s;
+    }
+    .mudanca-item:first-child { border-radius: 16px 0 0 16px; }
+    .mudanca-item:last-child { border-radius: 0 16px 16px 0; }
+    .mudanca-item:hover { background: rgba(190,255,1,0.04); }
+
+    .mudanca-icon { font-size: 32px; margin-bottom: 20px; }
+    .mudanca-item h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .mudanca-item p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 80px;
+    }
+
+    .ba-col {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    .ba-col.after { border-color: var(--border-green); }
+
+    .ba-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ba-title.red { color: #ff6060; }
+    .ba-title.green { color: var(--green); }
+
+    .ba-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-sub);
+    }
+    .ba-item:last-child { border-bottom: none; }
+    .ba-item .dot {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .ba-col:not(.after) .dot { background: rgba(255,96,96,0.15); color: #ff6060; }
+    .ba-col.after .dot { background: var(--green-dim); color: var(--green); }
+
+    /* ── QUOTE ── */
+    #quote {
+      padding: 100px 0;
+    }
+
+    .quote-block {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote-mark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 80px;
+      color: var(--green);
+      line-height: 0.6;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    blockquote {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+    blockquote em { color: var(--green); font-style: normal; }
+
+    .quote-source {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── ADOPTION PHASES ── */
+    #adocao {
+      padding: 80px 0 120px;
+    }
+
+    .adocao-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .adocao-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .adocao-card:hover { border-color: var(--border-green); transform: translateY(-4px); }
+    .adocao-card::before {
+      content: attr(data-mes);
+      position: absolute;
+      top: -20px; right: -10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 120px;
+      font-weight: 700;
+      color: var(--green-dim);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .adocao-card h3 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .adocao-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .adocao-card p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── ROI ── */
+    #roi {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent);
+    }
+
+    .roi-header { text-align: center; margin-bottom: 80px; }
+
+    .roi-disclaimer {
+      background: var(--green-dim);
+      border: 1px solid var(--border-green);
+      border-radius: 10px;
+      padding: 16px 24px;
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 56px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .roi-disclaimer::before { content: 'ℹ'; color: var(--green); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+    .roi-table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead th {
+      background: var(--bg-card);
+      padding: 16px 20px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+    tbody td {
+      padding: 16px 20px;
+      color: var(--text-sub);
+      vertical-align: middle;
+    }
+    tbody td:first-child { color: var(--text); font-weight: 500; }
+    tbody td.green { color: var(--green); font-weight: 600; }
+
+    .roi-sims {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .sim-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      transition: all 0.3s;
+    }
+    .sim-card:hover { border-color: var(--border-green); }
+
+    .sim-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--green);
+      padding: 4px 12px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .sim-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .sim-period { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+
+    .sim-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .sim-label { font-size: 12px; color: var(--text-muted); }
+
+    .roi-consolidado {
+      background: linear-gradient(135deg, rgba(190,255,1,0.06), rgba(190,255,1,0.02));
+      border: 1px solid var(--border-green);
+      border-radius: 20px;
+      padding: 48px;
+    }
+
+    .roi-consolidado h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .roi-total-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      text-align: center;
+    }
+
+    .roi-stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .roi-stat-label { font-size: 13px; color: var(--text-muted); }
+    .roi-stat-note { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+    .roi-ratio {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-green);
+      text-align: center;
+      font-size: 15px;
+      color: var(--text-sub);
+    }
+    .roi-ratio strong { color: var(--green); font-size: 20px; }
+
+    /* ── VALOR MERCADO ── */
+    #valor {
+      padding: 120px 0;
+    }
+
+    .valor-header { text-align: center; margin-bottom: 72px; }
+
+    .valor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .valor-items { display: flex; flex-direction: column; gap: 12px; }
+
+    .valor-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 16px;
+      align-items: center;
+      transition: all 0.3s;
+    }
+    .valor-item:hover { border-color: var(--border-green); }
+
+    .valor-item-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .valor-item-impl {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+    .valor-item-month {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: right;
+      min-width: 90px;
+    }
+
+    .valor-total-card {
+      background: linear-gradient(135deg, rgba(190,255,1,0.08), rgba(190,255,1,0.02));
+      border: 1px solid var(--border-green);
+      border-radius: 20px;
+      padding: 48px;
+      position: sticky;
+      top: 120px;
+    }
+
+    .valor-total-card h3 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 32px;
+    }
+
+    .valor-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .valor-price-row:last-of-type { border-bottom: none; }
+    .valor-price-row .label { font-size: 13px; color: var(--text-muted); }
+    .valor-price-row .price { font-size: 16px; font-weight: 600; color: var(--text); }
+
+    .valor-total-amount {
+      margin-top: 28px;
+      padding: 24px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 12px;
+      text-align: center;
+    }
+    .valor-total-amount .total-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .valor-total-amount .total-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: line-through;
+      text-decoration-color: rgba(255,255,255,0.3);
+    }
+
+    .valor-voces-pagam {
+      margin-top: 20px;
+      padding: 24px;
+      background: var(--green);
+      border-radius: 12px;
+      text-align: center;
+    }
+    .valor-voces-pagam .pagam-label { font-size: 11px; font-weight: 700; color: rgba(0,0,0,0.5); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .valor-voces-pagam .pagam-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--bg);
+    }
+    .valor-voces-pagam .pagam-sub { font-size: 12px; color: rgba(0,0,0,0.55); margin-top: 4px; }
+
+    /* ── CUSTO OPERACIONAL ── */
+    #custo {
+      padding: 80px 0 120px;
+      background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent);
+    }
+
+    .custo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 56px;
+    }
+
+    .custo-note {
+      font-size: 17px;
+      color: var(--text-sub);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .custo-highlight {
+      background: var(--green-dim);
+      border: 1px solid var(--border-green);
+      border-radius: 10px;
+      padding: 20px 24px;
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 1.65;
+    }
+    .custo-highlight strong { color: var(--green); }
+
+    /* ── TIMELINE ── */
+    #timeline {
+      padding: 120px 0;
+    }
+
+    .timeline-header { text-align: center; margin-bottom: 80px; }
+
+    .timeline-phases {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      position: relative;
+    }
+
+    .timeline-phase {
+      background: var(--bg-card);
+      padding: 36px 24px;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .timeline-phase:first-child { border-radius: 16px 0 0 16px; }
+    .timeline-phase:last-child { border-radius: 0 16px 16px 0; }
+    .timeline-phase:hover { background: rgba(190,255,1,0.04); }
+    .timeline-phase:hover .phase-period { color: var(--green); }
+
+    .phase-period {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      transition: color 0.3s;
+    }
+    .phase-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .phase-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .phase-entregavel { font-size: 13px; color: var(--text-muted); line-height: 1.55; margin-bottom: 16px; }
+    .phase-result {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--green);
+      background: var(--green-dim);
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    .timeline-note {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+    .timeline-note strong { color: var(--green); }
+
+    /* ── PARCERIA ── */
+    #parceria {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent);
+    }
+
+    .parceria-header { text-align: center; margin-bottom: 80px; }
+
+    .parceria-intro {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 60px;
+      font-size: 18px;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    .parceria-tables {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 64px;
+    }
+
+    .parceria-table {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .parceria-table.neuralops { border-color: var(--border-green); }
+
+    .parceria-table-header {
+      padding: 20px 24px;
+      background: var(--bg-card2);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .parceria-table.neuralops .parceria-table-header { background: var(--green-dim); border-color: var(--border-green); }
+
+    .parceria-table-header h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; }
+    .parceria-table.neuralops .parceria-table-header h3 { color: var(--green); }
+
+    .parceria-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .parceria-row:last-child { border-bottom: none; }
+    .parceria-row .row-key { color: var(--text-muted); font-weight: 500; }
+    .parceria-row .row-val { color: var(--text-sub); }
+
+    /* ── COMISSÃO ── */
+    #comissao {
+      padding: 80px 0 120px;
+    }
+
+    .comissao-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .comissao-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      transition: all 0.3s;
+    }
+    .comissao-card:hover { border-color: var(--border-green); transform: translateY(-4px); }
+
+    .comissao-card .c-type {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--green-dim);
+      padding: 4px 12px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    .comissao-card .c-pct {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .comissao-card .c-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .comissao-card .c-cond { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    .comissao-sim {
+      margin-top: 48px;
+      background: linear-gradient(135deg, rgba(190,255,1,0.06), transparent);
+      border: 1px solid var(--border-green);
+      border-radius: 20px;
+      padding: 48px;
+    }
+
+    .comissao-sim h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .comissao-sim-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .comissao-sim-row:last-of-type { border-bottom: none; }
+    .comissao-sim-row .cs-label { color: var(--text-muted); }
+    .comissao-sim-row .cs-val { color: var(--green); font-weight: 600; font-size: 16px; }
+
+    .comissao-total {
+      margin-top: 28px;
+      padding: 24px;
+      background: var(--bg-card);
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .comissao-total .ct-label { font-size: 14px; color: var(--text-muted); }
+    .comissao-total .ct-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    /* ── PARA QUEM ── */
+    #para-quem {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent);
+    }
+
+    .para-quem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 72px;
+      align-items: center;
+    }
+
+    .para-quem-checks {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .pq-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 1.5;
+      transition: all 0.3s;
+    }
+    .pq-check:hover { border-color: var(--border-green); }
+    .pq-check .check { color: var(--green); font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+    .para-quem-text .big-quote {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+    .para-quem-text .big-quote em { color: var(--green); font-style: normal; }
+
+    .para-quem-text p {
+      font-size: 16px;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* ── NEXT STEPS ── */
+    #proximos-passos {
+      padding: 120px 0;
+    }
+
+    .passos-header { text-align: center; margin-bottom: 80px; }
+
+    .passos-list {
+      max-width: 780px;
+      margin: 0 auto 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .passo-item {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 24px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .passo-item:last-child { border-bottom: none; }
+    .passo-item::before {
+      content: '';
+      position: absolute;
+      left: 28px; top: 68px;
+      width: 1px;
+      height: calc(100% - 36px);
+      background: var(--border);
+    }
+    .passo-item:last-child::before { display: none; }
+
+    .passo-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--green-dim);
+      border: 1px solid var(--border-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--green);
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .passo-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      padding-top: 14px;
+    }
+    .passo-content p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── CTA FINAL ── */
+    #cta-final {
+      padding: 120px 0 160px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta-final::before {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(190,255,1,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-divider {
+      max-width: 680px;
+      margin: 0 auto 48px;
+    }
+
+    .cta-divider .either {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .cta-divider .or-line {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 32px 0;
+      color: var(--text-muted);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .cta-divider .or-line::before, .cta-divider .or-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .cta-big {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 48px;
+    }
+    .cta-big em { color: var(--green); font-style: normal; }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--bg);
+      background: var(--green);
+      padding: 18px 44px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.25s;
+      box-shadow: 0 0 40px rgba(190,255,1,0.25);
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 60px rgba(190,255,1,0.4);
+    }
+    .cta-btn::after { content: '→'; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer .f-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    footer .f-info { font-size: 12px; color: var(--text-muted); text-align: center; }
+    footer .f-conf {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.4s; }
+
+    /* ── COUNTER ── */
+    .counter { font-variant-numeric: tabular-nums; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 20px; }
+      .nav-tag { display: none; }
+      .container { padding: 0 20px; }
+      .problema-grid, .valor-grid, .parceria-tables, .comissao-grid,
+      .para-quem-grid, .custo-grid { grid-template-columns: 1fr; }
+      .sistema-diagram { grid-template-columns: 1fr 1fr; }
+      .mudancas-grid { grid-template-columns: 1fr; }
+      .mudanca-item:first-child { border-radius: 16px 16px 0 0; }
+      .mudanca-item:last-child { border-radius: 0 0 16px 16px; }
+      .roi-sims { grid-template-columns: 1fr; }
+      .roi-total-grid { grid-template-columns: 1fr; gap: 16px; }
+      .timeline-phases { grid-template-columns: 1fr 1fr; }
+      .timeline-phase:nth-child(2) { border-radius: 0; }
+      .adocao-steps { grid-template-columns: 1fr; }
+      .pilares-content { grid-template-columns: 1fr; }
+      .before-after { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">NeuralOps</div>
+  <div class="nav-tag">Proposta Confidencial · Kiss My Modas</div>
+  <a href="#proximos-passos" class="nav-cta">Próximos Passos</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">Proposta Estratégica Exclusiva</div>
+  <p class="hero-eyebrow">NeuralOps × Kiss My Modas · Março 2026</p>
+  <h1 class="hero-h1">Sistema Operacional de<br><span class="accent">Vendas Invisíveis™</span></h1>
+  <p class="hero-sub">Isso não é uma proposta de serviço.<br>É a instalação de uma nova forma de operar sua confecção.</p>
+  <div class="hero-meta">
+    <span>Preparado por <strong>NeuralOps</strong></span>
+    <span>·</span>
+    <span>Março de 2026</span>
+    <span>·</span>
+    <span><strong>Goiânia, GO</strong></span>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">Motor de Reativação Oculta™</span>
+    <span class="ticker-item">Captura Imediata de Intenção™</span>
+    <span class="ticker-item">Distribuição Estratégica™</span>
+    <span class="ticker-item">Radar de Receita em Tempo Real™</span>
+    <span class="ticker-item">R$ 84.700 em valor entregue</span>
+    <span class="ticker-item">Zero de implementação</span>
+    <span class="ticker-item">60 dias de entrega</span>
+    <span class="ticker-item">Motor de Reativação Oculta™</span>
+    <span class="ticker-item">Captura Imediata de Intenção™</span>
+    <span class="ticker-item">Distribuição Estratégica™</span>
+    <span class="ticker-item">Radar de Receita em Tempo Real™</span>
+    <span class="ticker-item">R$ 84.700 em valor entregue</span>
+    <span class="ticker-item">Zero de implementação</span>
+    <span class="ticker-item">60 dias de entrega</span>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<section id="problema">
+  <div class="container">
+    <div class="problema-grid">
+      <div class="fade-up">
+        <div class="section-label">O Problema</div>
+        <div class="problema-text">
+          <p>A maioria das confecções acredita que perde vendas por <strong>falta de cliente</strong>.</p>
+          <p>Não perde.</p>
+          <p>Perde porque deixa dinheiro morrer no <em>WhatsApp enquanto está dormindo</em>, ocupado ou simplesmente sem resposta.</p>
+          <p>Cada mensagem não respondida. Cada follow-up que não aconteceu. Cada cliente que "sumiu"…<br><strong>não desapareceu.</strong></p>
+          <p>Foi perdido. <em>Silenciosamente. Todos os dias.</em></p>
+        </div>
+      </div>
+      <div class="problema-cards fade-up">
+        <div class="loss-card">
+          <div class="loss-icon">💤</div>
+          <div>
+            <h4>Mensagens sem resposta</h4>
+            <p>Clientes que mandam mensagem fora do horário e nunca recebem retorno.</p>
+          </div>
+        </div>
+        <div class="loss-card">
+          <div class="loss-icon">📋</div>
+          <div>
+            <h4>Follow-up que não acontece</h4>
+            <p>Leads que sumiram depois de receber o catálogo, sem nenhuma cadência estruturada.</p>
+          </div>
+        </div>
+        <div class="loss-card">
+          <div class="loss-icon">👻</div>
+          <div>
+            <h4>Clientes antigos esquecidos</h4>
+            <p>30 anos de base de relacionamento que nunca foi sistematicamente trabalhada.</p>
+          </div>
+        </div>
+        <div class="loss-card">
+          <div class="loss-icon">🌫️</div>
+          <div>
+            <h4>Operação baseada em percepção</h4>
+            <p>Sem dados, sem visibilidade sobre onde o dinheiro está sendo perdido.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SISTEMA -->
+<section id="sistema">
+  <div class="container">
+    <div class="sistema-hero-text fade-up">
+      <div class="section-label" style="justify-content:center">A Solução</div>
+      <h2 class="section-h2" style="text-align:center">O Sistema Operacional de<br><span class="accent">Vendas Invisíveis™</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Uma infraestrutura invisível que roda por trás da sua operação atual, sem atrito com a equipe e sem mudança de rotina.</p>
+    </div>
+
+    <div class="sistema-diagram fade-up">
+      <div class="diag-item">
+        <span class="diag-verb">Captura.</span>
+        <div class="diag-sub">toda intenção de compra no momento exato</div>
+      </div>
+      <div class="diag-item">
+        <span class="diag-verb">Qualifica.</span>
+        <div class="diag-sub">varejo, atacado ou personalizado</div>
+      </div>
+      <div class="diag-item">
+        <span class="diag-verb">Distribui.</span>
+        <div class="diag-sub">para a vendedora certa, com contexto completo</div>
+      </div>
+      <div class="diag-item">
+        <span class="diag-verb">Converte.</span>
+        <div class="diag-sub">inclusive quando ninguém está olhando</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section id="pilares">
+  <div class="container">
+    <div class="pilares-header fade-up">
+      <div class="section-label" style="justify-content:center">Os 4 Pilares</div>
+      <h2 class="section-h2" style="text-align:center">A Infraestrutura<br>por Dentro</h2>
+    </div>
+
+    <div class="pilares-tabs">
+      <button class="pilar-tab active" onclick="showPilar(1)">01 · Reativação</button>
+      <button class="pilar-tab" onclick="showPilar(2)">02 · Captura 24/7</button>
+      <button class="pilar-tab" onclick="showPilar(3)">03 · Distribuição</button>
+      <button class="pilar-tab" onclick="showPilar(4)">04 · Radar</button>
+    </div>
+
+    <!-- Pilar 1 -->
+    <div class="pilares-content active" id="pilar-1">
+      <div>
+        <div class="pilar-num">0<span>1</span></div>
+        <h3 class="pilar-title">Motor de Reativação Oculta™</h3>
+        <p class="pilar-desc">Clientes antigos, contatos esquecidos e oportunidades paradas voltam a gerar receita sem necessidade de tráfego ou novos leads. Você já pagou para conquistar essas pessoas. Agora começa a monetizar isso de verdade.</p>
+        <div class="pilar-tag">30 anos de base histórica nunca trabalhada</div>
+      </div>
+      <div class="pilar-visual">
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Base histórica de contatos extraída</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Segmentação automática por perfil</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Sequência personalizada de reativação</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Follow-up automático sem repetição</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Receita em 7 a 15 dias</span></div>
+      </div>
+    </div>
+
+    <!-- Pilar 2 -->
+    <div class="pilares-content" id="pilar-2">
+      <div>
+        <div class="pilar-num">0<span>2</span></div>
+        <h3 class="pilar-title">Captura Imediata de Intenção™</h3>
+        <p class="pilar-desc">Todo cliente que entra em contato recebe resposta em segundos — independente de horário. A intenção de compra não esfria. Ela é capturada no momento exato em que acontece.</p>
+        <div class="pilar-tag">Atendimento 24/7 · fins de semana · feriados</div>
+      </div>
+      <div class="pilar-visual">
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Cliente envia mensagem no sábado às 23h</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">IA responde em segundos</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Qualifica varejo vs atacado</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Apresenta catálogo filtrado ao perfil</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Vendedora recebe lead aquecido na segunda</span></div>
+      </div>
+    </div>
+
+    <!-- Pilar 3 -->
+    <div class="pilares-content" id="pilar-3">
+      <div>
+        <div class="pilar-num">0<span>3</span></div>
+        <h3 class="pilar-title">Distribuição Estratégica de Oportunidades™</h3>
+        <p class="pilar-desc">Cada lead é direcionado com inteligência para a pessoa certa, no momento certo, com contexto completo. A equipe para de perder tempo com curiosos e passa a focar em quem realmente compra.</p>
+        <div class="pilar-tag">Rodízio automático · contexto completo</div>
+      </div>
+      <div class="pilar-visual">
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Lead entra com segmento, volume, histórico</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Sistema identifica perfil ideal</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Rodízio automático entre vendedoras</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Catálogo filtrado para o perfil</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Taxa de resposta ao catálogo aumenta</span></div>
+      </div>
+    </div>
+
+    <!-- Pilar 4 -->
+    <div class="pilares-content" id="pilar-4">
+      <div>
+        <div class="pilar-num">0<span>4</span></div>
+        <h3 class="pilar-title">Radar de Receita em Tempo Real™</h3>
+        <p class="pilar-desc">A operação deixa de ser baseada em percepção e passa a ser guiada por dados. Você enxerga exatamente onde está perdendo dinheiro — e onde está ganhando.</p>
+        <div class="pilar-tag">Dashboard · alertas · relatório toda segunda</div>
+      </div>
+      <div class="pilar-visual">
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Métricas por vendedora, canal e produto</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Dashboard em tempo real</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Alertas antes do problema virar perda</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Relatório toda segunda-feira</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Decisões guiadas por dados</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MUDANÇAS -->
+<section id="mudancas">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;margin-bottom:72px">
+      <div class="section-label" style="justify-content:center">O Que Muda</div>
+      <h2 class="section-h2" style="text-align:center">Na Prática</h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Sem contratar mais gente. Sem aumentar a carga da equipe. Sem depender de sorte.</p>
+    </div>
+
+    <div class="mudancas-grid fade-up">
+      <div class="mudanca-item">
+        <div class="mudanca-icon">🤖</div>
+        <h3>A IA faz o que é chato</h3>
+        <p>Repetitivo, fora do horário, tedioso. A IA cuida disso 24 horas por dia, 7 dias por semana.</p>
+      </div>
+      <div class="mudanca-item">
+        <div class="mudanca-icon">👩‍💼</div>
+        <h3>A vendedora faz o que sabe melhor</h3>
+        <p>Fechar. Ela chega a conversas já aquecidas — não precisa mais caçar lead frio.</p>
+      </div>
+      <div class="mudanca-item">
+        <div class="mudanca-icon">📊</div>
+        <h3>A gestora enxerga tudo</h3>
+        <p>Dados reais. Onde está ganhando, onde está perdendo. Sem depender de percepção.</p>
+      </div>
+    </div>
+
+    <div class="before-after fade-up">
+      <div class="ba-col">
+        <div class="ba-title red">✕ Antes</div>
+        <div class="ba-item"><span class="dot">✕</span>Clientes no sábado à noite ficam sem resposta</div>
+        <div class="ba-item"><span class="dot">✕</span>Follow-up depende da memória da vendedora</div>
+        <div class="ba-item"><span class="dot">✕</span>Catálogo enviado sem qualificação prévia</div>
+        <div class="ba-item"><span class="dot">✕</span>Base histórica de 30 anos sem uso sistemático</div>
+        <div class="ba-item"><span class="dot">✕</span>Operação baseada em percepção e intuição</div>
+        <div class="ba-item"><span class="dot">✕</span>Leads quentes esfriando nos fins de semana</div>
+      </div>
+      <div class="ba-col after">
+        <div class="ba-title green">✓ Depois</div>
+        <div class="ba-item"><span class="dot">✓</span>Atendimento em segundos, qualquer horário</div>
+        <div class="ba-item"><span class="dot">✓</span>Cadência automática e personalizada por cliente</div>
+        <div class="ba-item"><span class="dot">✓</span>Catálogo filtrado para o perfil de cada lead</div>
+        <div class="ba-item"><span class="dot">✓</span>Motor de reativação gerando receita da base</div>
+        <div class="ba-item"><span class="dot">✓</span>Dashboard e relatório semanal com dados reais</div>
+        <div class="ba-item"><span class="dot">✓</span>Segunda-feira: lista de quem quer comprar</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section id="quote">
+  <div class="container">
+    <div class="quote-block fade-up">
+      <span class="quote-mark">"</span>
+      <blockquote>Hoje vocês perdem todo cliente que manda mensagem no sábado à noite, no domingo, no feriado. A IA atende esse cliente, qualifica, e joga para a fila de vocês. Vocês chegam na <em>segunda com a lista de quem quer comprar</em> — só precisam fechar.</blockquote>
+      <div class="quote-source">NeuralOps · Proposta Kiss My Modas 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ADOÇÃO -->
+<section id="adocao">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;margin-bottom:48px">
+      <div class="section-label" style="justify-content:center">Implementação Progressiva</div>
+      <h2 class="section-h2" style="text-align:center">O Sistema e a Equipe<br>Trabalham Juntos</h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">O sistema foi desenhado para trabalhar junto com as vendedoras — não contra elas.</p>
+    </div>
+
+    <div class="adocao-steps">
+      <div class="adocao-card fade-up" data-mes="1">
+        <h3>Mês 1</h3>
+        <h4>Sistema nos bastidores</h4>
+        <p>Sistema ativo apenas fora do horário — vendedoras veem os leads chegando sem mudar absolutamente nada na rotina delas.</p>
+      </div>
+      <div class="adocao-card fade-up" data-mes="2">
+        <h3>Mês 2</h3>
+        <h4>Parceria IA + Vendedora</h4>
+        <p>Sistema faz o primeiro contato sempre, vendedora fecha. Chegam em conversas já aquecidas e prontas para conversão.</p>
+      </div>
+      <div class="adocao-card fade-up" data-mes="3">
+        <h3>Mês 3+</h3>
+        <h4>Foco no que importa</h4>
+        <p>Sistema fecha varejo simples autonomamente. Vendedora foca inteiramente em atacado e personalizado — maior ticket.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section id="roi">
+  <div class="container">
+    <div class="roi-header fade-up">
+      <div class="section-label" style="justify-content:center">Simulação de Retorno</div>
+      <h2 class="section-h2" style="text-align:center">Baseada na<br><span class="accent">Operação Real</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Analisamos os preços do site da Kiss My Modas e calculamos o ticket médio por canal para projeções realistas.</p>
+    </div>
+
+    <div class="roi-disclaimer fade-up">
+      Estimativas calculadas com base nos preços públicos do site da Kiss My Modas e parâmetros conservadores de conversão. Os valores são referências de planejamento — resultados reais dependem do volume atual de atendimento e da base histórica disponível.
+    </div>
+
+    <!-- Ticket médio -->
+    <div class="roi-table-wrap fade-up">
+      <table>
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>Preço site (varejo)</th>
+            <th>Preço atacado (÷2)</th>
+            <th>Ticket médio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Calças e bermudas</td>
+            <td>R$ 129–250</td>
+            <td>R$ 64–125</td>
+            <td class="green">R$ 90/peça</td>
+          </tr>
+          <tr>
+            <td>Bodies e blusas</td>
+            <td>R$ 79–190</td>
+            <td>R$ 39–95</td>
+            <td class="green">R$ 67/peça</td>
+          </tr>
+          <tr>
+            <td>Blazers e jaquetas</td>
+            <td>R$ 256–339</td>
+            <td>R$ 128–169</td>
+            <td class="green">R$ 148/peça</td>
+          </tr>
+          <tr>
+            <td>Mix geral (referência)</td>
+            <td>~R$ 165</td>
+            <td>~R$ 82</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Pedido médio atacado (10 peças)</strong></td>
+            <td>—</td>
+            <td>—</td>
+            <td class="green"><strong>R$ 820/pedido</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="roi-sims fade-up">
+      <div class="sim-card">
+        <span class="sim-badge">Mês 1</span>
+        <div class="sim-title">Motor de Reativação</div>
+        <div class="sim-period">500 contatos · 20% reengajamento · 30% conversão</div>
+        <div class="sim-amount counter" data-target="18720">R$ 0</div>
+        <div class="sim-label">estimativa mês 1</div>
+      </div>
+      <div class="sim-card">
+        <span class="sim-badge">Mês 2</span>
+        <div class="sim-title">Atendimento 24/7</div>
+        <div class="sim-period">70 leads fora do horário · 22 conversões</div>
+        <div class="sim-amount counter" data-target="11180">R$ 0</div>
+        <div class="sim-label">adicional/mês</div>
+      </div>
+      <div class="sim-card">
+        <span class="sim-badge">Mês 2–3</span>
+        <div class="sim-title">Follow-up + Funil Atacado</div>
+        <div class="sim-period">110 leads frios reativados + reposição</div>
+        <div class="sim-amount counter" data-target="16260">R$ 0</div>
+        <div class="sim-label">adicional/mês</div>
+      </div>
+    </div>
+
+    <div class="roi-consolidado fade-up">
+      <h3>Consolidado — Estimativa dos 3 Primeiros Meses</h3>
+      <div class="roi-total-grid">
+        <div>
+          <div class="roi-stat-num counter" data-target="46160">R$ 0</div>
+          <div class="roi-stat-label">Receita adicional estimada (3 meses)</div>
+        </div>
+        <div>
+          <div class="roi-stat-num counter" data-target="27440">R$ 0</div>
+          <div class="roi-stat-label">Receita recorrente mensal (a partir do mês 3)</div>
+        </div>
+        <div>
+          <div class="roi-stat-num">R$ <span class="counter" data-target="470">0</span></div>
+          <div class="roi-stat-label">Custo operacional máximo do sistema/mês</div>
+        </div>
+      </div>
+      <div class="roi-ratio">
+        Para cada <strong>R$ 1,00</strong> investido em operação → <strong>R$ 58 de retorno estimado</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALOR MERCADO -->
+<section id="valor">
+  <div class="container">
+    <div class="valor-header fade-up">
+      <div class="section-label" style="justify-content:center">Transparência Total</div>
+      <h2 class="section-h2" style="text-align:center">O Valor Real<br><span class="accent">desta Estrutura</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">O que está sendo colocado na mesa — se fosse contratado normalmente no mercado:</p>
+    </div>
+
+    <div class="valor-grid fade-up">
+      <div>
+        <div style="display:flex;gap:16px;margin-bottom:12px;padding:0 24px">
+          <div style="flex:1;font-size:11px;color:var(--text-muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase">Entregável</div>
+          <div style="font-size:11px;color:var(--text-muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:right;min-width:100px">Implementação</div>
+          <div style="font-size:11px;color:var(--text-muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:right;min-width:100px">Mensalidade</div>
+        </div>
+        <div class="valor-items">
+          <div class="valor-item">
+            <div class="valor-item-name">Motor de Reativação + Follow-up</div>
+            <div class="valor-item-impl">R$ 4.800</div>
+            <div class="valor-item-month">R$ 1.500/mês</div>
+          </div>
+          <div class="valor-item">
+            <div class="valor-item-name">Captura de Intenção 24/7 + Funil Atacado</div>
+            <div class="valor-item-impl">R$ 9.500</div>
+            <div class="valor-item-month">R$ 2.100/mês</div>
+          </div>
+          <div class="valor-item">
+            <div class="valor-item-name">Distribuição Estratégica + Agendamento</div>
+            <div class="valor-item-impl">R$ 6.200</div>
+            <div class="valor-item-month">R$ 1.750/mês</div>
+          </div>
+          <div class="valor-item">
+            <div class="valor-item-name">Radar de Receita em Tempo Real</div>
+            <div class="valor-item-impl" style="color:var(--green)">incluso</div>
+            <div class="valor-item-month" style="color:var(--green)">incluso</div>
+          </div>
+          <div class="valor-item">
+            <div class="valor-item-name">Treinamento do agente com voz da marca</div>
+            <div class="valor-item-impl" style="color:var(--green)">incluso</div>
+            <div class="valor-item-month" style="color:var(--green)">incluso</div>
+          </div>
+          <div class="valor-item">
+            <div class="valor-item-name">Rodízio automático de leads entre vendedoras</div>
+            <div class="valor-item-impl" style="color:var(--green)">incluso</div>
+            <div class="valor-item-month" style="color:var(--green)">incluso</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="valor-total-card">
+        <h3>Resumo Financeiro</h3>
+        <div class="valor-price-row">
+          <span class="label">Implementação total</span>
+          <span class="price">R$ 20.500</span>
+        </div>
+        <div class="valor-price-row">
+          <span class="label">Mensalidade total</span>
+          <span class="price">R$ 5.350/mês</span>
+        </div>
+        <div class="valor-price-row">
+          <span class="label">Contrato 12 meses</span>
+          <span class="price">R$ 84.700</span>
+        </div>
+
+        <div class="valor-total-amount">
+          <div class="total-label">Valor de Mercado (12 meses)</div>
+          <div class="total-num">R$ 84.700</div>
+        </div>
+
+        <div class="valor-voces-pagam">
+          <div class="pagam-label">O que vocês pagam</div>
+          <div class="pagam-num">Zero de implementação.<br>Zero de mensalidade.</div>
+          <div class="pagam-sub">Apenas custo operacional de tokens: R$ 110–470/mês</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTO -->
+<section id="custo">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Custo Operacional</div>
+      <h2 class="section-h2">O Único Custo<br><span class="accent">que Fica com Vocês</span></h2>
+    </div>
+
+    <div class="custo-grid fade-up">
+      <div>
+        <p class="custo-note">O único custo que permanece com vocês é o <strong>consumo de tokens da IA</strong> — o custo direto de cada mensagem processada. Esse valor é variável, proporcional ao volume de atendimento, e representa uma fração mínima do retorno gerado.</p>
+
+        <div class="custo-highlight">
+          Equivale ao custo de <strong>2 a 8 horas</strong> de trabalho de uma vendedora.<br>
+          O sistema opera <strong>720 horas por mês</strong>.
+        </div>
+      </div>
+
+      <div>
+        <div class="roi-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Cenário</th>
+                <th>Conversas/mês</th>
+                <th>Custo estimado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Volume baixo (início)</td>
+                <td>300–500</td>
+                <td class="green">R$ 45–80</td>
+              </tr>
+              <tr>
+                <td>Volume médio (3–6 meses)</td>
+                <td>500–1.000</td>
+                <td class="green">R$ 80–160</td>
+              </tr>
+              <tr>
+                <td>Volume alto (operação plena)</td>
+                <td>1.000–2.000</td>
+                <td class="green">R$ 160–320</td>
+              </tr>
+              <tr>
+                <td>Pico (reativação + promoção)</td>
+                <td>2.000–4.000</td>
+                <td class="green">R$ 320–640</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:var(--text-muted)">
+          + WhatsApp Business API: R$ 0–150/mês · Número dedicado: R$ 30–50/mês · Google Agenda: Gratuito<br>
+          <strong style="color:var(--text-sub)">Custo total máximo: R$ 470/mês</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <div class="timeline-header fade-up">
+      <div class="section-label" style="justify-content:center">Implementação</div>
+      <h2 class="section-h2" style="text-align:center">Entrega em<br><span class="accent">60 Dias</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Cada fase gera resultado antes da próxima começar.</p>
+    </div>
+
+    <div class="timeline-phases fade-up">
+      <div class="timeline-phase">
+        <div class="phase-period">Dias 1–5</div>
+        <div class="phase-num">1</div>
+        <div class="phase-name">Onboarding</div>
+        <div class="phase-entregavel">Extração da base histórica, sequências de reativação configuradas, catálogo mapeado.</div>
+        <div class="phase-result">Primeiros disparos ativos em até 5 dias úteis</div>
+      </div>
+      <div class="timeline-phase">
+        <div class="phase-period">Dias 5–20</div>
+        <div class="phase-num">2</div>
+        <div class="phase-name">Reativação</div>
+        <div class="phase-entregavel">Motor de reativação ativo. Follow-up automático configurado. Base histórica trabalhada.</div>
+        <div class="phase-result">Receita da base histórica em 7–15 dias</div>
+      </div>
+      <div class="timeline-phase">
+        <div class="phase-period">Dias 20–45</div>
+        <div class="phase-num">3</div>
+        <div class="phase-name">Atendimento</div>
+        <div class="phase-entregavel">Agente 24/7 ativo. Funil de atacado funcionando. Rodízio de leads entre vendedoras.</div>
+        <div class="phase-result">Captura fora do horário funcionando</div>
+      </div>
+      <div class="timeline-phase">
+        <div class="phase-period">Dias 45–60</div>
+        <div class="phase-num">4</div>
+        <div class="phase-name">Gestão</div>
+        <div class="phase-entregavel">Dashboard ativo. Agendamento configurado. Alertas. Relatório semanal toda segunda.</div>
+        <div class="phase-result">Operação visível e guiada por dados</div>
+      </div>
+    </div>
+
+    <div class="timeline-note fade-up">
+      A Fase 1 começa a gerar retorno antes da Fase 2 estar concluída.<br>
+      Em <strong>30 dias</strong>, o investimento já está se pagando.
+    </div>
+  </div>
+</section>
+
+<!-- PARCERIA -->
+<section id="parceria">
+  <div class="container">
+    <div class="parceria-header fade-up">
+      <div class="section-label" style="justify-content:center">Modelo da Parceria</div>
+      <h2 class="section-h2" style="text-align:center">Isso Não É<br><span class="accent">Uma Venda</span></h2>
+    </div>
+
+    <p class="parceria-intro fade-up">É uma construção conjunta. A estrutura completa será implementada sem custo de setup, com objetivo claro: transformar a Kiss My Modas em referência de eficiência dentro do segmento de confecção.</p>
+
+    <div class="parceria-tables fade-up">
+      <div class="parceria-table neuralops">
+        <div class="parceria-table-header">
+          <h3>O que a NeuralOps entrega</h3>
+        </div>
+        <div class="parceria-row">
+          <span class="row-key">Implementação</span>
+          <span class="row-val">Toda a infraestrutura dos 4 pilares — sem custo de construção</span>
+        </div>
+        <div class="parceria-row">
+          <span class="row-key">Prazo</span>
+          <span class="row-val">Entrega completa em 60 dias, com retorno da Fase 1 em até 15 dias</span>
+        </div>
+        <div class="parceria-row">
+          <span class="row-key">Operação</span>
+          <span class="row-val">Manutenção, ajustes e evolução do sistema por 12 meses</span>
+        </div>
+        <div class="parceria-row">
+          <span class="row-key">Suporte</span>
+          <span class="row-val">Atendimento prioritário via WhatsApp em horário comercial</span>
+        </div>
+        <div class="parceria-row">
+          <span class="row-key">Treinamento</span>
+          <span class="row-val">Capacitação da gestora para leitura dos dados e dashboards</span>
+        </div>
+        <div class="parceria-row">
+          <span class="row-key">Evolução</span>
+          <span class="row-val">Novas funcionalidades chegam automaticamente durante a parceria</span>
+        </div>
+      </div>
+
+      <div class="parceria-table">
+        <div class="parceria-table-header">
+          <h3>O que vocês entregam</h3>
+        </div>
+        <div class="parceria-row">
+          <span class="row-key">Case real</span>
+          <span class="row-val">Autorização para usar os resultados como case público com números reais</span>
+        </div>
+        <div class="parceria-row">
+          <span class="row-key">Vitrine</span>
+          <span class="row-val">Disponibilidade para receber visitas ou calls de outros empresários do segmento</span>
+        </div>
+        <div class="parceria-row">
+          <span class="row-key">Depoimento</span>
+          <span class="row-val">Vídeo de depoimento após 90 dias de operação e resultados comprovados</span>
+        </div>
+        <div class="parceria-row">
+          <span class="row-key">Indicação</span>
+          <span class="row-val">Indicação ativa para outras confecções — sem obrigatoriedade de volume</span>
+        </div>
+        <div class="parceria-row">
+          <span class="row-key">Feedback</span>
+          <span class="row-val">Participação no aprimoramento do produto com retorno sobre o que funciona</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fade-up" style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;font-size:14px;color:var(--text-muted);line-height:1.7">
+      <strong style="color:var(--text-sub)">Condições:</strong> Parceria inicial de 12 meses com renovação automática. A partir do mês 13, decidem: continuar na parceria ou migrar para contrato comercial padrão. <strong style="color:var(--text-sub)">Todo o histórico de clientes, dados e fluxos implementados pertencem à empresa.</strong> A NeuralOps não vende para concorrentes diretos na mesma cidade durante a vigência.
+    </div>
+  </div>
+</section>
+
+<!-- COMISSÃO -->
+<section id="comissao">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Receita Passiva para Vocês</div>
+      <h2 class="section-h2">Comissão por<br><span class="accent">Indicação</span></h2>
+      <p class="section-lead">Toda empresa do segmento indicada por vocês que fechar contrato gera duas correntes de comissão.</p>
+    </div>
+
+    <div class="comissao-grid fade-up">
+      <div class="comissao-card">
+        <span class="c-type">Por indicação fechada</span>
+        <div class="c-pct">10%</div>
+        <div class="c-name">Comissão de Implementação</div>
+        <div class="c-cond">10% do valor de implementação por cliente indicado. Ticket médio de R$ 25k–32k por cliente. Pagamento único na assinatura do contrato.</div>
+      </div>
+      <div class="comissao-card">
+        <span class="c-type">Recorrente</span>
+        <div class="c-pct">15%</div>
+        <div class="c-name">Comissão Mensal Recorrente</div>
+        <div class="c-cond">15% da mensalidade enquanto o cliente indicado estiver ativo. Sem prazo de expiração. Sem limite de indicações.</div>
+      </div>
+    </div>
+
+    <div class="comissao-sim fade-up">
+      <h3>Simulação com 5 Indicações Fechadas</h3>
+      <div class="comissao-sim-row">
+        <span class="cs-label">Comissão de implementação (5 × R$ 28.500 × 10%)</span>
+        <span class="cs-val">R$ 14.250 (único)</span>
+      </div>
+      <div class="comissao-sim-row">
+        <span class="cs-label">Comissão recorrente mensal (5 × R$ 5.350 × 15%)</span>
+        <span class="cs-val">R$ 4.012/mês</span>
+      </div>
+      <div class="comissao-total">
+        <div class="ct-label">Retorno total em 12 meses</div>
+        <div class="ct-val">R$ 62.394</div>
+      </div>
+      <div style="margin-top:16px;font-size:12px;color:var(--text-muted)">Comissões pagas mensalmente · Sem limite de indicações · Sem prazo de expiração</div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section id="para-quem">
+  <div class="container">
+    <div class="para-quem-grid">
+      <div class="fade-up">
+        <div class="section-label">Para Quem É</div>
+        <h2 class="section-h2">Isso Não É<br>Para Qualquer<br><span class="accent">Operação</span></h2>
+
+        <div class="para-quem-checks">
+          <div class="pq-check"><span class="check">✓</span>Empresas que já possuem volume de atendimento</div>
+          <div class="pq-check"><span class="check">✓</span>Empresas com base de clientes ativa ou histórica</div>
+          <div class="pq-check"><span class="check">✓</span>Empresas que querem crescer sem depender de mais equipe</div>
+        </div>
+      </div>
+
+      <div class="para-quem-text fade-up">
+        <div class="big-quote">Vocês têm <em>30 anos construindo credibilidade</em> no mercado. Nós temos a tecnologia para fazer essa credibilidade <em>render muito mais</em>.</div>
+        <p>O mercado de confecção ainda opera com um modelo antigo: atendimento manual, sem follow-up sistemático, sem visibilidade, com desperdício silencioso de oportunidades todos os dias. Quem corrigir isso primeiro — domina.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROXIMOS PASSOS -->
+<section id="proximos-passos">
+  <div class="container">
+    <div class="passos-header fade-up">
+      <div class="section-label" style="justify-content:center">Para Começar</div>
+      <h2 class="section-h2" style="text-align:center">O Próximo Passo<br><span class="accent">Não É Contratar</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">É diagnosticar. Mapear a operação atual. Identificar onde o dinheiro está sendo perdido. E mostrar, com clareza, onde o sistema entra.</p>
+    </div>
+
+    <div class="passos-list">
+      <div class="passo-item fade-up">
+        <div class="passo-num">1</div>
+        <div class="passo-content">
+          <h3>Assinatura do Contrato de Parceria</h3>
+          <p>Formaliza as contrapartidas, o modelo de comissão e as condições exclusivas desta parceria.</p>
+        </div>
+      </div>
+      <div class="passo-item fade-up">
+        <div class="passo-num">2</div>
+        <div class="passo-content">
+          <h3>Reunião de Onboarding (2h)</h3>
+          <p>Extração das conversas históricas, mapeamento completo do catálogo e definição do tom e voz do sistema.</p>
+        </div>
+      </div>
+      <div class="passo-item fade-up">
+        <div class="passo-num">3</div>
+        <div class="passo-content">
+          <h3>Aprovação das Sequências de Reativação</h3>
+          <p>Entrega das primeiras mensagens para aprovação. Primeiros disparos em até 5 dias úteis após onboarding.</p>
+        </div>
+      </div>
+      <div class="passo-item fade-up">
+        <div class="passo-num">4</div>
+        <div class="passo-content">
+          <h3>Motor de Reativação Ativo (Dias 5–20)</h3>
+          <p>Retorno esperado da base histórica em 7 a 15 dias após a ativação. Receita antes do sistema estar completo.</p>
+        </div>
+      </div>
+      <div class="passo-item fade-up">
+        <div class="passo-num">5</div>
+        <div class="passo-content">
+          <h3>Pilares 2, 3 e 4 em Paralelo (Dias 20–60)</h3>
+          <p>Operação completa ao final do mês 2. Atendimento 24/7, distribuição estratégica e radar de receita funcionando.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="container">
+    <div class="cta-divider fade-up">
+      <p class="either">Ou vocês continuam operando como sempre — dependendo de tempo, equipe e sorte.</p>
+      <div class="or-line">ou</div>
+    </div>
+    <div class="cta-big fade-up">
+      Ou instalam uma estrutura que trabalha<br>por vocês — <em>inclusive quando<br>ninguém está olhando.</em>
+    </div>
+    <a href="mailto:contato@neuralops.com.br" class="cta-btn fade-up">Quero avançar com a parceria</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">NeuralOps</div>
+  <div class="f-info">
+    Infraestrutura de IA para empresas que querem crescer com autonomia<br>
+    Goiânia, GO · contato@neuralops.com.br
+  </div>
+  <div class="f-conf">Documento confidencial</div>
+</footer>
+
+<script>
+  // ── PROGRESS BAR ──
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('progress').style.width = progress + '%';
+  });
+
+  // ── INTERSECTION OBSERVER for fade-up ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── PILARES TABS ──
+  function showPilar(n) {
+    document.querySelectorAll('.pilares-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.pilar-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('pilar-' + n).classList.add('active');
+    document.querySelectorAll('.pilar-tab')[n - 1].classList.add('active');
+
+    // Re-trigger flow step animations
+    document.querySelectorAll('#pilar-' + n + ' .flow-step').forEach(step => {
+      step.style.animation = 'none';
+      step.offsetHeight; // reflow
+      step.style.animation = '';
+    });
+  }
+
+  // ── COUNTER ANIMATION ──
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = '1';
+        animateCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1800;
+    const start = performance.now();
+    const isInline = el.tagName === 'SPAN';
+
+    const step = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(eased * target);
+      const formatted = current.toLocaleString('pt-BR');
+
+      if (isInline) {
+        el.textContent = formatted;
+      } else {
+        el.textContent = 'R$ ' + formatted;
+      }
+
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  }
+
+  // ── NAV scroll effect ──
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 80) {
+      nav.style.padding = '12px 40px';
+    } else {
+      nav.style.padding = '18px 40px';
+    }
+  });
+</script>
+
+</body>
+</html>

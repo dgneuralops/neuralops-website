@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta Certificação e Credenciamento — NeuralOps</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #beff01;
+      --green-dim: rgba(190,255,1,0.12);
+      --green-glow: rgba(190,255,1,0.25);
+      --bg: #050505;
+      --bg-card: #0d0d0d;
+      --bg-card2: #111111;
+      --border: rgba(255,255,255,0.07);
+      --border-green: rgba(190,255,1,0.3);
+      --text: #ffffff;
+      --text-muted: rgba(255,255,255,0.45);
+      --text-sub: rgba(255,255,255,0.65);
+      --red: #ff5555;
+      --red-dim: rgba(255,85,85,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.4;
+    }
+
+    /* PROGRESS */
+    #progress {
+      position: fixed; top: 0; left: 0;
+      width: 0%; height: 2px;
+      background: var(--green);
+      z-index: 10000; transition: width 0.1s linear;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 18px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(5,5,5,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--green);
+    }
+    .nav-tag {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--text-muted);
+      background: var(--green-dim);
+      border: 1px solid var(--border-green);
+      padding: 5px 14px; border-radius: 100px;
+    }
+    .nav-cta {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bg); background: var(--green);
+      padding: 9px 22px; border-radius: 6px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .nav-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    /* CONTAINER */
+    section { width: 100%; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 140px 40px 100px;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(190,255,1,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--green);
+      background: var(--green-dim); border: 1px solid var(--border-green);
+      padding: 7px 18px; border-radius: 100px;
+      margin-bottom: 40px;
+    }
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .hero-eyebrow {
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 16px;
+    }
+    .hero-h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(44px, 7vw, 88px);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.02em; margin-bottom: 28px;
+    }
+    .hero-h1 .accent { color: var(--green); }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--text-sub); max-width: 620px;
+      margin: 0 auto 56px; line-height: 1.7; font-style: italic;
+    }
+    .hero-meta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 32px; font-size: 12px; color: var(--text-muted);
+      letter-spacing: 0.08em; flex-wrap: wrap;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 8px; }
+    .hero-meta strong { color: var(--text-sub); }
+    .hero-scroll {
+      position: absolute; bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px; font-size: 10px;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); animation: scrollBounce 2s infinite;
+    }
+    .hero-scroll::after {
+      content: ''; width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--text-muted), transparent);
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* TICKER */
+    .ticker-wrap { overflow: hidden; background: var(--green); padding: 14px 0; }
+    .ticker-inner {
+      display: flex; gap: 0;
+      animation: ticker 30s linear infinite; white-space: nowrap;
+    }
+    .ticker-item {
+      display: inline-flex; align-items: center; gap: 16px;
+      padding: 0 32px;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--bg);
+    }
+    .ticker-item::after { content: '✦'; }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* SECTION LABELS */
+    .section-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before {
+      content: ''; display: block;
+      width: 24px; height: 1px; background: var(--green);
+    }
+    .section-h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.02em; margin-bottom: 24px;
+    }
+    .section-h2 .accent { color: var(--green); }
+    .section-lead {
+      font-size: 18px; color: var(--text-sub);
+      line-height: 1.7; max-width: 680px;
+    }
+
+    /* DIAGNÓSTICO */
+    #diagnostico { padding: 120px 0; position: relative; }
+    .diagnostico-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center; margin-top: 72px;
+    }
+    .diagnostico-text p {
+      font-size: 20px; color: var(--text-sub);
+      line-height: 1.8; margin-bottom: 24px;
+    }
+    .diagnostico-text p strong { color: var(--text); font-weight: 600; }
+    .diagnostico-text p em { color: var(--green); font-style: normal; font-weight: 600; }
+    .diagnostico-text blockquote {
+      border-left: 3px solid var(--green);
+      padding: 20px 24px;
+      background: var(--green-dim);
+      border-radius: 0 12px 12px 0;
+      margin: 28px 0;
+      font-size: 22px; font-weight: 600;
+      color: var(--text); font-style: normal; line-height: 1.5;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .stat-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 20px;
+      transition: all 0.3s;
+    }
+    .stat-card:hover { border-color: var(--border-green); transform: translateY(-3px); }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px; font-weight: 700;
+      color: var(--green); line-height: 1; margin-bottom: 8px;
+    }
+    .stat-label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .stat-sub { font-size: 12px; color: var(--text-muted); }
+
+    /* FLUXO */
+    #fluxo {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--bg-card2) 10%, var(--bg-card2) 90%, transparent);
+    }
+    .fluxo-header { text-align: center; margin-bottom: 72px; }
+    .fluxo-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 2px; border-radius: 16px; overflow: hidden;
+      margin-bottom: 4px;
+    }
+    .fluxo-grid-bottom {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 2px; border-radius: 16px; overflow: hidden;
+    }
+    .fluxo-item {
+      background: var(--bg-card); padding: 28px 20px;
+      position: relative; transition: all 0.3s;
+    }
+    .fluxo-item:hover { background: rgba(255,85,85,0.04); }
+    .fluxo-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 40px; font-weight: 700;
+      color: var(--green-dim); line-height: 1; margin-bottom: 10px;
+    }
+    .fluxo-num span { color: var(--green); }
+    .fluxo-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px; font-weight: 600; margin-bottom: 8px;
+    }
+    .fluxo-desc { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+    .fluxo-tag {
+      position: absolute; top: 12px; right: 12px;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,85,85,0.6);
+      background: rgba(255,85,85,0.08);
+      border: 1px solid rgba(255,85,85,0.15);
+      padding: 3px 8px; border-radius: 4px;
+    }
+    .fluxo-warning {
+      margin-top: 24px; padding: 20px 24px;
+      background: rgba(255,85,85,0.06);
+      border: 1px solid rgba(255,85,85,0.2);
+      border-radius: 12px;
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 15px; color: var(--text-sub); line-height: 1.6;
+    }
+    .fluxo-warning-icon {
+      font-size: 20px; flex-shrink: 0; margin-top: 1px;
+    }
+    .fluxo-warning strong { color: var(--text); }
+
+    /* CUSTO REAL */
+    #custo-real { padding: 120px 0; }
+    .custo-header { margin-bottom: 72px; }
+    .custo-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .custo-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 32px 28px;
+      position: relative; overflow: hidden; transition: all 0.3s;
+    }
+    .custo-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--red); opacity: 0; transition: opacity 0.3s;
+    }
+    .custo-card:hover { border-color: rgba(255,85,85,0.3); transform: translateX(4px); }
+    .custo-card:hover::before { opacity: 1; }
+    .custo-card-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--red-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 20px;
+    }
+    .custo-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+    .custo-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+    .custo-card-wide { grid-column: span 2; }
+
+    /* MÓDULOS / PILARES */
+    #modulos {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--bg-card2) 10%, var(--bg-card2) 90%, transparent);
+    }
+    .modulos-header { text-align: center; margin-bottom: 56px; }
+    .modulos-tabs {
+      display: flex; gap: 8px; justify-content: center;
+      margin-bottom: 48px; flex-wrap: wrap;
+    }
+    .modulo-tab {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 10px 24px; border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent; color: var(--text-muted);
+      cursor: pointer; transition: all 0.25s;
+    }
+    .modulo-tab.active, .modulo-tab:hover {
+      border-color: var(--border-green);
+      background: var(--green-dim); color: var(--green);
+    }
+    .modulos-content {
+      display: none; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+    }
+    .modulos-content.active { display: grid; }
+    .modulo-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 80px; font-weight: 700;
+      color: var(--green-dim); line-height: 1; margin-bottom: 16px;
+    }
+    .modulo-num span { color: var(--green); }
+    .modulo-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 30px; font-weight: 700;
+      line-height: 1.2; margin-bottom: 16px;
+    }
+    .modulo-desc {
+      font-size: 17px; color: var(--text-sub);
+      line-height: 1.75; margin-bottom: 24px;
+    }
+    .modulo-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--green); background: var(--green-dim);
+      border: 1px solid var(--border-green);
+      padding: 6px 14px; border-radius: 6px;
+    }
+    .modulo-visual {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px;
+      min-height: 300px; display: flex;
+      flex-direction: column; justify-content: space-between;
+    }
+    .flow-step {
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px 16px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg-card2);
+      margin-bottom: 8px; transition: all 0.3s;
+      animation: fadeSlideIn 0.4s ease forwards; opacity: 0;
+    }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateX(-12px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .flow-step:nth-child(1) { animation-delay: 0.1s; }
+    .flow-step:nth-child(2) { animation-delay: 0.2s; }
+    .flow-step:nth-child(3) { animation-delay: 0.3s; }
+    .flow-step:nth-child(4) { animation-delay: 0.4s; }
+    .flow-step:nth-child(5) { animation-delay: 0.5s; }
+    .flow-step:last-child { border-color: var(--border-green); background: var(--green-dim); }
+    .flow-step:last-child .flow-label { color: var(--green); }
+    .flow-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--text-muted); flex-shrink: 0;
+    }
+    .flow-step:last-child .flow-dot { background: var(--green); }
+    .flow-label { font-size: 13px; font-weight: 500; }
+
+    /* BEFORE AFTER */
+    #mudancas { padding: 120px 0; }
+    .mudancas-header { text-align: center; margin-bottom: 72px; }
+    .mudancas-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-bottom: 64px;
+    }
+    .mudanca-item {
+      background: var(--bg-card); padding: 40px 32px; transition: all 0.3s;
+    }
+    .mudanca-item:first-child { border-radius: 16px 0 0 16px; }
+    .mudanca-item:last-child { border-radius: 0 16px 16px 0; }
+    .mudanca-item:hover { background: rgba(190,255,1,0.04); }
+    .mudanca-icon { font-size: 32px; margin-bottom: 20px; }
+    .mudanca-item h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px; font-weight: 600; margin-bottom: 10px;
+    }
+    .mudanca-item p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    .before-after {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .ba-col {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px;
+    }
+    .ba-col.after { border-color: var(--border-green); }
+    .ba-title {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 24px; display: flex; align-items: center; gap: 8px;
+    }
+    .ba-title.red { color: #ff6060; }
+    .ba-title.green { color: var(--green); }
+    .ba-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      font-size: 14px; color: var(--text-sub);
+    }
+    .ba-item:last-child { border-bottom: none; }
+    .ba-item .dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; flex-shrink: 0; margin-top: 2px;
+    }
+    .ba-col:not(.after) .dot { background: rgba(255,96,96,0.15); color: #ff6060; }
+    .ba-col.after .dot { background: var(--green-dim); color: var(--green); }
+
+    /* QUOTE */
+    #quote { padding: 100px 0; }
+    .quote-block { max-width: 900px; margin: 0 auto; text-align: center; }
+    .quote-mark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 80px; color: var(--green);
+      line-height: 0.6; margin-bottom: 24px; display: block;
+    }
+    blockquote {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 500; line-height: 1.5;
+      color: var(--text); margin-bottom: 32px;
+    }
+    blockquote em { color: var(--green); font-style: normal; }
+    .quote-source {
+      font-size: 12px; color: var(--text-muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* PROJEÇÃO */
+    #projecao {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent);
+    }
+    .projecao-header { text-align: center; margin-bottom: 80px; }
+    .projecao-disclaimer {
+      background: var(--green-dim); border: 1px solid var(--border-green);
+      border-radius: 10px; padding: 16px 24px;
+      font-size: 13px; color: var(--text-sub);
+      margin-bottom: 56px; display: flex;
+      align-items: flex-start; gap: 12px;
+    }
+    .projecao-disclaimer::before { content: 'ℹ'; color: var(--green); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+    /* CSS Bar Chart */
+    .bar-chart {
+      display: flex; align-items: flex-end; justify-content: center;
+      gap: 32px; height: 260px;
+      margin-bottom: 40px; padding: 0 40px;
+    }
+    .bar-col { display: flex; flex-direction: column; align-items: center; gap: 12px; flex: 1; max-width: 200px; }
+    .bar-wrap {
+      width: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end;
+      position: relative;
+    }
+    .bar {
+      width: 100%; border-radius: 8px 8px 0 0;
+      position: relative; transition: all 0.6s ease;
+      display: flex; align-items: flex-start; justify-content: center;
+      padding-top: 12px;
+    }
+    .bar-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px; font-weight: 700;
+    }
+    .bar-label {
+      font-size: 12px; color: var(--text-muted);
+      text-align: center; line-height: 1.4; letter-spacing: 0.03em;
+    }
+    .bar-now { background: #2a2a2a; height: 175px; }
+    .bar-now .bar-value { color: var(--text-muted); }
+    .bar-cons { background: linear-gradient(to top, #8bc420, #beff01); height: 228px; }
+    .bar-cons .bar-value { color: #050505; }
+    .bar-opt { background: linear-gradient(to top, #6ea013, #beff01); height: 265px; }
+    .bar-opt .bar-value { color: #050505; }
+
+    .projecao-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-bottom: 48px;
+    }
+    .proj-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px 24px; transition: all 0.3s;
+    }
+    .proj-card:hover { border-color: var(--border-green); transform: translateY(-3px); }
+    .proj-badge {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--bg); background: var(--green);
+      padding: 4px 12px; border-radius: 4px;
+      display: inline-block; margin-bottom: 16px;
+    }
+    .proj-badge.muted { background: #2a2a2a; color: var(--text-muted); }
+    .proj-title { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .proj-period { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+    .proj-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 40px; font-weight: 700;
+      color: var(--green); line-height: 1; margin-bottom: 4px;
+    }
+    .proj-amount.gray { color: var(--text-muted); }
+    .proj-sub { font-size: 12px; color: var(--text-muted); }
+
+    .projecao-consolidado {
+      background: linear-gradient(135deg, rgba(190,255,1,0.06), rgba(190,255,1,0.02));
+      border: 1px solid var(--border-green);
+      border-radius: 20px; padding: 48px;
+    }
+    .projecao-consolidado h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px; font-weight: 700;
+      margin-bottom: 32px; text-align: center;
+    }
+    .proj-total-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px; text-align: center;
+    }
+    .proj-stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 48px; font-weight: 700;
+      color: var(--green); line-height: 1; margin-bottom: 8px;
+    }
+    .proj-stat-label { font-size: 13px; color: var(--text-muted); }
+    .proj-logic {
+      margin-top: 32px; padding-top: 32px;
+      border-top: 1px solid var(--border-green);
+      font-size: 14px; color: var(--text-sub); line-height: 1.75;
+      text-align: center;
+    }
+    .proj-logic strong { color: var(--green); }
+
+    /* INVESTIMENTO */
+    #investimento { padding: 120px 0; }
+    .investimento-header { text-align: center; margin-bottom: 80px; }
+    .investimento-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: start;
+    }
+    .inv-items { display: flex; flex-direction: column; gap: 10px; }
+    .inv-item {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px 22px;
+      display: flex; align-items: center; gap: 14px;
+      transition: all 0.3s; font-size: 14px;
+    }
+    .inv-item:hover { border-color: var(--border-green); }
+    .inv-check {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--green-dim); border: 1px solid var(--border-green);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green); font-size: 11px; flex-shrink: 0;
+    }
+    .inv-item-name { font-weight: 500; flex: 1; }
+
+    .inv-total-card {
+      background: linear-gradient(135deg, rgba(190,255,1,0.08), rgba(190,255,1,0.02));
+      border: 1px solid var(--border-green);
+      border-radius: 20px; padding: 48px;
+      position: sticky; top: 120px;
+    }
+    .inv-total-card h3 {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 32px;
+    }
+    .inv-price-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+    }
+    .inv-price-row:last-of-type { border-bottom: none; }
+    .inv-price-row .label { font-size: 13px; color: var(--text-muted); }
+    .inv-price-row .price { font-size: 16px; font-weight: 600; color: var(--text); }
+
+    .inv-principal {
+      margin-top: 24px; padding: 28px 24px;
+      background: var(--green);
+      border-radius: 14px; text-align: center;
+    }
+    .inv-principal .p-label {
+      font-size: 11px; font-weight: 700;
+      color: rgba(0,0,0,0.5); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .inv-principal .p-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 44px; font-weight: 700; color: var(--bg); line-height: 1;
+    }
+    .inv-principal .p-sub { font-size: 13px; color: rgba(0,0,0,0.55); margin-top: 6px; }
+
+    .inv-monthly {
+      margin-top: 16px; padding: 20px 24px;
+      background: rgba(190,255,1,0.08);
+      border: 1px solid var(--border-green);
+      border-radius: 12px; text-align: center;
+    }
+    .inv-monthly .m-label {
+      font-size: 11px; font-weight: 700; color: var(--green);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .inv-monthly .m-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px; font-weight: 700; color: var(--text); line-height: 1;
+    }
+    .inv-monthly .m-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+    .inv-pagamento-opts {
+      margin-top: 20px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .inv-opt {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px; font-size: 13px;
+    }
+    .inv-opt .opt-name { color: var(--text-sub); font-weight: 500; }
+    .inv-opt .opt-val { color: var(--green); font-weight: 600; }
+
+    .inv-note {
+      margin-top: 16px; padding: 14px 18px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 12px; color: var(--text-muted); line-height: 1.6;
+    }
+
+    /* TIMELINE */
+    #timeline {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent);
+    }
+    .timeline-header { text-align: center; margin-bottom: 80px; }
+    .timeline-phases {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 2px; position: relative;
+    }
+    .timeline-phase {
+      background: var(--bg-card); padding: 36px 22px;
+      position: relative; transition: all 0.3s;
+    }
+    .timeline-phase:first-child { border-radius: 16px 0 0 16px; }
+    .timeline-phase:last-child { border-radius: 0 16px 16px 0; background: linear-gradient(135deg, rgba(190,255,1,0.06), var(--bg-card)); border: 1px solid var(--border-green); }
+    .timeline-phase:hover { background: rgba(190,255,1,0.04); }
+    .timeline-phase:hover .phase-period { color: var(--green); }
+    .phase-period {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 8px; transition: color 0.3s;
+    }
+    .phase-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 44px; font-weight: 700;
+      color: var(--green); line-height: 1; margin-bottom: 12px;
+    }
+    .phase-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px; font-weight: 600; margin-bottom: 10px;
+    }
+    .phase-entregavel { font-size: 12px; color: var(--text-muted); line-height: 1.55; margin-bottom: 14px; }
+    .phase-result {
+      font-size: 11px; font-weight: 600; color: var(--green);
+      background: var(--green-dim); padding: 7px 10px; border-radius: 6px;
+    }
+    .timeline-note {
+      margin-top: 36px; text-align: center;
+      font-size: 15px; color: var(--text-muted);
+    }
+    .timeline-note strong { color: var(--green); }
+
+    /* RESULTADO */
+    #resultado { padding: 120px 0; }
+    .resultado-header { text-align: center; margin-bottom: 72px; }
+    .resultado-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .resultado-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px 28px;
+      display: flex; gap: 20px; align-items: flex-start;
+      transition: all 0.3s;
+    }
+    .resultado-card:hover { border-color: var(--border-green); transform: translateY(-3px); }
+    .resultado-card-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--green-dim); border: 1px solid var(--border-green);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .resultado-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .resultado-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    /* PROXIMOS PASSOS */
+    #proximos-passos { padding: 120px 0; background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent); }
+    .passos-header { text-align: center; margin-bottom: 80px; }
+    .passos-list {
+      max-width: 780px; margin: 0 auto 80px;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .passo-item {
+      display: grid; grid-template-columns: 60px 1fr;
+      gap: 24px; padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .passo-item:last-child { border-bottom: none; }
+    .passo-item::before {
+      content: ''; position: absolute;
+      left: 28px; top: 68px;
+      width: 1px; height: calc(100% - 36px);
+      background: var(--border);
+    }
+    .passo-item:last-child::before { display: none; }
+    .passo-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--green-dim); border: 1px solid var(--border-green);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px; font-weight: 700; color: var(--green);
+      flex-shrink: 0; z-index: 1;
+    }
+    .passo-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px; font-weight: 600;
+      margin-bottom: 8px; padding-top: 14px;
+    }
+    .passo-content p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* CTA FINAL */
+    #cta-final {
+      padding: 120px 0 160px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    #cta-final::before {
+      content: '';
+      position: absolute; bottom: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(190,255,1,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-divider { max-width: 680px; margin: 0 auto 48px; }
+    .cta-divider .either { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
+    .cta-divider .or-line {
+      display: flex; align-items: center; gap: 16px;
+      margin: 32px 0; color: var(--text-muted);
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .cta-divider .or-line::before, .cta-divider .or-line::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .cta-big {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 4vw, 48px); font-weight: 700;
+      line-height: 1.2; margin-bottom: 48px;
+    }
+    .cta-big em { color: var(--green); font-style: normal; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 0.06em; color: var(--bg);
+      background: var(--green);
+      padding: 18px 44px; border-radius: 100px;
+      text-decoration: none; transition: all 0.25s;
+      box-shadow: 0 0 40px rgba(190,255,1,0.25);
+    }
+    .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 60px rgba(190,255,1,0.4); }
+    .cta-btn::after { content: '→'; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border); padding: 40px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer .f-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px; font-weight: 700;
+      color: var(--green); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    footer .f-info { font-size: 12px; color: var(--text-muted); text-align: center; }
+    footer .f-conf {
+      font-size: 11px; color: var(--text-muted);
+      background: var(--bg-card); border: 1px solid var(--border);
+      padding: 6px 14px; border-radius: 100px;
+    }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.4s; }
+
+    /* ICON SVGs */
+    .custo-card-icon svg { width: 20px; height: 20px; stroke: var(--red); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .mudanca-icon svg { width: 30px; height: 30px; stroke: var(--green); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .resultado-card-icon svg { width: 22px; height: 22px; stroke: var(--green); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .fluxo-warning-icon svg { width: 20px; height: 20px; stroke: #ff6060; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 20px; }
+      .nav-tag { display: none; }
+      .container { padding: 0 20px; }
+      .diagnostico-grid, .investimento-grid, .resultado-grid,
+      .before-after { grid-template-columns: 1fr; }
+      .fluxo-grid, .fluxo-grid-bottom { grid-template-columns: 1fr 1fr; }
+      .custo-cards { grid-template-columns: 1fr; }
+      .custo-card-wide { grid-column: span 1; }
+      .mudancas-grid { grid-template-columns: 1fr; }
+      .mudanca-item:first-child { border-radius: 16px 16px 0 0; }
+      .mudanca-item:last-child { border-radius: 0 0 16px 16px; }
+      .modulos-content { grid-template-columns: 1fr; }
+      .projecao-cards { grid-template-columns: 1fr; }
+      .proj-total-grid { grid-template-columns: 1fr; gap: 16px; }
+      .bar-chart { height: 180px; gap: 16px; }
+      .timeline-phases { grid-template-columns: 1fr 1fr; }
+      .timeline-phase:nth-child(2) { border-radius: 0; }
+      .timeline-phase:last-child { border-radius: 0 0 16px 16px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">NeuralOps</div>
+  <div class="nav-tag">Proposta Confidencial · Certificação e Credenciamento</div>
+  <a href="#proximos-passos" class="nav-cta">Próximos Passos</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">Proposta Estratégica · Infraestrutura Operacional</div>
+  <p class="hero-eyebrow">NeuralOps × Certificação e Credenciamento · Março 2026</p>
+  <h1 class="hero-h1">Infraestrutura para<br><span class="accent">Escala Operacional™</span></h1>
+  <p class="hero-sub">Isso não é uma proposta de serviço.<br>É a instalação do sistema que vai operar enquanto vocês fecham.</p>
+  <div class="hero-meta">
+    <span>Preparado por <strong>Douglas França</strong></span>
+    <span>·</span>
+    <span>Março de 2026</span>
+    <span>·</span>
+    <span><strong>Serviços Educacionais · Pós-graduação</strong></span>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">Agente IA 24/7</span>
+    <span class="ticker-item">300 Clientes Migrados para CRM</span>
+    <span class="ticker-item">Contratos Automatizados</span>
+    <span class="ticker-item">Follow-up Inteligente</span>
+    <span class="ticker-item">60–70% de Conversão nas Calls</span>
+    <span class="ticker-item">45 Dias Úteis · Go-live</span>
+    <span class="ticker-item">R$ 117k–136k/mês · Piso Conservador</span>
+    <span class="ticker-item">Diagnóstico Neural™</span>
+    <span class="ticker-item">Agente IA 24/7</span>
+    <span class="ticker-item">300 Clientes Migrados para CRM</span>
+    <span class="ticker-item">Contratos Automatizados</span>
+    <span class="ticker-item">Follow-up Inteligente</span>
+    <span class="ticker-item">60–70% de Conversão nas Calls</span>
+    <span class="ticker-item">45 Dias Úteis · Go-live</span>
+    <span class="ticker-item">R$ 117k–136k/mês · Piso Conservador</span>
+    <span class="ticker-item">Diagnóstico Neural™</span>
+  </div>
+</div>
+
+<!-- DIAGNÓSTICO -->
+<section id="diagnostico">
+  <div class="container">
+    <div class="diagnostico-grid">
+      <div class="fade-up">
+        <div class="section-label">Diagnóstico da Operação</div>
+        <div class="diagnostico-text">
+          <p>Poucas operações combinam tanto <strong>potencial de crescimento</strong> com tanto <strong>risco de colapso</strong> quanto a de vocês.</p>
+          <p>Uma equipe de <em>2 pessoas</em> sustentando <strong>R$80–90k de faturamento mensal</strong>, 300 clientes ativos e uma taxa de conversão de <em>60–70% nas calls</em>. Esses números são excepcionais.</p>
+          <blockquote>Vocês não conseguem atender mais leads porque não têm braço — e não têm braço porque toda a operação depende de pessoas.</blockquote>
+          <p>O gargalo não é a demanda. Não é o produto. Não é a capacidade de fechar.</p>
+          <p><strong>O gargalo é a infraestrutura. Ou melhor: a ausência dela.</strong></p>
+        </div>
+      </div>
+      <div class="stats-grid fade-up">
+        <div class="stat-card">
+          <div class="stat-num">R$90k</div>
+          <div class="stat-label">Faturamento mensal</div>
+          <div class="stat-sub">2 pessoas no limite da capacidade</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">300</div>
+          <div class="stat-label">Clientes ativos</div>
+          <div class="stat-sub">Gerenciados por planilha e memória</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">60–70%</div>
+          <div class="stat-label">Conversão nas calls</div>
+          <div class="stat-sub">Taxa excepcional de fechamento</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10</div>
+          <div class="stat-label">Etapas manuais</div>
+          <div class="stat-sub">Do lead ao certificado emitido</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLUXO ATUAL -->
+<section id="fluxo">
+  <div class="container">
+    <div class="fluxo-header fade-up">
+      <div class="section-label" style="justify-content:center">Como a Operação Funciona Hoje</div>
+      <h2 class="section-h2" style="text-align:center">Todo o fluxo passa pelo<br><span class="accent">WhatsApp e pela cabeça de duas pessoas.</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Do primeiro contato até a emissão do certificado — 10 etapas, todas manuais, todas dependentes de atenção humana.</p>
+    </div>
+
+    <div class="fluxo-grid fade-up">
+      <div class="fluxo-item">
+        <div class="fluxo-tag">manual</div>
+        <div class="fluxo-num">0<span>1</span></div>
+        <div class="fluxo-name">Lead chega</div>
+        <div class="fluxo-desc">Anúncio no Instagram direciona para o WhatsApp. A equipe recebe manualmente.</div>
+      </div>
+      <div class="fluxo-item">
+        <div class="fluxo-tag">manual</div>
+        <div class="fluxo-num">0<span>2</span></div>
+        <div class="fluxo-name">Qualificação</div>
+        <div class="fluxo-desc">A equipe faz perguntas básicas no WhatsApp para entender o perfil do lead.</div>
+      </div>
+      <div class="fluxo-item">
+        <div class="fluxo-tag">manual</div>
+        <div class="fluxo-num">0<span>3</span></div>
+        <div class="fluxo-name">Proposta enviada</div>
+        <div class="fluxo-desc">Apresentação do serviço e condições de forma manual para cada lead.</div>
+      </div>
+      <div class="fluxo-item">
+        <div class="fluxo-tag">manual</div>
+        <div class="fluxo-num">0<span>4</span></div>
+        <div class="fluxo-name">Call agendada</div>
+        <div class="fluxo-desc">Leads qualificados são chamados para reunião. Conversão de 60–70%.</div>
+      </div>
+      <div class="fluxo-item">
+        <div class="fluxo-tag">manual</div>
+        <div class="fluxo-num">0<span>5</span></div>
+        <div class="fluxo-name">Contrato gerado</div>
+        <div class="fluxo-desc">Minuta personalizada com CNPJ e dados do cliente — feita manualmente.</div>
+      </div>
+    </div>
+
+    <div class="fluxo-grid-bottom fade-up" style="margin-top:4px">
+      <div class="fluxo-item">
+        <div class="fluxo-tag">manual</div>
+        <div class="fluxo-num">0<span>6</span></div>
+        <div class="fluxo-name">Assinatura Gov.br</div>
+        <div class="fluxo-desc">Contrato enviado para assinatura digital. Acompanhamento manual do status.</div>
+      </div>
+      <div class="fluxo-item">
+        <div class="fluxo-tag">manual</div>
+        <div class="fluxo-num">0<span>7</span></div>
+        <div class="fluxo-name">Link de pagamento</div>
+        <div class="fluxo-desc">Enviado manualmente após assinatura. Controle em planilha.</div>
+      </div>
+      <div class="fluxo-item">
+        <div class="fluxo-tag">manual</div>
+        <div class="fluxo-num">0<span>8</span></div>
+        <div class="fluxo-name">Pasta no Drive</div>
+        <div class="fluxo-desc">Criação manual de pasta com dados do cliente e documentos.</div>
+      </div>
+      <div class="fluxo-item">
+        <div class="fluxo-tag">manual</div>
+        <div class="fluxo-num">0<span>9</span></div>
+        <div class="fluxo-name">Credenciamento</div>
+        <div class="fluxo-desc">Encaminhamento para a faculdade parceira. Processo por e-mail ou WhatsApp.</div>
+      </div>
+      <div class="fluxo-item">
+        <div class="fluxo-tag">manual</div>
+        <div class="fluxo-num"><span>10</span></div>
+        <div class="fluxo-name">Certificados</div>
+        <div class="fluxo-desc">Controle manual de quem pediu, quem não pediu, volumes e pendências.</div>
+      </div>
+    </div>
+
+    <div class="fluxo-warning fade-up">
+      <div class="fluxo-warning-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <div>Cada uma dessas <strong>10 etapas depende de atenção humana</strong>. Quando o volume aumenta, a equipe para de conseguir dar atenção a cada uma — e a operação trava. Não é falta de talento. É falta de sistema.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTO REAL -->
+<section id="custo-real">
+  <div class="container">
+    <div class="custo-header fade-up">
+      <div class="section-label">O Custo Real do Modelo Atual</div>
+      <h2 class="section-h2">Operar assim tem um custo que<br>não aparece na <span class="accent">planilha financeira</span>.</h2>
+      <p class="section-lead">Mas aparece no limite da operação. Cinco formas em que vocês perdem dinheiro de forma invisível todo mês.</p>
+    </div>
+
+    <div class="custo-cards">
+      <div class="custo-card fade-up">
+        <div class="custo-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>Leads que chegam fora do horário somem</h3>
+        <p>Sem resposta imediata, o lead perde o interesse ou encontra outra solução. Com 60–70% de conversão nas calls, cada lead perdido antes da call representa receita direta desperdiçada.</p>
+      </div>
+      <div class="custo-card fade-up">
+        <div class="custo-card-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+        <h3>Follow-up que não acontece</h3>
+        <p>Leads que conversaram, demonstraram interesse e pararam de responder nunca mais são acionados. Vocês já provaram isso: um follow-up em leads de janeiro fechou <strong style="color:var(--green)">3–4 contratos em março</strong>.</p>
+      </div>
+      <div class="custo-card fade-up">
+        <div class="custo-card-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <h3>Tráfego limitado pelo atendimento</h3>
+        <p>Vocês gastam R$5k/mês em tráfego mas não escalam porque não há braço para atender mais. Dobrar o tráfego sem infraestrutura só vai dobrar o caos.</p>
+      </div>
+      <div class="custo-card custo-card-wide fade-up">
+        <div class="custo-card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <h3>Contratos consumindo tempo estratégico</h3>
+        <p>Gerar minuta, personalizar com CNPJ, acompanhar assinatura, enviar link, criar pasta — tudo isso é trabalho repetitivo que toma tempo de quem deveria estar <strong style="color:var(--green)">fechando novos clientes</strong>.</p>
+      </div>
+      <div class="custo-card fade-up">
+        <div class="custo-card-icon"><svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
+        <h3>Zero visibilidade sobre 300 clientes</h3>
+        <p>Sem CRM, não há como saber quais dos 300 clientes não credenciaram, quais têm certificados pendentes, quais têm maior volume ou quais podem comprar mais. Dado que não existe, oportunidade que não se captura.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULOS -->
+<section id="modulos">
+  <div class="container">
+    <div class="modulos-header fade-up">
+      <div class="section-label" style="justify-content:center">A Infraestrutura por Dentro</div>
+      <h2 class="section-h2" style="text-align:center">Os 4 Módulos do<br><span class="accent">Diagnóstico Neural™</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">A proposta não é substituir a equipe. É liberá-la para fazer o que gera mais resultado: reuniões de fechamento e decisão estratégica.</p>
+    </div>
+
+    <div class="modulos-tabs">
+      <button class="modulo-tab active" onclick="showModulo(1)">01 · Agente IA</button>
+      <button class="modulo-tab" onclick="showModulo(2)">02 · CRM</button>
+      <button class="modulo-tab" onclick="showModulo(3)">03 · Contratos</button>
+      <button class="modulo-tab" onclick="showModulo(4)">04 · Follow-up</button>
+    </div>
+
+    <!-- Módulo 1 -->
+    <div class="modulos-content active" id="modulo-1">
+      <div>
+        <div class="modulo-num">0<span>1</span></div>
+        <h3 class="modulo-title">Agente Inteligente de Atendimento</h3>
+        <p class="modulo-desc">Sistema automatizado via WhatsApp que recebe, qualifica e encaminha leads 24 horas por dia. Cada lead que chega recebe resposta em segundos — independente de horário, dia ou disponibilidade da equipe.</p>
+        <div class="modulo-tag">Atendimento 24/7 · fins de semana · feriados</div>
+      </div>
+      <div class="modulo-visual">
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Lead chega pelo Instagram às 23h do domingo</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Agente responde em segundos e qualifica</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Apresenta o serviço e condições automaticamente</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Agenda call com o time comercial</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Equipe chega na segunda com agenda cheia</span></div>
+      </div>
+    </div>
+
+    <!-- Módulo 2 -->
+    <div class="modulos-content" id="modulo-2">
+      <div>
+        <div class="modulo-num">0<span>2</span></div>
+        <h3 class="modulo-title">CRM e Gestão de Clientes</h3>
+        <p class="modulo-desc">Organização completa da base atual e estrutura para novos clientes. Os 300 clientes deixam de existir só na cabeça da equipe e passam a existir num sistema com histórico, alertas e oportunidades mapeadas.</p>
+        <div class="modulo-tag">300 clientes migrados · pipeline · dashboard</div>
+      </div>
+      <div class="modulo-visual">
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Migração e organização dos 300 clientes ativos</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Classificação por volume, status e oportunidade</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Histórico completo de interações e documentos</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Alertas para clientes com certificados pendentes</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Dashboard com visão real da operação</span></div>
+      </div>
+    </div>
+
+    <!-- Módulo 3 -->
+    <div class="modulos-content" id="modulo-3">
+      <div>
+        <div class="modulo-num">0<span>3</span></div>
+        <h3 class="modulo-title">Automação do Fluxo de Contratos</h3>
+        <p class="modulo-desc">Eliminação das etapas manuais entre a call fechada e o cliente ativo. Do contrato até a notificação da faculdade parceira — tudo roda automaticamente, sem depender de ninguém lembrar de fazer algo.</p>
+        <div class="modulo-tag">Geração · assinatura · pagamento · documentos</div>
+      </div>
+      <div class="modulo-visual">
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Call fecha → contrato gerado automaticamente</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Enviado para assinatura Gov.br com acompanhamento</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Assinatura confirmada → link de pagamento disparado</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Pasta no Drive criada automaticamente com dados do CRM</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Faculdade parceira notificada para credenciamento</span></div>
+      </div>
+    </div>
+
+    <!-- Módulo 4 -->
+    <div class="modulos-content" id="modulo-4">
+      <div>
+        <div class="modulo-num">0<span>4</span></div>
+        <h3 class="modulo-title">Automações de Follow-up e Reativação</h3>
+        <p class="modulo-desc">Nenhum lead sai do radar sem ser acionado. Nenhum cliente fica com certificado pendente sem ser lembrado. O sistema age no momento certo — sem depender de memória ou disponibilidade da equipe.</p>
+        <div class="modulo-tag">Reativação automática · alertas · sem esforço</div>
+      </div>
+      <div class="modulo-visual">
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Lead parou de responder → sequência automática iniciada</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Leads frios de meses anteriores reativados com contexto</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Clientes sem certificado recebem lembrete automático</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Equipe recebe alertas de oportunidades de expansão</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Receita que hoje some, volta para o funil</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MUDANÇAS / BEFORE-AFTER -->
+<section id="mudancas">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;margin-bottom:72px">
+      <div class="section-label" style="justify-content:center">O Que Muda na Prática</div>
+      <h2 class="section-h2" style="text-align:center">De operação dependente<br><span class="accent">para infraestrutura que escala</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Sem contratar mais gente. Sem aumentar a carga da equipe. Sem depender de quem está disponível no momento.</p>
+    </div>
+
+    <div class="mudancas-grid fade-up">
+      <div class="mudanca-item">
+        <div class="mudanca-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+        <h3>A IA faz o que é repetitivo</h3>
+        <p>Qualificação, contratos, follow-up, lembretes — tudo que é sequencial e previsível roda automaticamente, 24 horas por dia.</p>
+      </div>
+      <div class="mudanca-item">
+        <div class="mudanca-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <h3>A equipe faz o que fecha</h3>
+        <p>Sem tarefas operacionais, as 2 pessoas focam inteiramente em calls de fechamento — chegam a leads já aquecidos e qualificados.</p>
+      </div>
+      <div class="mudanca-item">
+        <div class="mudanca-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <h3>A gestão enxerga tudo</h3>
+        <p>Dashboard em tempo real com status de todos os clientes, leads em andamento e oportunidades de expansão na base de 300.</p>
+      </div>
+    </div>
+
+    <div class="before-after fade-up">
+      <div class="ba-col">
+        <div class="ba-title red">✕ Hoje</div>
+        <div class="ba-item"><span class="dot">✕</span>Lead chega às 22h e some sem resposta</div>
+        <div class="ba-item"><span class="dot">✕</span>Follow-up depende de a equipe lembrar</div>
+        <div class="ba-item"><span class="dot">✕</span>Contrato feito manualmente para cada cliente</div>
+        <div class="ba-item"><span class="dot">✕</span>300 clientes existem só na cabeça da equipe</div>
+        <div class="ba-item"><span class="dot">✕</span>Certificados pendentes não são rastreados</div>
+        <div class="ba-item"><span class="dot">✕</span>Tráfego não escala porque atendimento trava</div>
+      </div>
+      <div class="ba-col after">
+        <div class="ba-title green">✓ Com NeuralOps</div>
+        <div class="ba-item"><span class="dot">✓</span>Agente responde e qualifica em segundos, qualquer horário</div>
+        <div class="ba-item"><span class="dot">✓</span>Sequências automáticas acionam leads no momento certo</div>
+        <div class="ba-item"><span class="dot">✓</span>Contrato gerado automaticamente com dados do CRM</div>
+        <div class="ba-item"><span class="dot">✓</span>CRM completo com histórico, tags e alertas automáticos</div>
+        <div class="ba-item"><span class="dot">✓</span>Dashboard mostra certificados pendentes em tempo real</div>
+        <div class="ba-item"><span class="dot">✓</span>Dobrar o tráfego não gera o dobro de trabalho</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section id="quote">
+  <div class="container">
+    <div class="quote-block fade-up">
+      <span class="quote-mark">"</span>
+      <blockquote>Vocês perdem todo lead que chega fora do horário, todo cliente que parou de responder e toda oportunidade nos 300 que vocês já têm. A infraestrutura NeuralOps captura cada uma dessas oportunidades — e <em>entrega para a equipe só o que precisa de um humano para fechar.</em></blockquote>
+      <div class="quote-source">NeuralOps · Proposta Certificação e Credenciamento · Março 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJEÇÃO -->
+<section id="projecao">
+  <div class="container">
+    <div class="projecao-header fade-up">
+      <div class="section-label" style="justify-content:center">O Caminho para R$ 200k/mês</div>
+      <h2 class="section-h2" style="text-align:center">Baseada nos dados<br><span class="accent">que vocês já têm</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">A meta não exige dobrar a equipe. Com 60–70% de conversão nas calls, o negócio não tem problema de produto. Tem problema de volume de leads que chegam à call.</p>
+    </div>
+
+    <div class="projecao-disclaimer fade-up">
+      Estimativas calculadas com base nos dados reais de operação fornecidos. Cenários conservador e otimista usam apenas +30% de leads chegando à call — sem considerar reativação de leads dormentes, expansão da base de 300 clientes ou escala adicional de tráfego. R$117k–136k é o piso, não o teto.
+    </div>
+
+    <!-- Bar chart CSS -->
+    <div class="bar-chart fade-up">
+      <div class="bar-col">
+        <div class="bar-wrap" style="height:260px;justify-content:flex-end">
+          <div class="bar bar-now">
+            <span class="bar-value">R$90k</span>
+          </div>
+        </div>
+        <div class="bar-label">Hoje<br><span style="color:rgba(255,255,255,0.3);font-size:11px">Teto atual</span></div>
+      </div>
+      <div class="bar-col">
+        <div class="bar-wrap" style="height:260px;justify-content:flex-end">
+          <div class="bar bar-cons">
+            <span class="bar-value">R$117k</span>
+          </div>
+        </div>
+        <div class="bar-label">Conservador<br><span style="color:rgba(190,255,1,0.6);font-size:11px">60% conv · +30% leads</span></div>
+      </div>
+      <div class="bar-col">
+        <div class="bar-wrap" style="height:260px;justify-content:flex-end">
+          <div class="bar bar-opt">
+            <span class="bar-value">R$136k</span>
+          </div>
+        </div>
+        <div class="bar-label">Otimista<br><span style="color:rgba(190,255,1,0.6);font-size:11px">70% conv · +30% leads</span></div>
+      </div>
+    </div>
+
+    <div class="projecao-cards fade-up">
+      <div class="proj-card">
+        <span class="proj-badge muted">Ponto de partida</span>
+        <div class="proj-title">Faturamento atual</div>
+        <div class="proj-period">Equipe no limite da capacidade · R$5k/mês em tráfego</div>
+        <div class="proj-amount gray">R$90k</div>
+        <div class="proj-sub">teto atual com 2 pessoas</div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-badge">Conservador</span>
+        <div class="proj-title">60% conversão · +30% leads</div>
+        <div class="proj-period">100 leads → 130 com IA · 60% conv → 78 fecham</div>
+        <div class="proj-amount">R$117k</div>
+        <div class="proj-sub">+R$27k/mês sem contratar ninguém</div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-badge">Otimista</span>
+        <div class="proj-title">70% conversão · +30% leads</div>
+        <div class="proj-period">Equipe focada só em fechar · leads aquecidos pelo agente</div>
+        <div class="proj-amount">R$136k</div>
+        <div class="proj-sub">+R$46k/mês · equipe no modo estratégico</div>
+      </div>
+    </div>
+
+    <div class="projecao-consolidado fade-up">
+      <h3>O que esses cenários não incluem</h3>
+      <div class="proj-total-grid">
+        <div>
+          <div class="proj-stat-num">3–4</div>
+          <div class="proj-stat-label">Contratos extras por follow-up de leads dormentes (já comprovado: jan→mar)</div>
+        </div>
+        <div>
+          <div class="proj-stat-num">300</div>
+          <div class="proj-stat-label">Clientes ativos como fonte de receita adicional com novos credenciamentos</div>
+        </div>
+        <div>
+          <div class="proj-stat-num">∞</div>
+          <div class="proj-stat-label">Capacidade de escalar tráfego além dos 30% quando a infraestrutura estiver rodando</div>
+        </div>
+      </div>
+      <div class="proj-logic">
+        R$117k–136k é o <strong>piso conservador</strong> considerando apenas +30% mais leads chegando à call.<br>
+        <strong>O teto depende de quanto vocês decidem escalar.</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIMENTO -->
+<section id="investimento">
+  <div class="container">
+    <div class="investimento-header fade-up">
+      <div class="section-label" style="justify-content:center">Transparência Total</div>
+      <h2 class="section-h2" style="text-align:center">O que está sendo<br><span class="accent">entregue e o que custa</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Infraestrutura completa de automação em 45 dias úteis. Sem surpresas, sem custos ocultos.</p>
+    </div>
+
+    <div class="investimento-grid fade-up">
+      <div>
+        <p style="font-size:13px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px">Incluso na implementação</p>
+        <div class="inv-items">
+          <div class="inv-item">
+            <div class="inv-check">✓</div>
+            <div class="inv-item-name">Agente inteligente de atendimento (configuração, treinamento, fluxos)</div>
+          </div>
+          <div class="inv-item">
+            <div class="inv-check">✓</div>
+            <div class="inv-item-name">CRM e gestão de clientes — migração completa dos 300 clientes ativos</div>
+          </div>
+          <div class="inv-item">
+            <div class="inv-check">✓</div>
+            <div class="inv-item-name">Automação do fluxo de contratos e documentos</div>
+          </div>
+          <div class="inv-item">
+            <div class="inv-check">✓</div>
+            <div class="inv-item-name">Automações de follow-up e reativação de leads</div>
+          </div>
+          <div class="inv-item">
+            <div class="inv-check">✓</div>
+            <div class="inv-item-name">Treinamento da equipe e documentação do sistema</div>
+          </div>
+        </div>
+
+        <p style="font-size:13px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin:32px 0 20px">Manutenção mensal inclui</p>
+        <div class="inv-items">
+          <div class="inv-item">
+            <div class="inv-check">✓</div>
+            <div class="inv-item-name">Manutenção técnica e monitoramento do sistema</div>
+          </div>
+          <div class="inv-item">
+            <div class="inv-check">✓</div>
+            <div class="inv-item-name">Ajustes nos fluxos de atendimento e automações</div>
+          </div>
+          <div class="inv-item">
+            <div class="inv-check">✓</div>
+            <div class="inv-item-name">Suporte técnico prioritário</div>
+          </div>
+          <div class="inv-item">
+            <div class="inv-check">✓</div>
+            <div class="inv-item-name">Relatório mensal de performance com insights</div>
+          </div>
+          <div class="inv-item">
+            <div class="inv-check">✓</div>
+            <div class="inv-item-name">Melhorias e evoluções contínuas da infraestrutura</div>
+          </div>
+        </div>
+
+        <p style="font-size:13px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin:32px 0 16px">Não incluídos no escopo</p>
+        <div style="padding:20px 24px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;font-size:13px;color:var(--text-muted);line-height:1.7">
+          Gestão de tráfego pago · Plataforma educacional da faculdade parceira · Produção de conteúdo e scripts de vendas · Custos de API do WhatsApp Business e tokens de IA (pagos diretamente pelo cliente)
+        </div>
+      </div>
+
+      <div class="inv-total-card">
+        <h3>Investimento</h3>
+
+        <div class="inv-price-row">
+          <span class="label">Implementação completa</span>
+          <span class="price">R$ 15.700</span>
+        </div>
+        <div class="inv-price-row">
+          <span class="label">Manutenção mensal</span>
+          <span class="price">R$ 3.100/mês</span>
+        </div>
+        <div class="inv-price-row">
+          <span class="label">Prazo de entrega</span>
+          <span class="price">45 dias úteis</span>
+        </div>
+        <div class="inv-price-row">
+          <span class="label">1ª cobrança mensal</span>
+          <span class="price">Após 60 dias</span>
+        </div>
+
+        <div class="inv-principal">
+          <div class="p-label">Implementação</div>
+          <div class="p-num">R$ 15.700</div>
+          <div class="p-sub">Infraestrutura completa · 4 módulos · Go-live em 45 dias</div>
+        </div>
+
+        <div class="inv-monthly">
+          <div class="m-label">Manutenção mensal a partir do dia 60</div>
+          <div class="m-num">R$ 3.100/mês</div>
+          <div class="m-sub">Sistema ativo antes da primeira cobrança</div>
+        </div>
+
+        <p style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin:24px 0 12px">Opções de pagamento</p>
+        <div class="inv-pagamento-opts">
+          <div class="inv-opt">
+            <span class="opt-name">PIX (50% + 50%)</span>
+            <span class="opt-val">50% assinatura + 50% em 30 dias</span>
+          </div>
+          <div class="inv-opt">
+            <span class="opt-name">Cartão à vista</span>
+            <span class="opt-val">Pagamento único</span>
+          </div>
+          <div class="inv-opt">
+            <span class="opt-name">Parcelado</span>
+            <span class="opt-val">Até 10x · 2 cartões</span>
+          </div>
+        </div>
+
+        <div class="inv-note">
+          Os custos de API do WhatsApp Business e tokens de IA são contratados e pagos diretamente pelo cliente, sem intermediação da NeuralOps.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <div class="timeline-header fade-up">
+      <div class="section-label" style="justify-content:center">Cronograma de Implementação</div>
+      <h2 class="section-h2" style="text-align:center">Operação completa em<br><span class="accent">45 dias úteis</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">5 fases sequenciais. Cada fase entrega um módulo funcional antes de avançar para o próximo.</p>
+    </div>
+
+    <div class="timeline-phases fade-up">
+      <div class="timeline-phase">
+        <div class="phase-period">Dias 1–10</div>
+        <div class="phase-num">01</div>
+        <div class="phase-name">CRM e migração da base</div>
+        <div class="phase-entregavel">Configuração do CRM, migração e organização dos 300 clientes ativos, definição de tags e pipeline.</div>
+        <div class="phase-result">Base de 300 clientes organizada e visível</div>
+      </div>
+      <div class="timeline-phase">
+        <div class="phase-period">Dias 11–20</div>
+        <div class="phase-num">02</div>
+        <div class="phase-name">Agente de atendimento</div>
+        <div class="phase-entregavel">Treinamento do agente de IA com o fluxo comercial, qualificação de leads e agendamento automático de calls.</div>
+        <div class="phase-result">Atendimento 24/7 no ar</div>
+      </div>
+      <div class="timeline-phase">
+        <div class="phase-period">Dias 21–30</div>
+        <div class="phase-num">03</div>
+        <div class="phase-name">Automação de contratos</div>
+        <div class="phase-entregavel">Geração automática de minutas, assinatura digital, disparo de links de pagamento e organização de documentos.</div>
+        <div class="phase-result">Fluxo pós-call 100% automático</div>
+      </div>
+      <div class="timeline-phase">
+        <div class="phase-period">Dias 31–40</div>
+        <div class="phase-num">04</div>
+        <div class="phase-name">Follow-up e homologação</div>
+        <div class="phase-entregavel">Sequências de reativação, alertas de certificados pendentes, testes com a equipe e refinamentos de fluxo.</div>
+        <div class="phase-result">Nenhum lead sai do radar</div>
+      </div>
+      <div class="timeline-phase">
+        <div class="phase-period">Dias 41–45</div>
+        <div class="phase-num">05</div>
+        <div class="phase-name">Go-live e estabilização</div>
+        <div class="phase-entregavel">Entrada em produção com monitoramento intensivo. Entrega oficial do sistema operando em plena capacidade.</div>
+        <div class="phase-result">Sistema entregue e operando</div>
+      </div>
+    </div>
+
+    <p class="timeline-note fade-up">
+      Implementação em <strong>45 dias úteis</strong> · Manutenção mensal inicia <strong>60 dias</strong> após a assinatura
+    </p>
+  </div>
+</section>
+
+<!-- RESULTADO -->
+<section id="resultado">
+  <div class="container">
+    <div class="resultado-header fade-up">
+      <div class="section-label" style="justify-content:center">Resultado Esperado</div>
+      <h2 class="section-h2" style="text-align:center">Após a implementação, a operação<br><span class="accent">funciona com uma lógica diferente.</span></h2>
+    </div>
+
+    <div class="resultado-grid fade-up">
+      <div class="resultado-card">
+        <div class="resultado-card-icon"><svg viewBox="0 0 24 24"><line x1="9" y1="21" x2="15" y2="21"/><line x1="12" y1="17" x2="12" y2="17"/><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/></svg></div>
+        <div>
+          <h3>A equipe para de operar e começa a estrategizar</h3>
+          <p>Sem tarefas operacionais repetitivas, as 2 pessoas focam em calls de fechamento, relacionamento com clientes estratégicos e decisões de crescimento.</p>
+        </div>
+      </div>
+      <div class="resultado-card">
+        <div class="resultado-card-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <div>
+          <h3>O tráfego pode ser escalado sem travar o atendimento</h3>
+          <p>Com atendimento automático 24/7, dobrar o investimento em anúncios gera o dobro de leads — sem gerar o dobro de trabalho.</p>
+        </div>
+      </div>
+      <div class="resultado-card">
+        <div class="resultado-card-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div>
+          <h3>Os 300 clientes viram base ativa de expansão</h3>
+          <p>Com visibilidade e automações, a base existente se torna uma fonte contínua de receita adicional por novos credenciamentos, volumes maiores e serviços complementares.</p>
+        </div>
+      </div>
+      <div class="resultado-card">
+        <div class="resultado-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div>
+          <h3>Nenhum lead sai do radar</h3>
+          <p>Follow-up automático garante que todo contato seja acionado no momento certo — sem depender de memória ou disponibilidade da equipe.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROXIMOS PASSOS -->
+<section id="proximos-passos">
+  <div class="container">
+    <div class="passos-header fade-up">
+      <div class="section-label" style="justify-content:center">Para Começar</div>
+      <h2 class="section-h2" style="text-align:center">O próximo passo<br><span class="accent">não é contratar.</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">É alinhar as informações técnicas para fechar o escopo com precisão. Com esses dados, finalizamos o escopo detalhado em até 48 horas.</p>
+    </div>
+
+    <div class="passos-list">
+      <div class="passo-item fade-up">
+        <div class="passo-num">1</div>
+        <div class="passo-content">
+          <h3>Exportação da base atual de 300 clientes</h3>
+          <p>Qualquer formato — planilha, PDF ou lista no WhatsApp. Precisamos entender o volume, estrutura e dados disponíveis para planejar a migração.</p>
+        </div>
+      </div>
+      <div class="passo-item fade-up">
+        <div class="passo-num">2</div>
+        <div class="passo-content">
+          <h3>Fluxo atual de contratos</h3>
+          <p>Modelo de minuta em uso, etapas de assinatura e como vocês acompanham o status hoje. Isso define a automação do Módulo 3.</p>
+        </div>
+      </div>
+      <div class="passo-item fade-up">
+        <div class="passo-num">3</div>
+        <div class="passo-content">
+          <h3>Principais dores operacionais do dia a dia</h3>
+          <p>Onde a equipe gasta mais tempo, o que mais trava, o que mais irrita. Essas respostas moldam as prioridades de automação.</p>
+        </div>
+      </div>
+      <div class="passo-item fade-up">
+        <div class="passo-num">4</div>
+        <div class="passo-content">
+          <h3>Integração atual com a faculdade parceira</h3>
+          <p>Como funciona o credenciamento hoje, qual o contato e o canal. Define o Módulo 3 para notificação automática.</p>
+        </div>
+      </div>
+      <div class="passo-item fade-up">
+        <div class="passo-num">5</div>
+        <div class="passo-content">
+          <h3>Alinhamento final e assinatura</h3>
+          <p>Com as informações em mãos, entregamos o escopo técnico detalhado em até 48h. Aprovação → assinatura → início da implementação.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="container">
+    <div class="cta-divider fade-up">
+      <p class="either">Ou vocês continuam operando as 10 etapas manualmente — dependendo de tempo, memória e disponibilidade de 2 pessoas.</p>
+      <div class="or-line">ou</div>
+    </div>
+    <div class="cta-big fade-up">
+      Ou instalam a infraestrutura que opera<br>enquanto vocês fecham — <em>inclusive quando<br>ninguém está olhando.</em>
+    </div>
+    <a href="mailto:contato@neuralops.com.br" class="cta-btn fade-up">Quero avançar com a proposta</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">NeuralOps</div>
+  <div class="f-info">
+    Infraestrutura de IA para empresas que querem crescer com autonomia<br>
+    Douglas França · contato@neuralops.com.br · Março de 2026
+  </div>
+  <div class="f-conf">Documento confidencial</div>
+</footer>
+
+<script>
+  // PROGRESS BAR
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('progress').style.width = progress + '%';
+  });
+
+  // FADE UP
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // MÓDULOS TABS
+  function showModulo(n) {
+    document.querySelectorAll('.modulos-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.modulo-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('modulo-' + n).classList.add('active');
+    document.querySelectorAll('.modulo-tab')[n - 1].classList.add('active');
+    document.querySelectorAll('#modulo-' + n + ' .flow-step').forEach(step => {
+      step.style.animation = 'none';
+      step.offsetHeight;
+      step.style.animation = '';
+    });
+  }
+
+  // NAV SCROLL
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.padding = window.scrollY > 80 ? '12px 40px' : '18px 40px';
+  });
+
+  // COUNTER ANIMATION (stats)
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = '1';
+        animateCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1800;
+    const start = performance.now();
+    const step = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(eased * target);
+      el.textContent = 'R$ ' + current.toLocaleString('pt-BR');
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+</script>
+
+</body>
+</html>
