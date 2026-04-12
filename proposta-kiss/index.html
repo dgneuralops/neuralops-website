@@ -7,6 +7,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
     :root {
       --green: #beff01;
@@ -23,7 +24,6 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -34,7 +34,6 @@
       overflow-x: hidden;
     }
 
-    /* ── NOISE OVERLAY ── */
     body::before {
       content: '';
       position: fixed;
@@ -45,7 +44,6 @@
       opacity: 0.4;
     }
 
-    /* ── PROGRESS BAR ── */
     #progress {
       position: fixed;
       top: 0; left: 0;
@@ -68,52 +66,15 @@
       background: rgba(5,5,5,0.85);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      transition: all 0.3s;
     }
-
-    .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--green);
-    }
-
-    .nav-tag {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      background: var(--green-dim);
-      border: 1px solid var(--border-green);
-      padding: 5px 14px;
-      border-radius: 100px;
-    }
-
-    .nav-cta {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--bg);
-      background: var(--green);
-      padding: 9px 22px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
+    .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); }
+    .nav-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); background: var(--green-dim); border: 1px solid var(--border-green); padding: 5px 14px; border-radius: 100px; }
+    .nav-cta { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bg); background: var(--green); padding: 9px 22px; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
     .nav-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-    /* ── SECTIONS ── */
+    /* ── LAYOUT ── */
     section { width: 100%; }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 
     /* ── HERO ── */
     #hero {
@@ -127,1357 +88,388 @@
       position: relative;
       overflow: hidden;
     }
-
     #hero::before {
       content: '';
       position: absolute;
       top: -200px; left: 50%;
       transform: translateX(-50%);
-      width: 700px;
-      height: 700px;
+      width: 700px; height: 700px;
       background: radial-gradient(circle, rgba(190,255,1,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green);
-      background: var(--green-dim);
-      border: 1px solid var(--border-green);
-      padding: 7px 18px;
-      border-radius: 100px;
-      margin-bottom: 40px;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--green); background: var(--green-dim); border: 1px solid var(--border-green);
+      padding: 7px 18px; border-radius: 100px; margin-bottom: 40px;
     }
-    .hero-badge::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
-    }
-
-    .hero-eyebrow {
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    .hero-h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(44px, 7vw, 88px);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 28px;
-    }
-
+    .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+    .hero-eyebrow { font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+    .hero-h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(40px, 6.5vw, 80px); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 28px; }
     .hero-h1 .accent { color: var(--green); }
-
-    .hero-sub {
-      font-size: clamp(16px, 2vw, 20px);
-      color: var(--text-sub);
-      max-width: 600px;
-      margin: 0 auto 56px;
-      line-height: 1.7;
-      font-style: italic;
-    }
-
-    .hero-meta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
-    }
-    .hero-meta span { display: flex; align-items: center; gap: 8px; }
+    .hero-sub { font-size: clamp(16px, 2vw, 20px); color: var(--text-sub); max-width: 600px; margin: 0 auto 56px; line-height: 1.7; font-style: italic; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 32px; font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; }
     .hero-meta strong { color: var(--text-sub); }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 40px; left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      animation: scrollBounce 2s infinite;
-    }
-    .hero-scroll::after {
-      content: '';
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--text-muted), transparent);
-    }
-    @keyframes scrollBounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
-    }
+    .hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); animation: scrollBounce 2s infinite; }
+    .hero-scroll::after { content: ''; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-muted), transparent); }
+    @keyframes scrollBounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
 
     /* ── TICKER ── */
-    .ticker-wrap {
-      overflow: hidden;
-      background: var(--green);
-      padding: 14px 0;
-    }
-    .ticker-inner {
-      display: flex;
-      gap: 0;
-      animation: ticker 25s linear infinite;
-      white-space: nowrap;
-    }
-    .ticker-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-      padding: 0 32px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--bg);
-    }
+    .ticker-wrap { overflow: hidden; background: var(--green); padding: 14px 0; }
+    .ticker-inner { display: flex; gap: 0; animation: ticker 28s linear infinite; white-space: nowrap; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 16px; padding: 0 32px; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bg); }
     .ticker-item::after { content: '✦'; }
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     /* ── SECTION LABELS ── */
-    .section-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .section-label::before {
-      content: '';
-      display: block;
-      width: 24px;
-      height: 1px;
-      background: var(--green);
-    }
-
-    .section-h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(32px, 5vw, 56px);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 24px;
-    }
+    .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--green); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--green); }
+    .section-h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 5vw, 56px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; }
     .section-h2 .accent { color: var(--green); }
+    .section-lead { font-size: 18px; color: var(--text-sub); line-height: 1.7; max-width: 680px; }
 
-    .section-lead {
-      font-size: 18px;
-      color: var(--text-sub);
-      line-height: 1.7;
-      max-width: 680px;
-    }
+    /* ── FADE UP ── */
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── PROBLEM ── */
-    #problema {
-      padding: 120px 0;
-      position: relative;
-    }
+    /* ── PROBLEMA ── */
+    #problema { padding: 120px 0; }
+    .problema-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 72px; }
+    .problema-text p { font-size: 22px; color: var(--text-sub); line-height: 1.75; margin-bottom: 24px; }
+    .problema-text p strong { color: var(--text); font-weight: 600; }
+    .problema-text p em { color: var(--green); font-style: normal; font-weight: 600; }
+    .problema-cards { display: flex; flex-direction: column; gap: 16px; }
+    .loss-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; display: flex; align-items: flex-start; gap: 16px; transition: all 0.3s; position: relative; overflow: hidden; }
+    .loss-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--green); opacity: 0; transition: opacity 0.3s; }
+    .loss-card:hover { border-color: var(--border-green); transform: translateX(4px); }
+    .loss-card:hover::before { opacity: 1; }
+    .loss-icon { width: 40px; height: 40px; border-radius: 8px; background: rgba(255,60,60,0.08); border: 1px solid rgba(255,60,60,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: rgba(255,100,100,0.7); }
+    .loss-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .loss-card p { font-size: 13px; color: var(--text-muted); }
 
-    .problema-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      margin-top: 72px;
-    }
+    /* ── SISTEMA ── */
+    #sistema { padding: 120px 0; background: linear-gradient(180deg, transparent, var(--bg-card2) 10%, var(--bg-card2) 90%, transparent); }
+    .sistema-hero-text { text-align: center; max-width: 800px; margin: 0 auto 80px; }
+    .sistema-diagram { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 60px; border-radius: 16px; overflow: hidden; }
+    .diag-item { background: var(--bg-card); padding: 32px 24px; text-align: center; transition: all 0.3s; }
+    .diag-item:hover { background: rgba(190,255,1,0.05); }
+    .diag-verb { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: var(--green); display: block; margin-bottom: 8px; }
+    .diag-sub { font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; }
 
-    .problema-text p {
-      font-size: 22px;
-      color: var(--text-sub);
-      line-height: 1.75;
-      margin-bottom: 24px;
-    }
-    .problema-text p strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-    .problema-text p em {
-      color: var(--green);
-      font-style: normal;
-      font-weight: 600;
-    }
-
-    .problema-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .loss-card {
+    /* ── FASES ── */
+    #fases { padding: 120px 0; }
+    .fases-header { text-align: center; margin-bottom: 80px; }
+    .fase-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      transition: all 0.3s;
+      border-radius: 20px;
+      padding: 48px;
+      margin-bottom: 32px;
       position: relative;
       overflow: hidden;
+      transition: border-color 0.3s;
     }
-    .loss-card::before {
+    .fase-card:hover { border-color: var(--border-green); }
+    .fase-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 3px;
-      height: 100%;
+      top: 0; left: 0; right: 0;
+      height: 2px;
       background: var(--green);
       opacity: 0;
       transition: opacity 0.3s;
     }
-    .loss-card:hover { border-color: var(--border-green); transform: translateX(4px); }
-    .loss-card:hover::before { opacity: 1; }
-
-    .loss-icon {
-      width: 40px; height: 40px;
-      border-radius: 8px;
-      background: rgba(255,60,60,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
+    .fase-card:hover::before { opacity: 1; }
+    .fase-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .fase-num-wrap { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; }
+    .fase-badge {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--bg); background: var(--green); padding: 5px 14px; border-radius: 100px;
     }
-
-    .loss-card h4 {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 4px;
+    .fase-prazo {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); background: var(--bg-card2); border: 1px solid var(--border);
+      padding: 5px 14px; border-radius: 100px;
+      display: flex; align-items: center; gap: 6px;
     }
-    .loss-card p { font-size: 13px; color: var(--text-muted); }
-
-    /* ── SYSTEM INTRO ── */
-    #sistema {
-      padding: 120px 0;
-      background: linear-gradient(180deg, transparent, var(--bg-card2) 10%, var(--bg-card2) 90%, transparent);
-    }
-
-    .sistema-hero-text {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 80px;
-    }
-
-    .sistema-diagram {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      margin-top: 60px;
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .diag-item {
-      background: var(--bg-card);
-      padding: 32px 24px;
-      text-align: center;
-      position: relative;
-      transition: all 0.3s;
-    }
-    .diag-item:hover { background: rgba(190,255,1,0.05); }
-
-    .diag-verb {
+    .fase-prazo::before { content: '◷'; font-size: 13px; color: var(--green); }
+    .fase-num {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--green);
-      display: block;
-      margin-bottom: 8px;
-    }
-    .diag-sub { font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; }
-
-    /* ── PILARES ── */
-    #pilares {
-      padding: 120px 0;
-    }
-
-    .pilares-header {
-      text-align: center;
-      margin-bottom: 72px;
-    }
-
-    .pilares-tabs {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-bottom: 48px;
-      flex-wrap: wrap;
-    }
-
-    .pilar-tab {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 10px 24px;
-      border-radius: 100px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-    .pilar-tab.active, .pilar-tab:hover {
-      border-color: var(--border-green);
-      background: var(--green-dim);
-      color: var(--green);
-    }
-
-    .pilares-content {
-      display: none;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-    .pilares-content.active { display: grid; }
-
-    .pilar-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 80px;
-      font-weight: 700;
-      color: var(--green-dim);
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-    .pilar-num span { color: var(--green); }
-
-    .pilar-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 20px;
-    }
-
-    .pilar-desc {
-      font-size: 17px;
-      color: var(--text-sub);
-      line-height: 1.75;
-      margin-bottom: 28px;
-    }
-
-    .pilar-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--green);
-      background: var(--green-dim);
-      border: 1px solid var(--border-green);
-      padding: 6px 14px;
-      border-radius: 6px;
-    }
-
-    .pilar-visual {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px;
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .flow-step {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--bg-card2);
-      margin-bottom: 8px;
-      transition: all 0.3s;
-      animation: fadeSlideIn 0.4s ease forwards;
-      opacity: 0;
-    }
-    @keyframes fadeSlideIn {
-      from { opacity: 0; transform: translateX(-12px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    .flow-step:nth-child(1) { animation-delay: 0.1s; }
-    .flow-step:nth-child(2) { animation-delay: 0.2s; }
-    .flow-step:nth-child(3) { animation-delay: 0.3s; }
-    .flow-step:nth-child(4) { animation-delay: 0.4s; }
-    .flow-step:nth-child(5) { animation-delay: 0.5s; }
-
-    .flow-step:last-child { border-color: var(--border-green); background: var(--green-dim); }
-    .flow-step:last-child .flow-label { color: var(--green); }
-
-    .flow-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--text-muted);
-      flex-shrink: 0;
-    }
-    .flow-step:last-child .flow-dot { background: var(--green); }
-
-    .flow-label {
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    /* ── CHANGES ── */
-    #mudancas {
-      padding: 120px 0;
-      background: linear-gradient(180deg, transparent, var(--bg-card2) 10%, var(--bg-card2) 90%, transparent);
-    }
-
-    .mudancas-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      margin-top: 72px;
-    }
-
-    .mudanca-item {
-      background: var(--bg-card);
-      padding: 40px 32px;
-      transition: all 0.3s;
-    }
-    .mudanca-item:first-child { border-radius: 16px 0 0 16px; }
-    .mudanca-item:last-child { border-radius: 0 16px 16px 0; }
-    .mudanca-item:hover { background: rgba(190,255,1,0.04); }
-
-    .mudanca-icon { font-size: 32px; margin-bottom: 20px; }
-    .mudanca-item h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    .mudanca-item p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
-
-    .before-after {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 80px;
-    }
-
-    .ba-col {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-    }
-    .ba-col.after { border-color: var(--border-green); }
-
-    .ba-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .ba-title.red { color: #ff6060; }
-    .ba-title.green { color: var(--green); }
-
-    .ba-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 14px;
-      color: var(--text-sub);
-    }
-    .ba-item:last-child { border-bottom: none; }
-    .ba-item .dot {
-      width: 18px; height: 18px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .ba-col:not(.after) .dot { background: rgba(255,96,96,0.15); color: #ff6060; }
-    .ba-col.after .dot { background: var(--green-dim); color: var(--green); }
-
-    /* ── QUOTE ── */
-    #quote {
-      padding: 100px 0;
-    }
-
-    .quote-block {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .quote-mark {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 80px;
-      color: var(--green);
-      line-height: 0.6;
-      margin-bottom: 24px;
-      display: block;
-    }
-
-    blockquote {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(20px, 3vw, 30px);
-      font-weight: 500;
-      line-height: 1.5;
-      color: var(--text);
-      margin-bottom: 32px;
-    }
-    blockquote em { color: var(--green); font-style: normal; }
-
-    .quote-source {
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* ── ADOPTION PHASES ── */
-    #adocao {
-      padding: 80px 0 120px;
-    }
-
-    .adocao-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 56px;
-    }
-
-    .adocao-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 36px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s;
-    }
-    .adocao-card:hover { border-color: var(--border-green); transform: translateY(-4px); }
-    .adocao-card::before {
-      content: attr(data-mes);
-      position: absolute;
-      top: -20px; right: -10px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 120px;
-      font-weight: 700;
-      color: var(--green-dim);
-      line-height: 1;
+      font-size: 100px; font-weight: 700;
+      color: var(--green-dim); line-height: 1;
+      position: absolute; right: 48px; top: 32px;
       pointer-events: none;
     }
-
-    .adocao-card h3 {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 12px;
-    }
-    .adocao-card h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .adocao-card p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
-
-    /* ── ROI ── */
-    #roi {
-      padding: 120px 0;
-      background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent);
-    }
-
-    .roi-header { text-align: center; margin-bottom: 80px; }
-
-    .roi-disclaimer {
-      background: var(--green-dim);
+    .fase-num span { color: rgba(190,255,1,0.2); }
+    .fase-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+    .fase-desc { font-size: 16px; color: var(--text-sub); line-height: 1.7; margin-bottom: 28px; }
+    .fase-items { display: flex; flex-direction: column; gap: 10px; }
+    .fase-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--text-sub); }
+    .fase-item::before { content: '→'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .fase-resultado {
+      background: rgba(190,255,1,0.06);
       border: 1px solid var(--border-green);
-      border-radius: 10px;
-      padding: 16px 24px;
-      font-size: 13px;
-      color: var(--text-sub);
-      margin-bottom: 56px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .roi-disclaimer::before { content: 'ℹ'; color: var(--green); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
-
-    .roi-table-wrap {
-      overflow-x: auto;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      margin-bottom: 48px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-
-    thead th {
-      background: var(--bg-card);
-      padding: 16px 20px;
-      text-align: left;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border);
-    }
-
-    tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.2s;
-    }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: rgba(255,255,255,0.02); }
-
-    tbody td {
-      padding: 16px 20px;
-      color: var(--text-sub);
-      vertical-align: middle;
-    }
-    tbody td:first-child { color: var(--text); font-weight: 500; }
-    tbody td.green { color: var(--green); font-weight: 600; }
-
-    .roi-sims {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 48px;
-    }
-
-    .sim-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 24px;
-      transition: all 0.3s;
-    }
-    .sim-card:hover { border-color: var(--border-green); }
-
-    .sim-badge {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--bg);
-      background: var(--green);
-      padding: 4px 12px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 16px;
-    }
-
-    .sim-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .sim-period { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
-
-    .sim-amount {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 40px;
-      font-weight: 700;
-      color: var(--green);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .sim-label { font-size: 12px; color: var(--text-muted); }
-
-    .roi-consolidado {
-      background: linear-gradient(135deg, rgba(190,255,1,0.06), rgba(190,255,1,0.02));
-      border: 1px solid var(--border-green);
-      border-radius: 20px;
-      padding: 48px;
-    }
-
-    .roi-consolidado h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 32px;
-      text-align: center;
-    }
-
-    .roi-total-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 32px;
-      text-align: center;
-    }
-
-    .roi-stat-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 48px;
-      font-weight: 700;
-      color: var(--green);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .roi-stat-label { font-size: 13px; color: var(--text-muted); }
-    .roi-stat-note { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
-
-    .roi-ratio {
-      margin-top: 32px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border-green);
-      text-align: center;
-      font-size: 15px;
-      color: var(--text-sub);
-    }
-    .roi-ratio strong { color: var(--green); font-size: 20px; }
-
-    /* ── VALOR MERCADO ── */
-    #valor {
-      padding: 120px 0;
-    }
-
-    .valor-header { text-align: center; margin-bottom: 72px; }
-
-    .valor-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .valor-items { display: flex; flex-direction: column; gap: 12px; }
-
-    .valor-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 20px 24px;
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      gap: 16px;
-      align-items: center;
-      transition: all 0.3s;
-    }
-    .valor-item:hover { border-color: var(--border-green); }
-
-    .valor-item-name {
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .valor-item-impl {
-      font-size: 13px;
-      color: var(--text-muted);
-      text-align: right;
-    }
-    .valor-item-month {
-      font-size: 13px;
-      color: var(--text-muted);
-      text-align: right;
-      min-width: 90px;
-    }
-
-    .valor-total-card {
-      background: linear-gradient(135deg, rgba(190,255,1,0.08), rgba(190,255,1,0.02));
-      border: 1px solid var(--border-green);
-      border-radius: 20px;
-      padding: 48px;
-      position: sticky;
-      top: 120px;
-    }
-
-    .valor-total-card h3 {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 32px;
-    }
-
-    .valor-price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .valor-price-row:last-of-type { border-bottom: none; }
-    .valor-price-row .label { font-size: 13px; color: var(--text-muted); }
-    .valor-price-row .price { font-size: 16px; font-weight: 600; color: var(--text); }
-
-    .valor-total-amount {
       margin-top: 28px;
-      padding: 24px;
-      background: rgba(0,0,0,0.3);
-      border-radius: 12px;
-      text-align: center;
-    }
-    .valor-total-amount .total-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-    .valor-total-amount .total-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 40px;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: line-through;
-      text-decoration-color: rgba(255,255,255,0.3);
-    }
-
-    .valor-voces-pagam {
-      margin-top: 20px;
-      padding: 24px;
-      background: var(--green);
-      border-radius: 12px;
-      text-align: center;
-    }
-    .valor-voces-pagam .pagam-label { font-size: 11px; font-weight: 700; color: rgba(0,0,0,0.5); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-    .valor-voces-pagam .pagam-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--bg);
-    }
-    .valor-voces-pagam .pagam-sub { font-size: 12px; color: rgba(0,0,0,0.55); margin-top: 4px; }
-
-    /* ── CUSTO OPERACIONAL ── */
-    #custo {
-      padding: 80px 0 120px;
-      background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent);
-    }
-
-    .custo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      margin-top: 56px;
-    }
-
-    .custo-note {
-      font-size: 17px;
-      color: var(--text-sub);
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    .custo-highlight {
-      background: var(--green-dim);
-      border: 1px solid var(--border-green);
-      border-radius: 10px;
-      padding: 20px 24px;
-      font-size: 15px;
-      color: var(--text-sub);
-      line-height: 1.65;
-    }
-    .custo-highlight strong { color: var(--green); }
-
-    /* ── TIMELINE ── */
-    #timeline {
-      padding: 120px 0;
-    }
-
-    .timeline-header { text-align: center; margin-bottom: 80px; }
-
-    .timeline-phases {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      position: relative;
-    }
-
-    .timeline-phase {
-      background: var(--bg-card);
-      padding: 36px 24px;
-      position: relative;
-      transition: all 0.3s;
-    }
-    .timeline-phase:first-child { border-radius: 16px 0 0 16px; }
-    .timeline-phase:last-child { border-radius: 0 16px 16px 0; }
-    .timeline-phase:hover { background: rgba(190,255,1,0.04); }
-    .timeline-phase:hover .phase-period { color: var(--green); }
-
-    .phase-period {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      transition: color 0.3s;
-    }
-    .phase-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 48px;
-      font-weight: 700;
-      color: var(--green);
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-    .phase-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    .phase-entregavel { font-size: 13px; color: var(--text-muted); line-height: 1.55; margin-bottom: 16px; }
-    .phase-result {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--green);
-      background: var(--green-dim);
-      padding: 8px 12px;
-      border-radius: 6px;
-    }
-
-    .timeline-note {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 15px;
-      color: var(--text-muted);
-    }
-    .timeline-note strong { color: var(--green); }
-
-    /* ── PARCERIA ── */
-    #parceria {
-      padding: 120px 0;
-      background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent);
-    }
-
-    .parceria-header { text-align: center; margin-bottom: 80px; }
-
-    .parceria-intro {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 60px;
-      font-size: 18px;
-      color: var(--text-sub);
-      line-height: 1.7;
-    }
-
-    .parceria-tables {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-bottom: 64px;
-    }
-
-    .parceria-table {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-    .parceria-table.neuralops { border-color: var(--border-green); }
-
-    .parceria-table-header {
-      padding: 20px 24px;
-      background: var(--bg-card2);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .parceria-table.neuralops .parceria-table-header { background: var(--green-dim); border-color: var(--border-green); }
-
-    .parceria-table-header h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; }
-    .parceria-table.neuralops .parceria-table-header h3 { color: var(--green); }
-
-    .parceria-row {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 16px;
-      padding: 16px 24px;
-      border-bottom: 1px solid var(--border);
       font-size: 14px;
-    }
-    .parceria-row:last-child { border-bottom: none; }
-    .parceria-row .row-key { color: var(--text-muted); font-weight: 500; }
-    .parceria-row .row-val { color: var(--text-sub); }
-
-    /* ── COMISSÃO ── */
-    #comissao {
-      padding: 80px 0 120px;
-    }
-
-    .comissao-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 56px;
-    }
-
-    .comissao-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 36px;
-      transition: all 0.3s;
-    }
-    .comissao-card:hover { border-color: var(--border-green); transform: translateY(-4px); }
-
-    .comissao-card .c-type {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
       color: var(--green);
-      background: var(--green-dim);
-      padding: 4px 12px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 16px;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 12px;
     }
-    .comissao-card .c-pct {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 56px;
-      font-weight: 700;
-      color: var(--green);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .comissao-card .c-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .comissao-card .c-cond { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-
-    .comissao-sim {
-      margin-top: 48px;
-      background: linear-gradient(135deg, rgba(190,255,1,0.06), transparent);
-      border: 1px solid var(--border-green);
-      border-radius: 20px;
-      padding: 48px;
-    }
-
-    .comissao-sim h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 32px;
-    }
-
-    .comissao-sim-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .fase-resultado::before { content: '✓'; font-weight: 700; font-size: 16px; }
+    .fase-visual { position: relative; }
+    .fase-flow { display: flex; flex-direction: column; gap: 0; }
+    .fflow-step {
+      display: flex; align-items: flex-start; gap: 16px;
       padding: 16px 0;
       border-bottom: 1px solid var(--border);
-      font-size: 14px;
-    }
-    .comissao-sim-row:last-of-type { border-bottom: none; }
-    .comissao-sim-row .cs-label { color: var(--text-muted); }
-    .comissao-sim-row .cs-val { color: var(--green); font-weight: 600; font-size: 16px; }
-
-    .comissao-total {
-      margin-top: 28px;
-      padding: 24px;
-      background: var(--bg-card);
-      border-radius: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .comissao-total .ct-label { font-size: 14px; color: var(--text-muted); }
-    .comissao-total .ct-val {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--green);
-    }
-
-    /* ── PARA QUEM ── */
-    #para-quem {
-      padding: 120px 0;
-      background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent);
-    }
-
-    .para-quem-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      margin-top: 72px;
-      align-items: center;
-    }
-
-    .para-quem-checks {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .pq-check {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 20px 24px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      font-size: 15px;
-      color: var(--text-sub);
-      line-height: 1.5;
-      transition: all 0.3s;
-    }
-    .pq-check:hover { border-color: var(--border-green); }
-    .pq-check .check { color: var(--green); font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-
-    .para-quem-text .big-quote {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 28px;
-      font-weight: 600;
-      line-height: 1.4;
-      margin-bottom: 24px;
-    }
-    .para-quem-text .big-quote em { color: var(--green); font-style: normal; }
-
-    .para-quem-text p {
-      font-size: 16px;
-      color: var(--text-sub);
-      line-height: 1.7;
-    }
-
-    /* ── NEXT STEPS ── */
-    #proximos-passos {
-      padding: 120px 0;
-    }
-
-    .passos-header { text-align: center; margin-bottom: 80px; }
-
-    .passos-list {
-      max-width: 780px;
-      margin: 0 auto 80px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .passo-item {
-      display: grid;
-      grid-template-columns: 60px 1fr;
-      gap: 24px;
-      padding: 32px 0;
-      border-bottom: 1px solid var(--border);
       position: relative;
     }
-    .passo-item:last-child { border-bottom: none; }
-    .passo-item::before {
-      content: '';
-      position: absolute;
-      left: 28px; top: 68px;
-      width: 1px;
-      height: calc(100% - 36px);
-      background: var(--border);
+    .fflow-step:last-child { border-bottom: none; }
+    .fflow-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0;
+      margin-top: 6px;
+      box-shadow: 0 0 8px var(--green-glow);
     }
-    .passo-item:last-child::before { display: none; }
+    .fflow-content { flex: 1; }
+    .fflow-label { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+    .fflow-detail { font-size: 12px; color: var(--text-muted); }
 
-    .passo-num {
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      background: var(--green-dim);
-      border: 1px solid var(--border-green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--green);
-      flex-shrink: 0;
-      z-index: 1;
+    /* ── DASHBOARD MOCKUP ── */
+    .dashboard-mock {
+      background: var(--bg-card2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
     }
+    .dash-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .dash-title { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-sub); }
+    .dash-live { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--green); font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
+    .dash-live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    .dash-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .dash-metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+    .dash-metric-val { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--green); }
+    .dash-metric-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.05em; }
+    .dash-chart-area { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .dash-chart-label { font-size: 10px; color: var(--text-muted); margin-bottom: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
 
-    .passo-content h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      padding-top: 14px;
+    /* ── IMPACTO ── */
+    #impacto { padding: 120px 0; background: linear-gradient(180deg, transparent, var(--bg-card2) 10%, var(--bg-card2) 90%, transparent); }
+    .impacto-header { text-align: center; margin-bottom: 72px; }
+    .impacto-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .impacto-text p { font-size: 20px; color: var(--text-sub); line-height: 1.8; margin-bottom: 20px; }
+    .impacto-text p strong { color: var(--text); }
+    .impacto-chain { display: flex; flex-direction: column; gap: 0; }
+    .chain-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
     }
-    .passo-content p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+    .chain-row:last-child { border-bottom: none; }
+    .chain-arrow { color: var(--green); font-size: 20px; flex-shrink: 0; }
+    .chain-text { font-size: 16px; font-weight: 500; color: var(--text); }
+    .chain-sub { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 
-    /* ── CTA FINAL ── */
-    #cta-final {
-      padding: 120px 0 160px;
-      text-align: center;
+    /* ── GANTT CHART ── */
+    #timeline { padding: 120px 0; }
+    .timeline-header { text-align: center; margin-bottom: 72px; }
+    .gantt-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      overflow-x: auto;
+    }
+    .gantt-title-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+    .gantt-total-label { font-size: 12px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    .gantt-total-val { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; color: var(--green); }
+    .gantt-months { display: grid; grid-template-columns: 180px 1fr; gap: 0; margin-bottom: 8px; }
+    .gantt-month-labels { display: flex; padding-left: 0; }
+    .gantt-month-label { font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; text-align: center; flex: 1; }
+    .gantt-row { display: grid; grid-template-columns: 180px 1fr; gap: 0; align-items: center; margin-bottom: 12px; }
+    .gantt-label { font-size: 12px; font-weight: 600; color: var(--text-sub); padding-right: 20px; }
+    .gantt-label span { display: block; font-size: 10px; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
+    .gantt-track { position: relative; height: 36px; background: var(--bg-card2); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+    .gantt-bar {
+      position: absolute; top: 4px; height: calc(100% - 8px);
+      background: var(--green); border-radius: 4px;
+      display: flex; align-items: center; padding: 0 12px;
+      font-size: 11px; font-weight: 700; color: var(--bg);
+      letter-spacing: 0.05em;
+    }
+    .gantt-divider { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--border); }
+    .timeline-note { margin-top: 28px; text-align: center; font-size: 14px; color: var(--text-muted); background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 32px; }
+    .timeline-note strong { color: var(--green); }
+
+    /* ── MUDANÇAS ── */
+    #mudancas { padding: 120px 0; }
+    .mudancas-header { text-align: center; margin-bottom: 72px; }
+    .mudancas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 64px; }
+    .mudanca-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: border-color 0.3s; }
+    .mudanca-item:hover { border-color: var(--border-green); }
+    .mudanca-icon { width: 48px; height: 48px; border-radius: 10px; background: var(--green-dim); border: 1px solid var(--border-green); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; color: var(--green); }
+    .mudanca-item h3 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+    .mudanca-item p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border-radius: 16px; overflow: hidden; }
+    .ba-col { background: var(--bg-card); padding: 32px; }
+    .ba-col.after { background: rgba(190,255,1,0.04); border: 1px solid rgba(190,255,1,0.1); }
+    .ba-title { font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px; }
+    .ba-title.red { color: rgba(255,80,80,0.8); }
+    .ba-title.green { color: var(--green); }
+    .ba-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+    .ba-item .dot { flex-shrink: 0; margin-top: 1px; }
+    .ba-col.after .ba-item { color: var(--text-sub); }
+
+    /* ── QUOTE ── */
+    #quote { padding: 80px 0; }
+    .quote-block { max-width: 860px; margin: 0 auto; text-align: center; position: relative; }
+    .quote-mark { font-family: 'Space Grotesk', sans-serif; font-size: 120px; line-height: 0.6; color: var(--green-dim); display: block; margin-bottom: 24px; }
+    blockquote { font-size: clamp(22px, 3vw, 32px); font-weight: 300; line-height: 1.5; color: var(--text); font-style: italic; margin-bottom: 24px; }
+    blockquote em { color: var(--green); font-style: normal; font-weight: 500; }
+    .quote-source { font-size: 11px; color: var(--text-muted); letter-spacing: 0.2em; text-transform: uppercase; }
+
+    /* ── ROI ── */
+    #roi { padding: 120px 0; background: linear-gradient(180deg, transparent, var(--bg-card2) 10%, var(--bg-card2) 90%, transparent); }
+    .roi-header { text-align: center; margin-bottom: 48px; }
+    .roi-disclaimer { font-size: 12px; color: var(--text-muted); line-height: 1.6; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 24px; margin-bottom: 48px; max-width: 780px; margin-left: auto; margin-right: auto; }
+    .roi-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    th { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); padding: 12px 16px; border-bottom: 1px solid var(--border); text-align: left; }
+    td { font-size: 14px; color: var(--text-sub); padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    td.green { color: var(--green); font-weight: 600; }
+    .roi-sims { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 48px 0; }
+    .sim-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; position: relative; }
+    .sim-badge { position: absolute; top: -10px; left: 24px; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; background: var(--green); color: var(--bg); padding: 3px 12px; border-radius: 100px; }
+    .sim-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; margin-top: 8px; }
+    .sim-period { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
+    .sim-amount { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+    .sim-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    .roi-consolidado { background: var(--bg-card); border: 1px solid var(--border-green); border-radius: 20px; padding: 40px; }
+    .roi-consolidado h3 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 32px; text-align: center; }
+    .roi-total-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: center; margin-bottom: 28px; }
+    .roi-stat-num { font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 3vw, 40px); font-weight: 700; color: var(--green); margin-bottom: 8px; }
+    .roi-stat-label { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+    .roi-ratio { text-align: center; font-size: 15px; color: var(--text-sub); background: rgba(190,255,1,0.06); border: 1px solid var(--border-green); border-radius: 10px; padding: 16px 24px; }
+    .roi-ratio strong { color: var(--green); }
+
+    /* ── VALOR/INVESTIMENTO ── */
+    #valor { padding: 120px 0; }
+    .valor-header { text-align: center; margin-bottom: 72px; }
+    .investimento-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 40px; }
+    .inv-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
       position: relative;
       overflow: hidden;
     }
-
-    #cta-final::before {
-      content: '';
-      position: absolute;
-      bottom: -100px; left: 50%;
-      transform: translateX(-50%);
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(190,255,1,0.12) 0%, transparent 70%);
-      pointer-events: none;
+    .inv-card.destaque {
+      border-color: var(--border-green);
+      background: rgba(190,255,1,0.04);
     }
-
-    .cta-divider {
-      max-width: 680px;
-      margin: 0 auto 48px;
-    }
-
-    .cta-divider .either {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 16px;
-    }
-
-    .cta-divider .or-line {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin: 32px 0;
-      color: var(--text-muted);
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .cta-divider .or-line::before, .cta-divider .or-line::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .cta-big {
+    .inv-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+    .inv-card.destaque .inv-tag { color: var(--green); }
+    .inv-valor-principal {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(28px, 4vw, 48px);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 48px;
+      font-size: 56px; font-weight: 700; color: var(--text);
+      line-height: 1; margin-bottom: 6px;
     }
-    .cta-big em { color: var(--green); font-style: normal; }
+    .inv-card.destaque .inv-valor-principal { color: var(--green); }
+    .inv-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+    .inv-items { display: flex; flex-direction: column; gap: 10px; }
+    .inv-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-sub); }
+    .inv-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .inv-nota {
+      font-size: 12px; color: var(--text-muted);
+      background: var(--bg-card2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 28px; margin-top: 8px;
+      line-height: 1.7;
+    }
+    .inv-nota strong { color: var(--text-sub); }
+    .inv-total-bar {
+      background: linear-gradient(135deg, rgba(190,255,1,0.1), rgba(190,255,1,0.04));
+      border: 1px solid var(--border-green);
+      border-radius: 16px;
+      padding: 28px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .inv-total-label { font-size: 13px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+    .inv-total-num { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--text); }
+    .inv-total-num span { color: var(--green); }
 
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--bg);
-      background: var(--green);
-      padding: 18px 44px;
-      border-radius: 100px;
-      text-decoration: none;
-      transition: all 0.25s;
-      box-shadow: 0 0 40px rgba(190,255,1,0.25);
-    }
-    .cta-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 60px rgba(190,255,1,0.4);
-    }
-    .cta-btn::after { content: '→'; }
+    /* ── COMISSÃO ── */
+    #comissao { padding: 120px 0; background: linear-gradient(180deg, transparent, var(--bg-card2) 10%, var(--bg-card2) 90%, transparent); }
+    .comissao-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; margin-bottom: 40px; }
+    .comissao-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 36px; text-align: center; transition: border-color 0.3s; }
+    .comissao-card:hover { border-color: var(--border-green); }
+    .c-type { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 16px; }
+    .c-pct { font-family: 'Space Grotesk', sans-serif; font-size: 72px; font-weight: 700; color: var(--green); line-height: 1; margin-bottom: 8px; }
+    .c-name { font-size: 18px; font-weight: 600; margin-bottom: 12px; }
+    .c-cond { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .comissao-sim { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 36px; }
+    .comissao-sim h3 { font-size: 18px; font-weight: 600; margin-bottom: 24px; }
+    .comissao-sim-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text-sub); }
+    .cs-val { font-weight: 600; color: var(--text); }
+    .comissao-total { background: rgba(190,255,1,0.06); border: 1px solid var(--border-green); border-radius: 12px; padding: 24px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .ct-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .ct-val { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--green); }
+
+    /* ── PARA QUEM ── */
+    #para-quem { padding: 120px 0; }
+    .para-quem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .para-quem-checks { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+    .pq-check { display: flex; align-items: center; gap: 14px; font-size: 16px; color: var(--text-sub); }
+    .check { color: var(--green); font-weight: 700; font-size: 18px; flex-shrink: 0; }
+    .big-quote { font-family: 'Space Grotesk', sans-serif; font-size: clamp(20px, 2.5vw, 28px); font-weight: 600; line-height: 1.4; margin-bottom: 24px; }
+    .big-quote em { color: var(--green); font-style: normal; }
+    .para-quem-text p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── PRÓXIMOS PASSOS ── */
+    #proximos-passos { padding: 120px 0; background: linear-gradient(180deg, transparent, var(--bg-card2) 10%, var(--bg-card2) 90%, transparent); }
+    .passos-header { text-align: center; margin-bottom: 72px; }
+    .passos-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+    .passo-item { display: flex; gap: 28px; padding: 28px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+    .passo-item:last-child { border-bottom: none; }
+    .passo-num { width: 40px; height: 40px; border-radius: 50%; background: var(--green-dim); border: 1px solid var(--border-green); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--green); flex-shrink: 0; }
+    .passo-content h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .passo-content p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── CTA FINAL ── */
+    #cta-final { padding: 120px 40px; text-align: center; position: relative; overflow: hidden; }
+    #cta-final::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(190,255,1,0.07) 0%, transparent 70%); pointer-events: none; }
+    .either { font-size: 18px; color: var(--text-muted); max-width: 600px; margin: 0 auto 16px; }
+    .or-line { font-size: 14px; color: var(--text-muted); letter-spacing: 0.2em; text-transform: uppercase; margin: 24px 0; }
+    .cta-big { font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 4.5vw, 52px); font-weight: 700; line-height: 1.25; max-width: 800px; margin: 0 auto 56px; }
+    .cta-big em { color: var(--green); font-style: normal; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 12px; background: var(--green); color: var(--bg); font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 18px 48px; border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+    .cta-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 16px 48px rgba(190,255,1,0.2); }
 
     /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    footer { padding: 48px 40px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .f-logo { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); }
+    .f-info { font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+    .f-conf { font-size: 10px; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; }
 
-    footer .f-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--green);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    footer .f-info { font-size: 12px; color: var(--text-muted); text-align: center; }
-    footer .f-conf {
-      font-size: 11px;
-      color: var(--text-muted);
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 6px 14px;
-      border-radius: 100px;
-    }
-
-    /* ── ANIMATIONS ── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .fade-up:nth-child(2) { transition-delay: 0.1s; }
-    .fade-up:nth-child(3) { transition-delay: 0.2s; }
-    .fade-up:nth-child(4) { transition-delay: 0.3s; }
-    .fade-up:nth-child(5) { transition-delay: 0.4s; }
-
-    /* ── COUNTER ── */
-    .counter { font-variant-numeric: tabular-nums; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
+    /* ── MOBILE ── */
+    @media(max-width: 768px) {
+      html, body { overflow-x: hidden; }
+      .container { padding: 0 20px; }
       nav { padding: 16px 20px; }
       .nav-tag { display: none; }
-      .container { padding: 0 20px; }
-      .problema-grid, .valor-grid, .parceria-tables, .comissao-grid,
-      .para-quem-grid, .custo-grid { grid-template-columns: 1fr; }
-      .sistema-diagram { grid-template-columns: 1fr 1fr; }
-      .mudancas-grid { grid-template-columns: 1fr; }
-      .mudanca-item:first-child { border-radius: 16px 16px 0 0; }
-      .mudanca-item:last-child { border-radius: 0 0 16px 16px; }
-      .roi-sims { grid-template-columns: 1fr; }
-      .roi-total-grid { grid-template-columns: 1fr; gap: 16px; }
-      .timeline-phases { grid-template-columns: 1fr 1fr; }
-      .timeline-phase:nth-child(2) { border-radius: 0; }
-      .adocao-steps { grid-template-columns: 1fr; }
-      .pilares-content { grid-template-columns: 1fr; }
-      .before-after { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 16px; text-align: center; }
+      .problema-grid, .sistema-diagram, .fases-inner, .fase-inner,
+      .mudancas-grid, .before-after, .para-quem-grid,
+      .investimento-grid, .comissao-grid, .impacto-layout,
+      .gantt-months, .gantt-row, .roi-sims, .roi-total-grid { grid-template-columns: 1fr !important; }
+      .before-after { gap: 12px; }
+      .inv-valor-principal { font-size: 40px; }
+      .fase-num { font-size: 60px; top: 16px; right: 20px; }
+      .gantt-wrap { padding: 20px; }
+      footer { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
@@ -1494,16 +486,16 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-badge">Proposta Estratégica Exclusiva</div>
-  <p class="hero-eyebrow">NeuralOps × Kiss My Modas · Março 2026</p>
-  <h1 class="hero-h1">Sistema Operacional de<br><span class="accent">Vendas Invisíveis™</span></h1>
-  <p class="hero-sub">Isso não é uma proposta de serviço.<br>É a instalação de uma nova forma de operar sua confecção.</p>
+  <div class="hero-badge">Implementação Estratégica Exclusiva</div>
+  <p class="hero-eyebrow">NeuralOps × Kiss My Modas · Abril 2026</p>
+  <h1 class="hero-h1">Infraestrutura Invisível<br><span class="accent">de Crescimento™</span></h1>
+  <p class="hero-sub">A questão não é apenas ter mais clientes.<br>Mas sim parar de perder os que já chegam todos os dias.</p>
   <div class="hero-meta">
     <span>Preparado por <strong>NeuralOps</strong></span>
     <span>·</span>
-    <span>Março de 2026</span>
+    <span>Abril de 2026</span>
     <span>·</span>
-    <span><strong>Goiânia, GO</strong></span>
+    <span><strong>4 Fases · ~35 dias cada</strong></span>
   </div>
   <div class="hero-scroll">Scroll</div>
 </section>
@@ -1511,20 +503,20 @@
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
-    <span class="ticker-item">Motor de Reativação Oculta™</span>
-    <span class="ticker-item">Captura Imediata de Intenção™</span>
-    <span class="ticker-item">Distribuição Estratégica™</span>
-    <span class="ticker-item">Radar de Receita em Tempo Real™</span>
-    <span class="ticker-item">R$ 84.700 em valor entregue</span>
-    <span class="ticker-item">Zero de implementação</span>
-    <span class="ticker-item">60 dias de entrega</span>
-    <span class="ticker-item">Motor de Reativação Oculta™</span>
-    <span class="ticker-item">Captura Imediata de Intenção™</span>
-    <span class="ticker-item">Distribuição Estratégica™</span>
-    <span class="ticker-item">Radar de Receita em Tempo Real™</span>
-    <span class="ticker-item">R$ 84.700 em valor entregue</span>
-    <span class="ticker-item">Zero de implementação</span>
-    <span class="ticker-item">60 dias de entrega</span>
+    <span class="ticker-item">4 Fases de Implementação</span>
+    <span class="ticker-item">Atendimento 24h · 7 dias</span>
+    <span class="ticker-item">Diagnóstico Neural™</span>
+    <span class="ticker-item">Central de Comando Analítico</span>
+    <span class="ticker-item">Agentes Digitais Especializados</span>
+    <span class="ticker-item">Canal Direto Atacado via WhatsApp</span>
+    <span class="ticker-item">Aceleração de Conversão no Varejo</span>
+    <span class="ticker-item">4 Fases de Implementação</span>
+    <span class="ticker-item">Atendimento 24h · 7 dias</span>
+    <span class="ticker-item">Diagnóstico Neural™</span>
+    <span class="ticker-item">Central de Comando Analítico</span>
+    <span class="ticker-item">Agentes Digitais Especializados</span>
+    <span class="ticker-item">Canal Direto Atacado via WhatsApp</span>
+    <span class="ticker-item">Aceleração de Conversão no Varejo</span>
   </div>
 </div>
 
@@ -1533,42 +525,42 @@
   <div class="container">
     <div class="problema-grid">
       <div class="fade-up">
-        <div class="section-label">O Problema</div>
+        <div class="section-label">O Diagnóstico</div>
         <div class="problema-text">
-          <p>A maioria das confecções acredita que perde vendas por <strong>falta de cliente</strong>.</p>
-          <p>Não perde.</p>
-          <p>Perde porque deixa dinheiro morrer no <em>WhatsApp enquanto está dormindo</em>, ocupado ou simplesmente sem resposta.</p>
-          <p>Cada mensagem não respondida. Cada follow-up que não aconteceu. Cada cliente que "sumiu"…<br><strong>não desapareceu.</strong></p>
-          <p>Foi perdido. <em>Silenciosamente. Todos os dias.</em></p>
+          <p>Existe um volume constante de pessoas entrando em contato com a Kiss My Modas todos os dias.</p>
+          <p>Mas uma parte relevante dessas oportunidades <strong>não é respondida no tempo certo</strong>, não é acompanhada, não é organizada e <em>não é convertida</em>.</p>
+          <p>Isso não aparece no faturamento. Mas acontece todos os dias.</p>
+          <p>O problema não é marketing. <strong>É operação.</strong></p>
+          <p>Enquanto a empresa depende exclusivamente de atendimento humano — ela opera com limite. E tudo que tem limite… <em>perde dinheiro</em>.</p>
         </div>
       </div>
       <div class="problema-cards fade-up">
         <div class="loss-card">
-          <div class="loss-icon">💤</div>
+          <div class="loss-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <div>
-            <h4>Mensagens sem resposta</h4>
-            <p>Clientes que mandam mensagem fora do horário e nunca recebem retorno.</p>
+            <h4>Resposta fora do tempo</h4>
+            <p>Contatos que chegam fora do horário, no fim de semana ou em pico de atendimento — sem retorno no momento de intenção.</p>
           </div>
         </div>
         <div class="loss-card">
-          <div class="loss-icon">📋</div>
+          <div class="loss-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></div>
           <div>
-            <h4>Follow-up que não acontece</h4>
-            <p>Leads que sumiram depois de receber o catálogo, sem nenhuma cadência estruturada.</p>
+            <h4>Oportunidades sem acompanhamento</h4>
+            <p>Leads que receberam catálogo e sumiram. Pedidos que quase foram fechados. Clientes que voltariam com um follow-up.</p>
           </div>
         </div>
         <div class="loss-card">
-          <div class="loss-icon">👻</div>
+          <div class="loss-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><path d="M22 19h-1.5"/><path d="M2 19h1.5"/></svg></div>
           <div>
-            <h4>Clientes antigos esquecidos</h4>
-            <p>30 anos de base de relacionamento que nunca foi sistematicamente trabalhada.</p>
+            <h4>Operação sem visibilidade</h4>
+            <p>Sem dados. Sem saber quantos contatos chegam, quantos são perdidos, quanto dinheiro está saindo silenciosamente.</p>
           </div>
         </div>
         <div class="loss-card">
-          <div class="loss-icon">🌫️</div>
+          <div class="loss-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <div>
-            <h4>Operação baseada em percepção</h4>
-            <p>Sem dados, sem visibilidade sobre onde o dinheiro está sendo perdido.</p>
+            <h4>Limite humano de crescimento</h4>
+            <p>A operação cresce até o limite da equipe. Mais vendas exige mais gente. E mais gente exige mais gestão.</p>
           </div>
         </div>
       </div>
@@ -1581,111 +573,361 @@
   <div class="container">
     <div class="sistema-hero-text fade-up">
       <div class="section-label" style="justify-content:center">A Solução</div>
-      <h2 class="section-h2" style="text-align:center">O Sistema Operacional de<br><span class="accent">Vendas Invisíveis™</span></h2>
-      <p class="section-lead" style="margin:0 auto;text-align:center">Uma infraestrutura invisível que roda por trás da sua operação atual, sem atrito com a equipe e sem mudança de rotina.</p>
+      <h2 class="section-h2" style="text-align:center">A Infraestrutura Invisível<br><span class="accent">de Crescimento™</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Uma camada invisível que se conecta à operação atual. Não substitui o time. Garante que o time tenha mais oportunidades reais todos os dias.</p>
     </div>
-
     <div class="sistema-diagram fade-up">
       <div class="diag-item">
         <span class="diag-verb">Captura.</span>
-        <div class="diag-sub">toda intenção de compra no momento exato</div>
+        <div class="diag-sub">toda intenção no momento exato</div>
       </div>
       <div class="diag-item">
-        <span class="diag-verb">Qualifica.</span>
-        <div class="diag-sub">varejo, atacado ou personalizado</div>
+        <span class="diag-verb">Organiza.</span>
+        <div class="diag-sub">leads, canais e oportunidades</div>
       </div>
       <div class="diag-item">
-        <span class="diag-verb">Distribui.</span>
-        <div class="diag-sub">para a vendedora certa, com contexto completo</div>
+        <span class="diag-verb">Direciona.</span>
+        <div class="diag-sub">com contexto completo para fechar</div>
       </div>
       <div class="diag-item">
-        <span class="diag-verb">Converte.</span>
-        <div class="diag-sub">inclusive quando ninguém está olhando</div>
+        <span class="diag-verb">Acelera.</span>
+        <div class="diag-sub">o caminho entre interesse e compra</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PILARES -->
-<section id="pilares">
+<!-- FASES DE IMPLEMENTAÇÃO -->
+<section id="fases">
   <div class="container">
-    <div class="pilares-header fade-up">
-      <div class="section-label" style="justify-content:center">Os 4 Pilares</div>
-      <h2 class="section-h2" style="text-align:center">A Infraestrutura<br>por Dentro</h2>
+    <div class="fases-header fade-up">
+      <div class="section-label" style="justify-content:center">Implementação por Fases</div>
+      <h2 class="section-h2" style="text-align:center">4 Fases.<br><span class="accent">~35 Dias Cada.</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Cada fase entrega resultado antes da próxima começar. A operação vai sendo construída em camadas, sem interromper o que já funciona.</p>
     </div>
 
-    <div class="pilares-tabs">
-      <button class="pilar-tab active" onclick="showPilar(1)">01 · Reativação</button>
-      <button class="pilar-tab" onclick="showPilar(2)">02 · Captura 24/7</button>
-      <button class="pilar-tab" onclick="showPilar(3)">03 · Distribuição</button>
-      <button class="pilar-tab" onclick="showPilar(4)">04 · Radar</button>
+    <!-- FASE 1 -->
+    <div class="fase-card fade-up">
+      <div class="fase-num">0<span>1</span></div>
+      <div class="fase-num-wrap">
+        <div class="fase-badge">Fase 1</div>
+        <div class="fase-prazo">Até 35 dias</div>
+      </div>
+      <div class="fase-inner">
+        <div>
+          <h3 class="fase-title">Instalação da Inteligência da Operação</h3>
+          <p class="fase-desc">Integração completa dos canais e construção da central de comando. A empresa passa a enxergar, pela primeira vez, onde o dinheiro está sendo gerado e onde está sendo perdido.</p>
+          <div class="fase-items">
+            <div class="fase-item">WhatsApp — todos os atendimentos centralizados</div>
+            <div class="fase-item">Instagram — mensagens e interações capturadas</div>
+            <div class="fase-item">Site — formulários e contatos integrados</div>
+            <div class="fase-item">Base de clientes — histórico mapeado e ativado</div>
+          </div>
+          <div class="fase-resultado">Clareza total sobre onde o dinheiro está sendo gerado e onde está sendo perdido.</div>
+        </div>
+        <div class="fase-visual">
+          <!-- Dashboard mockup SVG -->
+          <div class="dashboard-mock">
+            <div class="dash-header">
+              <div class="dash-title">Central de Comando</div>
+              <div class="dash-live">Ao Vivo</div>
+            </div>
+            <div class="dash-metrics">
+              <div class="dash-metric">
+                <div class="dash-metric-val">247</div>
+                <div class="dash-metric-label">Contatos/semana</div>
+              </div>
+              <div class="dash-metric">
+                <div class="dash-metric-val">4m12s</div>
+                <div class="dash-metric-label">Tempo médio resposta</div>
+              </div>
+              <div class="dash-metric">
+                <div class="dash-metric-val">38%</div>
+                <div class="dash-metric-label">Oportunidades perdidas</div>
+              </div>
+              <div class="dash-metric">
+                <div class="dash-metric-val">22%</div>
+                <div class="dash-metric-label">Taxa de conversão</div>
+              </div>
+            </div>
+            <div class="dash-chart-area">
+              <div class="dash-chart-label">Conversão por canal — semana atual</div>
+              <svg width="100%" height="80" viewBox="0 0 300 80" preserveAspectRatio="none">
+                <!-- WhatsApp bar -->
+                <rect x="10" y="20" width="90" height="18" rx="3" fill="rgba(190,255,1,0.9)"/>
+                <text x="105" y="33" font-size="9" fill="rgba(255,255,255,0.5)" font-family="Inter">WhatsApp · 62%</text>
+                <!-- Instagram bar -->
+                <rect x="10" y="44" width="52" height="18" rx="3" fill="rgba(190,255,1,0.5)"/>
+                <text x="67" y="57" font-size="9" fill="rgba(255,255,255,0.5)" font-family="Inter">Instagram · 35%</text>
+                <!-- Site bar -->
+                <rect x="10" y="68" width="18" height="10" rx="2" fill="rgba(190,255,1,0.25)"/>
+                <text x="33" y="77" font-size="9" fill="rgba(255,255,255,0.5)" font-family="Inter">Site · 3%</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Pilar 1 -->
-    <div class="pilares-content active" id="pilar-1">
+    <!-- FASE 2 -->
+    <div class="fase-card fade-up">
+      <div class="fase-num">0<span>2</span></div>
+      <div class="fase-num-wrap">
+        <div class="fase-badge">Fase 2</div>
+        <div class="fase-prazo">+35 dias</div>
+      </div>
+      <div class="fase-inner">
+        <div>
+          <h3 class="fase-title">Força Operacional Digital 24H</h3>
+          <p class="fase-desc">Criação de um time de agentes digitais especializados que opera em paralelo ao time humano — respondendo imediatamente, qualificando e mantendo o lead aquecido até a vendedora entrar.</p>
+          <div class="fase-items">
+            <div class="fase-item">Agente de atendimento geral (WhatsApp + Instagram)</div>
+            <div class="fase-item">Agente especialista em atacado</div>
+            <div class="fase-item">Agente especialista em varejo</div>
+            <div class="fase-item">Resposta imediata independente de horário</div>
+            <div class="fase-item">Identificação de intenção e qualificação automática</div>
+            <div class="fase-item">Direcionamento para a vendedora certa com contexto completo</div>
+          </div>
+          <div class="fase-resultado">Nenhuma oportunidade se perde por falta de resposta.</div>
+        </div>
+        <div class="fase-visual">
+          <div class="fase-flow">
+            <div class="fflow-step">
+              <div class="fflow-dot"></div>
+              <div class="fflow-content">
+                <div class="fflow-label">Cliente envia mensagem — qualquer horário</div>
+                <div class="fflow-detail">Sábado 23h, domingo, feriado, pico de volume</div>
+              </div>
+            </div>
+            <div class="fflow-step">
+              <div class="fflow-dot"></div>
+              <div class="fflow-content">
+                <div class="fflow-label">Agente responde em segundos</div>
+                <div class="fflow-detail">Tom alinhado com a voz da marca</div>
+              </div>
+            </div>
+            <div class="fflow-step">
+              <div class="fflow-dot"></div>
+              <div class="fflow-content">
+                <div class="fflow-label">Identifica perfil: atacado ou varejo</div>
+                <div class="fflow-detail">Qualificação inteligente por intenção</div>
+              </div>
+            </div>
+            <div class="fflow-step">
+              <div class="fflow-dot"></div>
+              <div class="fflow-content">
+                <div class="fflow-label">Mantém conversa ativa e aquecida</div>
+                <div class="fflow-detail">Catálogo filtrado, perguntas, engajamento</div>
+              </div>
+            </div>
+            <div class="fflow-step">
+              <div class="fflow-dot"></div>
+              <div class="fflow-content">
+                <div class="fflow-label">✓ Vendedora recebe lead pronto para fechar</div>
+                <div class="fflow-detail">Segunda-feira: lista de quem quer comprar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 3 -->
+    <div class="fase-card fade-up">
+      <div class="fase-num">0<span>3</span></div>
+      <div class="fase-num-wrap">
+        <div class="fase-badge">Fase 3</div>
+        <div class="fase-prazo">+35 dias</div>
+      </div>
+      <div class="fase-inner">
+        <div>
+          <h3 class="fase-title">Canal Direto de Vendas — Atacado</h3>
+          <p class="fase-desc">Criação de uma estrutura de pedidos automatizada diretamente no WhatsApp. O processo de compra no atacado acontece dentro da conversa — do catálogo ao fechamento.</p>
+          <div class="fase-items">
+            <div class="fase-item">Catálogo inteligente integrado à conversa</div>
+            <div class="fase-item">Aplicação automática de tabela de preços por perfil</div>
+            <div class="fase-item">Validação de quantidade mínima em tempo real</div>
+            <div class="fase-item">Montagem e revisão do pedido dentro do WhatsApp</div>
+            <div class="fase-item">Condução até o fechamento sem sair da conversa</div>
+          </div>
+          <div class="fase-resultado">Redução de fricção e aumento de conversão no atacado.</div>
+        </div>
+        <div class="fase-visual">
+          <div class="fase-flow">
+            <div class="fflow-step">
+              <div class="fflow-dot"></div>
+              <div class="fflow-content">
+                <div class="fflow-label">Atacadista entra em contato</div>
+                <div class="fflow-detail">Qualquer canal, qualquer horário</div>
+              </div>
+            </div>
+            <div class="fflow-step">
+              <div class="fflow-dot"></div>
+              <div class="fflow-content">
+                <div class="fflow-label">Agente especializado ativa catálogo</div>
+                <div class="fflow-detail">Filtrado por grade, cor e disponibilidade</div>
+              </div>
+            </div>
+            <div class="fflow-step">
+              <div class="fflow-dot"></div>
+              <div class="fflow-content">
+                <div class="fflow-label">Preços aplicados automaticamente</div>
+                <div class="fflow-detail">Tabela por perfil de cliente</div>
+              </div>
+            </div>
+            <div class="fflow-step">
+              <div class="fflow-dot"></div>
+              <div class="fflow-content">
+                <div class="fflow-label">Pedido montado dentro da conversa</div>
+                <div class="fflow-detail">Quantidade mínima validada, pedido revisado</div>
+              </div>
+            </div>
+            <div class="fflow-step">
+              <div class="fflow-dot"></div>
+              <div class="fflow-content">
+                <div class="fflow-label">✓ Pedido fechado — sem atrito</div>
+                <div class="fflow-detail">Menos etapas = mais conversão</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 4 -->
+    <div class="fase-card fade-up">
+      <div class="fase-num">0<span>4</span></div>
+      <div class="fase-num-wrap">
+        <div class="fase-badge">Fase 4</div>
+        <div class="fase-prazo">+35 dias</div>
+      </div>
+      <div class="fase-inner">
+        <div>
+          <h3 class="fase-title">Aceleração de Conversão — Varejo</h3>
+          <p class="fase-desc">Integração com o site para encurtar o caminho entre interesse e compra no varejo. O cliente não precisa mais sair da conversa para comprar.</p>
+          <div class="fase-items">
+            <div class="fase-item">Identificação do produto de interesse na conversa</div>
+            <div class="fase-item">Geração automática de link direto para o produto</div>
+            <div class="fase-item">Condução guiada até o pagamento</div>
+            <div class="fase-item">Redução do abandono no meio do processo</div>
+          </div>
+          <div class="fase-resultado">Redução do tempo entre interesse e compra no varejo.</div>
+        </div>
+        <div class="fase-visual">
+          <!-- Funil varejo visual -->
+          <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:16px;padding:24px;">
+            <div style="font-size:10px;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;">Funil de Conversão — Varejo</div>
+            <svg width="100%" height="160" viewBox="0 0 280 160">
+              <!-- Barra 1: Interesse -->
+              <rect x="0" y="0" width="280" height="32" rx="4" fill="rgba(190,255,1,0.15)"/>
+              <text x="12" y="21" font-size="11" fill="rgba(255,255,255,0.7)" font-family="Inter" font-weight="600">Interesse demonstrado</text>
+              <text x="240" y="21" font-size="10" fill="#beff01" font-family="Inter" font-weight="700">100%</text>
+              <!-- Seta -->
+              <text x="130" y="46" font-size="12" fill="rgba(190,255,1,0.4)" font-family="Inter" text-anchor="middle">↓</text>
+              <!-- Barra 2: Produto identificado -->
+              <rect x="20" y="52" width="240" height="28" rx="4" fill="rgba(190,255,1,0.25)"/>
+              <text x="32" y="70" font-size="11" fill="rgba(255,255,255,0.7)" font-family="Inter" font-weight="600">Produto identificado + link gerado</text>
+              <text x="230" y="70" font-size="10" fill="#beff01" font-family="Inter" font-weight="700">85%</text>
+              <!-- Seta -->
+              <text x="130" y="92" font-size="12" fill="rgba(190,255,1,0.4)" font-family="Inter" text-anchor="middle">↓</text>
+              <!-- Barra 3: Pagamento iniciado -->
+              <rect x="44" y="98" width="192" height="28" rx="4" fill="rgba(190,255,1,0.4)"/>
+              <text x="56" y="116" font-size="11" fill="rgba(0,0,0,0.8)" font-family="Inter" font-weight="700">Pagamento iniciado</text>
+              <text x="212" y="116" font-size="10" fill="rgba(0,0,0,0.8)" font-family="Inter" font-weight="700">68%</text>
+              <!-- Seta -->
+              <text x="130" y="138" font-size="12" fill="rgba(190,255,1,0.4)" font-family="Inter" text-anchor="middle">↓</text>
+              <!-- Barra 4: Compra concluída -->
+              <rect x="72" y="143" width="136" height="16" rx="3" fill="rgba(190,255,1,0.9)"/>
+              <text x="140" y="155" font-size="10" fill="rgba(0,0,0,0.9)" font-family="Inter" font-weight="700" text-anchor="middle">Compra concluída · ~50%</text>
+            </svg>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:8px;text-align:center;">vs. sem sistema: ~12% de conversão média</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMO O IMPACTO É GERADO -->
+<section id="impacto">
+  <div class="container">
+    <div class="impacto-header fade-up">
+      <div class="section-label" style="justify-content:center">Lógica de Crescimento</div>
+      <h2 class="section-h2" style="text-align:center">Como o Impacto<br><span class="accent">É Gerado</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">O sistema não cria demanda. Ele captura melhor a que já existe. Pequenos ganhos operacionais geram impacto direto e cumulativo.</p>
+    </div>
+
+    <div class="impacto-layout fade-up">
+      <div class="impacto-text">
+        <p>A Kiss My Modas já tem fluxo de entrada. O que falta é <strong>capturar melhor esse fluxo</strong>.</p>
+        <p>Cada etapa da cadeia multiplica o resultado da anterior. Não é preciso dobrar o investimento em marketing — <strong>é preciso parar de desperdiçar o que já chega</strong>.</p>
+        <p>Esse é o princípio da Infraestrutura Invisível de Crescimento: <strong>mais retorno com o mesmo volume de entrada.</strong></p>
+      </div>
+
+      <!-- Cascade chart -->
       <div>
-        <div class="pilar-num">0<span>1</span></div>
-        <h3 class="pilar-title">Motor de Reativação Oculta™</h3>
-        <p class="pilar-desc">Clientes antigos, contatos esquecidos e oportunidades paradas voltam a gerar receita sem necessidade de tráfego ou novos leads. Você já pagou para conquistar essas pessoas. Agora começa a monetizar isso de verdade.</p>
-        <div class="pilar-tag">30 anos de base histórica nunca trabalhada</div>
-      </div>
-      <div class="pilar-visual">
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Base histórica de contatos extraída</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Segmentação automática por perfil</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Sequência personalizada de reativação</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Follow-up automático sem repetição</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Receita em 7 a 15 dias</span></div>
-      </div>
-    </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:28px 24px;">
+          <div style="font-size:10px;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:24px;">Efeito Cascata — Ganho Operacional</div>
 
-    <!-- Pilar 2 -->
-    <div class="pilares-content" id="pilar-2">
-      <div>
-        <div class="pilar-num">0<span>2</span></div>
-        <h3 class="pilar-title">Captura Imediata de Intenção™</h3>
-        <p class="pilar-desc">Todo cliente que entra em contato recebe resposta em segundos — independente de horário. A intenção de compra não esfria. Ela é capturada no momento exato em que acontece.</p>
-        <div class="pilar-tag">Atendimento 24/7 · fins de semana · feriados</div>
-      </div>
-      <div class="pilar-visual">
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Cliente envia mensagem no sábado às 23h</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">IA responde em segundos</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Qualifica varejo vs atacado</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Apresenta catálogo filtrado ao perfil</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Vendedora recebe lead aquecido na segunda</span></div>
-      </div>
-    </div>
+          <!-- Row 1 -->
+          <div style="margin-bottom:4px;">
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:6px;letter-spacing:0.04em;">Contatos que chegam</div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:30%;height:28px;background:rgba(190,255,1,0.18);border-radius:5px;flex-shrink:0;"></div>
+              <span style="font-size:11px;color:rgba(190,255,1,0.65);font-weight:600;white-space:nowrap;">Base atual</span>
+            </div>
+          </div>
 
-    <!-- Pilar 3 -->
-    <div class="pilares-content" id="pilar-3">
-      <div>
-        <div class="pilar-num">0<span>3</span></div>
-        <h3 class="pilar-title">Distribuição Estratégica de Oportunidades™</h3>
-        <p class="pilar-desc">Cada lead é direcionado com inteligência para a pessoa certa, no momento certo, com contexto completo. A equipe para de perder tempo com curiosos e passa a focar em quem realmente compra.</p>
-        <div class="pilar-tag">Rodízio automático · contexto completo</div>
-      </div>
-      <div class="pilar-visual">
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Lead entra com segmento, volume, histórico</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Sistema identifica perfil ideal</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Rodízio automático entre vendedoras</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Catálogo filtrado para o perfil</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Taxa de resposta ao catálogo aumenta</span></div>
-      </div>
-    </div>
+          <!-- Connector 1 -->
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 0 8px 14px;">
+            <div style="width:1px;height:20px;background:rgba(190,255,1,0.25);"></div>
+            <span style="font-size:10px;color:rgba(190,255,1,0.5);letter-spacing:0.04em;">↓ mais respostas</span>
+          </div>
 
-    <!-- Pilar 4 -->
-    <div class="pilares-content" id="pilar-4">
-      <div>
-        <div class="pilar-num">0<span>4</span></div>
-        <h3 class="pilar-title">Radar de Receita em Tempo Real™</h3>
-        <p class="pilar-desc">A operação deixa de ser baseada em percepção e passa a ser guiada por dados. Você enxerga exatamente onde está perdendo dinheiro — e onde está ganhando.</p>
-        <div class="pilar-tag">Dashboard · alertas · relatório toda segunda</div>
-      </div>
-      <div class="pilar-visual">
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Métricas por vendedora, canal e produto</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Dashboard em tempo real</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Alertas antes do problema virar perda</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">Relatório toda segunda-feira</span></div>
-        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">✓ Decisões guiadas por dados</span></div>
+          <!-- Row 2 -->
+          <div style="margin-bottom:4px;">
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:6px;letter-spacing:0.04em;">Conversas abertas</div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:47%;height:28px;background:rgba(190,255,1,0.32);border-radius:5px;flex-shrink:0;"></div>
+              <span style="font-size:11px;color:rgba(190,255,1,0.8);font-weight:600;white-space:nowrap;">+50%</span>
+            </div>
+          </div>
+
+          <!-- Connector 2 -->
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 0 8px 14px;">
+            <div style="width:1px;height:20px;background:rgba(190,255,1,0.25);"></div>
+            <span style="font-size:10px;color:rgba(190,255,1,0.5);letter-spacing:0.04em;">↓ mais conversas</span>
+          </div>
+
+          <!-- Row 3 -->
+          <div style="margin-bottom:4px;">
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:6px;letter-spacing:0.04em;">Oportunidades qualificadas</div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:64%;height:28px;background:rgba(190,255,1,0.52);border-radius:5px;flex-shrink:0;"></div>
+              <span style="font-size:11px;color:rgba(190,255,1,0.9);font-weight:600;white-space:nowrap;">+80%</span>
+            </div>
+          </div>
+
+          <!-- Connector 3 -->
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 0 8px 14px;">
+            <div style="width:1px;height:20px;background:rgba(190,255,1,0.25);"></div>
+            <span style="font-size:10px;color:rgba(190,255,1,0.5);letter-spacing:0.04em;">↓ mais oportunidades</span>
+          </div>
+
+          <!-- Row 4 -->
+          <div style="margin-bottom:4px;">
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:6px;letter-spacing:0.04em;">Vendas realizadas</div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:88%;height:32px;background:rgba(190,255,1,0.82);border-radius:5px;flex-shrink:0;"></div>
+              <span style="font-size:13px;color:#beff01;font-weight:700;white-space:nowrap;">+120%</span>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;font-size:11px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:14px;">
+            Simulação com parâmetros conservadores. Resultados variam conforme volume atual de atendimento.
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1694,48 +936,47 @@
 <!-- MUDANÇAS -->
 <section id="mudancas">
   <div class="container">
-    <div class="fade-up" style="text-align:center;margin-bottom:72px">
+    <div class="mudancas-header fade-up">
       <div class="section-label" style="justify-content:center">O Que Muda</div>
       <h2 class="section-h2" style="text-align:center">Na Prática</h2>
       <p class="section-lead" style="margin:0 auto;text-align:center">Sem contratar mais gente. Sem aumentar a carga da equipe. Sem depender de sorte.</p>
     </div>
-
     <div class="mudancas-grid fade-up">
       <div class="mudanca-item">
-        <div class="mudanca-icon">🤖</div>
+        <div class="mudanca-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/><path d="M7 11V9a5 5 0 0 1 10 0v2"/></svg></div>
         <h3>A IA faz o que é chato</h3>
-        <p>Repetitivo, fora do horário, tedioso. A IA cuida disso 24 horas por dia, 7 dias por semana.</p>
+        <p>Repetitivo, fora do horário, tedioso. Os agentes cuidam disso 24h por dia, 7 dias por semana.</p>
       </div>
       <div class="mudanca-item">
-        <div class="mudanca-icon">👩‍💼</div>
+        <div class="mudanca-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
         <h3>A vendedora faz o que sabe melhor</h3>
-        <p>Fechar. Ela chega a conversas já aquecidas — não precisa mais caçar lead frio.</p>
+        <p>Fechar. Ela chega a conversas já aquecidas — não precisa mais caçar lead frio nem responder pergunta básica.</p>
       </div>
       <div class="mudanca-item">
-        <div class="mudanca-icon">📊</div>
+        <div class="mudanca-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
         <h3>A gestora enxerga tudo</h3>
-        <p>Dados reais. Onde está ganhando, onde está perdendo. Sem depender de percepção.</p>
+        <p>Dados reais. Onde está ganhando, onde está perdendo. Decisões guiadas por números — não por percepção.</p>
       </div>
     </div>
 
     <div class="before-after fade-up">
       <div class="ba-col">
-        <div class="ba-title red">✕ Antes</div>
-        <div class="ba-item"><span class="dot">✕</span>Clientes no sábado à noite ficam sem resposta</div>
+        <div class="ba-title red">✕ Sem o Sistema</div>
+        <div class="ba-item"><span class="dot">✕</span>Contatos fora do horário ficam sem resposta</div>
         <div class="ba-item"><span class="dot">✕</span>Follow-up depende da memória da vendedora</div>
         <div class="ba-item"><span class="dot">✕</span>Catálogo enviado sem qualificação prévia</div>
-        <div class="ba-item"><span class="dot">✕</span>Base histórica de 30 anos sem uso sistemático</div>
+        <div class="ba-item"><span class="dot">✕</span>Pedido de atacado depende de disponibilidade humana</div>
         <div class="ba-item"><span class="dot">✕</span>Operação baseada em percepção e intuição</div>
-        <div class="ba-item"><span class="dot">✕</span>Leads quentes esfriando nos fins de semana</div>
+        <div class="ba-item"><span class="dot">✕</span>Crescimento limitado ao tamanho da equipe</div>
       </div>
       <div class="ba-col after">
-        <div class="ba-title green">✓ Depois</div>
+        <div class="ba-title green">✓ Com o Sistema</div>
         <div class="ba-item"><span class="dot">✓</span>Atendimento em segundos, qualquer horário</div>
         <div class="ba-item"><span class="dot">✓</span>Cadência automática e personalizada por cliente</div>
-        <div class="ba-item"><span class="dot">✓</span>Catálogo filtrado para o perfil de cada lead</div>
-        <div class="ba-item"><span class="dot">✓</span>Motor de reativação gerando receita da base</div>
-        <div class="ba-item"><span class="dot">✓</span>Dashboard e relatório semanal com dados reais</div>
-        <div class="ba-item"><span class="dot">✓</span>Segunda-feira: lista de quem quer comprar</div>
+        <div class="ba-item"><span class="dot">✓</span>Lead qualificado antes de chegar na vendedora</div>
+        <div class="ba-item"><span class="dot">✓</span>Pedido de atacado fechado dentro da conversa</div>
+        <div class="ba-item"><span class="dot">✓</span>Dashboard com dados reais toda segunda-feira</div>
+        <div class="ba-item"><span class="dot">✓</span>Crescimento sem depender de mais contratações</div>
       </div>
     </div>
   </div>
@@ -1746,37 +987,98 @@
   <div class="container">
     <div class="quote-block fade-up">
       <span class="quote-mark">"</span>
-      <blockquote>Hoje vocês perdem todo cliente que manda mensagem no sábado à noite, no domingo, no feriado. A IA atende esse cliente, qualifica, e joga para a fila de vocês. Vocês chegam na <em>segunda com a lista de quem quer comprar</em> — só precisam fechar.</blockquote>
+      <blockquote>Continuar operando com limites humanos… ou instalar uma estrutura que garante que oportunidades <em>não sejam desperdiçadas.</em></blockquote>
       <div class="quote-source">NeuralOps · Proposta Kiss My Modas 2026</div>
     </div>
   </div>
 </section>
 
-<!-- ADOÇÃO -->
-<section id="adocao">
+<!-- GANTT TIMELINE -->
+<section id="timeline">
   <div class="container">
-    <div class="fade-up" style="text-align:center;margin-bottom:48px">
-      <div class="section-label" style="justify-content:center">Implementação Progressiva</div>
-      <h2 class="section-h2" style="text-align:center">O Sistema e a Equipe<br>Trabalham Juntos</h2>
-      <p class="section-lead" style="margin:0 auto;text-align:center">O sistema foi desenhado para trabalhar junto com as vendedoras — não contra elas.</p>
+    <div class="timeline-header fade-up">
+      <div class="section-label" style="justify-content:center">Cronograma</div>
+      <h2 class="section-h2" style="text-align:center">Implementação em<br><span class="accent">~140 Dias</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Cada fase de ~35 dias gera resultado antes da próxima começar. A operação se transforma em camadas.</p>
     </div>
 
-    <div class="adocao-steps">
-      <div class="adocao-card fade-up" data-mes="1">
-        <h3>Mês 1</h3>
-        <h4>Sistema nos bastidores</h4>
-        <p>Sistema ativo apenas fora do horário — vendedoras veem os leads chegando sem mudar absolutamente nada na rotina delas.</p>
+    <div class="gantt-wrap fade-up">
+      <div class="gantt-title-bar">
+        <div>
+          <div class="gantt-total-label">Implementação completa</div>
+          <div class="gantt-total-val">4 fases × ~35 dias = operação completa em ~140 dias</div>
+        </div>
+        <div style="font-size:11px;color:var(--text-muted);text-align:right;">Início a combinar após Diagnóstico Neural™</div>
       </div>
-      <div class="adocao-card fade-up" data-mes="2">
-        <h3>Mês 2</h3>
-        <h4>Parceria IA + Vendedora</h4>
-        <p>Sistema faz o primeiro contato sempre, vendedora fecha. Chegam em conversas já aquecidas e prontas para conversão.</p>
+
+      <!-- Chart SVG -->
+      <svg width="100%" height="260" viewBox="0 0 900 260" preserveAspectRatio="xMidYMid meet" style="display:block;">
+        <!-- Background guides every 35 days -->
+        <line x1="200" y1="0" x2="200" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <line x1="375" y1="0" x2="375" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <line x1="550" y1="0" x2="550" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <line x1="725" y1="0" x2="725" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <line x1="900" y1="0" x2="900" y2="260" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+        <!-- Month labels -->
+        <text x="200" y="14" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter" text-anchor="middle">Dia 35</text>
+        <text x="375" y="14" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter" text-anchor="middle">Dia 70</text>
+        <text x="550" y="14" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter" text-anchor="middle">Dia 105</text>
+        <text x="725" y="14" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter" text-anchor="middle">Dia 140</text>
+
+        <!-- FASE 1 label -->
+        <text x="0" y="56" font-size="11" fill="rgba(255,255,255,0.7)" font-family="Inter" font-weight="600">Fase 1</text>
+        <text x="0" y="70" font-size="9" fill="rgba(255,255,255,0.35)" font-family="Inter">Inteligência</text>
+        <!-- FASE 1 bar: days 0–35 -->
+        <rect x="200" y="40" width="175" height="36" rx="5" fill="rgba(190,255,1,0.85)"/>
+        <text x="210" y="62" font-size="10" fill="rgba(0,0,0,0.9)" font-family="Inter" font-weight="700">Dias 1–35 · Painel analítico ativo</text>
+
+        <!-- FASE 2 label -->
+        <text x="0" y="116" font-size="11" fill="rgba(255,255,255,0.7)" font-family="Inter" font-weight="600">Fase 2</text>
+        <text x="0" y="130" font-size="9" fill="rgba(255,255,255,0.35)" font-family="Inter">Força 24H</text>
+        <!-- FASE 2 bar: days 35–70 -->
+        <rect x="375" y="100" width="175" height="36" rx="5" fill="rgba(190,255,1,0.7)"/>
+        <text x="385" y="122" font-size="10" fill="rgba(0,0,0,0.9)" font-family="Inter" font-weight="700">Dias 36–70 · Agentes ativos</text>
+
+        <!-- FASE 3 label -->
+        <text x="0" y="176" font-size="11" fill="rgba(255,255,255,0.7)" font-family="Inter" font-weight="600">Fase 3</text>
+        <text x="0" y="190" font-size="9" fill="rgba(255,255,255,0.35)" font-family="Inter">Canal Atacado</text>
+        <!-- FASE 3 bar: days 70–105 -->
+        <rect x="550" y="160" width="175" height="36" rx="5" fill="rgba(190,255,1,0.55)"/>
+        <text x="560" y="182" font-size="10" fill="rgba(0,0,0,0.85)" font-family="Inter" font-weight="700">Dias 71–105 · Pedidos via WA</text>
+
+        <!-- FASE 4 label -->
+        <text x="0" y="236" font-size="11" fill="rgba(255,255,255,0.7)" font-family="Inter" font-weight="600">Fase 4</text>
+        <text x="0" y="250" font-size="9" fill="rgba(255,255,255,0.35)" font-family="Inter">Varejo Digital</text>
+        <!-- FASE 4 bar: days 105–140 -->
+        <rect x="725" y="220" width="175" height="36" rx="5" fill="rgba(190,255,1,0.4)"/>
+        <text x="735" y="242" font-size="10" fill="rgba(190,255,1,0.9)" font-family="Inter" font-weight="700">Dias 106–140 · Varejo integrado</text>
+      </svg>
+
+      <!-- Resultado por fase -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px;border-top:1px solid var(--border);padding-top:24px;">
+        <div style="text-align:center;">
+          <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Fase 1</div>
+          <div style="font-size:12px;color:var(--text-sub);line-height:1.5;">Visibilidade total da operação</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Fase 2</div>
+          <div style="font-size:12px;color:var(--text-sub);line-height:1.5;">Zero oportunidade perdida por resposta</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Fase 3</div>
+          <div style="font-size:12px;color:var(--text-sub);line-height:1.5;">Pedidos de atacado sem fricção</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Fase 4</div>
+          <div style="font-size:12px;color:var(--text-sub);line-height:1.5;">Varejo: interesse → compra acelerado</div>
+        </div>
       </div>
-      <div class="adocao-card fade-up" data-mes="3">
-        <h3>Mês 3+</h3>
-        <h4>Foco no que importa</h4>
-        <p>Sistema fecha varejo simples autonomamente. Vendedora foca inteiramente em atacado e personalizado — maior ticket.</p>
-      </div>
+    </div>
+
+    <div class="timeline-note fade-up">
+      A Fase 1 já entrega resultado antes da Fase 2 começar.<br>
+      Em <strong>35 dias</strong>, a empresa tem clareza real sobre onde está perdendo dinheiro — e começa a parar.
     </div>
   </div>
 </section>
@@ -1787,14 +1089,13 @@
     <div class="roi-header fade-up">
       <div class="section-label" style="justify-content:center">Simulação de Retorno</div>
       <h2 class="section-h2" style="text-align:center">Baseada na<br><span class="accent">Operação Real</span></h2>
-      <p class="section-lead" style="margin:0 auto;text-align:center">Analisamos os preços do site da Kiss My Modas e calculamos o ticket médio por canal para projeções realistas.</p>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Projeções calculadas com base nos preços do site da Kiss My Modas e parâmetros conservadores de conversão.</p>
     </div>
 
     <div class="roi-disclaimer fade-up">
-      Estimativas calculadas com base nos preços públicos do site da Kiss My Modas e parâmetros conservadores de conversão. Os valores são referências de planejamento — resultados reais dependem do volume atual de atendimento e da base histórica disponível.
+      Estimativas com base nos preços públicos do site da Kiss My Modas e parâmetros conservadores. Os valores são referências de planejamento — resultados reais dependem do volume atual de atendimento e base histórica disponível.
     </div>
 
-    <!-- Ticket médio -->
     <div class="roi-table-wrap fade-up">
       <table>
         <thead>
@@ -1806,458 +1107,388 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Calças e bermudas</td>
-            <td>R$ 129–250</td>
-            <td>R$ 64–125</td>
-            <td class="green">R$ 90/peça</td>
-          </tr>
-          <tr>
-            <td>Bodies e blusas</td>
-            <td>R$ 79–190</td>
-            <td>R$ 39–95</td>
-            <td class="green">R$ 67/peça</td>
-          </tr>
-          <tr>
-            <td>Blazers e jaquetas</td>
-            <td>R$ 256–339</td>
-            <td>R$ 128–169</td>
-            <td class="green">R$ 148/peça</td>
-          </tr>
-          <tr>
-            <td>Mix geral (referência)</td>
-            <td>~R$ 165</td>
-            <td>~R$ 82</td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><strong>Pedido médio atacado (10 peças)</strong></td>
-            <td>—</td>
-            <td>—</td>
-            <td class="green"><strong>R$ 820/pedido</strong></td>
-          </tr>
+          <tr><td>Calças e bermudas</td><td>R$ 129–250</td><td>R$ 64–125</td><td class="green">R$ 90/peça</td></tr>
+          <tr><td>Bodies e blusas</td><td>R$ 79–190</td><td>R$ 39–95</td><td class="green">R$ 67/peça</td></tr>
+          <tr><td>Blazers e jaquetas</td><td>R$ 256–339</td><td>R$ 128–169</td><td class="green">R$ 148/peça</td></tr>
+          <tr><td>Mix geral (referência)</td><td>~R$ 165</td><td>~R$ 82</td><td>—</td></tr>
+          <tr><td><strong>Pedido médio atacado (10 peças)</strong></td><td>—</td><td>—</td><td class="green"><strong>R$ 820/pedido</strong></td></tr>
         </tbody>
       </table>
     </div>
 
+    <!-- ROI projection chart -->
+    <div class="fade-up" style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;margin:40px 0;">
+      <div style="font-size:10px;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:24px;">Projeção de Impacto por Fase — Receita Adicional Mensal</div>
+      <svg width="100%" height="190" viewBox="0 0 700 190" preserveAspectRatio="xMidYMid meet" style="overflow:visible;">
+        <!-- Grid lines -->
+        <line x1="80" y1="0" x2="80" y2="150" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <line x1="80" y1="150" x2="700" y2="150" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+        <!-- Y-axis labels -->
+        <text x="72" y="20" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter" text-anchor="end">R$40k</text>
+        <text x="72" y="53" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter" text-anchor="end">R$30k</text>
+        <text x="72" y="87" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter" text-anchor="end">R$20k</text>
+        <text x="72" y="120" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter" text-anchor="end">R$10k</text>
+        <!-- Grid horizontals -->
+        <line x1="80" y1="18" x2="700" y2="18" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        <line x1="80" y1="51" x2="700" y2="51" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        <line x1="80" y1="84" x2="700" y2="84" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        <line x1="80" y1="117" x2="700" y2="117" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+        <!-- Bars - Phase 1 -->
+        <rect x="110" y="110" width="80" height="40" rx="4" fill="rgba(190,255,1,0.25)"/>
+        <text x="150" y="168" font-size="9" fill="rgba(255,255,255,0.4)" font-family="Inter" text-anchor="middle">Fase 1</text>
+        <text x="150" y="105" font-size="9" fill="rgba(190,255,1,0.55)" font-family="Inter" text-anchor="middle">Diagnóstico</text>
+
+        <!-- Bars - Phase 2 -->
+        <rect x="240" y="72" width="80" height="78" rx="4" fill="rgba(190,255,1,0.45)"/>
+        <text x="280" y="168" font-size="9" fill="rgba(255,255,255,0.4)" font-family="Inter" text-anchor="middle">Fase 2</text>
+        <text x="280" y="66" font-size="9" fill="rgba(190,255,1,0.85)" font-family="Inter" text-anchor="middle" font-weight="600">~R$18.700</text>
+
+        <!-- Bars - Phase 3 -->
+        <rect x="370" y="42" width="80" height="108" rx="4" fill="rgba(190,255,1,0.65)"/>
+        <text x="410" y="168" font-size="9" fill="rgba(255,255,255,0.4)" font-family="Inter" text-anchor="middle">Fase 3</text>
+        <text x="410" y="36" font-size="9" fill="rgba(190,255,1,0.9)" font-family="Inter" text-anchor="middle" font-weight="600">~R$26.400</text>
+
+        <!-- Bars - Phase 4 -->
+        <rect x="500" y="18" width="80" height="132" rx="4" fill="rgba(190,255,1,0.85)"/>
+        <text x="540" y="168" font-size="9" fill="rgba(255,255,255,0.4)" font-family="Inter" text-anchor="middle">Fase 4</text>
+        <text x="540" y="12" font-size="10" fill="#beff01" font-family="Inter" text-anchor="middle" font-weight="700">~R$38.000+</text>
+
+        <!-- Line connecting peaks -->
+        <polyline points="150,130 280,92 410,62 540,28" stroke="rgba(190,255,1,0.3)" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+      </svg>
+
+      <!-- Fonte dos valores -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px;border-top:1px solid var(--border);padding-top:16px;">
+        <div style="font-size:10px;color:var(--text-muted);line-height:1.6;">
+          <span style="color:rgba(190,255,1,0.5);font-weight:600;display:block;margin-bottom:3px;">Fase 1 — Base</span>
+          Sem receita direta. Resultado: visibilidade dos pontos de perda da operação.
+        </div>
+        <div style="font-size:10px;color:var(--text-muted);line-height:1.6;">
+          <span style="color:rgba(190,255,1,0.75);font-weight:600;display:block;margin-bottom:3px;">Fase 2 — ~R$18.700</span>
+          70 leads/mês fora do horário × taxa de conversão de 22% × ticket médio de R$820 (atacado).
+        </div>
+        <div style="font-size:10px;color:var(--text-muted);line-height:1.6;">
+          <span style="color:rgba(190,255,1,0.9);font-weight:600;display:block;margin-bottom:3px;">Fase 3 — ~R$26.400</span>
+          32 pedidos atacado automatizados/mês × R$820 ticket médio. Redução de fricção no fechamento.
+        </div>
+        <div style="font-size:10px;color:var(--text-muted);line-height:1.6;">
+          <span style="color:#beff01;font-weight:600;display:block;margin-bottom:3px;">Fase 4 — ~R$38.000+</span>
+          Varejo: encurtamento do ciclo interesse → pagamento + recuperação de carrinhos abandonados.
+        </div>
+      </div>
+
+      <div style="font-size:10px;color:var(--text-muted);margin-top:12px;padding-top:12px;border-top:1px solid var(--border);opacity:0.6;">
+        Projeção conservadora com base nos preços públicos do site Kiss My Modas e taxas de conversão abaixo da média de mercado. Resultados reais dependem do volume de atendimento atual.
+      </div>
+    </div>
+
     <div class="roi-sims fade-up">
       <div class="sim-card">
-        <span class="sim-badge">Mês 1</span>
-        <div class="sim-title">Motor de Reativação</div>
-        <div class="sim-period">500 contatos · 20% reengajamento · 30% conversão</div>
-        <div class="sim-amount counter" data-target="18720">R$ 0</div>
-        <div class="sim-label">estimativa mês 1</div>
-      </div>
-      <div class="sim-card">
-        <span class="sim-badge">Mês 2</span>
+        <span class="sim-badge">Fase 2</span>
         <div class="sim-title">Atendimento 24/7</div>
-        <div class="sim-period">70 leads fora do horário · 22 conversões</div>
-        <div class="sim-amount counter" data-target="11180">R$ 0</div>
-        <div class="sim-label">adicional/mês</div>
+        <div class="sim-period">70 leads fora do horário · 22 conversões/mês</div>
+        <div class="sim-amount counter" data-target="18720">R$ 0</div>
+        <div class="sim-label">adicional/mês estimado</div>
       </div>
       <div class="sim-card">
-        <span class="sim-badge">Mês 2–3</span>
-        <div class="sim-title">Follow-up + Funil Atacado</div>
-        <div class="sim-period">110 leads frios reativados + reposição</div>
-        <div class="sim-amount counter" data-target="16260">R$ 0</div>
-        <div class="sim-label">adicional/mês</div>
+        <span class="sim-badge">Fase 3</span>
+        <div class="sim-title">Canal Atacado Direto</div>
+        <div class="sim-period">32 pedidos × R$ 820 ticket médio</div>
+        <div class="sim-amount counter" data-target="26240">R$ 0</div>
+        <div class="sim-label">adicional/mês estimado</div>
+      </div>
+      <div class="sim-card">
+        <span class="sim-badge">Fase 4</span>
+        <div class="sim-title">Aceleração Varejo</div>
+        <div class="sim-period">Aumento de conversão de 12% → 50% no funil</div>
+        <div class="sim-amount counter" data-target="38000">R$ 0</div>
+        <div class="sim-label">potencial adicional/mês</div>
       </div>
     </div>
 
     <div class="roi-consolidado fade-up">
-      <h3>Consolidado — Estimativa dos 3 Primeiros Meses</h3>
+      <h3>Consolidado — Operação Plena (a partir da Fase 4)</h3>
       <div class="roi-total-grid">
         <div>
-          <div class="roi-stat-num counter" data-target="46160">R$ 0</div>
-          <div class="roi-stat-label">Receita adicional estimada (3 meses)</div>
+          <div class="roi-stat-num">R$ <span class="counter" data-target="38">0</span>k+</div>
+          <div class="roi-stat-label">Receita adicional mensal estimada (operação completa)</div>
         </div>
         <div>
-          <div class="roi-stat-num counter" data-target="27440">R$ 0</div>
-          <div class="roi-stat-label">Receita recorrente mensal (a partir do mês 3)</div>
+          <div class="roi-stat-num"><span class="counter" data-target="140">0</span> dias</div>
+          <div class="roi-stat-label">Para o sistema operar em plena capacidade</div>
         </div>
         <div>
-          <div class="roi-stat-num">R$ <span class="counter" data-target="470">0</span></div>
-          <div class="roi-stat-label">Custo operacional máximo do sistema/mês</div>
+          <div class="roi-stat-num">R$ <span class="counter" data-target="3500">0</span></div>
+          <div class="roi-stat-label">Mensalidade (início 90 dias após assinatura)</div>
         </div>
       </div>
       <div class="roi-ratio">
-        Para cada <strong>R$ 1,00</strong> investido em operação → <strong>R$ 58 de retorno estimado</strong>
+        Para cada <strong>R$ 1,00</strong> investido em mensalidade → <strong>mais de R$ 10 em receita adicional estimada</strong>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VALOR MERCADO -->
+<!-- INVESTIMENTO -->
 <section id="valor">
   <div class="container">
     <div class="valor-header fade-up">
-      <div class="section-label" style="justify-content:center">Transparência Total</div>
-      <h2 class="section-h2" style="text-align:center">O Valor Real<br><span class="accent">desta Estrutura</span></h2>
-      <p class="section-lead" style="margin:0 auto;text-align:center">O que está sendo colocado na mesa — se fosse contratado normalmente no mercado:</p>
+      <div class="section-label" style="justify-content:center">Modelo de Investimento</div>
+      <h2 class="section-h2" style="text-align:center">Transparência Total<br><span class="accent">no Investimento</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Dois componentes simples. Zero surpresa.</p>
     </div>
 
-    <div class="valor-grid fade-up">
+    <!-- CENÁRIO COMPARATIVO -->
+    <div class="fade-up" style="margin-bottom:48px;">
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:20px;overflow:hidden;">
+
+        <!-- Header do comparativo -->
+        <div style="padding:28px 40px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;flex-shrink:0;"></div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);">Cenário Comparativo — O que este projeto custaria normalmente</div>
+        </div>
+
+        <!-- Grid comparativo -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+
+          <!-- Coluna padrão -->
+          <div style="padding:36px 40px;border-right:1px solid var(--border);">
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px;">Precificação padrão NeuralOps</div>
+
+            <!-- Linha setup -->
+            <div style="margin-bottom:20px;">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;letter-spacing:0.05em;">Setup de implementação</div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(255,80,80,0.5);">R$ 32.700</div>
+            </div>
+
+            <!-- Linha mensal -->
+            <div style="margin-bottom:24px;">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;letter-spacing:0.05em;">Mensalidade (12 meses)</div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(255,80,80,0.5);">R$ 5.800<span style="font-size:16px;font-weight:400;">/mês</span></div>
+            </div>
+
+            <!-- Total anual -->
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px 24px;">
+              <div style="font-size:10px;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px;">Total em 12 meses</div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:rgba(255,255,255,0.4);text-decoration:line-through;text-decoration-color:rgba(255,80,80,0.5);">R$ 102.300</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">R$ 32.700 + 12 × R$ 5.800</div>
+            </div>
+
+            <!-- Mini chart padrão -->
+            <div style="margin-top:24px;">
+              <svg width="100%" height="40" viewBox="0 0 260 40">
+                <rect x="0" y="8" width="260" height="24" rx="4" fill="rgba(255,255,255,0.06)"/>
+                <rect x="0" y="8" width="260" height="24" rx="4" fill="rgba(255,80,80,0.15)"/>
+                <text x="130" y="25" font-size="10" fill="rgba(255,255,255,0.3)" font-family="Inter" text-anchor="middle" font-weight="600">R$ 102.300 / ano</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Coluna Kiss -->
+          <div style="padding:36px 40px;background:rgba(190,255,1,0.03);">
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:20px;">Kiss My Modas — Esta proposta</div>
+
+            <!-- Linha setup -->
+            <div style="margin-bottom:20px;">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;letter-spacing:0.05em;">Setup de implementação</div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:var(--text);">R$ 18.000</div>
+              <div style="font-size:11px;color:var(--green);margin-top:2px;">↓ R$ 14.700 abaixo do padrão</div>
+            </div>
+
+            <!-- Linha mensal -->
+            <div style="margin-bottom:24px;">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;letter-spacing:0.05em;">Mensalidade (início no mês 4)</div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:var(--text);">R$ 3.500<span style="font-size:16px;font-weight:400;">/mês</span></div>
+              <div style="font-size:11px;color:var(--green);margin-top:2px;">↓ R$ 2.300/mês abaixo do padrão</div>
+            </div>
+
+            <!-- Total anual Kiss -->
+            <div style="background:rgba(190,255,1,0.08);border:1px solid var(--border-green);border-radius:12px;padding:20px 24px;">
+              <div style="font-size:10px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px;">Total em 12 meses</div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--green);">R$ 49.500</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">R$ 18.000 + 9 × R$ 3.500 (início mês 4)</div>
+            </div>
+
+            <!-- Mini chart Kiss -->
+            <div style="margin-top:24px;">
+              <svg width="100%" height="40" viewBox="0 0 260 40">
+                <rect x="0" y="8" width="260" height="24" rx="4" fill="rgba(190,255,1,0.08)"/>
+                <rect x="0" y="8" width="136" height="24" rx="4" fill="rgba(190,255,1,0.7)"/>
+                <text x="68" y="25" font-size="10" fill="rgba(0,0,0,0.85)" font-family="Inter" text-anchor="middle" font-weight="700">R$ 49.500 / ano</text>
+                <text x="198" y="25" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter" text-anchor="middle">R$ 102.300</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Economia rodapé -->
+        <div style="padding:24px 40px;background:linear-gradient(135deg,rgba(190,255,1,0.08),rgba(190,255,1,0.04));border-top:1px solid var(--border-green);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#050505" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+            <div>
+              <div style="font-size:13px;color:var(--text-sub);margin-bottom:2px;">A Kiss My Modas paga</div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--green);">R$ 52.800 a menos no primeiro ano</div>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;letter-spacing:0.1em;text-transform:uppercase;">Desconto efetivo</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:700;color:var(--green);line-height:1;">51,6%</div>
+            <div style="font-size:11px;color:var(--text-muted);">abaixo da precificação padrão</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- FIM CENÁRIO COMPARATIVO -->
+
+    <div class="investimento-grid fade-up">
+      <div class="inv-card">
+        <div class="inv-tag">Setup — Implementação Completa</div>
+        <div class="inv-valor-principal">R$ 18.000</div>
+        <div class="inv-sub">Parcelado em até 10× ou 50% + 50% em 30 dias</div>
+        <div class="inv-items">
+          <div class="inv-item">Toda a infraestrutura de integração (WhatsApp, Instagram, Site, Base)</div>
+          <div class="inv-item">Construção e treinamento dos 3 agentes digitais especializados</div>
+          <div class="inv-item">Criação do painel analítico e central de comando</div>
+          <div class="inv-item">Estrutura de pedidos automatizada para atacado</div>
+          <div class="inv-item">Integração com o site para aceleração do varejo</div>
+          <div class="inv-item">Treinamento da equipe gestora para leitura dos dashboards</div>
+          <div class="inv-item">Suporte total durante toda a implementação (~140 dias)</div>
+        </div>
+      </div>
+
+      <div class="inv-card destaque">
+        <div class="inv-tag">Mensalidade — Operação Contínua</div>
+        <div class="inv-valor-principal">R$ 3.500</div>
+        <div class="inv-sub">por mês · início 90 dias após a assinatura</div>
+        <div class="inv-items">
+          <div class="inv-item">Manutenção e monitoramento contínuo dos agentes</div>
+          <div class="inv-item">Ajustes, evoluções e otimizações mensais</div>
+          <div class="inv-item">Relatório semanal com métricas e insights</div>
+          <div class="inv-item">Suporte prioritário via WhatsApp em horário comercial</div>
+          <div class="inv-item">Novas funcionalidades entregues automaticamente</div>
+          <div class="inv-item">Desenvolvimento de novas funcionalidades sob demanda</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inv-nota fade-up">
+      <strong>Condições de pagamento do setup:</strong> O valor de R$ 18.000 pode ser parcelado em até <strong>10× no cartão com juros da operadora</strong>, ou dividido em <strong>50% na assinatura + 50% após 30 dias</strong> (sem juros). <br><br><strong>Sobre a mensalidade:</strong> O primeiro pagamento recorrente só ocorre <strong>90 dias após a assinatura do contrato</strong>. Os primeiros 3 meses de operação estão cobertos pelo setup — a recorrência começa apenas quando o sistema já está gerando resultado comprovado.
+    </div>
+
+    <div class="inv-total-bar fade-up">
       <div>
-        <div style="display:flex;gap:16px;margin-bottom:12px;padding:0 24px">
-          <div style="flex:1;font-size:11px;color:var(--text-muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase">Entregável</div>
-          <div style="font-size:11px;color:var(--text-muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:right;min-width:100px">Implementação</div>
-          <div style="font-size:11px;color:var(--text-muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:right;min-width:100px">Mensalidade</div>
-        </div>
-        <div class="valor-items">
-          <div class="valor-item">
-            <div class="valor-item-name">Motor de Reativação + Follow-up</div>
-            <div class="valor-item-impl">R$ 4.800</div>
-            <div class="valor-item-month">R$ 1.500/mês</div>
-          </div>
-          <div class="valor-item">
-            <div class="valor-item-name">Captura de Intenção 24/7 + Funil Atacado</div>
-            <div class="valor-item-impl">R$ 9.500</div>
-            <div class="valor-item-month">R$ 2.100/mês</div>
-          </div>
-          <div class="valor-item">
-            <div class="valor-item-name">Distribuição Estratégica + Agendamento</div>
-            <div class="valor-item-impl">R$ 6.200</div>
-            <div class="valor-item-month">R$ 1.750/mês</div>
-          </div>
-          <div class="valor-item">
-            <div class="valor-item-name">Radar de Receita em Tempo Real</div>
-            <div class="valor-item-impl" style="color:var(--green)">incluso</div>
-            <div class="valor-item-month" style="color:var(--green)">incluso</div>
-          </div>
-          <div class="valor-item">
-            <div class="valor-item-name">Treinamento do agente com voz da marca</div>
-            <div class="valor-item-impl" style="color:var(--green)">incluso</div>
-            <div class="valor-item-month" style="color:var(--green)">incluso</div>
-          </div>
-          <div class="valor-item">
-            <div class="valor-item-name">Rodízio automático de leads entre vendedoras</div>
-            <div class="valor-item-impl" style="color:var(--green)">incluso</div>
-            <div class="valor-item-month" style="color:var(--green)">incluso</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="valor-total-card">
-        <h3>Resumo Financeiro</h3>
-        <div class="valor-price-row">
-          <span class="label">Implementação total</span>
-          <span class="price">R$ 20.500</span>
-        </div>
-        <div class="valor-price-row">
-          <span class="label">Mensalidade total</span>
-          <span class="price">R$ 5.350/mês</span>
-        </div>
-        <div class="valor-price-row">
-          <span class="label">Contrato 12 meses</span>
-          <span class="price">R$ 84.700</span>
-        </div>
-
-        <div class="valor-total-amount">
-          <div class="total-label">Valor de Mercado (12 meses)</div>
-          <div class="total-num">R$ 84.700</div>
-        </div>
-
-        <div class="valor-voces-pagam">
-          <div class="pagam-label">O que vocês pagam</div>
-          <div class="pagam-num">Zero de implementação.<br>Zero de mensalidade.</div>
-          <div class="pagam-sub">Apenas custo operacional de tokens: R$ 110–470/mês</div>
-        </div>
+        <div class="inv-total-label">Incluso na implementação</div>
+        <div class="inv-total-num"><span>CRM completo</span> configurado e integrado à operação</div>
+        <div class="inv-total-num" style="font-size:15px;margin-top:8px;color:var(--text-sub);">+ <span>Diagnóstico Estratégico de Marketing</span> — análise completa para que o time de marketing desenvolva campanhas e implemente novas estratégias com base na operação real.</div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- CUSTO -->
-<section id="custo">
-  <div class="container">
-    <div class="fade-up">
-      <div class="section-label">Custo Operacional</div>
-      <h2 class="section-h2">O Único Custo<br><span class="accent">que Fica com Vocês</span></h2>
-    </div>
-
-    <div class="custo-grid fade-up">
-      <div>
-        <p class="custo-note">O único custo que permanece com vocês é o <strong>consumo de tokens da IA</strong> — o custo direto de cada mensagem processada. Esse valor é variável, proporcional ao volume de atendimento, e representa uma fração mínima do retorno gerado.</p>
-
-        <div class="custo-highlight">
-          Equivale ao custo de <strong>2 a 8 horas</strong> de trabalho de uma vendedora.<br>
-          O sistema opera <strong>720 horas por mês</strong>.
-        </div>
-      </div>
-
-      <div>
-        <div class="roi-table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Cenário</th>
-                <th>Conversas/mês</th>
-                <th>Custo estimado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Volume baixo (início)</td>
-                <td>300–500</td>
-                <td class="green">R$ 45–80</td>
-              </tr>
-              <tr>
-                <td>Volume médio (3–6 meses)</td>
-                <td>500–1.000</td>
-                <td class="green">R$ 80–160</td>
-              </tr>
-              <tr>
-                <td>Volume alto (operação plena)</td>
-                <td>1.000–2.000</td>
-                <td class="green">R$ 160–320</td>
-              </tr>
-              <tr>
-                <td>Pico (reativação + promoção)</td>
-                <td>2.000–4.000</td>
-                <td class="green">R$ 320–640</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div style="margin-top:12px;font-size:12px;color:var(--text-muted)">
-          + WhatsApp Business API: R$ 0–150/mês · Número dedicado: R$ 30–50/mês · Google Agenda: Gratuito<br>
-          <strong style="color:var(--text-sub)">Custo total máximo: R$ 470/mês</strong>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TIMELINE -->
-<section id="timeline">
-  <div class="container">
-    <div class="timeline-header fade-up">
-      <div class="section-label" style="justify-content:center">Implementação</div>
-      <h2 class="section-h2" style="text-align:center">Entrega em<br><span class="accent">60 Dias</span></h2>
-      <p class="section-lead" style="margin:0 auto;text-align:center">Cada fase gera resultado antes da próxima começar.</p>
-    </div>
-
-    <div class="timeline-phases fade-up">
-      <div class="timeline-phase">
-        <div class="phase-period">Dias 1–5</div>
-        <div class="phase-num">1</div>
-        <div class="phase-name">Onboarding</div>
-        <div class="phase-entregavel">Extração da base histórica, sequências de reativação configuradas, catálogo mapeado.</div>
-        <div class="phase-result">Primeiros disparos ativos em até 5 dias úteis</div>
-      </div>
-      <div class="timeline-phase">
-        <div class="phase-period">Dias 5–20</div>
-        <div class="phase-num">2</div>
-        <div class="phase-name">Reativação</div>
-        <div class="phase-entregavel">Motor de reativação ativo. Follow-up automático configurado. Base histórica trabalhada.</div>
-        <div class="phase-result">Receita da base histórica em 7–15 dias</div>
-      </div>
-      <div class="timeline-phase">
-        <div class="phase-period">Dias 20–45</div>
-        <div class="phase-num">3</div>
-        <div class="phase-name">Atendimento</div>
-        <div class="phase-entregavel">Agente 24/7 ativo. Funil de atacado funcionando. Rodízio de leads entre vendedoras.</div>
-        <div class="phase-result">Captura fora do horário funcionando</div>
-      </div>
-      <div class="timeline-phase">
-        <div class="phase-period">Dias 45–60</div>
-        <div class="phase-num">4</div>
-        <div class="phase-name">Gestão</div>
-        <div class="phase-entregavel">Dashboard ativo. Agendamento configurado. Alertas. Relatório semanal toda segunda.</div>
-        <div class="phase-result">Operação visível e guiada por dados</div>
-      </div>
-    </div>
-
-    <div class="timeline-note fade-up">
-      A Fase 1 começa a gerar retorno antes da Fase 2 estar concluída.<br>
-      Em <strong>30 dias</strong>, o investimento já está se pagando.
-    </div>
-  </div>
-</section>
-
-<!-- PARCERIA -->
-<section id="parceria">
-  <div class="container">
-    <div class="parceria-header fade-up">
-      <div class="section-label" style="justify-content:center">Modelo da Parceria</div>
-      <h2 class="section-h2" style="text-align:center">Isso Não É<br><span class="accent">Uma Venda</span></h2>
-    </div>
-
-    <p class="parceria-intro fade-up">É uma construção conjunta. A estrutura completa será implementada sem custo de setup, com objetivo claro: transformar a Kiss My Modas em referência de eficiência dentro do segmento de confecção.</p>
-
-    <div class="parceria-tables fade-up">
-      <div class="parceria-table neuralops">
-        <div class="parceria-table-header">
-          <h3>O que a NeuralOps entrega</h3>
-        </div>
-        <div class="parceria-row">
-          <span class="row-key">Implementação</span>
-          <span class="row-val">Toda a infraestrutura dos 4 pilares — sem custo de construção</span>
-        </div>
-        <div class="parceria-row">
-          <span class="row-key">Prazo</span>
-          <span class="row-val">Entrega completa em 60 dias, com retorno da Fase 1 em até 15 dias</span>
-        </div>
-        <div class="parceria-row">
-          <span class="row-key">Operação</span>
-          <span class="row-val">Manutenção, ajustes e evolução do sistema por 12 meses</span>
-        </div>
-        <div class="parceria-row">
-          <span class="row-key">Suporte</span>
-          <span class="row-val">Atendimento prioritário via WhatsApp em horário comercial</span>
-        </div>
-        <div class="parceria-row">
-          <span class="row-key">Treinamento</span>
-          <span class="row-val">Capacitação da gestora para leitura dos dados e dashboards</span>
-        </div>
-        <div class="parceria-row">
-          <span class="row-key">Evolução</span>
-          <span class="row-val">Novas funcionalidades chegam automaticamente durante a parceria</span>
-        </div>
-      </div>
-
-      <div class="parceria-table">
-        <div class="parceria-table-header">
-          <h3>O que vocês entregam</h3>
-        </div>
-        <div class="parceria-row">
-          <span class="row-key">Case real</span>
-          <span class="row-val">Autorização para usar os resultados como case público com números reais</span>
-        </div>
-        <div class="parceria-row">
-          <span class="row-key">Vitrine</span>
-          <span class="row-val">Disponibilidade para receber visitas ou calls de outros empresários do segmento</span>
-        </div>
-        <div class="parceria-row">
-          <span class="row-key">Depoimento</span>
-          <span class="row-val">Vídeo de depoimento após 90 dias de operação e resultados comprovados</span>
-        </div>
-        <div class="parceria-row">
-          <span class="row-key">Indicação</span>
-          <span class="row-val">Indicação ativa para outras confecções — sem obrigatoriedade de volume</span>
-        </div>
-        <div class="parceria-row">
-          <span class="row-key">Feedback</span>
-          <span class="row-val">Participação no aprimoramento do produto com retorno sobre o que funciona</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="fade-up" style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;font-size:14px;color:var(--text-muted);line-height:1.7">
-      <strong style="color:var(--text-sub)">Condições:</strong> Parceria inicial de 12 meses com renovação automática. A partir do mês 13, decidem: continuar na parceria ou migrar para contrato comercial padrão. <strong style="color:var(--text-sub)">Todo o histórico de clientes, dados e fluxos implementados pertencem à empresa.</strong> A NeuralOps não vende para concorrentes diretos na mesma cidade durante a vigência.
-    </div>
-  </div>
-</section>
-
-<!-- COMISSÃO -->
+<!-- COMISSÃO POR INDICAÇÃO -->
 <section id="comissao">
   <div class="container">
     <div class="fade-up">
-      <div class="section-label">Receita Passiva para Vocês</div>
-      <h2 class="section-h2">Comissão por<br><span class="accent">Indicação</span></h2>
-      <p class="section-lead">Toda empresa do segmento indicada por vocês que fechar contrato gera duas correntes de comissão.</p>
+      <div class="section-label">Possibilidade Adicional</div>
+      <h2 class="section-h2">Parceria por<br><span class="accent">Indicação</span></h2>
+      <p class="section-lead">A Kiss My Modas poderá participar como parceira na expansão do sistema. Para cada nova empresa indicada que fechar contrato, duas correntes de comissão são ativadas.</p>
     </div>
 
     <div class="comissao-grid fade-up">
       <div class="comissao-card">
         <span class="c-type">Por indicação fechada</span>
         <div class="c-pct">10%</div>
-        <div class="c-name">Comissão de Implementação</div>
-        <div class="c-cond">10% do valor de implementação por cliente indicado. Ticket médio de R$ 25k–32k por cliente. Pagamento único na assinatura do contrato.</div>
+        <div class="c-name">Comissão de Setup</div>
+        <div class="c-cond">10% do valor de setup por cliente indicado. Setup médio entre R$ 28k e R$ 34k. Pagamento único na assinatura do contrato. Sem limite de indicações.</div>
       </div>
       <div class="comissao-card">
-        <span class="c-type">Recorrente</span>
+        <span class="c-type">Recorrente mensal</span>
         <div class="c-pct">15%</div>
-        <div class="c-name">Comissão Mensal Recorrente</div>
-        <div class="c-cond">15% da mensalidade enquanto o cliente indicado estiver ativo. Sem prazo de expiração. Sem limite de indicações.</div>
+        <div class="c-name">Comissão Mensal</div>
+        <div class="c-cond">15% da mensalidade enquanto o cliente indicado estiver ativo. Mensalidade média entre R$ 5.800 e R$ 7.200. Sem prazo de expiração. Paga mensalmente enquanto o contrato estiver em vigor.</div>
       </div>
     </div>
 
     <div class="comissao-sim fade-up">
-      <h3>Simulação com 5 Indicações Fechadas</h3>
+      <h3>Simulação com 3 Indicações Fechadas</h3>
       <div class="comissao-sim-row">
-        <span class="cs-label">Comissão de implementação (5 × R$ 28.500 × 10%)</span>
-        <span class="cs-val">R$ 14.250 (único)</span>
+        <span class="cs-label">Comissão de setup (3 × R$ 31.000 × 10%)</span>
+        <span class="cs-val">R$ 9.300 (único)</span>
       </div>
       <div class="comissao-sim-row">
-        <span class="cs-label">Comissão recorrente mensal (5 × R$ 5.350 × 15%)</span>
-        <span class="cs-val">R$ 4.012/mês</span>
+        <span class="cs-label">Comissão recorrente mensal (3 × R$ 6.500 × 15%)</span>
+        <span class="cs-val">R$ 2.925/mês</span>
       </div>
       <div class="comissao-total">
-        <div class="ct-label">Retorno total em 12 meses</div>
-        <div class="ct-val">R$ 62.394</div>
+        <div class="ct-label">Retorno em 12 meses de indicações</div>
+        <div class="ct-val">R$ 44.400</div>
       </div>
       <div style="margin-top:16px;font-size:12px;color:var(--text-muted)">Comissões pagas mensalmente · Sem limite de indicações · Sem prazo de expiração</div>
     </div>
   </div>
 </section>
 
-<!-- PARA QUEM -->
+<!-- PARA QUEM É -->
 <section id="para-quem">
   <div class="container">
     <div class="para-quem-grid">
       <div class="fade-up">
         <div class="section-label">Para Quem É</div>
         <h2 class="section-h2">Isso Não É<br>Para Qualquer<br><span class="accent">Operação</span></h2>
-
         <div class="para-quem-checks">
-          <div class="pq-check"><span class="check">✓</span>Empresas que já possuem volume de atendimento</div>
+          <div class="pq-check"><span class="check">✓</span>Empresas que já têm volume de atendimento constante</div>
           <div class="pq-check"><span class="check">✓</span>Empresas com base de clientes ativa ou histórica</div>
           <div class="pq-check"><span class="check">✓</span>Empresas que querem crescer sem depender de mais equipe</div>
+          <div class="pq-check"><span class="check">✓</span>Empresas prontas para ser guiadas por dados, não percepção</div>
         </div>
       </div>
-
       <div class="para-quem-text fade-up">
-        <div class="big-quote">Vocês têm <em>30 anos construindo credibilidade</em> no mercado. Nós temos a tecnologia para fazer essa credibilidade <em>render muito mais</em>.</div>
-        <p>O mercado de confecção ainda opera com um modelo antigo: atendimento manual, sem follow-up sistemático, sem visibilidade, com desperdício silencioso de oportunidades todos os dias. Quem corrigir isso primeiro — domina.</p>
+        <div class="big-quote">Vocês têm credibilidade construída no mercado. Nós temos a tecnologia para fazer essa credibilidade <em>render muito mais</em>.</div>
+        <p>O segmento de confecção ainda opera com um modelo antigo: atendimento manual, sem follow-up sistemático, sem visibilidade, com desperdício silencioso de oportunidades todos os dias. Quem corrigir isso primeiro — domina.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROXIMOS PASSOS -->
+<!-- PRÓXIMOS PASSOS -->
 <section id="proximos-passos">
   <div class="container">
     <div class="passos-header fade-up">
       <div class="section-label" style="justify-content:center">Para Começar</div>
-      <h2 class="section-h2" style="text-align:center">O Próximo Passo<br><span class="accent">Não É Contratar</span></h2>
-      <p class="section-lead" style="margin:0 auto;text-align:center">É diagnosticar. Mapear a operação atual. Identificar onde o dinheiro está sendo perdido. E mostrar, com clareza, onde o sistema entra.</p>
+      <h2 class="section-h2" style="text-align:center">O Próximo Passo<br><span class="accent">É Assinar o Contrato</span></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center">Tudo começa com a assinatura. O diagnóstico, o mapeamento e a implementação fazem parte da Fase 1.</p>
     </div>
 
-    <div class="passos-list">
-      <div class="passo-item fade-up">
+    <div class="passos-list fade-up">
+      <div class="passo-item">
         <div class="passo-num">1</div>
         <div class="passo-content">
-          <h3>Assinatura do Contrato de Parceria</h3>
-          <p>Formaliza as contrapartidas, o modelo de comissão e as condições exclusivas desta parceria.</p>
+          <h3>Aprovação da Proposta e Assinatura do Contrato</h3>
+          <p>Formalização do modelo de implementação, investimento, cronograma das 5 fases e condições da parceria por indicação. Nenhuma etapa começa antes disso.</p>
         </div>
       </div>
-      <div class="passo-item fade-up">
+      <div class="passo-item">
         <div class="passo-num">2</div>
         <div class="passo-content">
-          <h3>Reunião de Onboarding (2h)</h3>
-          <p>Extração das conversas históricas, mapeamento completo do catálogo e definição do tom e voz do sistema.</p>
+          <h3>Kickoff + Diagnóstico Neural™ — Fase 1 (Dia 1)</h3>
+          <p>Reunião de onboarding e mapeamento completo da operação: volume de atendimento, fluxo de entrada, pontos de perda e gargalos. O diagnóstico é a primeira entrega da Fase 1 — incluído no contrato.</p>
         </div>
       </div>
-      <div class="passo-item fade-up">
+      <div class="passo-item">
         <div class="passo-num">3</div>
         <div class="passo-content">
-          <h3>Aprovação das Sequências de Reativação</h3>
-          <p>Entrega das primeiras mensagens para aprovação. Primeiros disparos em até 5 dias úteis após onboarding.</p>
+          <h3>Central de Comando Ativa (~35 dias)</h3>
+          <p>Fim da Fase 1: painel analítico operacional, dados reais sobre volume, conversão e oportunidades perdidas. Início da Fase 2.</p>
         </div>
       </div>
-      <div class="passo-item fade-up">
+      <div class="passo-item">
         <div class="passo-num">4</div>
         <div class="passo-content">
-          <h3>Motor de Reativação Ativo (Dias 5–20)</h3>
-          <p>Retorno esperado da base histórica em 7 a 15 dias após a ativação. Receita antes do sistema estar completo.</p>
-        </div>
-      </div>
-      <div class="passo-item fade-up">
-        <div class="passo-num">5</div>
-        <div class="passo-content">
-          <h3>Pilares 2, 3 e 4 em Paralelo (Dias 20–60)</h3>
-          <p>Operação completa ao final do mês 2. Atendimento 24/7, distribuição estratégica e radar de receita funcionando.</p>
+          <h3>Fases 2, 3, 4 e 5 em Sequência</h3>
+          <p>Cada fase de ~35 dias gera resultado concreto antes da próxima. Operação completa e funcionando em plena capacidade em ~175 dias.</p>
         </div>
       </div>
     </div>
@@ -2272,9 +1503,8 @@
       <div class="or-line">ou</div>
     </div>
     <div class="cta-big fade-up">
-      Ou instalam uma estrutura que trabalha<br>por vocês — <em>inclusive quando<br>ninguém está olhando.</em>
+      Ou instalam uma estrutura que trabalha<br>por vocês — inclusive quando<br><em>ninguém está olhando.</em>
     </div>
-    <a href="mailto:contato@neuralops.com.br" class="cta-btn fade-up">Quero avançar com a parceria</a>
   </div>
 </section>
 
@@ -2285,7 +1515,7 @@
     Infraestrutura de IA para empresas que querem crescer com autonomia<br>
     Goiânia, GO · contato@neuralops.com.br
   </div>
-  <div class="f-conf">Documento confidencial</div>
+  <div class="f-conf">Documento Confidencial</div>
 </footer>
 
 <script>
@@ -2293,82 +1523,43 @@
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / docHeight) * 100;
-    document.getElementById('progress').style.width = progress + '%';
+    document.getElementById('progress').style.width = (scrollTop / docHeight * 100) + '%';
   });
 
-  // ── INTERSECTION OBSERVER for fade-up ──
+  // ── FADE UP ──
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // ── PILARES TABS ──
-  function showPilar(n) {
-    document.querySelectorAll('.pilares-content').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.pilar-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('pilar-' + n).classList.add('active');
-    document.querySelectorAll('.pilar-tab')[n - 1].classList.add('active');
-
-    // Re-trigger flow step animations
-    document.querySelectorAll('#pilar-' + n + ' .flow-step').forEach(step => {
-      step.style.animation = 'none';
-      step.offsetHeight; // reflow
-      step.style.animation = '';
-    });
-  }
-
   // ── COUNTER ANIMATION ──
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.dataset.counted) {
-        entry.target.dataset.counted = '1';
-        animateCounter(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
-
   function animateCounter(el) {
     const target = parseInt(el.dataset.target);
-    const duration = 1800;
+    const duration = 2000;
     const start = performance.now();
-    const isInline = el.tagName === 'SPAN';
+    const prefix = el.closest('.sim-amount') ? 'R$ ' : '';
 
-    const step = (now) => {
+    function update(now) {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = Math.floor(eased * target);
-      const formatted = current.toLocaleString('pt-BR');
-
-      if (isInline) {
-        el.textContent = formatted;
-      } else {
-        el.textContent = 'R$ ' + formatted;
-      }
-
-      if (progress < 1) requestAnimationFrame(step);
-    };
-
-    requestAnimationFrame(step);
+      el.textContent = prefix + current.toLocaleString('pt-BR');
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = prefix + target.toLocaleString('pt-BR');
+    }
+    requestAnimationFrame(update);
   }
 
-  // ── NAV scroll effect ──
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 80) {
-      nav.style.padding = '12px 40px';
-    } else {
-      nav.style.padding = '18px 40px';
-    }
-  });
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = 'true';
+        animateCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
 </script>
 
 </body>
