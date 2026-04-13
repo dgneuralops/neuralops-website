@@ -439,6 +439,37 @@
     .passo-content h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
     .passo-content p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
 
+    /* ── OFERTA SEMANA ── */
+    #oferta-semana { padding: 100px 0; position: relative; }
+    #oferta-semana::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(190,255,1,0.06) 0%, transparent 70%); pointer-events: none; }
+    .oferta-wrapper { max-width: 760px; margin: 0 auto; text-align: center; position: relative; }
+    .oferta-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(190,255,1,0.1); border: 1px solid rgba(190,255,1,0.3); color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 32px; }
+    .oferta-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: blink 1.4s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .oferta-h { font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+    .oferta-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 48px; }
+    .oferta-box { background: var(--bg-card); border: 1px solid rgba(190,255,1,0.25); border-radius: 20px; padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; position: relative; overflow: hidden; }
+    .oferta-box::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(190,255,1,0.04) 0%, transparent 60%); pointer-events: none; }
+    .oferta-col { padding: 32px; position: relative; }
+    .oferta-col:first-child { border-right: 1px solid var(--border); }
+    .oferta-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .oferta-de { font-size: 18px; color: var(--text-muted); text-decoration: line-through; margin-bottom: 4px; }
+    .oferta-por { font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 4vw, 48px); font-weight: 800; color: var(--green); line-height: 1; }
+    .oferta-por sup { font-size: 18px; font-weight: 700; vertical-align: top; margin-top: 8px; }
+    .oferta-detalhe { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+    .oferta-economia { margin-top: 36px; padding: 18px 28px; background: rgba(190,255,1,0.07); border: 1px solid rgba(190,255,1,0.15); border-radius: 12px; font-size: 14px; color: var(--text-muted); }
+    .oferta-economia strong { color: var(--green); font-size: 18px; }
+    .oferta-cta { margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .oferta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--green); color: var(--bg); font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; padding: 18px 52px; border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+    .oferta-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 16px 48px rgba(190,255,1,0.25); }
+    .oferta-validade { font-size: 12px; color: var(--text-muted); letter-spacing: 0.05em; }
+    .oferta-validade span { color: var(--green); font-weight: 600; }
+    .countdown { display: inline-flex; gap: 16px; justify-content: center; margin-top: 16px; }
+    .cd-block { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .cd-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 800; color: var(--green); line-height: 1; min-width: 48px; text-align: center; background: var(--bg-card2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+    .cd-lbl { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .cd-sep { font-size: 24px; font-weight: 700; color: var(--green); align-self: center; margin-top: -10px; opacity: 0.5; }
+
     /* ── CTA FINAL ── */
     #cta-final { padding: 120px 40px; text-align: center; position: relative; overflow: hidden; }
     #cta-final::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(190,255,1,0.07) 0%, transparent 70%); pointer-events: none; }
@@ -465,6 +496,10 @@
       .mudancas-grid, .before-after, .para-quem-grid,
       .investimento-grid, .comissao-grid, .impacto-layout,
       .gantt-months, .gantt-row, .roi-sims, .roi-total-grid { grid-template-columns: 1fr !important; }
+      .oferta-box { grid-template-columns: 1fr !important; padding: 28px 20px; }
+      .oferta-col:first-child { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 28px; }
+      .countdown { gap: 8px; }
+      .cd-num { font-size: 22px; min-width: 38px; padding: 8px 10px; }
       .before-after { gap: 12px; }
       .inv-valor-principal { font-size: 40px; }
       .fase-num { font-size: 60px; top: 16px; right: 20px; }
@@ -1495,6 +1530,50 @@
   </div>
 </section>
 
+<!-- OFERTA SEMANA -->
+<section id="oferta-semana">
+  <div class="container">
+    <div class="oferta-wrapper fade-up">
+      <div class="oferta-badge">Oferta · Válida esta semana</div>
+      <h2 class="oferta-h">Condição especial<br>para fechar <span class="accent">esta semana</span></h2>
+      <p class="oferta-sub">Valores exclusivos para decisão até domingo. Após esse prazo, retornamos à precificação padrão.</p>
+
+      <div class="oferta-box">
+        <div class="oferta-col">
+          <div class="oferta-label">Setup de Implementação</div>
+          <div class="oferta-de">R$ 18.000</div>
+          <div class="oferta-por"><sup>R$</sup> 17.350</div>
+          <div class="oferta-detalhe">À vista · ou 50% + 50% em 30 dias<br>ou em até 10× com juros da operadora</div>
+        </div>
+        <div class="oferta-col">
+          <div class="oferta-label">Mensalidade — Operação Contínua</div>
+          <div class="oferta-de">R$ 3.500/mês</div>
+          <div class="oferta-por"><sup>R$</sup> 2.900<span style="font-size:18px;font-weight:600">/mês</span></div>
+          <div class="oferta-detalhe">Início 90 dias após assinatura<br>9 meses no 1º ano</div>
+        </div>
+      </div>
+
+      <div class="oferta-economia">
+        Você economiza <strong>R$ 5.760</strong> no primeiro ano em relação à proposta padrão<br>
+        <span style="font-size:12px;margin-top:4px;display:block">R$ 17.350 + 9 × R$ 2.900 = <strong style="color:var(--green)">R$ 43.460 no 1º ano</strong></span>
+      </div>
+
+      <div class="oferta-cta">
+        <div class="countdown" id="countdown">
+          <div class="cd-block"><div class="cd-num" id="cd-d">00</div><div class="cd-lbl">dias</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">horas</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">min</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">seg</div></div>
+        </div>
+        <p class="oferta-validade">Oferta válida até <span id="cd-deadline-label"></span> às 23h59</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA FINAL -->
 <section id="cta-final">
   <div class="container">
@@ -1531,6 +1610,36 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── COUNTDOWN ──
+  (function() {
+    // Próximo domingo às 23h59
+    const now = new Date();
+    const sunday = new Date(now);
+    sunday.setDate(now.getDate() + (7 - now.getDay()) % 7 || 7);
+    sunday.setHours(23, 59, 59, 0);
+    const monthNames = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+    const lbl = document.getElementById('cd-deadline-label');
+    if (lbl) lbl.textContent = sunday.getDate() + ' de ' + monthNames[sunday.getMonth()];
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tick(){
+      const diff = sunday - new Date();
+      if(diff <= 0){
+        ['cd-d','cd-h','cd-m','cd-s'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent='00'; });
+        return;
+      }
+      const d = Math.floor(diff/864e5);
+      const h = Math.floor((diff%864e5)/36e5);
+      const m = Math.floor((diff%36e5)/6e4);
+      const s = Math.floor((diff%6e4)/1e3);
+      const cd = document.getElementById('cd-d'); if(cd) cd.textContent = pad(d);
+      const ch = document.getElementById('cd-h'); if(ch) ch.textContent = pad(h);
+      const cm = document.getElementById('cd-m'); if(cm) cm.textContent = pad(m);
+      const cs = document.getElementById('cd-s'); if(cs) cs.textContent = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
 
   // ── COUNTER ANIMATION ──
   function animateCounter(el) {
