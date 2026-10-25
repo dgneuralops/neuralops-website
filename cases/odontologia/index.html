@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Odontologia — CRM Inteligente Reduz Ociosidade em 77% | Neural Ops</title>
+  <meta name="description" content="Como uma clínica odontológica com 5 cadeiras eliminou 77% de ociosidade, ativou recall automático de 320 pacientes/mês e cresceu receita de R$48k para R$82k com 4 agentes de IA." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="canonical" href="https://neuralops.com.br/cases/odontologia/" />
+
+  <meta property="og:type"         content="article" />
+  <meta property="og:url"          content="https://neuralops.com.br/cases/odontologia/" />
+  <meta property="og:title"        content="Case Odontologia — -77% Ociosidade com CRM e Recall Automático" />
+  <meta property="og:description"  content="4 agentes de IA transformaram clínica odontológica: -77% ociosidade, 320 recalls/mês, R$48k→R$82k de receita mensal em 45 dias." />
+  <meta property="og:image"        content="https://neuralops.com.br/og-image.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale"       content="pt_BR" />
+  <meta property="og:site_name"    content="Neural Ops" />
+  <meta property="article:author"  content="Neural Ops" />
+  <meta property="article:section" content="Cases de IA" />
+  <meta property="article:published_time" content="2026-04-10" />
+
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Case Odontologia — -77% Ociosidade com CRM e Recall Automático" />
+  <meta name="twitter:description" content="4 agentes de IA transformaram clínica odontológica: -77% ociosidade, 320 recalls/mês, R$48k→R$82k de receita mensal em 45 dias." />
+  <meta name="twitter:image"       content="https://neuralops.com.br/og-image.png" />
+
+  <meta name="keywords"    content="IA para clínica odontológica, recall automático pacientes, CRM odontologia, agendamento automático dentista, reduzir ociosidade clínica, agentes IA saúde" />
+  <meta name="robots"      content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="author"      content="Neural Ops" />
+  <meta name="theme-color" content="#0d0d0d" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Clínica Odontológica — CRM Inteligente e Recall Automático Reduzem Ociosidade em 77%",
+    "description": "Clínica odontológica com 5 cadeiras usou CRM inteligente e 4 agentes de IA para eliminar 77% da ociosidade e crescer receita de R$48k para R$82k/mês.",
+    "url": "https://neuralops.com.br/cases/odontologia/",
+    "datePublished": "2026-04-10",
+    "dateModified": "2026-04-10",
+    "author": { "@type": "Organization", "name": "Neural Ops", "url": "https://neuralops.com.br" },
+    "publisher": { "@type": "Organization", "name": "Neural Ops", "url": "https://neuralops.com.br", "logo": { "@type": "ImageObject", "url": "https://neuralops.com.br/favicon.svg" } },
+    "image": "https://neuralops.com.br/og-image.png",
+    "inLanguage": "pt-BR",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Neural Ops", "item": "https://neuralops.com.br/" },
+        { "@type": "ListItem", "position": 2, "name": "Cases & Insights", "item": "https://neuralops.com.br/cases/" },
+        { "@type": "ListItem", "position": 3, "name": "Clínica Odontológica", "item": "https://neuralops.com.br/cases/odontologia/" }
+      ]
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/cases/shared.css" />
+  <style>
+    /* ── page-specific ── */
+    .hero-tag-row { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+    .hero-title { font-size: clamp(28px, 3.5vw, 52px); font-weight: 900; letter-spacing: -2px; text-transform: uppercase; line-height: 1.02; margin: 20px 0 28px; max-width: 900px; }
+    .hero-title em { font-style: normal; color: var(--lime); }
+    .stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,.06); margin-top: 40px; }
+    .stat-card { background: var(--dark); padding: 24px 20px; }
+    .sc-num { font-size: 28px; font-weight: 900; color: var(--lime); }
+    .sc-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-top: 4px; }
+    .sc-desc { font-size: 12px; color: rgba(255,255,255,.2); margin-top: 4px; line-height: 1.5; }
+    .diag-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .diag-item:last-child { border-bottom: none; }
+    .diag-icon { width: 36px; height: 36px; background: rgba(190,255,1,.07); border: 1px solid rgba(190,255,1,.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .diag-icon svg { width: 16px; height: 16px; }
+    .diag-body h4 { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+    .diag-body p { font-size: 12px; color: rgba(255,255,255,.35); line-height: 1.55; }
+    .diag-body .num { color: var(--lime); font-weight: 800; }
+    /* Agent flow */
+    .agents-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 40px; }
+    .agent-card { background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.07); padding: 28px; transition: border-color .3s, background .3s; }
+    .agent-card:hover { border-color: rgba(190,255,1,.25); background: rgba(190,255,1,.03); }
+    .ac-num { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: rgba(190,255,1,.45); margin-bottom: 10px; }
+    .ac-title { font-size: 16px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: -.3px; margin-bottom: 8px; }
+    .ac-desc { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.65; margin-bottom: 14px; }
+    .ac-features { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .ac-features li { font-size: 11px; color: rgba(255,255,255,.4); padding-left: 14px; position: relative; }
+    .ac-features li::before { content: '→'; position: absolute; left: 0; color: var(--lime); }
+    .ac-stat { margin-top: 16px; padding: 10px 14px; background: rgba(190,255,1,.06); border-left: 2px solid var(--lime); }
+    .ac-stat-num { font-size: 22px; font-weight: 900; color: var(--lime); }
+    .ac-stat-label { font-size: 10px; color: rgba(255,255,255,.3); }
+    /* Agent connector SVG row */
+    .agent-flow-row { display: flex; align-items: center; gap: 0; margin: 40px 0 0; overflow: hidden; }
+    .afl-node { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+    .afl-box { width: 52px; height: 52px; background: rgba(190,255,1,.07); border: 1px solid rgba(190,255,1,.3); display: flex; align-items: center; justify-content: center; }
+    .afl-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.35); text-align: center; max-width: 72px; }
+    .afl-connector { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(190,255,1,.4), rgba(190,255,1,.1)); position: relative; }
+    .afl-connector .dot-anim { position: absolute; top: 50%; transform: translateY(-50%); width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: flowRight 2s linear infinite; }
+    @keyframes flowRight { 0%{left:0} 100%{left:100%} }
+    /* Charts */
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 40px; }
+    .big-result { background: rgba(190,255,1,.05); border: 1px solid rgba(190,255,1,.2); padding: 32px; text-align: center; }
+    .big-result-num { font-size: clamp(36px, 4vw, 56px); font-weight: 900; color: var(--lime); line-height: 1; }
+    .big-result-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: 8px; }
+    .big-result-sub { font-size: 12px; color: rgba(255,255,255,.2); margin-top: 4px; }
+    /* SVG node background */
+    .svg-nodes { position: absolute; top: 0; right: 0; width: 480px; height: 100%; pointer-events: none; opacity: .25; }
+    /* Ociosidade bar */
+    .ocio-bar { height: 10px; background: rgba(255,255,255,.07); border-radius: 2px; overflow: hidden; margin-top: 6px; }
+    .ocio-fill { height: 100%; border-radius: 2px; transition: width 1.2s ease; }
+    /* Saving items */
+    .saving-row { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .saving-row:last-child { border-bottom: none; }
+    .saving-arrow { font-size: 20px; color: var(--lime); font-weight: 900; flex-shrink: 0; }
+    .saving-text { font-size: 14px; color: rgba(255,255,255,.6); }
+    .saving-text strong { color: #fff; }
+    /* SVG bars */
+    .svg-chart-wrap { width: 100%; overflow: hidden; }
+  </style>
+</head>
+<body>
+
+<!-- GLOW CURSOR -->
+<div id="glow"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-text">Neural<em>Ops</em></div>
+    </a>
+        <div class="nav-links">
+      <a href="/#problema" class="nav-link">O Problema</a>
+      <a href="/#infraestrutura" class="nav-link">Infraestrutura</a>
+      <a href="/#processo" class="nav-link">Processo</a>
+      <a href="/#resultados" class="nav-link">Resultados</a>
+      <a href="/cases/" class="nav-link active">Cases & Insights</a>
+    </div>
+    <a href="/#contato" class="nav-cta">
+      <span>Diagnóstico Neural™</span>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#0d0d0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="case-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow-r"></div>
+  <!-- SVG animated nodes background -->
+  <svg class="svg-nodes" viewBox="0 0 480 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="120" cy="80" r="4" fill="#beff01" opacity=".6"><animate attributeName="opacity" values=".6;.1;.6" dur="3s" repeatCount="indefinite"/></circle>
+    <circle cx="320" cy="140" r="3" fill="#beff01" opacity=".4"><animate attributeName="opacity" values=".4;.9;.4" dur="4s" repeatCount="indefinite"/></circle>
+    <circle cx="240" cy="260" r="5" fill="#beff01" opacity=".3"><animate attributeName="opacity" values=".3;.7;.3" dur="2.5s" repeatCount="indefinite"/></circle>
+    <circle cx="400" cy="320" r="3" fill="#beff01" opacity=".5"><animate attributeName="opacity" values=".5;.1;.5" dur="3.5s" repeatCount="indefinite"/></circle>
+    <circle cx="80" cy="380" r="4" fill="#beff01" opacity=".35"><animate attributeName="opacity" values=".35;.75;.35" dur="2s" repeatCount="indefinite"/></circle>
+    <circle cx="340" cy="460" r="3" fill="#beff01" opacity=".45"><animate attributeName="opacity" values=".45;.8;.45" dur="4.5s" repeatCount="indefinite"/></circle>
+    <line x1="120" y1="80" x2="320" y2="140" stroke="#beff01" stroke-width=".5" opacity=".25"/>
+    <line x1="320" y1="140" x2="240" y2="260" stroke="#beff01" stroke-width=".5" opacity=".2"/>
+    <line x1="240" y1="260" x2="400" y2="320" stroke="#beff01" stroke-width=".5" opacity=".15"/>
+    <line x1="240" y1="260" x2="80" y2="380" stroke="#beff01" stroke-width=".5" opacity=".2"/>
+    <line x1="400" y1="320" x2="340" y2="460" stroke="#beff01" stroke-width=".5" opacity=".15"/>
+    <line x1="80" y1="380" x2="340" y2="460" stroke="#beff01" stroke-width=".5" opacity=".1"/>
+  </svg>
+  <div class="wrap">
+    <div class="breadcrumb fu">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/cases/">Cases &amp; Insights</a>
+      <span>/</span>
+      <span class="current">Odontologia</span>
+    </div>
+    <div class="hero-tag-row fu d1">
+      <span class="tag">Case · Saúde · Odontologia</span>
+    </div>
+    <h1 class="hero-title fu d2">
+      Clínica Odontológica —<br>
+      CRM Inteligente e Agendamento 24/7<br>
+      <em>Reduzem Ociosidade em 77%</em>
+    </h1>
+    <div class="hero-metrics fu d3">
+      <div class="hm-item">
+        <div class="hm-num" data-count="-77">-77%</div>
+        <div class="hm-label">Ociosidade</div>
+        <div class="hm-sub">35% → 8%</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-num" data-count="320">+320</div>
+        <div class="hm-label">Recalls / Mês</div>
+        <div class="hm-sub">Totalmente automáticos</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-num">4,8×</div>
+        <div class="hm-label">ROI</div>
+        <div class="hm-sub">Retorno sobre investimento</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-num">100%</div>
+        <div class="hm-label">Agenda 24/7</div>
+        <div class="hm-sub">Agendamento sem humano</div>
+      </div>
+    </div>
+    <div class="case-meta-bar fu d4">
+      <div class="case-meta-item">
+        <span class="case-meta-label">Setor</span>
+        <span class="case-meta-val">Saúde</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Segmento</span>
+        <span class="case-meta-val">Odontologia</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Prazo de Implementação</span>
+        <span class="case-meta-val">45 dias</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Dentistas</span>
+        <span class="case-meta-val">3 profissionais</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Cadeiras</span>
+        <span class="case-meta-val">5 cadeiras</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SECTION 1: CONTEXTO -->
+<section class="content-section">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <p class="section-eyebrow fu">01 — Contexto</p>
+        <h2 class="section-title fu d1">A Clínica Antes da IA</h2>
+        <p class="section-lead fu d2">Uma clínica sólida, com 5 cadeiras, 3 dentistas experientes e 2.300 pacientes cadastrados — mas presa em operação 100% manual, com 35% das cadeiras vazias todo dia.</p>
+        <div class="highlight dark fu d3" style="margin-top:28px;">
+          <p>A capacidade real da clínica era de <strong>R$85.000/mês</strong>. Ela faturava <strong>R$48.000</strong>. A diferença — <strong>R$37.000/mês</strong> — evaporava em ociosidade operacional invisível: cadeiras vazias, pacientes esquecidos e recall que nunca acontecia.</p>
+        </div>
+        <div style="margin-top:28px;" class="fu d4">
+          <div class="diag-item">
+            <div class="diag-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#beff01" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="diag-body">
+              <h4>Base de pacientes descentralizada</h4>
+              <p>2.300 pacientes cadastrados em planilhas e fichas de papel. Sem histórico integrado, sem segmentação, sem visibilidade.</p>
+            </div>
+          </div>
+          <div class="diag-item">
+            <div class="diag-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#beff01" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="diag-body">
+              <h4>Agenda com ociosidade estrutural</h4>
+              <p><span class="num">35%</span> das cadeiras vazias de forma crônica. Sem sistema de preenchimento automático de horários disponíveis.</p>
+            </div>
+          </div>
+          <div class="diag-item">
+            <div class="diag-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#beff01" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.55-.55a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="diag-body">
+              <h4>Agendamento exclusivo por telefone</h4>
+              <p>Recepcionistas gastavam em média <span class="num">12 minutos</span> por marcação. Impossível agendar fora do horário comercial.</p>
+            </div>
+          </div>
+          <div class="diag-item">
+            <div class="diag-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#beff01" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div class="diag-body">
+              <h4>Zero recall sistemático</h4>
+              <p>Pacientes sumiam após o procedimento. Nenhum contato de retorno. Nenhuma reativação. A base envelhecendo sem gerar receita.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="stat-cards fu d2" style="grid-template-columns:1fr 1fr;">
+          <div class="stat-card">
+            <div class="sc-num">2.300</div>
+            <div class="sc-label">Pacientes na base</div>
+            <div class="sc-desc">Planilhas e papel. Sem segmentação.</div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-num">35%</div>
+            <div class="sc-label">Ociosidade</div>
+            <div class="sc-desc">Cadeiras vazias gerando custo sem receita</div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-num">0</div>
+            <div class="sc-label">Recall automático</div>
+            <div class="sc-desc">Nenhum contato de retorno sistemático</div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-num">R$48k</div>
+            <div class="sc-label">Receita / mês</div>
+            <div class="sc-desc">Cap. real: R$85k+. Diferença: R$37k/mês</div>
+          </div>
+        </div>
+        <div class="chart-box fu d3" style="margin-top:2px;">
+          <div class="chart-box-title">Utilização da Capacidade Instalada</div>
+          <div style="margin-bottom:16px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px;">
+              <span>Cadeiras ocupadas</span><span>65%</span>
+            </div>
+            <div class="ocio-bar"><div class="ocio-fill" id="bar-occ" style="width:0%;background:rgba(255,255,255,.15);"></div></div>
+          </div>
+          <div style="margin-bottom:16px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px;">
+              <span>Ociosidade (cadeiras vazias)</span><span style="color:#ef4444;">35%</span>
+            </div>
+            <div class="ocio-bar"><div class="ocio-fill" id="bar-idle" style="width:0%;background:rgba(239,68,68,.4);"></div></div>
+          </div>
+          <div style="margin-bottom:8px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px;">
+              <span>Receita capturada vs. potencial</span><span style="color:var(--lime);">56%</span>
+            </div>
+            <div class="ocio-bar"><div class="ocio-fill" id="bar-rev" style="width:0%;background:var(--lime);"></div></div>
+          </div>
+          <p style="font-size:11px;color:rgba(255,255,255,.2);margin-top:14px;">R$48k/mês de R$85k+ possíveis. <span style="color:var(--lime);">R$37k/mês evaporando.</span></p>
+        </div>
+        <blockquote class="case-quote fu d4">
+          <p>"Nossa agenda era um caos. Às vezes olhávamos para 2 cadeiras vazias às 14h com 300 pacientes em atraso de retorno na planilha."</p>
+          <cite>— Gestora da clínica, pré-implementação</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: DIAGNÓSTICO -->
+<section class="content-section" style="background:rgba(255,255,255,.01);">
+  <div class="wrap">
+    <p class="section-eyebrow fu">02 — Diagnóstico Neural™</p>
+    <h2 class="section-title fu d1">O Que Encontramos</h2>
+    <p class="section-lead fu d2">O Diagnóstico Neural™ revelou que a clínica não tinha problema de pacientes — tinha problema de sistema. A mina de ouro estava enterrada na própria base.</p>
+    <div class="two-col" style="margin-top:48px;">
+      <div>
+        <div class="flow-step fu">
+          <div class="flow-step-num">847</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Pacientes com retorno vencido há +90 dias</div>
+            <div class="flow-step-desc">Mina de ouro imediata. Pacientes que já conhecem a clínica, já foram atendidos, e simplesmente precisavam de um contato. Nenhum deles havia sido acionado.</div>
+            <div class="flow-step-badge">Prioridade máxima</div>
+          </div>
+        </div>
+        <div class="flow-step fu d1">
+          <div class="flow-step-num">210</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Tratamentos iniciados e abandonados</div>
+            <div class="flow-step-desc">Pacientes com plano de tratamento aberto, que pararam no meio. Receita já parcialmente conquistada, nunca concluída. Canal direto para reativação de alto valor.</div>
+            <div class="flow-step-badge">Receita não concluída</div>
+          </div>
+        </div>
+        <div class="flow-step fu d2">
+          <div class="flow-step-num">12min</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Tempo médio por agendamento telefônico</div>
+            <div class="flow-step-desc">Cada marcação consumia 12 minutos das recepcionistas. Com volume de agendamentos, 68% do tempo das 3 recepcionistas era gasto apenas em agendamento e confirmação.</div>
+            <div class="flow-step-badge">Gargalo operacional</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="flow-step fu">
+          <div class="flow-step-num">22%</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Taxa de cancelamento sem reagendamento</div>
+            <div class="flow-step-desc">Quase 1 em cada 4 consultas canceladas resultava em cadeira vazia definitivamente. Sem processo de recuperação automática.</div>
+            <div class="flow-step-badge">Sangramento de receita</div>
+          </div>
+        </div>
+        <div class="flow-step accent fu d1">
+          <div class="flow-step-num">68%</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Tempo das recepcionistas em agendamento</div>
+            <div class="flow-step-desc">3 recepcionistas passavam 68% do expediente fazendo o que um agente de IA poderia fazer em segundos — verificar agenda, confirmar horário, enviar confirmação.</div>
+            <div class="flow-step-badge">Custo humano desnecessário</div>
+          </div>
+        </div>
+        <div class="flow-step fu d2">
+          <div class="flow-step-num">0</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Integração agenda ↔ histórico do paciente</div>
+            <div class="flow-step-desc">Zero conexão entre o histórico clínico e a agenda. Cada marcação era feita às cegas — sem saber o que o paciente tinha feito antes, quando havia ido pela última vez ou qual tratamento estava pendente.</div>
+            <div class="flow-step-badge">Decisão sem dados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: SOLUÇÃO — 4 AGENTES -->
+<section class="content-section">
+  <div class="wrap">
+    <p class="section-eyebrow fu">03 — A Solução</p>
+    <h2 class="section-title fu d1">4 Agentes Orquestrados</h2>
+    <p class="section-lead fu d2">Em vez de uma ferramenta isolada, construímos uma infraestrutura de 4 agentes que se comunicam, se alimentam e amplificam os resultados uns dos outros.</p>
+    <!-- Flow visual -->
+    <div class="agent-flow-row fu d3">
+      <div class="afl-node">
+        <div class="afl-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#beff01" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="afl-label">Agente Recall</div>
+      </div>
+      <div class="afl-connector"><div class="dot-anim"></div></div>
+      <div class="afl-node">
+        <div class="afl-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#beff01" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="afl-label">Agendamento 24/7</div>
+      </div>
+      <div class="afl-connector"><div class="dot-anim" style="animation-delay:.5s"></div></div>
+      <div class="afl-node">
+        <div class="afl-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#beff01" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.55-.55a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="afl-label">Confirmação</div>
+      </div>
+      <div class="afl-connector"><div class="dot-anim" style="animation-delay:1s"></div></div>
+      <div class="afl-node">
+        <div class="afl-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#beff01" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <div class="afl-label">Pós-atendimento</div>
+      </div>
+    </div>
+    <div class="agents-grid fu d4">
+      <!-- Agente 1 -->
+      <div class="agent-card">
+        <div class="ac-num">AGENTE 01</div>
+        <div class="ac-title">Agente de Recall</div>
+        <div class="ac-desc">Varre a base diariamente, identifica pacientes com retorno vencido e os contata com mensagem personalizada — nome, último procedimento, tempo desde a última visita. Agenda automaticamente sem intervenção humana.</div>
+        <ul class="ac-features">
+          <li>Análise diária automática da base de 2.300 pacientes</li>
+          <li>Priorização por urgência clínica (tratamentos em andamento primeiro)</li>
+          <li>Mensagem personalizada com histórico do paciente</li>
+          <li>847 pacientes reativados nos primeiros 90 dias</li>
+        </ul>
+        <div class="ac-stat">
+          <div class="ac-stat-num">320/mês</div>
+          <div class="ac-stat-label">Recalls automáticos em cruzeiro</div>
+        </div>
+      </div>
+      <!-- Agente 2 -->
+      <div class="agent-card">
+        <div class="ac-num">AGENTE 02</div>
+        <div class="ac-title">Agente de Agendamento 24/7</div>
+        <div class="ac-desc">Recebe pedidos de agendamento a qualquer hora do dia ou da noite, verifica a disponibilidade em tempo real no Google Calendar, agenda e envia confirmação com todas as informações necessárias em menos de 3 minutos.</div>
+        <ul class="ac-features">
+          <li>Integrado diretamente ao Google Calendar da clínica</li>
+          <li>Agendamento concluído em média em 3 minutos (vs. 12 min por telefone)</li>
+          <li>Disponível 24/7, inclusive fins de semana e feriados</li>
+          <li>Confirmação automática com endereço, instruções e lembretes</li>
+        </ul>
+        <div class="ac-stat">
+          <div class="ac-stat-num">3 min</div>
+          <div class="ac-stat-label">Tempo médio de agendamento (era 12 min)</div>
+        </div>
+      </div>
+      <!-- Agente 3 -->
+      <div class="agent-card">
+        <div class="ac-num">AGENTE 03</div>
+        <div class="ac-title">Agente de Confirmação</div>
+        <div class="ac-desc">Envia mensagem de confirmação 48h antes da consulta e novamente 2h antes. Se o paciente precisar remarcar, o agente já sugere horários alternativos e reconfigura a agenda automaticamente. Envia instruções de preparo específicas para cada procedimento.</div>
+        <ul class="ac-features">
+          <li>Dois pontos de confirmação: 48h e 2h antes</li>
+          <li>Reagendamento automático em caso de cancelamento</li>
+          <li>Instruções de preparo personalizadas por tipo de procedimento</li>
+          <li>Taxa de cancelamento: 22% → 5%</li>
+        </ul>
+        <div class="ac-stat">
+          <div class="ac-stat-num">94%</div>
+          <div class="ac-stat-label">Taxa de confirmação de consultas</div>
+        </div>
+      </div>
+      <!-- Agente 4 -->
+      <div class="agent-card">
+        <div class="ac-num">AGENTE 04</div>
+        <div class="ac-title">Agente de Pós-Atendimento</div>
+        <div class="ac-desc">Horas após o procedimento, o agente entra em contato para coletar avaliação (NPS automatizado), reforça instruções de higiene e cuidado pós-procedimento, sugere a próxima consulta e oferece benefício para indicação de novos pacientes.</div>
+        <ul class="ac-features">
+          <li>NPS automatizado após cada atendimento</li>
+          <li>Instrução de higiene e pós-operatório personalizada</li>
+          <li>Sugestão proativa da próxima consulta agendada na hora</li>
+          <li>Programa de indicação com benefício para o paciente</li>
+        </ul>
+        <div class="ac-stat">
+          <div class="ac-stat-num">38%</div>
+          <div class="ac-stat-label">Pacientes que indicam novo paciente após o fluxo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: TIMELINE -->
+<section class="content-section" style="background:rgba(255,255,255,.01);">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <p class="section-eyebrow fu">04 — Implementação</p>
+        <h2 class="section-title fu d1">45 Dias do Zero ao Go-Live</h2>
+        <p class="section-lead fu d2">Implementação estruturada em fases, sem interromper a operação da clínica. Cada semana com entregável concreto e resultado mensurável.</p>
+        <div class="highlight fu d3" style="margin-top:28px;">
+          <p>No <strong>Dia 45</strong>, a clínica entrou em operação completa com todos os 4 agentes ativos. A ociosidade já havia caído de <strong>35% para 14%</strong> apenas com os primeiros agentes rodando.</p>
+        </div>
+      </div>
+      <div class="tl fu d2">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Semana 1</div>
+          <div class="tl-title">CRM + Migração de Base</div>
+          <div class="tl-desc">CRM instalado e configurado para o modelo da clínica. Migração e estruturação dos 2.300 pacientes da planilha para o sistema centralizado.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Semana 2</div>
+          <div class="tl-title">Segmentação da Base</div>
+          <div class="tl-desc">Classificação automática: recall vencido, tratamento em andamento, paciente ativo, paciente inativo. Cada segmento com estratégia de abordagem diferente.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Semana 3</div>
+          <div class="tl-title">Agente de Recall Ativado</div>
+          <div class="tl-desc">Primeiros 178 pacientes contactados automaticamente. Resultados imediatos: 47 agendamentos nas primeiras 72h.</div>
+          <div class="tl-result">→ 47 agendamentos em 72h</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Semana 4</div>
+          <div class="tl-title">Agendamento 24/7 no Ar</div>
+          <div class="tl-desc">Integração com Google Calendar concluída. Agendamento automático funcionando. Pacientes podendo marcar à meia-noite se quiserem.</div>
+          <div class="tl-result">→ Primeiros agendamentos fora do horário comercial</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Semana 5</div>
+          <div class="tl-title">Confirmação + Pós-Atendimento</div>
+          <div class="tl-desc">Agente de confirmação ativado. Taxa de cancelamento cai de 22% para 9% na primeira semana. Pós-atendimento começa coleta de NPS.</div>
+          <div class="tl-result">→ Cancelamentos: 22% → 9% na semana 1</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Semanas 6-7</div>
+          <div class="tl-title">Ajustes + Treinamento</div>
+          <div class="tl-desc">Fine-tuning das mensagens, otimização dos scripts de abordagem, treinamento da equipe para supervisão dos agentes.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Dia 45 — Go-live Completo</div>
+          <div class="tl-title">Ociosidade: 35% → 14%</div>
+          <div class="tl-desc">Com apenas 4 semanas de agentes rodando, a ociosidade já havia caído pela metade. Sistema em modo de cruzeiro.</div>
+          <div class="tl-result">→ Todos os 4 agentes ativos e otimizados</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--lime);box-shadow:0 0 12px rgba(190,255,1,.5);"></div>
+          <div class="tl-phase">Mês 3 — Estado Estável</div>
+          <div class="tl-title">Ociosidade: 8% | ROI: 4,8×</div>
+          <div class="tl-desc">Recall em cruzeiro de 320/mês. Ociosidade nos menores níveis históricos. Receita incremental de R$34.000/mês consolidada.</div>
+          <div class="tl-result">→ ROI 4,8× confirmado no balanço do trimestre</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: RESULTADOS -->
+<section class="content-section">
+  <div class="wrap">
+    <p class="section-eyebrow fu">05 — Resultados</p>
+    <h2 class="section-title fu d1">Números que Falam</h2>
+    <p class="section-lead fu d2">Métricas verificadas no balanço do 3º mês pós-implementação. Todos os números auditados pela gestão da clínica.</p>
+
+    <!-- Big numbers row -->
+    <div class="results-grid fu d2">
+      <div class="big-result">
+        <div class="big-result-num" id="cnt-rec">R$34k</div>
+        <div class="big-result-label">Receita Incremental / Mês</div>
+        <div class="big-result-sub">R$48k → R$82k</div>
+      </div>
+      <div class="big-result">
+        <div class="big-result-num">4,8×</div>
+        <div class="big-result-label">Retorno sobre Investimento</div>
+        <div class="big-result-sub">ROI no 3º mês</div>
+      </div>
+      <div class="big-result">
+        <div class="big-result-num">-77%</div>
+        <div class="big-result-label">Redução de Ociosidade</div>
+        <div class="big-result-sub">35% → 8%</div>
+      </div>
+    </div>
+
+    <!-- Charts grid -->
+    <div class="three-col" style="margin-top:2px; gap:2px;">
+      <!-- Ociosidade chart -->
+      <div class="chart-box fu">
+        <div class="chart-box-title">Ociosidade das Cadeiras</div>
+        <div class="bar-group" style="height:160px; align-items:flex-end;">
+          <div class="bar-item">
+            <div class="bar-fill gray" id="bar-idle-before" style="height:0%; transition: height 1s ease;">
+              <span class="bv">35%</span>
+            </div>
+            <div class="bar-name">Antes</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-fill lime" id="bar-idle-after" style="height:0%; transition: height 1s ease;">
+              <span class="bv" style="color:#0d0d0d;">8%</span>
+            </div>
+            <div class="bar-name">Depois</div>
+          </div>
+        </div>
+      </div>
+      <!-- Receita chart -->
+      <div class="chart-box fu d1">
+        <div class="chart-box-title">Receita Mensal (R$ mil)</div>
+        <div class="bar-group" style="height:160px; align-items:flex-end;">
+          <div class="bar-item">
+            <div class="bar-fill gray" id="bar-rev-before" style="height:0%; transition: height 1s ease;">
+              <span class="bv">R$48k</span>
+            </div>
+            <div class="bar-name">Antes</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-fill lime" id="bar-rev-after" style="height:0%; transition: height 1s ease;">
+              <span class="bv" style="color:#0d0d0d;">R$82k</span>
+            </div>
+            <div class="bar-name">Depois</div>
+          </div>
+        </div>
+      </div>
+      <!-- Recall chart -->
+      <div class="chart-box fu d2">
+        <div class="chart-box-title">Recall de Pacientes / Mês</div>
+        <div class="bar-group" style="height:160px; align-items:flex-end;">
+          <div class="bar-item">
+            <div class="bar-fill gray" id="bar-recall-before" style="height:0%; transition: height 1s ease;">
+              <span class="bv">0</span>
+            </div>
+            <div class="bar-name">Antes</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-fill lime" id="bar-recall-after" style="height:0%; transition: height 1s ease;">
+              <span class="bv" style="color:#0d0d0d;">320/mês</span>
+            </div>
+            <div class="bar-name">Depois</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Operational savings -->
+    <div class="two-col" style="margin-top:2px; gap:2px;">
+      <div class="chart-box fu">
+        <div class="chart-box-title">Tempo das Recepcionistas em Agendamento</div>
+        <div style="margin-bottom:20px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px;">
+            <span>Antes (68% do tempo)</span>
+            <span style="color:rgba(239,68,68,.7);">68%</span>
+          </div>
+          <div class="ocio-bar" style="height:12px;">
+            <div class="ocio-fill" id="hbar-rec-before" style="width:0%;background:rgba(239,68,68,.35);transition:width 1.2s ease;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px;">
+            <span>Depois (15% do tempo)</span>
+            <span style="color:var(--lime);">15%</span>
+          </div>
+          <div class="ocio-bar" style="height:12px;">
+            <div class="ocio-fill" id="hbar-rec-after" style="width:0%;background:var(--lime);transition:width 1.2s ease;"></div>
+          </div>
+        </div>
+        <p style="font-size:12px;color:rgba(255,255,255,.3);margin-top:16px;">As 3 recepcionistas foram realocadas para atendimento ao paciente, relacionamento e gestão — atividades de alto impacto que nenhum agente substitui.</p>
+      </div>
+      <div class="chart-box fu d1">
+        <div class="chart-box-title">Tempo Médio por Agendamento</div>
+        <div style="display:flex;align-items:center;gap:24px;margin-top:16px;">
+          <div style="text-align:center;flex:1;">
+            <div style="font-size:48px;font-weight:900;color:rgba(255,255,255,.25);">12</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.3);letter-spacing:1px;">MINUTOS</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.2);margin-top:4px;">Por telefone (antes)</div>
+          </div>
+          <div style="font-size:36px;color:var(--lime);font-weight:900;">→</div>
+          <div style="text-align:center;flex:1;">
+            <div style="font-size:48px;font-weight:900;color:var(--lime);">3</div>
+            <div style="font-size:11px;color:var(--lime);letter-spacing:1px;opacity:.7;">MINUTOS</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.2);margin-top:4px;">Automático (depois)</div>
+          </div>
+        </div>
+        <div style="margin-top:20px;padding:12px;background:rgba(190,255,1,.06);border:1px solid rgba(190,255,1,.15);">
+          <p style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;"><strong style="color:var(--lime);">75% de redução</strong> no tempo de agendamento. Com volume de 400+ agendamentos/mês, isso representa mais de 36 horas de trabalho devolvidas mensalmente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: COMPARAÇÃO -->
+<section class="content-section" style="background:rgba(255,255,255,.01);">
+  <div class="wrap">
+    <p class="section-eyebrow fu">06 — Antes vs. Depois</p>
+    <h2 class="section-title fu d1">Comparação Operacional</h2>
+    <p class="section-lead fu d2">Uma clínica completamente diferente — mesma equipe, mesmo espaço, mesmos dentistas. O que mudou foi o sistema de inteligência por trás das operações.</p>
+    <div style="margin-top:48px;" class="fu d2">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Processo</th>
+            <th>Antes</th>
+            <th>Depois com Neural Ops</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;color:rgba(255,255,255,.6);">Agendamento de consultas</td>
+            <td class="td-bad"><span class="xk">✕</span>Manual por telefone, 12 min/marcação, só horário comercial</td>
+            <td class="td-good"><span class="ck">✓</span>Automático 24/7, 3 min/marcação, qualquer hora</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:rgba(255,255,255,.6);">Recall de pacientes</td>
+            <td class="td-bad"><span class="xk">✕</span>Não existia. Pacientes sumiam após o procedimento</td>
+            <td class="td-good"><span class="ck">✓</span>320 contatos automáticos/mês com mensagem personalizada</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:rgba(255,255,255,.6);">Cancelamentos</td>
+            <td class="td-bad"><span class="xk">✕</span>22% de cancelamento sem reagendamento automático</td>
+            <td class="td-good"><span class="ck">✓</span>5% de cancelamento. Reagendamento automático oferecido</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:rgba(255,255,255,.6);">Histórico do paciente</td>
+            <td class="td-bad"><span class="xk">✕</span>Papel e planilha. Sem integração com agenda</td>
+            <td class="td-good"><span class="ck">✓</span>CRM integrado — histórico, agenda e recall unificados</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:rgba(255,255,255,.6);">Confirmação de consultas</td>
+            <td class="td-bad"><span class="xk">✕</span>Ligação manual das recepcionistas (quando dava tempo)</td>
+            <td class="td-good"><span class="ck">✓</span>Confirmação automática 48h e 2h antes. 94% de taxa</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:rgba(255,255,255,.6);">Visibilidade da agenda</td>
+            <td class="td-bad"><span class="xk">✕</span>Papel ou planilha local. Sem visão em tempo real</td>
+            <td class="td-good"><span class="ck">✓</span>Dashboard em tempo real com Google Calendar integrado</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:rgba(255,255,255,.6);">Instruções de preparo</td>
+            <td class="td-bad"><span class="xk">✕</span>Verbal no telefone (quando lembrava de passar)</td>
+            <td class="td-good"><span class="ck">✓</span>Automáticas, personalizadas por procedimento, por escrito</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:rgba(255,255,255,.6);">Pós-atendimento e NPS</td>
+            <td class="td-bad"><span class="xk">✕</span>Não existia</td>
+            <td class="td-good"><span class="ck">✓</span>NPS automático + instrução pós-procedimento + indicação</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:rgba(255,255,255,.6);">Receita mensal</td>
+            <td class="td-bad"><span class="xk">✕</span>R$48.000/mês (56% da capacidade)</td>
+            <td class="td-good"><span class="ck">✓</span>R$82.000/mês (+71%). Ociosidade: 8%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="content-section" style="padding:64px 0;">
+  <div class="wrap">
+    <p class="section-eyebrow fu">Outros Cases</p>
+    <h2 class="section-title fu d1">Mais Resultados Reais</h2>
+    <div class="related-grid fu d2" style="margin-top:32px;">
+      <a href="/cases/medprev-apgo/" class="related-card">
+        <div class="related-sector">Saúde · Medicina Preventiva</div>
+        <div class="related-title">Clínica de Check-up — Agente de Triagem e Follow-up Aumenta Conversão em 68%</div>
+        <div class="related-arrow">→</div>
+      </a>
+      <a href="/cases/estetica/" class="related-card">
+        <div class="related-sector">Estética · Beleza</div>
+        <div class="related-title">Clínica de Estética — Retenção de Clientes Salta de 41% para 79% com IA</div>
+        <div class="related-arrow">→</div>
+      </a>
+      <a href="/cases/consorcios/" class="related-card">
+        <div class="related-sector">Financeiro · Consórcios</div>
+        <div class="related-title">Corretora de Consórcios — 95% mais vendas com IA de Qualificação</div>
+        <div class="related-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-block">
+  <div class="cta-title">Sua Clínica Tem<br>o Mesmo Potencial</div>
+  <p class="cta-sub">O Diagnóstico Neural™ mapeia exatamente onde está a ociosidade oculta e quanto ela está custando. Sem compromisso, sem pitch de vendas.</p>
+  <a href="/#contato" class="cta-btn">
+    <span>Quero meu diagnóstico</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div style="font-size:16px;font-weight:900;letter-spacing:-.5px;">Neural<span style="color:var(--lime);">Ops</span></div>
+    <div style="font-size:12px;color:rgba(255,255,255,.2);">Instalamos o Cérebro Operacional da Sua Empresa</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.15);">© 2025 Neural Ops. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<script>
+  // Glow cursor
+  const glow = document.getElementById('glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // IntersectionObserver for .fu
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('vis');
+        // Animate bars when they come into view
+        animateBarsOnVisible(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fu').forEach(el => observer.observe(el));
+
+  // Bar animations
+  function animateBarsOnVisible(el) {
+    // Check if this element is a chart-box or contains bar-fills
+    const chartBox = el.classList.contains('chart-box') ? el : null;
+
+    if (chartBox) {
+      const barsBefore = chartBox.querySelectorAll('[id$="-before"]');
+      const barsAfter = chartBox.querySelectorAll('[id$="-after"]');
+      barsBefore.forEach(b => animateBar(b));
+      barsAfter.forEach(b => animateBar(b));
+    }
+  }
+
+  // Trigger bar charts when visible
+  const barTargets = {
+    'bar-idle-before': 35, 'bar-idle-after': 8,
+    'bar-rev-before': 48, 'bar-rev-after': 82,
+    'bar-recall-before': 0.5, 'bar-recall-after': 100,
+  };
+
+  // Max values for percentage calculation
+  const barMax = {
+    'bar-idle-before': 35, 'bar-idle-after': 35,
+    'bar-rev-before': 82, 'bar-rev-after': 82,
+    'bar-recall-before': 320, 'bar-recall-after': 320,
+  };
+
+  function animateBar(bar) {
+    const id = bar.id;
+    if (!id || !(id in barTargets)) return;
+    const pct = (barTargets[id] / barMax[id]) * 100;
+    setTimeout(() => { bar.style.height = pct + '%'; }, 200);
+  }
+
+  // Horizontal bar observer
+  const hbarObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const b1 = document.getElementById('hbar-rec-before');
+        const b2 = document.getElementById('hbar-rec-after');
+        if (b1) b1.style.width = '68%';
+        if (b2) b2.style.width = '15%';
+        // Context bars
+        const bocc = document.getElementById('bar-occ');
+        const bidle = document.getElementById('bar-idle');
+        const brev = document.getElementById('bar-rev');
+        if (bocc) bocc.style.width = '65%';
+        if (bidle) bidle.style.width = '35%';
+        if (brev) brev.style.width = '56%';
+      }
+    });
+  }, {threshold: 0.2});
+
+  // Register all chart boxes with bar observer
+  document.querySelectorAll('.chart-box').forEach(el => {
+    hbarObserver.observe(el);
+  });
+
+  // Also observe bar fills directly
+  const barFillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        if (id && id in barTargets) {
+          const pct = (barTargets[id] / barMax[id]) * 100;
+          setTimeout(() => { e.target.style.height = Math.max(pct, 2) + '%'; }, 300);
+        }
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('[id^="bar-"]').forEach(el => {
+    barFillObserver.observe(el);
+  });
+</script>
+</body>
+</html>

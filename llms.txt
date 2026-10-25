@@ -1,0 +1,36 @@
+# NeuralOps
+
+> A NeuralOps diagnostica gargalos empresariais e projeta, implementa e evolui infraestruturas inteligentes personalizadas para pequenas e médias empresas brasileiras. Usa integrações com ferramentas existentes, automação de processos, agentes de IA personalizados, organização de dados e Business Intelligence. Não exige que o cliente use um software específico.
+
+Assinatura: "NeuralOps — Inteligência aplicada à operação. Infraestrutura construída para o crescimento."
+Site: https://neuralops.com.br · Contato: contato@neuralops.com.br · Idioma: pt-BR · Atuação: Brasil
+
+## Posicionamento
+
+- Categoria: infraestrutura inteligente para empresas em crescimento.
+- Diferença: "Não começamos escolhendo uma ferramenta. Começamos entendendo sua operação."
+- Não é uma empresa de chatbots nem de uma ferramenta específica. A viabilidade de cada integração depende de APIs, permissões e análise técnica.
+- Público: donos, sócios e gestores de empresas com operação ativa, preferencialmente com faturamento entre R$ 100 mil e R$ 1,5 milhão por mês, gargalos de atendimento, vendas, processos ou gestão, e sem equipe interna de dados.
+
+## Como trabalha
+
+1. Diagnóstico: processos, sistemas, gargalos, oportunidades e indicadores disponíveis.
+2. Arquitetura: prioridades, integrações, indicadores de sucesso e escopo da primeira implementação.
+3. Implementação: componentes personalizados construídos e testados para o primeiro objetivo.
+4. Evolução: acompanhamento e melhorias conforme resultados, prioridades e contrato.
+
+Investimento e prazo dependem do escopo; a proposta é feita após o diagnóstico.
+
+## Páginas
+
+- [Home](https://neuralops.com.br/): posicionamento, método, aplicações e perguntas frequentes.
+- [Diagnóstico Neural](https://neuralops.com.br/diagnostico/): avaliação interativa gratuita (12 perguntas, cerca de 5 minutos) que gera um relatório preliminar com cinco áreas: eficiência operacional, integração de sistemas, atendimento e oportunidades, dependência operacional e inteligência de gestão. É triagem baseada em respostas autodeclaradas, não diagnóstico técnico definitivo.
+- [NeuralOps Saúde](https://neuralops.com.br/saude/): atendimento, acompanhamento de orçamentos e gestão para clínicas. A IA apoia processos administrativos e comerciais; não substitui avaliação ou decisão clínica.
+- [Diagnóstico de Clínicas](https://neuralops.com.br/saude/diagnostico/): 13 perguntas sobre velocidade e cobertura do atendimento, triagem, continuidade comercial e integração de dados. Não pede dados de pacientes.
+- [Cases](https://neuralops.com.br/cases/)
+
+## Cases
+
+- [MedPrev](https://neuralops.com.br/cases/medprev/), saúde: infraestrutura de atendimento, agente de IA para triagem de consultas e exames, classificação de conversas e estrutura de dados comerciais. Em um recorte de 30 dias: 1.380 leads atendidos, dos quais 344 fora do horário comercial. Em uma análise separada de 60 dias: 3.564 conversas e 549 orçamentos parados identificados; mediana aproximada de 12 segundos até a primeira resposta da IA e 87 minutos até a primeira resposta humana (etapas diferentes). Os recortes são de períodos distintos e não representam receita recuperada. BI com IA em desenvolvimento.
+- [Kiss My](https://neuralops.com.br/cases/kiss-my/), moda e e-commerce: assistente de IA que conversa com a cliente, recomenda peças do catálogo e gera link para continuar a compra. Sem indicadores de impacto publicados.
+- Inteligência empresarial integrada: projeto em desenvolvimento e validação, sem resultados em clientes.

@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "neuralops",
+      "name": "neuralops_website (static)",
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "3051", "--directory", "/Users/douglasfranca/neuralops_website"],
       "port": 3051

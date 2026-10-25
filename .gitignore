@@ -1,1 +1,6 @@
 .vercel
+.DS_Store
+ADS-*
+ads-data*.json
+.env
+.env.local

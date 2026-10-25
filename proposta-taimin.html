@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta Taimin MTC — NeuralOps</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #beff01;
+      --green-dim: rgba(190,255,1,0.12);
+      --green-glow: rgba(190,255,1,0.25);
+      --bg: #050505;
+      --bg-card: #0d0d0d;
+      --bg-card2: #111111;
+      --border: rgba(255,255,255,0.07);
+      --border-green: rgba(190,255,1,0.3);
+      --text: #ffffff;
+      --text-muted: rgba(255,255,255,0.45);
+      --text-sub: rgba(255,255,255,0.65);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--green);
+      z-index: 10000;
+      transition: width 0.1s linear;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(5,5,5,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); }
+    .nav-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); background: var(--green-dim); border: 1px solid var(--border-green); padding: 5px 14px; border-radius: 100px; }
+    .nav-cta { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bg); background: var(--green); padding: 9px 22px; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
+    .nav-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    /* LAYOUT */
+    section { width: 100%; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 40px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(190,255,1,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--green); background: var(--green-dim); border: 1px solid var(--border-green);
+      padding: 7px 18px; border-radius: 100px; margin-bottom: 40px;
+    }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+    .hero-eyebrow { font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+    .hero-h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(40px, 6.5vw, 80px); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 28px; }
+    .hero-h1 .accent { color: var(--green); }
+    .hero-sub { font-size: clamp(16px, 2vw, 20px); color: var(--text-sub); max-width: 640px; margin: 0 auto 56px; line-height: 1.7; font-style: italic; }
+    .hero-stats { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; margin-bottom: 48px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .hstat { padding: 24px 40px; text-align: center; border-right: 1px solid var(--border); }
+    .hstat:last-child { border-right: none; }
+    .hstat-num { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: var(--green); line-height: 1; }
+    .hstat-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.08em; margin-top: 4px; }
+    .hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); animation: scrollBounce 2s infinite; }
+    .hero-scroll::after { content: ''; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-muted), transparent); }
+    @keyframes scrollBounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+    /* TICKER */
+    .ticker-wrap { overflow: hidden; background: var(--green); padding: 14px 0; }
+    .ticker-inner { display: flex; gap: 0; animation: ticker 28s linear infinite; white-space: nowrap; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 16px; padding: 0 32px; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bg); }
+    .ticker-item::after { content: '✦'; }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* SECTION LABELS */
+    .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--green); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--green); }
+    .section-h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 5vw, 56px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; }
+    .section-h2 .accent { color: var(--green); }
+    .section-lead { font-size: 18px; color: var(--text-sub); line-height: 1.7; max-width: 680px; }
+
+    /* FADE UP */
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* CONTEXTO */
+    #contexto { padding: 120px 0; }
+    .contexto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 72px; }
+    .contexto-text p { font-size: 18px; color: var(--text-sub); line-height: 1.8; margin-bottom: 20px; }
+    .contexto-text p strong { color: var(--text); }
+    .ctx-table { display: flex; flex-direction: column; gap: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .ctx-row { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; border-bottom: 1px solid var(--border); }
+    .ctx-row:last-child { border-bottom: none; }
+    .ctx-key { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 16px 20px; border-right: 1px solid var(--border); background: var(--bg-card2); }
+    .ctx-val { font-size: 13px; color: var(--text-sub); padding: 16px 20px; line-height: 1.5; }
+    .ctx-val.red { color: rgba(255,100,100,0.8); font-weight: 500; }
+
+    /* DIAGNOSTICO */
+    #diagnostico { padding: 120px 0; background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent); }
+    .diag-header { margin-bottom: 64px; }
+    .diag-table-wrap { overflow-x: auto; }
+    .diag-table { width: 100%; border-collapse: collapse; min-width: 700px; }
+    .diag-table th { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); padding: 14px 16px; border-bottom: 1px solid var(--border); text-align: left; background: var(--bg-card2); }
+    .diag-table td { font-size: 13px; color: var(--text-sub); padding: 16px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; line-height: 1.6; }
+    .diag-table tr:hover td { background: rgba(190,255,1,0.02); }
+    .severity { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; white-space: nowrap; }
+    .severity.critico { color: rgba(255,80,80,0.9); background: rgba(255,80,80,0.1); border: 1px solid rgba(255,80,80,0.2); }
+    .severity.critico::before { content: '●'; }
+    .severity.alto { color: rgba(255,180,0,0.9); background: rgba(255,180,0,0.1); border: 1px solid rgba(255,180,0,0.2); }
+    .severity.alto::before { content: '◆'; }
+    .severity.medio { color: rgba(100,200,255,0.9); background: rgba(100,200,255,0.1); border: 1px solid rgba(100,200,255,0.2); }
+    .severity.medio::before { content: '▸'; }
+    .diag-sol { color: var(--green); font-size: 13px; }
+    .diag-proc { font-weight: 500; color: var(--text); }
+
+    /* POR QUE IA */
+    #porque { padding: 120px 0; }
+    .porque-header { text-align: center; margin-bottom: 72px; }
+    .porque-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 72px; }
+    .porque-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 36px; transition: border-color 0.3s; position: relative; overflow: hidden; }
+    .porque-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--green); opacity: 0; transition: opacity 0.3s; }
+    .porque-card:hover { border-color: var(--border-green); }
+    .porque-card:hover::before { opacity: 1; }
+    .porque-icon { font-size: 28px; margin-bottom: 16px; }
+    .porque-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+    .porque-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .roi-cases { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; border-radius: 16px; overflow: hidden; background: var(--bg-card2); border: 1px solid var(--border); }
+    .roi-case { background: var(--bg-card); padding: 28px 20px; text-align: center; }
+    .roi-case-num { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+    .roi-case-label { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+    /* MODULOS */
+    #modulos { padding: 120px 0; background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent); }
+    .modulos-header { text-align: center; margin-bottom: 80px; }
+    .modulo-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 56px; margin-bottom: 32px; position: relative; overflow: hidden; transition: border-color 0.3s; }
+    .modulo-card:hover { border-color: var(--border-green); }
+    .modulo-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--green); opacity: 0; transition: opacity 0.3s; }
+    .modulo-card:hover::before { opacity: 1; }
+    .modulo-num-bg { position: absolute; right: 48px; top: 40px; font-family: 'Space Grotesk', sans-serif; font-size: 120px; font-weight: 700; color: rgba(190,255,1,0.06); line-height: 1; pointer-events: none; }
+    .modulo-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bg); background: var(--green); padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
+    .modulo-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    .modulo-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 40px; letter-spacing: 0.05em; }
+    .modulo-body { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .modulo-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .modulo-items { display: flex; flex-direction: column; gap: 10px; }
+    .modulo-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--text-sub); }
+    .modulo-item::before { content: '▸'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .modulo-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+    .tool-tag { font-size: 11px; font-weight: 500; color: var(--text-sub); background: var(--bg-card2); border: 1px solid var(--border); padding: 5px 12px; border-radius: 6px; }
+    .modulo-results { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mres { background: var(--bg-card2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+    .mres-num { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+    .mres-label { font-size: 11px; color: var(--text-muted); }
+
+    /* CRONOGRAMA */
+    #cronograma { padding: 120px 0; }
+    .cron-header { text-align: center; margin-bottom: 80px; }
+    .fase-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 48px; margin-bottom: 24px; position: relative; overflow: hidden; transition: border-color 0.3s; }
+    .fase-card:hover { border-color: var(--border-green); }
+    .fase-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--green); opacity: 0; transition: opacity 0.3s; }
+    .fase-card:hover::before { opacity: 1; }
+    .fase-top { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+    .fase-badge-pill { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bg); background: var(--green); padding: 5px 14px; border-radius: 100px; }
+    .fase-prazo { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); background: var(--bg-card2); border: 1px solid var(--border); padding: 5px 14px; border-radius: 100px; }
+    .fase-bg-num { position: absolute; right: 48px; top: 24px; font-family: 'Space Grotesk', sans-serif; font-size: 100px; font-weight: 700; color: rgba(190,255,1,0.06); line-height: 1; pointer-events: none; }
+    .fase-title { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+    .fase-desc { font-size: 15px; color: var(--text-sub); line-height: 1.7; max-width: 680px; margin-bottom: 28px; }
+    .fase-checks { display: flex; flex-wrap: wrap; gap: 10px; }
+    .fase-check { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); background: var(--bg-card2); border: 1px solid var(--border); padding: 6px 14px; border-radius: 100px; }
+    .fase-check::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 11px; }
+    .fase-continua { background: rgba(190,255,1,0.04); border: 1px solid var(--border-green); }
+    .fase-continua .fase-badge-pill { background: var(--green-dim); color: var(--green); border: 1px solid var(--border-green); }
+
+    /* RETORNO */
+    #retorno { padding: 120px 0; background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent); }
+    .retorno-header { text-align: center; margin-bottom: 72px; }
+    .retorno-table-wrap { overflow-x: auto; margin-bottom: 56px; }
+    .retorno-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    .retorno-table th { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); padding: 14px 20px; border-bottom: 1px solid var(--border); text-align: left; background: var(--bg-card2); }
+    .retorno-table td { font-size: 14px; padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+    .retorno-table td.processo { font-weight: 500; color: var(--text); }
+    .retorno-table td.antes { color: rgba(255,100,100,0.7); font-size: 13px; }
+    .retorno-table td.depois { color: var(--text-sub); font-size: 13px; }
+    .retorno-table td.ganho { color: var(--green); font-weight: 700; font-size: 13px; white-space: nowrap; }
+    .retorno-table tr:hover td { background: rgba(190,255,1,0.02); }
+    .retorno-big-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; border-radius: 20px; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border-green); }
+    .rbig { background: var(--bg-card); padding: 48px 32px; text-align: center; }
+    .rbig-num { font-family: 'Space Grotesk', sans-serif; font-size: clamp(36px, 5vw, 60px); font-weight: 700; color: var(--green); line-height: 1; margin-bottom: 12px; }
+    .rbig-label { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* GOVERNANÇA */
+    #governanca { padding: 120px 0; }
+    .gov-header { text-align: center; margin-bottom: 72px; }
+    .gov-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .gov-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: border-color 0.3s; }
+    .gov-card:hover { border-color: var(--border-green); }
+    .gov-icon { font-size: 24px; margin-bottom: 14px; }
+    .gov-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+    .gov-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+    /* INVESTIMENTO */
+    #investimento { padding: 120px 0; background: linear-gradient(180deg, transparent, var(--bg-card2) 5%, var(--bg-card2) 95%, transparent); }
+    .inv-header { text-align: center; margin-bottom: 72px; }
+    .crm-banner { background: rgba(190,255,1,0.06); border: 1px solid var(--border-green); border-radius: 16px; padding: 28px 36px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; gap: 24px; flex-wrap: wrap; }
+    .crm-banner-left { display: flex; align-items: center; gap: 16px; }
+    .crm-banner-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bg); background: var(--green); padding: 5px 14px; border-radius: 100px; white-space: nowrap; }
+    .crm-banner-text { font-size: 15px; color: var(--text-sub); }
+    .crm-banner-text strong { color: var(--text); }
+    .crm-banner-num { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: var(--green); flex-shrink: 0; }
+    .inv-main { background: var(--bg-card); border: 2px solid var(--border-green); border-radius: 24px; padding: 56px; position: relative; overflow: hidden; }
+    .inv-main::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(190,255,1,0.04) 0%, transparent 70%); pointer-events: none; }
+    .inv-main-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+    .inv-main-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 40px; }
+    .inv-prices { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 48px; }
+    .inv-price-block { }
+    .inv-price-label { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .inv-price-num { font-family: 'Space Grotesk', sans-serif; font-size: 52px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 6px; }
+    .inv-price-num.green { color: var(--green); }
+    .inv-price-note { font-size: 13px; color: var(--text-muted); }
+    .inv-price-strikethrough { font-size: 16px; color: var(--text-muted); text-decoration: line-through; margin-bottom: 4px; }
+    .inv-includes-title { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; }
+    .inv-includes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 40px; }
+    .inv-inc-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-sub); }
+    .inv-inc-item::before { content: '◆'; color: var(--green); font-size: 10px; flex-shrink: 0; margin-top: 3px; }
+    .inv-total { background: var(--bg-card2); border: 1px solid var(--border); border-radius: 14px; padding: 28px 36px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .inv-total-info { }
+    .inv-total-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .inv-total-num { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); }
+    .inv-total-num span { color: var(--green); }
+    .inv-economia { font-size: 14px; color: var(--green); font-weight: 500; }
+
+    /* PROXIMOS PASSOS */
+    #proximos-passos { padding: 120px 0; }
+    .passos-header { text-align: center; margin-bottom: 72px; }
+    .passos-list { max-width: 720px; margin: 0 auto 72px; display: flex; flex-direction: column; gap: 0; }
+    .passo-item { display: flex; gap: 28px; padding: 28px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+    .passo-item:last-child { border-bottom: none; }
+    .passo-num { width: 44px; height: 44px; border-radius: 50%; background: var(--green-dim); border: 1px solid var(--border-green); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: var(--green); flex-shrink: 0; }
+    .passo-content h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .passo-content p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    /* CTA FINAL */
+    #cta-final { padding: 120px 40px; text-align: center; position: relative; overflow: hidden; }
+    #cta-final::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(190,255,1,0.07) 0%, transparent 70%); pointer-events: none; }
+    .cta-big { font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 4.5vw, 52px); font-weight: 700; line-height: 1.25; max-width: 800px; margin: 0 auto 16px; }
+    .cta-big em { color: var(--green); font-style: normal; }
+    .cta-sub { font-size: 18px; color: var(--text-muted); max-width: 560px; margin: 0 auto 56px; line-height: 1.6; }
+    .cta-buttons { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--green); color: var(--bg); font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 18px 48px; border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+    .cta-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 16px 48px rgba(190,255,1,0.2); }
+    .cta-btn-sec { display: inline-flex; align-items: center; gap: 10px; color: var(--text-muted); font-size: 13px; font-weight: 500; padding: 18px 32px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+    .cta-btn-sec:hover { border-color: var(--border-green); color: var(--text); }
+    .cta-contacts { display: flex; align-items: center; justify-content: center; gap: 32px; margin-top: 48px; flex-wrap: wrap; }
+    .cta-contact { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+    .cta-contact span { color: var(--text-sub); }
+
+    /* FOOTER */
+    footer { padding: 48px 40px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .f-logo { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); }
+    .f-info { font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+    .f-conf { font-size: 10px; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; }
+
+    /* MOBILE */
+    @media(max-width: 768px) {
+      html, body { overflow-x: hidden; }
+      .container { padding: 0 20px; }
+      nav { padding: 16px 20px; }
+      .nav-tag { display: none; }
+      .hero-stats { flex-direction: column; }
+      .hstat { border-right: none; border-bottom: 1px solid var(--border); width: 100%; }
+      .hstat:last-child { border-bottom: none; }
+      .contexto-grid, .modulo-body, .inv-prices, .inv-includes,
+      .retorno-big-stats, .porque-grid, .gov-grid, .roi-cases { grid-template-columns: 1fr !important; }
+      .roi-cases { gap: 0; }
+      .modulo-num-bg { font-size: 60px; top: 16px; right: 20px; }
+      .fase-bg-num { font-size: 60px; top: 16px; right: 20px; }
+      .crm-banner { flex-direction: column; }
+      .inv-price-num { font-size: 38px; }
+      .inv-main { padding: 32px 20px; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">NeuralOps</div>
+  <div class="nav-tag">Proposta Confidencial · Taimin MTC</div>
+  <a href="#proximos-passos" class="nav-cta">Próximos Passos</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">Proposta de Infraestrutura de IA</div>
+  <p class="hero-eyebrow">NeuralOps × Taimin MTC · Abril 2026</p>
+  <h1 class="hero-h1">Da operação manual<br><span class="accent">à escala inteligente</span></h1>
+  <p class="hero-sub">Um diagnóstico completo e uma arquitetura de IA focada no que realmente move o negócio da Taimin MTC — automação de leads, nutrição, e-mail e visibilidade operacional, sem aumentar equipe.</p>
+  <div class="hero-stats">
+    <div class="hstat">
+      <div class="hstat-num">9</div>
+      <div class="hstat-label">Processos Mapeados</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">3</div>
+      <div class="hstat-label">Módulos de IA</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">~50%</div>
+      <div class="hstat-label">Redução Operacional</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">90 dias</div>
+      <div class="hstat-label">Para Infraestrutura Ativa</div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">3 Módulos de IA Integrados</span>
+    <span class="ticker-item">Agente Conversacional 24/7</span>
+    <span class="ticker-item">Diagnóstico Neural™</span>
+    <span class="ticker-item">NeuralOps CRM incluso grátis</span>
+    <span class="ticker-item">Migração RD Station</span>
+    <span class="ticker-item">Dashboard Tempo Real</span>
+    <span class="ticker-item">Conformidade LGPD</span>
+    <span class="ticker-item">90 dias para a infraestrutura ativa</span>
+    <span class="ticker-item">3 Módulos de IA Integrados</span>
+    <span class="ticker-item">Agente Conversacional 24/7</span>
+    <span class="ticker-item">Diagnóstico Neural™</span>
+    <span class="ticker-item">NeuralOps CRM incluso grátis</span>
+    <span class="ticker-item">Migração RD Station</span>
+    <span class="ticker-item">Dashboard Tempo Real</span>
+    <span class="ticker-item">Conformidade LGPD</span>
+    <span class="ticker-item">90 dias para a infraestrutura ativa</span>
+  </div>
+</div>
+
+<!-- 01 CONTEXTO -->
+<section id="contexto">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">01 — Contexto</div>
+      <h2 class="section-h2">O que observamos antes<br>de <span class="accent">propor qualquer coisa</span></h2>
+    </div>
+    <div class="contexto-grid fade-up">
+      <div class="contexto-text">
+        <p>A proposta foi construída a partir da análise cruzada da transcrição da reunião de abril de 2026 e do diagnóstico de processos da Taimin MTC. O escopo abaixo reflete exclusivamente o que a NeuralOps entrega.</p>
+        <p>A Taimin MTC tem produto validado, base ativa de prescritores e estrutura de conteúdo educacional consistente — lives semanais, artigos científicos e grupos de WhatsApp. O problema não é oferta: <strong>é que toda a operação de relacionamento e distribuição depende de execução manual e fragmentada.</strong> A NeuralOps atua exatamente nessa camada.</p>
+      </div>
+      <div class="ctx-table">
+        <div class="ctx-row">
+          <div class="ctx-key">Setor</div>
+          <div class="ctx-val">Medicina Chinesa · Saúde · B2B Farmácias</div>
+        </div>
+        <div class="ctx-row">
+          <div class="ctx-key">Canais ativos</div>
+          <div class="ctx-val">Instagram · WhatsApp · RD Station · Trello · Zoom</div>
+        </div>
+        <div class="ctx-row">
+          <div class="ctx-key">Orçamento</div>
+          <div class="ctx-val">~R$ 3.000/mês para marketing</div>
+        </div>
+        <div class="ctx-row">
+          <div class="ctx-key">Conteúdo</div>
+          <div class="ctx-val">Lives semanais/quinzenais + artigos semanais via RD Station</div>
+        </div>
+        <div class="ctx-row">
+          <div class="ctx-key">Principal gargalo</div>
+          <div class="ctx-val red">Leads sem resposta, nutrição inexistente, zero visibilidade de dados</div>
+        </div>
+        <div class="ctx-row">
+          <div class="ctx-key">Momento</div>
+          <div class="ctx-val">Crescimento travado por operação manual, não por falta de mercado</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 DIAGNÓSTICO -->
+<section id="diagnostico">
+  <div class="container">
+    <div class="diag-header fade-up">
+      <div class="section-label">02 — Diagnóstico de Gargalos</div>
+      <h2 class="section-h2">O que a NeuralOps identificou<br>e <span class="accent">pode resolver</span></h2>
+      <p class="section-lead">Processos analisados por severidade de impacto no crescimento, desperdício de tempo e risco de dependência humana.</p>
+    </div>
+    <div class="diag-table-wrap fade-up">
+      <table class="diag-table">
+        <thead>
+          <tr>
+            <th style="width:22%">Processo</th>
+            <th style="width:12%">Severidade</th>
+            <th style="width:33%">Gargalo Identificado</th>
+            <th style="width:33%">Solução NeuralOps</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="diag-proc">Resposta a Leads no Instagram</td>
+            <td><span class="severity critico">CRÍTICO</span></td>
+            <td>Zero automação. Prescritores chegam pelo Instagram e não recebem resposta. Leads quentes perdidos diariamente.</td>
+            <td class="diag-sol">Agente conversacional 24/7 no Instagram DM com qualificação automática e segmentação por perfil.</td>
+          </tr>
+          <tr>
+            <td class="diag-proc">Distribuição Manual no WhatsApp</td>
+            <td><span class="severity critico">CRÍTICO</span></td>
+            <td>3 etapas humanas para replicar conteúdo em grupos. Risco de não envio quando o responsável está indisponível.</td>
+            <td class="diag-sol">Automação de disparo agendado via WhatsApp Business API com segmentação por grupo. Zero intervenção humana.</td>
+          </tr>
+          <tr>
+            <td class="diag-proc">E-mail Marketing (RD Station)</td>
+            <td><span class="severity critico">CRÍTICO</span></td>
+            <td>Segmentação mínima, sem personalização. Mesma mensagem para todos. Custo mensal do RD eliminável.</td>
+            <td class="diag-sol">Migração para NeuralOps CRM & Automação (incluso grátis) + fluxos comportamentais segmentados.</td>
+          </tr>
+          <tr>
+            <td class="diag-proc">Nutrição de Leads Pós-Live</td>
+            <td><span class="severity critico">CRÍTICO</span></td>
+            <td>Nenhum fluxo após a live. Lead some sem replay, sem follow-up, sem jornada. Todo esforço de captação é desperdiçado.</td>
+            <td class="diag-sol">Sequência automatizada: inscrição → lembrete → replay → pós-live → nutrição 30 dias por perfil.</td>
+          </tr>
+          <tr>
+            <td class="diag-proc">Captação de Leads (formulários)</td>
+            <td><span class="severity alto">ALTO</span></td>
+            <td>Sem integração com CRM, sem tag de origem, sem confirmação estruturada. Dados sujos no funil.</td>
+            <td class="diag-sol">Integração formulário → NeuralOps CRM com tagueamento automático por origem e disparo de boas-vindas.</td>
+          </tr>
+          <tr>
+            <td class="diag-proc">Gestão de Demandas (Trello)</td>
+            <td><span class="severity alto">ALTO</span></td>
+            <td>Ferramenta isolada, sem integração com métricas. Gargalos invisíveis para a gestão.</td>
+            <td class="diag-sol">Integração Trello + alertas de atraso e priorização por impacto via IA no dashboard central.</td>
+          </tr>
+          <tr>
+            <td class="diag-proc">Bloco de Prescrição</td>
+            <td><span class="severity alto">ALTO</span></td>
+            <td>Monitoramento manual de farmácias parceiras. Material desatualizado chegando ao prescritor.</td>
+            <td class="diag-sol">Dashboard de farmácias com histórico de compra e alerta automático de inatividade.</td>
+          </tr>
+          <tr>
+            <td class="diag-proc">E-commerce (Cosméticos)</td>
+            <td><span class="severity medio">MÉDIO</span></td>
+            <td>Sem fluxo de recuperação de carrinho, sem suporte automático e sem comunicação pós-compra.</td>
+            <td class="diag-sol">Agente de suporte conversacional + recuperação de abandono via WhatsApp/e-mail + pós-compra automático.</td>
+          </tr>
+          <tr>
+            <td class="diag-proc">Visibilidade Operacional</td>
+            <td><span class="severity medio">MÉDIO</span></td>
+            <td>Sem dashboard unificado. Dados de leads, e-mail e farmácias vivem em silos. Decisões por intuição.</td>
+            <td class="diag-sol">Dashboard centralizado com KPIs em tempo real + relatório semanal automático por IA.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 03 POR QUE IA -->
+<section id="porque">
+  <div class="container">
+    <div class="porque-header fade-up">
+      <div class="section-label">03 — Por Que IA Agora</div>
+      <h2 class="section-h2">O mercado não espera.<br><span class="accent">A operação não aguenta.</span></h2>
+    </div>
+    <div class="porque-grid fade-up">
+      <div class="porque-card">
+        <div class="porque-icon">⚡</div>
+        <h3>Cobertura 24/7 sem turnos</h3>
+        <p>Agentes de IA respondem prescritores no Instagram às 23h, qualificam leads no WhatsApp no fim de semana e enviam lembretes de live no horário certo — sem depender de ninguém disponível.</p>
+      </div>
+      <div class="porque-card">
+        <div class="porque-icon">🎯</div>
+        <h3>Personalização em escala real</h3>
+        <p>Enquanto hoje toda a base recebe o mesmo e-mail semanal, sistemas de IA segmentam automaticamente por perfil e comportamento — aumentando taxas de abertura e conversão sem esforço adicional.</p>
+      </div>
+      <div class="porque-card">
+        <div class="porque-icon">🔄</div>
+        <h3>Sistemas que conversam entre si</h3>
+        <p>Instagram, WhatsApp, RD Station e Trello operam como ilhas. A NeuralOps conecta tudo — e ainda substitui o RD Station pelo NeuralOps CRM incluso gratuitamente no contrato.</p>
+      </div>
+      <div class="porque-card">
+        <div class="porque-icon">📈</div>
+        <h3>ROI comprovado no setor de saúde</h3>
+        <p>Case MedPrev APGO: 3 agentes de IA em 45 dias → +27,5% atendimentos, 422h economizadas/mês, +R$37mil de receita adicional. Payback médio em saúde: 4,2 meses.</p>
+      </div>
+    </div>
+    <div class="roi-cases fade-up">
+      <div class="roi-case">
+        <div class="roi-case-num">4,2m</div>
+        <div class="roi-case-label">Payback médio setor saúde</div>
+      </div>
+      <div class="roi-case">
+        <div class="roi-case-num">422h</div>
+        <div class="roi-case-label">Economizadas/mês case MedPrev</div>
+      </div>
+      <div class="roi-case">
+        <div class="roi-case-num">+27,5%</div>
+        <div class="roi-case-label">Atendimentos em 45 dias</div>
+      </div>
+      <div class="roi-case">
+        <div class="roi-case-num">−68%</div>
+        <div class="roi-case-label">Cancelamentos case estética</div>
+      </div>
+      <div class="roi-case">
+        <div class="roi-case-num">+95%</div>
+        <div class="roi-case-label">Vendas/mês case consórcio</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 MÓDULOS -->
+<section id="modulos">
+  <div class="container">
+    <div class="modulos-header fade-up">
+      <div class="section-label">04 — Infraestrutura Neural Proposta</div>
+      <h2 class="section-h2">3 módulos. 1 sistema nervoso<br><span class="accent">integrado para a Taimin.</span></h2>
+    </div>
+
+    <!-- Módulo 01 -->
+    <div class="modulo-card fade-up">
+      <div class="modulo-num-bg">01</div>
+      <div class="modulo-badge">Módulo 01</div>
+      <div class="modulo-title">Lead & Relationship Agent</div>
+      <div class="modulo-subtitle">Qualificação, triagem e relacionamento 24/7 — Instagram DM e WhatsApp</div>
+      <div class="modulo-body">
+        <div>
+          <div class="modulo-label">O que resolve</div>
+          <div class="modulo-items">
+            <div class="modulo-item">Resposta automática a DMs — menos de 30 segundos</div>
+            <div class="modulo-item">Qualificação por perfil: prescritor ativo, farmácia parceira, lead frio</div>
+            <div class="modulo-item">Coleta e integração ao NeuralOps CRM com tags automáticas</div>
+            <div class="modulo-item">Reativação de leads dormentes com conteúdo personalizado</div>
+            <div class="modulo-item">Suporte ao e-commerce: dúvidas, cupons, recuperação de abandono</div>
+            <div class="modulo-item">Operação 24/7 — fins de semana e fora do horário comercial</div>
+          </div>
+          <div class="modulo-label" style="margin-top:28px">Ferramentas</div>
+          <div class="modulo-tools">
+            <span class="tool-tag">Meta Business API</span>
+            <span class="tool-tag">WhatsApp Business API</span>
+            <span class="tool-tag">NeuralOps CRM</span>
+            <span class="tool-tag">GPT-4o</span>
+            <span class="tool-tag">Make / n8n</span>
+          </div>
+        </div>
+        <div>
+          <div class="modulo-label">Resultados esperados</div>
+          <div class="modulo-results">
+            <div class="mres">
+              <div class="mres-num">24/7</div>
+              <div class="mres-label">Cobertura de leads</div>
+            </div>
+            <div class="mres">
+              <div class="mres-num">&lt; 30s</div>
+              <div class="mres-label">Tempo de resposta</div>
+            </div>
+            <div class="mres">
+              <div class="mres-num">+40%</div>
+              <div class="mres-label">Taxa de conversão est.</div>
+            </div>
+            <div class="mres">
+              <div class="mres-num">Zero</div>
+              <div class="mres-label">Leads perdidos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Módulo 02 -->
+    <div class="modulo-card fade-up">
+      <div class="modulo-num-bg">02</div>
+      <div class="modulo-badge">Módulo 02</div>
+      <div class="modulo-title">Email Intelligence & Nurturing</div>
+      <div class="modulo-subtitle">E-mail marketing que reage ao comportamento — não ao calendário</div>
+      <div class="modulo-body">
+        <div>
+          <div class="modulo-label">O que resolve</div>
+          <div class="modulo-items">
+            <div class="modulo-item">Migração do RD Station para NeuralOps CRM — sem custo adicional</div>
+            <div class="modulo-item">Segmentação automática da base: prescritor / farmácia / lead frio</div>
+            <div class="modulo-item">Fluxo completo pós-live: inscrição → lembrete → replay → nutrição</div>
+            <div class="modulo-item">Fluxos comportamentais: ação do lead dispara próxima comunicação</div>
+            <div class="modulo-item">Score de lead automático — prioriza os mais propensos à conversão</div>
+            <div class="modulo-item">Disparo de artigos científicos automatizado — sem intervenção manual</div>
+          </div>
+          <div class="modulo-label" style="margin-top:28px">Ferramentas</div>
+          <div class="modulo-tools">
+            <span class="tool-tag">NeuralOps CRM & Automação</span>
+            <span class="tool-tag">GPT-4o para copy</span>
+            <span class="tool-tag">Webhooks</span>
+            <span class="tool-tag">Make / n8n</span>
+          </div>
+        </div>
+        <div>
+          <div class="modulo-label">Resultados esperados</div>
+          <div class="modulo-results">
+            <div class="mres">
+              <div class="mres-num">+35%</div>
+              <div class="mres-label">Taxa de abertura est.</div>
+            </div>
+            <div class="mres">
+              <div class="mres-num">−80%</div>
+              <div class="mres-label">Horas de gestão e-mail</div>
+            </div>
+            <div class="mres">
+              <div class="mres-num">∞</div>
+              <div class="mres-label">Leads nutridos</div>
+            </div>
+            <div class="mres">
+              <div class="mres-num">100%</div>
+              <div class="mres-label">Jornada pós-live</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Módulo 03 -->
+    <div class="modulo-card fade-up">
+      <div class="modulo-num-bg">03</div>
+      <div class="modulo-badge">Módulo 03</div>
+      <div class="modulo-title">Operations Dashboard & Governance</div>
+      <div class="modulo-subtitle">Visibilidade total da operação — decisões baseadas em dados, não em intuição</div>
+      <div class="modulo-body">
+        <div>
+          <div class="modulo-label">O que resolve</div>
+          <div class="modulo-items">
+            <div class="modulo-item">Dashboard unificado: leads + e-mail + farmácias + e-commerce + Trello</div>
+            <div class="modulo-item">Alertas automáticos de farmácias sem compra há 30+ dias</div>
+            <div class="modulo-item">Relatório semanal gerado por IA com os 3 pontos prioritários</div>
+            <div class="modulo-item">Trello integrado com priorização inteligente por impacto</div>
+            <div class="modulo-item">Visibilidade do bloco de prescrição: farmácias ativas e quando atualizar</div>
+            <div class="modulo-item">Conformidade LGPD: consentimento, armazenamento e auditoria</div>
+          </div>
+          <div class="modulo-label" style="margin-top:28px">Ferramentas</div>
+          <div class="modulo-tools">
+            <span class="tool-tag">ClarityOps (NeuralOps)</span>
+            <span class="tool-tag">Trello API</span>
+            <span class="tool-tag">NeuralOps CRM API</span>
+            <span class="tool-tag">Make / n8n</span>
+          </div>
+        </div>
+        <div>
+          <div class="modulo-label">Resultados esperados</div>
+          <div class="modulo-results">
+            <div class="mres">
+              <div class="mres-num">100%</div>
+              <div class="mres-label">Visibilidade operacional</div>
+            </div>
+            <div class="mres">
+              <div class="mres-num">Zero</div>
+              <div class="mres-label">Relatórios manuais</div>
+            </div>
+            <div class="mres">
+              <div class="mres-num">−70%</div>
+              <div class="mres-label">Tempo de decisão</div>
+            </div>
+            <div class="mres">
+              <div class="mres-num">Real‑time</div>
+              <div class="mres-label">Farmácias monitoradas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 CRONOGRAMA -->
+<section id="cronograma">
+  <div class="container">
+    <div class="cron-header fade-up">
+      <div class="section-label">05 — Cronograma</div>
+      <h2 class="section-h2">Da arquitetura à operação<br><span class="accent">em 90 dias</span></h2>
+    </div>
+
+    <div class="fase-card fade-up">
+      <div class="fase-bg-num">01</div>
+      <div class="fase-top">
+        <span class="fase-badge-pill">Fase 01</span>
+        <span class="fase-prazo">Semanas 1–2</span>
+      </div>
+      <div class="fase-title">Diagnóstico Neural™ & Arquitetura</div>
+      <div class="fase-desc">Mapeamento profundo dos fluxos, auditoria dos sistemas (RD Station, Instagram, WhatsApp, Trello), levantamento de bases de leads e histórico de engajamento. Arquitetura completa desenhada antes de qualquer implementação — incluindo planejamento da migração do RD Station para o NeuralOps CRM.</div>
+      <div class="fase-checks">
+        <span class="fase-check">Mapa de fluxos</span>
+        <span class="fase-check">Auditoria de sistemas</span>
+        <span class="fase-check">Arquitetura Neural</span>
+        <span class="fase-check">Blueprint de automações</span>
+        <span class="fase-check">KPIs de baseline</span>
+        <span class="fase-check">Migração RD planejada</span>
+      </div>
+    </div>
+
+    <div class="fase-card fade-up">
+      <div class="fase-bg-num">02</div>
+      <div class="fase-top">
+        <span class="fase-badge-pill">Fase 02</span>
+        <span class="fase-prazo">Semanas 3–6</span>
+      </div>
+      <div class="fase-title">Lead Agent + WhatsApp Automation</div>
+      <div class="fase-desc">Ativação do agente conversacional no Instagram DM e automação do WhatsApp Business. A partir da semana 4, nenhum lead entra sem resposta e nenhum conteúdo é distribuído manualmente em grupos.</div>
+      <div class="fase-checks">
+        <span class="fase-check">Agente Instagram DM ativo</span>
+        <span class="fase-check">Qualificação automática</span>
+        <span class="fase-check">WhatsApp automatizado</span>
+        <span class="fase-check">Integração leads → NeuralOps CRM</span>
+        <span class="fase-check">Tagueamento por origem</span>
+        <span class="fase-check">Fluxo de boas-vindas</span>
+      </div>
+    </div>
+
+    <div class="fase-card fade-up">
+      <div class="fase-bg-num">03</div>
+      <div class="fase-top">
+        <span class="fase-badge-pill">Fase 03</span>
+        <span class="fase-prazo">Semanas 7–10</span>
+      </div>
+      <div class="fase-title">Email Intelligence & Fluxos de Nutrição</div>
+      <div class="fase-desc">Migração do RD Station para o NeuralOps CRM e construção dos fluxos comportamentais completos, incluindo sequência pós-live e automação do disparo semanal de artigos. A Taimin cancela o RD Station a partir deste mês.</div>
+      <div class="fase-checks">
+        <span class="fase-check">Migração RD → NeuralOps CRM</span>
+        <span class="fase-check">Fluxos comportamentais</span>
+        <span class="fase-check">Sequência pós-live 30 dias</span>
+        <span class="fase-check">Segmentação automática</span>
+        <span class="fase-check">Disparo de artigos automatizado</span>
+        <span class="fase-check">Score de lead</span>
+      </div>
+    </div>
+
+    <div class="fase-card fade-up">
+      <div class="fase-bg-num">04</div>
+      <div class="fase-top">
+        <span class="fase-badge-pill">Fase 04</span>
+        <span class="fase-prazo">Semanas 11–13</span>
+      </div>
+      <div class="fase-title">Dashboard + Governança + LGPD</div>
+      <div class="fase-desc">Painel centralizado com visibilidade total, alertas de farmácias inativas, relatório semanal por IA e Trello integrado. Implementação de políticas de governança de dados e conformidade LGPD.</div>
+      <div class="fase-checks">
+        <span class="fase-check">Dashboard ao vivo</span>
+        <span class="fase-check">Alertas de farmácias</span>
+        <span class="fase-check">Relatório semanal por IA</span>
+        <span class="fase-check">Trello + priorização</span>
+        <span class="fase-check">Política LGPD</span>
+        <span class="fase-check">Capacitação da equipe</span>
+      </div>
+    </div>
+
+    <div class="fase-card fase-continua fade-up">
+      <div class="fase-bg-num" style="color:rgba(190,255,1,0.08)">∞</div>
+      <div class="fase-top">
+        <span class="fase-badge-pill">Fase 05</span>
+        <span class="fase-prazo">Mês 4+</span>
+      </div>
+      <div class="fase-title">Evolução Contínua</div>
+      <div class="fase-desc">A infraestrutura evolui com o negócio. Novos fluxos, novos agentes e novas integrações são incorporados mensalmente. Reunião estratégica mensal de revisão de KPIs e expansão para o e-commerce de cosméticos.</div>
+      <div class="fase-checks">
+        <span class="fase-check">Ciclo mensal de evolução</span>
+        <span class="fase-check">Reunião estratégica</span>
+        <span class="fase-check">Expansão e-commerce</span>
+        <span class="fase-check">Novos fluxos conforme crescimento</span>
+        <span class="fase-check">Suporte prioritário contínuo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 RETORNO -->
+<section id="retorno">
+  <div class="container">
+    <div class="retorno-header fade-up">
+      <div class="section-label">06 — Retorno Esperado</div>
+      <h2 class="section-h2">O que muda nos<br><span class="accent">primeiros 90 dias</span></h2>
+    </div>
+    <div class="retorno-table-wrap fade-up">
+      <table class="retorno-table">
+        <thead>
+          <tr>
+            <th>Processo</th>
+            <th>Hoje (Manual)</th>
+            <th>Com NeuralOps</th>
+            <th>Ganho</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="processo">Resposta a leads Instagram</td>
+            <td class="antes">Inexistente</td>
+            <td class="depois">24/7 · &lt;30 segundos</td>
+            <td class="ganho">+∞ cobertura</td>
+          </tr>
+          <tr>
+            <td class="processo">Distribuição WhatsApp</td>
+            <td class="antes">3 etapas humanas</td>
+            <td class="depois">Agendado e automático</td>
+            <td class="ganho">−100% esforço</td>
+          </tr>
+          <tr>
+            <td class="processo">Nutrição pós-live</td>
+            <td class="antes">Nenhuma</td>
+            <td class="depois">Fluxo 30 dias automático</td>
+            <td class="ganho">+40% conv. est.</td>
+          </tr>
+          <tr>
+            <td class="processo">E-mail marketing</td>
+            <td class="antes">Mesmo e-mail para todos</td>
+            <td class="depois">Personalizado por perfil</td>
+            <td class="ganho">+35% abertura</td>
+          </tr>
+          <tr>
+            <td class="processo">RD Station → NeuralOps CRM</td>
+            <td class="antes">Custo mensal do RD</td>
+            <td class="depois">Substituído · incluso grátis</td>
+            <td class="ganho">−R$ RD/mês</td>
+          </tr>
+          <tr>
+            <td class="processo">Monitoramento farmácias</td>
+            <td class="antes">Inexistente</td>
+            <td class="depois">Alerta automático de inatividade</td>
+            <td class="ganho">100% visibilidade</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="retorno-big-stats fade-up">
+      <div class="rbig">
+        <div class="rbig-num">~50%</div>
+        <div class="rbig-label">Redução de esforço<br>operacional por mês</div>
+      </div>
+      <div class="rbig">
+        <div class="rbig-num">~40h</div>
+        <div class="rbig-label">Horas devolvidas à<br>equipe por mês</div>
+      </div>
+      <div class="rbig">
+        <div class="rbig-num">4–5m</div>
+        <div class="rbig-label">Payback estimado<br>benchmark saúde NeuralOps</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 GOVERNANÇA -->
+<section id="governanca">
+  <div class="container">
+    <div class="gov-header fade-up">
+      <div class="section-label">07 — Governança & LGPD</div>
+      <h2 class="section-h2">Infraestrutura que opera<br><span class="accent">dentro da lei</span></h2>
+    </div>
+    <div class="gov-grid fade-up">
+      <div class="gov-card">
+        <div class="gov-icon">🔒</div>
+        <h3>Consentimento e Coleta</h3>
+        <p>Todos os pontos de captação (Instagram DM, WhatsApp, formulários de inscrição) implementam coleta de consentimento explícito conforme LGPD Art. 7.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-icon">🗄️</div>
+        <h3>Armazenamento Seguro</h3>
+        <p>Dados de prescritores e farmácias tratados com criptografia em repouso e em trânsito, com políticas de retenção, acesso e exclusão documentadas.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-icon">⚖️</div>
+        <h3>Adequação de Plataformas</h3>
+        <p>Auditoria de adequação do WhatsApp Business API e NeuralOps CRM — incluindo DPA com fornecedores. A migração do RD elimina um ponto de risco externo de dados.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-icon">🧩</div>
+        <h3>Governança de IA</h3>
+        <p>Documentação das decisões automatizadas dos agentes, política de revisão humana para casos críticos e monitoramento de consistência das respostas.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-icon">📋</div>
+        <h3>Capacitação da Equipe</h3>
+        <p>Treinamento em boas práticas de dados, interpretação dos dashboards e operação estratégica da infraestrutura — liberando o time para pensar, não executar.</p>
+      </div>
+      <div class="gov-card">
+        <div class="gov-icon">🔁</div>
+        <h3>Auditoria Contínua</h3>
+        <p>Revisão mensal dos fluxos, logs de acesso e ajustes de agentes. Conformidade não é evento pontual — é processo permanente do ciclo de evolução.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 INVESTIMENTO -->
+<section id="investimento">
+  <div class="container">
+    <div class="inv-header fade-up">
+      <div class="section-label">08 — Investimento</div>
+      <h2 class="section-h2">Estrutura pensada para a<br><span class="accent">realidade da Taimin</span></h2>
+    </div>
+    <div class="crm-banner fade-up">
+      <div class="crm-banner-left">
+        <div class="crm-banner-tag">🎁 Incluso Grátis</div>
+        <div class="crm-banner-text"><strong>NeuralOps CRM & Automação</strong> — incluso gratuitamente em todos os planos. A Taimin cancela o RD Station ao assinar e recupera esse custo mensalmente.</div>
+      </div>
+      <div class="crm-banner-num">R$ 0</div>
+    </div>
+    <div class="inv-main fade-up">
+      <div class="inv-main-tag">Neural Core — Infraestrutura Completa</div>
+      <div class="inv-main-title">Proposta Taimin MTC — Os 3 módulos completos com NeuralOps CRM incluso</div>
+      <div class="inv-prices">
+        <div class="inv-price-block">
+          <div class="inv-price-label">Implementação (Setup Único)</div>
+          <div class="inv-price-num">R$ 17.000</div>
+          <div class="inv-price-note">Arquitetura + implantação completa dos 3 módulos</div>
+        </div>
+        <div class="inv-price-block">
+          <div class="inv-price-label">Mensalidade · Contrato 12 Meses</div>
+          <div class="inv-price-strikethrough">R$ 5.200/mês</div>
+          <div class="inv-price-num green">R$ 3.570<span style="font-size:20px;font-weight:500;color:var(--text-muted)">/mês</span></div>
+          <div class="inv-price-note" style="color:var(--green)">−31% no contrato anual</div>
+        </div>
+      </div>
+      <div class="inv-includes-title">O que está incluso</div>
+      <div class="inv-includes">
+        <div class="inv-inc-item">Diagnóstico Neural™ + Arquitetura completa</div>
+        <div class="inv-inc-item">Módulo 01 — Lead & Relationship Agent (Instagram DM + WhatsApp)</div>
+        <div class="inv-inc-item">Módulo 02 — Email Intelligence + fluxos pós-live</div>
+        <div class="inv-inc-item">Módulo 03 — Operations Dashboard em tempo real</div>
+        <div class="inv-inc-item">NeuralOps CRM & Automação — incluso gratuitamente</div>
+        <div class="inv-inc-item">Migração completa da base do RD Station</div>
+        <div class="inv-inc-item">Alertas automáticos de farmácias parceiras inativas</div>
+        <div class="inv-inc-item">Integração Trello com priorização inteligente</div>
+        <div class="inv-inc-item">Conformidade LGPD completa em todos os fluxos</div>
+        <div class="inv-inc-item">Reunião estratégica mensal de revisão de KPIs</div>
+        <div class="inv-inc-item">Acesso ao ClarityOps (painel NeuralOps)</div>
+        <div class="inv-inc-item">Capacitação da equipe no uso da infraestrutura</div>
+        <div class="inv-inc-item">Suporte prioritário + ciclo mensal de evolução</div>
+        <div class="inv-inc-item">Segmentação automática da base de leads</div>
+      </div>
+      <div class="inv-total">
+        <div class="inv-total-info">
+          <div class="inv-total-label">Investimento total no contrato</div>
+          <div class="inv-total-num">R$ 17.000 setup + 12× R$ 3.570 = <span>R$ 59.840</span></div>
+        </div>
+        <div class="inv-economia">Economia vs. mensal avulso: R$ 19.560/ano</div>
+      </div>
+    </div>
+    <div style="margin-top:24px; padding:24px 32px; background:var(--bg-card); border:1px solid var(--border); border-radius:14px; font-size:13px; color:var(--text-muted); line-height:1.8;" class="fade-up">
+      <strong style="color:var(--text-sub)">Sobre o investimento:</strong> O contrato anual de 12 meses garante a mensalidade de R$ 3.570 — uma economia de R$ 1.630/mês em relação ao valor avulso de R$ 5.200, totalizando R$ 19.560 economizados ao longo do contrato. Além disso, o NeuralOps CRM & Automação está incluso gratuitamente e substitui integralmente o RD Station — a Taimin cancela o RD ao assinar e recupera esse custo imediatamente, reduzindo o investimento líquido real desde o primeiro mês.
+    </div>
+  </div>
+</section>
+
+<!-- 09 PRÓXIMOS PASSOS -->
+<section id="proximos-passos">
+  <div class="container">
+    <div class="passos-header fade-up">
+      <div class="section-label">09 — Próximos Passos</div>
+      <h2 class="section-h2">Como <span class="accent">começamos</span></h2>
+    </div>
+    <div class="passos-list fade-up">
+      <div class="passo-item">
+        <div class="passo-num">01</div>
+        <div class="passo-content">
+          <h3>Reunião de alinhamento</h3>
+          <p>Apresentação desta proposta à diretoria da Taimin, validação das prioridades, escolha do plano e assinatura do contrato. Prazo sugerido: até 48h após a apresentação.</p>
+        </div>
+      </div>
+      <div class="passo-item">
+        <div class="passo-num">02</div>
+        <div class="passo-content">
+          <h3>Diagnóstico Neural™</h3>
+          <p>Acesso aos sistemas (RD Station para auditoria e migração, Instagram, WhatsApp Business, Trello), entrevistas com a equipe e levantamento das bases de leads. Início imediato após assinatura.</p>
+        </div>
+      </div>
+      <div class="passo-item">
+        <div class="passo-num">03</div>
+        <div class="passo-content">
+          <h3>Blueprint & kick-off</h3>
+          <p>Apresentação da arquitetura final validada e início da Fase 02. Primeiros resultados mensuráveis na semana 4 — agente ativo e WhatsApp automatizado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="container">
+    <div class="fade-up">
+      <h2 class="cta-big">Pronto para instalar o<br><em>sistema nervoso da Taimin?</em></h2>
+      <p class="cta-sub">Entre em contato para agendar a reunião de alinhamento e dar início ao Diagnóstico Neural™.</p>
+      <div class="cta-buttons">
+        <a href="https://neuralops.com.br/diagnostico" class="cta-btn">Agendar Diagnóstico Neural™</a>
+        <a href="mailto:contato@neuralops.com.br" class="cta-btn-sec">contato@neuralops.com.br</a>
+      </div>
+      <div class="cta-contacts">
+        <div class="cta-contact">Site <span>neuralops.com.br/diagnostico</span></div>
+        <div class="cta-contact">E-mail <span>contato@neuralops.com.br</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">NeuralOps</div>
+  <div class="f-info">
+    Proposta elaborada exclusivamente para a Taimin MTC · Abril 2026<br>
+    Documento confidencial — não reproduzir sem autorização
+  </div>
+  <div class="f-conf">Confidencial</div>
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const pct = (scrollTop / scrollHeight) * 100;
+    document.getElementById('progress').style.width = pct + '%';
+  });
+
+  // Fade up observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

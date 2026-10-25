@@ -1,13 +1,27 @@
 # Neural Ops — neuralops.com.br
+# Atualizado: 2026-10-25
 
 User-agent: *
 Allow: /
 Disallow: /og-gen.html
 Disallow: /proposta-certificacao.html
 Disallow: /proposta-kiss.html
+Disallow: /proposta-cbjc/
+Disallow: /proposta/
+Disallow: /agendar/
+Disallow: /api/
+Disallow: /diagnostico/quiz/
+Disallow: /diagnostico/resultado/
+Disallow: /diagnostico/legado/
+Disallow: /saude/diagnostico/quiz/
+Disallow: /saude/diagnostico/resultado/
+Disallow: /proposta-kiss/
+Disallow: /proposta-certificacao/
+Disallow: /proposta-taimin.html
 
-# ── Bots de IA Generativa ───────────────────────────────
-# Permitir que ChatGPT, Gemini, Perplexity e outros indexem o site
+# ── Bots de IA Generativa ────────────────────────────────────
+# NeuralOps encoraja indexação por motores de IA
+# para maximizar visibilidade em respostas geradas por IA (GEO)
 
 User-agent: GPTBot
 Allow: /
@@ -22,6 +36,9 @@ User-agent: Google-Extended
 Allow: /
 
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: PerplexityBot
@@ -45,5 +62,21 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-# ── Sitemap ─────────────────────────────────────────────
+User-agent: BingBot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# ── Arquivos de referência para IA ──────────────────────────
+# llms.txt: resumo estruturado do site para agentes de IA
+# Conforme padrão proposto por llmstxt.org
+
+# ── Sitemap ──────────────────────────────────────────────────
 Sitemap: https://neuralops.com.br/sitemap.xml

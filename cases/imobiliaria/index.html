@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Imobiliária — De 72 Horas para 4 Minutos no Primeiro Contato com IA | Neural Ops</title>
+<meta name="description" content="Como uma imobiliária com 18 corretores passou a atender 740 leads/mês com o mesmo time usando IA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/cases/shared.css">
+<style>
+.decay-chart{display:flex;align-items:flex-end;gap:0;height:220px;border-bottom:1px solid rgba(255,255,255,.1);border-left:1px solid rgba(255,255,255,.1);position:relative;padding-bottom:32px;}
+.decay-bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:0;padding:0 4px;}
+.decay-fill{width:100%;border-radius:2px 2px 0 0;transition:height 1.2s cubic-bezier(.4,0,.2,1);}
+.decay-pct{font-size:11px;font-weight:800;color:#fff;margin-bottom:6px;}
+.decay-label{font-size:10px;font-weight:700;color:rgba(255,255,255,.3);text-align:center;white-space:nowrap;margin-top:8px;}
+.decay-bar:first-child .decay-fill{background:var(--lime);}
+.decay-bar:nth-child(2) .decay-fill{background:rgba(190,255,1,.6);}
+.decay-bar:nth-child(3) .decay-fill{background:rgba(190,255,1,.3);}
+.decay-bar:nth-child(4) .decay-fill{background:rgba(255,80,80,.5);}
+.result-compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);margin-top:32px;}
+.rc-cell{background:var(--dark);padding:24px 20px;}
+.rc-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:6px;}
+.rc-before{font-size:20px;font-weight:700;color:rgba(255,255,255,.3);}
+.rc-after{font-size:28px;font-weight:900;color:var(--lime);}
+.rc-delta{font-size:11px;font-weight:700;color:rgba(190,255,1,.6);margin-top:4px;}
+.funnel{display:flex;flex-direction:column;gap:2px;margin-top:24px;}
+.funnel-step{display:flex;align-items:center;gap:16px;padding:16px 20px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);position:relative;}
+.funnel-step::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.funnel-step.f1::before{background:var(--lime);}
+.funnel-step.f2::before{background:rgba(190,255,1,.6);}
+.funnel-step.f3::before{background:rgba(190,255,1,.3);}
+.funnel-step.f4::before{background:rgba(190,255,1,.1);}
+.funnel-icon{font-size:20px;width:32px;text-align:center;}
+.funnel-body{flex:1;}
+.funnel-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px;}
+.funnel-desc{font-size:12px;color:rgba(255,255,255,.35);}
+.funnel-num{font-size:14px;font-weight:800;color:var(--lime);}
+.agent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+@media(max-width:768px){.agent-grid{grid-template-columns:1fr;}.result-compare{grid-template-columns:1fr;}}
+.metric-compare{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);margin:32px 0;}
+.mc-cell{background:var(--dark);padding:24px;text-align:center;}
+.mc-metric{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:12px;}
+.mc-before{font-size:16px;font-weight:700;color:rgba(255,255,255,.3);text-decoration:line-through;}
+.mc-after{font-size:26px;font-weight:900;color:var(--lime);margin:4px 0;}
+.mc-delta{font-size:11px;color:rgba(190,255,1,.6);font-weight:600;}
+@media(max-width:768px){.metric-compare{grid-template-columns:1fr 1fr;}}
+.revenue-block{background:rgba(190,255,1,.05);border:1px solid rgba(190,255,1,.15);padding:32px;margin-top:32px;display:flex;align-items:center;gap:40px;flex-wrap:wrap;}
+.revenue-side{text-align:center;}
+.revenue-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px;}
+.revenue-val{font-size:clamp(22px,3vw,36px);font-weight:900;}
+.revenue-arrow{font-size:40px;color:var(--lime);}
+</style>
+</head>
+<body>
+<div id="glow"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#beff01"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="canonical" href="https://neuralops.com.br/cases/imobiliaria/" />
+
+  <meta property="og:type"         content="article" />
+  <meta property="og:url"          content="https://neuralops.com.br/cases/imobiliaria/" />
+  <meta property="og:title"        content="Case Imobiliária — 72h→4min no 1º Contato com IA" />
+  <meta property="og:description"  content="Imobiliária com 2.200 leads/mês usou IA para qualificação instantânea: +62% visitas, +38% fechamentos, mesmos 18 corretores." />
+  <meta property="og:image"        content="https://neuralops.com.br/og-image.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale"       content="pt_BR" />
+  <meta property="og:site_name"    content="Neural Ops" />
+  <meta property="article:author"  content="Neural Ops" />
+  <meta property="article:section" content="Cases de IA" />
+  <meta property="article:published_time" content="2026-04-10" />
+
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Case Imobiliária — 72h→4min no 1º Contato com IA" />
+  <meta name="twitter:description" content="Imobiliária com 2.200 leads/mês usou IA para qualificação instantânea: +62% visitas, +38% fechamentos, mesmos 18 corretores." />
+  <meta name="twitter:image"       content="https://neuralops.com.br/og-image.png" />
+
+  <meta name="keywords"    content="IA para imobiliária, qualificação lead imobiliário, automação corretora, CRM imobiliário inteligente, chatbot imóveis, tempo de resposta lead imóvel" />
+  <meta name="robots"      content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="author"      content="Neural Ops" />
+  <meta name="theme-color" content="#0d0d0d" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Imobiliária Digital — De 72 Horas para 4 Minutos no Primeiro Contato com IA",
+    "description": "Imobiliária com 2.200 leads/mês e 18 corretores implementou agente de qualificação instantânea, reduzindo o tempo do primeiro contato de 72h para 4min e aumentando fechamentos em 38%.",
+    "url": "https://neuralops.com.br/cases/imobiliaria/",
+    "datePublished": "2026-04-10",
+    "dateModified": "2026-04-10",
+    "author": { "@type": "Organization", "name": "Neural Ops", "url": "https://neuralops.com.br" },
+    "publisher": { "@type": "Organization", "name": "Neural Ops", "url": "https://neuralops.com.br", "logo": { "@type": "ImageObject", "url": "https://neuralops.com.br/favicon.svg" } },
+    "image": "https://neuralops.com.br/og-image.png",
+    "inLanguage": "pt-BR",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Neural Ops", "item": "https://neuralops.com.br/" },
+        { "@type": "ListItem", "position": 2, "name": "Cases & Insights", "item": "https://neuralops.com.br/cases/" },
+        { "@type": "ListItem", "position": 3, "name": "Imobiliária", "item": "https://neuralops.com.br/cases/imobiliaria/" }
+      ]
+    }
+  }
+  </script>
+<line x1="0" y1="16" x2="32" y2="16" stroke="#0d0d0d" stroke-width="2.5"/><circle cx="10" cy="16" r="3.5" fill="#0d0d0d"/><circle cx="10" cy="16" r="1.5" fill="#beff01"/><rect x="19.5" y="6" width="2.5" height="20" fill="#0d0d0d"/><circle cx="20.75" cy="10" r="3.5" fill="#0d0d0d"/><circle cx="20.75" cy="10" r="1.5" fill="#beff01"/><circle cx="20.75" cy="22" r="3.5" fill="#0d0d0d"/><circle cx="20.75" cy="22" r="1.5" fill="#beff01"/></svg>
+      <span class="nav-logo-text">Neural<em>Ops</em></span>
+    </a>
+        <div class="nav-links">
+      <a href="/#problema" class="nav-link">O Problema</a>
+      <a href="/#infraestrutura" class="nav-link">Infraestrutura</a>
+      <a href="/#processo" class="nav-link">Processo</a>
+      <a href="/#resultados" class="nav-link">Resultados</a>
+      <a href="/cases/" class="nav-link active">Cases & Insights</a>
+    </div>
+    <a href="/#cta" class="nav-cta">Diagnóstico Neural™</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="case-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow-r"></div>
+  <div class="wrap">
+    <div class="breadcrumb fu">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/cases/">Cases</a>
+      <span>/</span>
+      <span class="current">Imobiliária</span>
+    </div>
+    <div class="tag fu d1">Case · Imóveis · Real Estate</div>
+    <h1 class="fu d2" style="font-size:clamp(28px,4vw,56px);font-weight:900;letter-spacing:-2px;text-transform:uppercase;line-height:1;margin-top:20px;max-width:900px;">
+      Imobiliária Digital<br>
+      <span style="color:var(--lime)">De 72h para 4 Minutos</span><br>
+      no Primeiro Contato com IA
+    </h1>
+    <p class="fu d3" style="font-size:16px;color:rgba(255,255,255,.45);max-width:620px;line-height:1.75;margin-top:20px;">
+      18 corretores, 2.200 leads por mês e uma taxa de resposta que destruía oportunidades em tempo real. Como a IA reorganizou o funil inteiro em 45 dias.
+    </p>
+    <!-- METRICS -->
+    <div class="hero-metrics fu d4">
+      <div class="hm-item">
+        <div class="hm-num" data-count="4" data-suffix="min">4min</div>
+        <div class="hm-label">Primeiro Contato</div>
+        <div class="hm-sub">antes: 72 horas</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-num">+62%</div>
+        <div class="hm-label">Visitas Agendadas</div>
+        <div class="hm-sub">12% → 19% conv.</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-num">2,8×</div>
+        <div class="hm-label">Cap. Corretores</div>
+        <div class="hm-sub">mesmo time</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-num">+38%</div>
+        <div class="hm-label">Fechamentos/Mês</div>
+        <div class="hm-sub">28 → 48 vendas</div>
+      </div>
+    </div>
+    <!-- META BAR -->
+    <div class="case-meta-bar fu d5">
+      <div class="case-meta-item">
+        <span class="case-meta-label">Setor</span>
+        <span class="case-meta-val">Imóveis</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Segmento</span>
+        <span class="case-meta-val">Residencial / Comercial</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Prazo</span>
+        <span class="case-meta-val">45 dias</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Corretores</span>
+        <span class="case-meta-val">18</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section class="content-section">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <p class="section-eyebrow fu">O Contexto</p>
+        <h2 class="section-title fu d1">O Problema<br>Antes da IA</h2>
+        <p class="section-lead fu d2">Uma imobiliária de porte médio com operação consolidada, mas um funil de atendimento completamente quebrado.</p>
+        <div class="highlight fu d3" style="margin-top:28px;">
+          <p>O time chegava às 8h e encontrava <strong>dezenas de leads sem resposta</strong> acumulados desde a noite anterior. A corrida para atender começava com as piores probabilidades possíveis.</p>
+        </div>
+      </div>
+      <div>
+        <div class="funnel fu d1">
+          <div class="funnel-step f1">
+            <div class="funnel-icon">📨</div>
+            <div class="funnel-body">
+              <div class="funnel-title">Entrada de Leads</div>
+              <div class="funnel-desc">ZAP Imóveis, OLX, Viva Real, WhatsApp</div>
+            </div>
+            <div class="funnel-num">2.200/mês</div>
+          </div>
+          <div class="funnel-step f2">
+            <div class="funnel-icon">⏰</div>
+            <div class="funnel-body">
+              <div class="funnel-title">Tempo de Primeiro Contato</div>
+              <div class="funnel-desc">Média real medida pela equipe</div>
+            </div>
+            <div class="funnel-num" style="color:#ef4444;">72 horas</div>
+          </div>
+          <div class="funnel-step f3">
+            <div class="funnel-icon">📅</div>
+            <div class="funnel-body">
+              <div class="funnel-title">Leads que Viraram Visita</div>
+              <div class="funnel-desc">Conversão lead → visita agendada</div>
+            </div>
+            <div class="funnel-num" style="color:rgba(190,255,1,.5);">12%</div>
+          </div>
+          <div class="funnel-step f4">
+            <div class="funnel-icon">🏠</div>
+            <div class="funnel-body">
+              <div class="funnel-title">Visitas que Fecharam</div>
+              <div class="funnel-desc">Taxa de conversão visita → contrato</div>
+            </div>
+            <div class="funnel-num" style="color:rgba(190,255,1,.3);">35%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM ANALYSIS: DECAY CURVE -->
+<section class="content-section">
+  <div class="wrap">
+    <p class="section-eyebrow fu">Análise do Problema</p>
+    <h2 class="section-title fu d1">A Curva de Decaimento<br>do Lead Imobiliário</h2>
+    <p class="section-lead fu d2">Estudos de comportamento de consumidor mostram que a chance de engajar um lead imobiliário cai de forma abrupta a cada hora sem resposta.</p>
+
+    <div class="chart-box fu d3" style="margin-top:36px;">
+      <div class="chart-box-title">Probabilidade de Engajamento por Tempo de Resposta</div>
+      <div class="decay-chart" id="decayChart">
+        <div class="decay-bar">
+          <div class="decay-pct">100%</div>
+          <div class="decay-fill" style="height:0%" data-height="100%"></div>
+          <div class="decay-label">5 min</div>
+        </div>
+        <div class="decay-bar">
+          <div class="decay-pct">60%</div>
+          <div class="decay-fill" style="height:0%" data-height="60%"></div>
+          <div class="decay-label">1 hora</div>
+        </div>
+        <div class="decay-bar">
+          <div class="decay-pct">30%</div>
+          <div class="decay-fill" style="height:0%" data-height="30%"></div>
+          <div class="decay-label">24 horas</div>
+        </div>
+        <div class="decay-bar">
+          <div class="decay-pct">12%</div>
+          <div class="decay-fill" style="height:0%" data-height="12%"></div>
+          <div class="decay-label">72 horas</div>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.2);">Fonte: National Association of Realtors + análise interna NeuralOps</div>
+    </div>
+
+    <blockquote class="case-quote fu d4" style="margin-top:36px;">
+      <p>"A maioria dos leads chegava quando a imobiliária respondia: JÁ TINHAM ESCOLHIDO OUTRO CORRETOR."</p>
+      <cite>— Observação do diagnóstico NeuralOps, Semana 1</cite>
+    </blockquote>
+
+    <div class="three-col" style="margin-top:36px;">
+      <div class="info-card fu d1">
+        <div class="card-num" style="font-size:28px;">80%</div>
+        <div class="card-label">Menos Chance de Fechar</div>
+        <div class="card-desc">Lead imobiliário não atendido nos primeiros 5 minutos tem probabilidade de fechamento drasticamente menor</div>
+      </div>
+      <div class="info-card fu d2">
+        <div class="card-num" style="font-size:28px;">264</div>
+        <div class="card-label">Leads Atendidos/Mês</div>
+        <div class="card-desc">Dos 2.200 leads mensais, apenas 12% viravam visita — o restante morria sem resposta adequada</div>
+      </div>
+      <div class="info-card fu d3">
+        <div class="card-num" style="font-size:28px;">R$800k</div>
+        <div class="card-label">Receita Invisível Perdida</div>
+        <div class="card-desc">Estimativa de receita mensal não capturada por tempo de resposta inadequado antes da implementação</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="content-section">
+  <div class="wrap">
+    <p class="section-eyebrow fu">A Solução</p>
+    <h2 class="section-title fu d1">Infraestrutura Neural<br>para Imóveis</h2>
+    <p class="section-lead fu d2">Três agentes especializados trabalhando em cadeia: do primeiro contato ao relacionamento pós-venda, sem falhas e sem horário comercial.</p>
+
+    <div class="agent-grid">
+      <div class="agent-box fu d1">
+        <div class="agent-box-num">Agente 01</div>
+        <div class="agent-box-title">Qualificação Instantânea</div>
+        <div class="agent-box-desc">Responde a qualquer lead em menos de 4 minutos, 24 horas por dia, 7 dias por semana — sem exceções.</div>
+        <ul>
+          <li>Número de quartos e tipo de imóvel</li>
+          <li>Bairro e localização desejada</li>
+          <li>Orçamento e condições de pagamento</li>
+          <li>Prazo e urgência do cliente</li>
+          <li>Compra ou aluguel</li>
+          <li>Mostra imóveis compatíveis com fotos</li>
+          <li>Agenda visita na agenda do corretor</li>
+        </ul>
+        <div class="agent-stat">
+          <div class="agent-stat-num">4 min</div>
+          <div class="agent-stat-label">Tempo médio de primeiro contato</div>
+        </div>
+      </div>
+      <div class="agent-box fu d2">
+        <div class="agent-box-num">Agente 02</div>
+        <div class="agent-box-title">Reengajamento Ativo</div>
+        <div class="agent-box-desc">Leads que pararam de responder não são abandonados — são reativados com inteligência e timing preciso.</div>
+        <ul>
+          <li>Sequência de reativação personalizada</li>
+          <li>Alertas de novos imóveis compatíveis</li>
+          <li>Notificação de redução de preço</li>
+          <li>Follow-up automático com contexto</li>
+          <li>Identificação de mudança de perfil</li>
+          <li>Reativação de leads de até 90 dias</li>
+          <li>Score de propensão dinâmico</li>
+        </ul>
+        <div class="agent-stat">
+          <div class="agent-stat-num">+23%</div>
+          <div class="agent-stat-label">Leads reativados mensalmente</div>
+        </div>
+      </div>
+      <div class="agent-box fu d3">
+        <div class="agent-box-num">Agente 03</div>
+        <div class="agent-box-title">CRM com IA</div>
+        <div class="agent-box-desc">Dashboard de pipeline completo com inteligência preditiva sobre o portfólio de clientes ativos.</div>
+        <ul>
+          <li>Pipeline: negociação → visita → proposta → fechamento</li>
+          <li>Alerta de clientes prontos para upgrade</li>
+          <li>Análise de mercado por região</li>
+          <li>Previsão de fechamentos do mês</li>
+          <li>Histórico completo de cada cliente</li>
+          <li>Score de prioridade para corretores</li>
+          <li>Relatórios automáticos de performance</li>
+        </ul>
+        <div class="agent-stat">
+          <div class="agent-stat-num">100%</div>
+          <div class="agent-stat-label">Pipeline visível em tempo real</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="content-section">
+  <div class="wrap">
+    <p class="section-eyebrow fu">Os Resultados</p>
+    <h2 class="section-title fu d1">45 Dias Para<br>Transformar o Funil</h2>
+    <p class="section-lead fu d2">Os mesmos 18 corretores, o mesmo mercado, a mesma cidade. O que mudou foi a infraestrutura de atendimento.</p>
+
+    <div class="metric-compare fu d3">
+      <div class="mc-cell">
+        <div class="mc-metric">Primeiro Contato</div>
+        <div class="mc-before">72 horas</div>
+        <div class="mc-after">4 min</div>
+        <div class="mc-delta">↓ 99,7% no tempo</div>
+      </div>
+      <div class="mc-cell">
+        <div class="mc-metric">Lead → Visita</div>
+        <div class="mc-before">12%</div>
+        <div class="mc-after">19%</div>
+        <div class="mc-delta">↑ +58% conversão</div>
+      </div>
+      <div class="mc-cell">
+        <div class="mc-metric">Visita → Contrato</div>
+        <div class="mc-before">35%</div>
+        <div class="mc-after">42%</div>
+        <div class="mc-delta">↑ +20% fechamento</div>
+      </div>
+      <div class="mc-cell">
+        <div class="mc-metric">Leads Atendidos/Mês</div>
+        <div class="mc-before">264</div>
+        <div class="mc-after">740</div>
+        <div class="mc-delta">↑ 2,8× capacidade</div>
+      </div>
+    </div>
+
+    <!-- REVENUE BLOCK -->
+    <div class="revenue-block fu d4">
+      <div class="revenue-side">
+        <div class="revenue-label">Receita Antes</div>
+        <div class="revenue-val" style="color:rgba(255,255,255,.4);">R$1.120.000</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.2);margin-top:4px;">28 vendas/mês</div>
+      </div>
+      <div class="revenue-arrow">→</div>
+      <div class="revenue-side">
+        <div class="revenue-label">Receita Depois</div>
+        <div class="revenue-val" style="color:var(--lime);">R$1.920.000</div>
+        <div style="font-size:12px;color:rgba(190,255,1,.5);margin-top:4px;">48 vendas/mês</div>
+      </div>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:40px;font-weight:900;color:var(--lime);">+R$800k</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.3);margin-top:4px;">de receita incremental por mês</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);margin-top:8px;font-weight:600;">mesmo número de corretores</div>
+      </div>
+    </div>
+
+    <!-- CHART: Vendas por mês comparativo -->
+    <div class="chart-box fu d5" style="margin-top:32px;">
+      <div class="chart-box-title">Evolução Mensal — Vendas Realizadas</div>
+      <div style="display:flex;gap:24px;align-items:flex-end;height:160px;margin-top:16px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;">
+          <span style="font-size:13px;font-weight:800;color:rgba(255,255,255,.3);">28</span>
+          <div style="width:100%;background:rgba(255,255,255,.12);border-radius:2px 2px 0 0;height:80px;"></div>
+          <span style="font-size:10px;color:rgba(255,255,255,.2);letter-spacing:1px;">ANTES</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;">
+          <span style="font-size:13px;font-weight:800;color:rgba(255,255,255,.4);">31</span>
+          <div style="width:100%;background:rgba(190,255,1,.2);border-radius:2px 2px 0 0;height:89px;"></div>
+          <span style="font-size:10px;color:rgba(255,255,255,.2);letter-spacing:1px;">MÊS 1</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;">
+          <span style="font-size:13px;font-weight:800;color:rgba(255,255,255,.5);">37</span>
+          <div style="width:100%;background:rgba(190,255,1,.35);border-radius:2px 2px 0 0;height:106px;"></div>
+          <span style="font-size:10px;color:rgba(255,255,255,.2);letter-spacing:1px;">MÊS 2</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;">
+          <span style="font-size:13px;font-weight:800;color:rgba(190,255,1,.8);">43</span>
+          <div style="width:100%;background:rgba(190,255,1,.6);border-radius:2px 2px 0 0;height:123px;"></div>
+          <span style="font-size:10px;color:rgba(255,255,255,.2);letter-spacing:1px;">MÊS 3</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;">
+          <span style="font-size:13px;font-weight:800;color:var(--lime);">48</span>
+          <div style="width:100%;background:var(--lime);border-radius:2px 2px 0 0;height:137px;"></div>
+          <span style="font-size:10px;color:rgba(255,255,255,.2);letter-spacing:1px;">MÊS 4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE 45 DAYS -->
+<section class="content-section">
+  <div class="wrap">
+    <p class="section-eyebrow fu">O Processo</p>
+    <h2 class="section-title fu d1">Implementação em<br>45 Dias</h2>
+    <div class="two-col" style="margin-top:36px;">
+      <div class="tl fu d2">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Dias 1–7</div>
+          <div class="tl-title">Diagnóstico Neural™</div>
+          <div class="tl-desc">Mapeamento completo do funil atual: origens de leads, tempo de resposta real, taxa de conversão por etapa, gargalos operacionais.</div>
+          <div class="tl-result">→ Relatório de oportunidades identificadas</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Dias 8–18</div>
+          <div class="tl-title">Construção dos Agentes</div>
+          <div class="tl-desc">Desenvolvimento do Agente de Qualificação com treinamento no portfólio da imobiliária, scripts de qualificação e integração com portais.</div>
+          <div class="tl-result">→ Primeiro agente em ambiente de testes</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Dias 19–28</div>
+          <div class="tl-title">Integração e CRM</div>
+          <div class="tl-desc">Conexão com agendas dos corretores, pipeline de CRM, integração com WhatsApp Business API e portais imobiliários.</div>
+          <div class="tl-result">→ Sistema integrado e testado</div>
+        </div>
+      </div>
+      <div class="tl fu d3">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Dias 29–36</div>
+          <div class="tl-title">Go-Live Controlado</div>
+          <div class="tl-desc">Lançamento com acompanhamento diário. Primeiros leads reais sendo atendidos em menos de 4 minutos. Ajustes finos de resposta e qualificação.</div>
+          <div class="tl-result">→ Sistema em produção com supervisão</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Dias 37–42</div>
+          <div class="tl-title">Agente de Reengajamento</div>
+          <div class="tl-desc">Ativação da camada de reengajamento. Leads dormentes dos últimos 60 dias recontactados com sequências personalizadas.</div>
+          <div class="tl-result">→ +18% de receita recuperada na primeira semana</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot open"></div>
+          <div class="tl-phase">Dia 45</div>
+          <div class="tl-title">Entrega e Autonomia</div>
+          <div class="tl-desc">Treinamento da equipe no dashboard, relatórios automáticos configurados e time operando de forma autônoma com suporte mensal.</div>
+          <div class="tl-result">→ Operação em escala. Resultados documentados.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="section-sm">
+  <div class="wrap">
+    <p class="section-eyebrow fu" style="margin-bottom:24px;">Outros Cases</p>
+    <div class="related-grid">
+      <a href="/cases/consorcios/" class="related-card fu d1">
+        <div class="related-sector">Financeiro · Consórcios</div>
+        <div class="related-title">Consórcio: 3× Mais Contratos com Qualificação Instantânea</div>
+        <div class="related-arrow">→</div>
+      </a>
+      <a href="/cases/medprev-apgo/" class="related-card fu d2">
+        <div class="related-sector">Saúde · Planos Médicos</div>
+        <div class="related-title">MedPrev: Agendamentos Automáticos e Retenção de Pacientes</div>
+        <div class="related-arrow">→</div>
+      </a>
+      <a href="/cases/advocacia-crm/" class="related-card fu d3">
+        <div class="related-sector">Jurídico · CRM Automatizado</div>
+        <div class="related-title">Advocacia: CRM Inteligente que Fecha Mais Contratos</div>
+        <div class="related-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-block">
+  <div class="cta-title">Sua imobiliária<br>também está perdendo leads</div>
+  <p class="cta-sub">Faça o Diagnóstico Neural™ gratuito e descubra quantas oportunidades estão desaparecendo no seu funil todo dia.</p>
+  <a href="/#cta" class="cta-btn">
+    Quero o Diagnóstico Gratuito
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="nav-logo" style="text-decoration:none;">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#beff01"/><line x1="0" y1="16" x2="32" y2="16" stroke="#0d0d0d" stroke-width="2.5"/><circle cx="10" cy="16" r="3.5" fill="#0d0d0d"/><circle cx="10" cy="16" r="1.5" fill="#beff01"/><rect x="19.5" y="6" width="2.5" height="20" fill="#0d0d0d"/><circle cx="20.75" cy="10" r="3.5" fill="#0d0d0d"/><circle cx="20.75" cy="10" r="1.5" fill="#beff01"/><circle cx="20.75" cy="22" r="3.5" fill="#0d0d0d"/><circle cx="20.75" cy="22" r="1.5" fill="#beff01"/></svg>
+      <span class="nav-logo-text">Neural<em>Ops</em></span>
+    </a>
+    <span style="font-size:12px;color:rgba(255,255,255,.2);">© 2025 NeuralOps · Infraestrutura de IA para empresas brasileiras</span>
+    <a href="/#cta" class="nav-cta" style="font-size:10px;padding:10px 20px;">Falar com Especialista</a>
+  </div>
+</footer>
+
+<script>
+// GLOW
+const glow = document.getElementById('glow');
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+});
+
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// INTERSECTION OBSERVER
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fu').forEach(el => observer.observe(el));
+
+// DECAY CHART ANIMATION
+const decayObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.decay-fill').forEach(bar => {
+        bar.style.height = bar.dataset.height;
+      });
+      decayObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+const dc = document.getElementById('decayChart');
+if (dc) decayObserver.observe(dc);
+</script>
+</body>
+</html>

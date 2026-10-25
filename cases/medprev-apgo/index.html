@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case MedPrev APGO — De 900 para 1.148 Atendimentos/Mês com IA | Neural Ops</title>
+  <meta name="description" content="Como a MedPrev APGO passou de 900 para 1.148 atendimentos/mês com 3 agentes de IA. +R$37.200/mês de receita adicional em 45 dias." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="canonical" href="https://neuralops.com.br/cases/medprev-apgo/" />
+
+  <meta property="og:type"         content="article" />
+  <meta property="og:url"          content="https://neuralops.com.br/cases/medprev-apgo/" />
+  <meta property="og:title"        content="Case MedPrev APGO — +27,5% Atendimentos com 3 Agentes de IA" />
+  <meta property="og:description"  content="Clínica médica com 1.400 leads/mês usou IA para atender 24/7. Resultado: 900→1.148 atendimentos, +R$37k/mês, 422h economizadas em 45 dias." />
+  <meta property="og:image"        content="https://neuralops.com.br/og-image.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale"       content="pt_BR" />
+  <meta property="og:site_name"    content="Neural Ops" />
+  <meta property="article:author"  content="Neural Ops" />
+  <meta property="article:section" content="Cases de IA" />
+  <meta property="article:published_time" content="2026-04-10" />
+
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Case MedPrev APGO — +27,5% Atendimentos com 3 Agentes de IA" />
+  <meta name="twitter:description" content="Clínica médica com 1.400 leads/mês usou IA para atender 24/7. Resultado: 900→1.148 atendimentos, +R$37k/mês, 422h economizadas em 45 dias." />
+  <meta name="twitter:image"       content="https://neuralops.com.br/og-image.png" />
+
+  <meta name="keywords"    content="IA para clínica médica, agentes de IA saúde, automação atendimento clínica, WhatsApp bot médico, CRM clínica, atendimento 24h clínica, case IA saúde Brasil" />
+  <meta name="robots"      content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="author"      content="Neural Ops" />
+  <meta name="theme-color" content="#0d0d0d" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "MedPrev APGO — De 900 para 1.148 Atendimentos/Mês com 3 Agentes de IA",
+    "description": "Clínica médica com 1.400 leads/mês implementou 3 agentes de IA especializados e alcançou 1.148 atendimentos/mês, com receita incremental de R$37.200/mês.",
+    "url": "https://neuralops.com.br/cases/medprev-apgo/",
+    "datePublished": "2026-04-10",
+    "dateModified": "2026-04-10",
+    "author": { "@type": "Organization", "name": "Neural Ops", "url": "https://neuralops.com.br" },
+    "publisher": { "@type": "Organization", "name": "Neural Ops", "url": "https://neuralops.com.br", "logo": { "@type": "ImageObject", "url": "https://neuralops.com.br/favicon.svg" } },
+    "image": "https://neuralops.com.br/og-image.png",
+    "inLanguage": "pt-BR",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Neural Ops", "item": "https://neuralops.com.br/" },
+        { "@type": "ListItem", "position": 2, "name": "Cases & Insights", "item": "https://neuralops.com.br/cases/" },
+        { "@type": "ListItem", "position": 3, "name": "MedPrev APGO", "item": "https://neuralops.com.br/cases/medprev-apgo/" }
+      ]
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/cases/shared.css" />
+  <style>
+    /* ── Page-specific ── */
+    .hero-neural-bg {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .hero-title {
+      font-size: clamp(28px, 3.5vw, 52px);
+      font-weight: 900;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+      line-height: 1.0;
+      margin: 16px 0 0;
+    }
+    .hero-title em { font-style: normal; color: var(--lime); }
+
+    /* Coverage grid */
+    .coverage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .cov-block { border: 1px solid rgba(255,255,255,.07); padding: 28px; }
+    .cov-block.after { border-color: rgba(190,255,1,.25); background: rgba(190,255,1,.03); }
+    .cov-head { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+    .cov-head.bad { color: rgba(255,255,255,.3); }
+    .cov-head.good { color: var(--lime); }
+    .cov-num { font-size: 48px; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+    .cov-num.bad { color: rgba(255,255,255,.25); }
+    .cov-num.good { color: var(--lime); }
+    .cov-sub { font-size: 12px; color: rgba(255,255,255,.3); }
+    .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin-top: 20px; }
+    .wg-col { display: flex; flex-direction: column; gap: 3px; }
+    .wg-day { font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.25); text-align: center; margin-bottom: 4px; }
+    .wg-cell { height: 14px; border-radius: 2px; }
+    .wg-cell.on { background: var(--lime); }
+    .wg-cell.off { background: rgba(255,255,255,.06); }
+    .wg-cell.partial { background: rgba(190,255,1,.3); }
+
+    /* Financial flow */
+    .rev-flow { display: flex; align-items: center; gap: 0; margin: 40px 0; }
+    .rev-box { flex: 1; padding: 32px; text-align: center; border: 1px solid rgba(255,255,255,.07); }
+    .rev-box.highlight-box { border-color: rgba(190,255,1,.3); background: rgba(190,255,1,.05); }
+    .rev-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 8px; }
+    .rev-val { font-size: clamp(24px, 2.5vw, 40px); font-weight: 900; line-height: 1; }
+    .rev-val.lime { color: var(--lime); }
+    .rev-arrow { font-size: 32px; color: var(--lime); padding: 0 12px; font-weight: 300; flex-shrink: 0; }
+
+    /* Diag timeline */
+    .diag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 32px; }
+    .diag-item { background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.06); padding: 24px 28px; position: relative; overflow: hidden; transition: border-color .3s; }
+    .diag-item:hover { border-color: rgba(190,255,1,.2); }
+    .diag-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--lime); }
+    .diag-finding { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(190,255,1,.6); margin-bottom: 8px; }
+    .diag-stat { font-size: 28px; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 4px; }
+    .diag-desc { font-size: 13px; color: rgba(255,255,255,.35); line-height: 1.6; }
+
+    /* Flow diagram */
+    .flow-diagram { margin: 40px 0; overflow-x: auto; }
+    .fd-track { display: flex; align-items: center; gap: 0; min-width: 700px; }
+    .fd-node { flex: 1; text-align: center; }
+    .fd-box { display: inline-block; padding: 14px 18px; border: 1px solid rgba(255,255,255,.1); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.6); background: rgba(255,255,255,.02); }
+    .fd-box.start { border-color: rgba(190,255,1,.4); color: var(--lime); background: rgba(190,255,1,.05); }
+    .fd-box.end { border-color: rgba(190,255,1,.4); color: var(--lime); background: rgba(190,255,1,.05); }
+    .fd-arrow { color: rgba(190,255,1,.5); font-size: 20px; padding: 0 8px; }
+    .fd-fork { display: flex; flex-direction: column; gap: 8px; }
+
+    /* Result cards */
+    .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.06); margin-top: 40px; }
+    .result-item { background: var(--dark); padding: 36px 28px; text-align: center; }
+    .result-num { font-size: clamp(32px, 3vw, 48px); font-weight: 900; color: var(--lime); line-height: 1; margin-bottom: 8px; }
+    .result-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.3); }
+    .result-before { font-size: 12px; color: rgba(255,255,255,.2); margin-top: 6px; }
+
+    /* ROI big box */
+    .roi-box { background: var(--lime); color: #0d0d0d; padding: 56px 48px; text-align: center; margin-top: 48px; }
+    .roi-num { font-size: clamp(56px, 7vw, 96px); font-weight: 900; letter-spacing: -4px; line-height: 1; }
+    .roi-label { font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-top: 12px; opacity: .6; }
+
+    /* Phase timeline */
+    .phase-track { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: rgba(255,255,255,.06); margin-top: 40px; }
+    .phase-item { background: var(--dark); padding: 28px 24px; }
+    .phase-days { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(190,255,1,.6); margin-bottom: 10px; }
+    .phase-name { font-size: 13px; font-weight: 800; color: #fff; text-transform: uppercase; margin-bottom: 8px; line-height: 1.3; }
+    .phase-desc { font-size: 12px; color: rgba(255,255,255,.3); line-height: 1.6; }
+    .phase-result { font-size: 11px; color: var(--lime); font-weight: 700; margin-top: 12px; }
+    .phase-item.final { border-top: 2px solid var(--lime); }
+
+    /* Insight bar */
+    .insight-bar { background: rgba(190,255,1,.06); border: 1px solid rgba(190,255,1,.2); padding: 24px 32px; display: flex; align-items: center; gap: 24px; margin: 32px 0; }
+    .insight-icon { font-size: 28px; flex-shrink: 0; }
+    .insight-text { font-size: 15px; color: rgba(255,255,255,.7); line-height: 1.65; }
+    .insight-text strong { color: var(--lime); }
+
+    /* Hbar with label */
+    .savings-row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-top: 32px; }
+
+    /* Agent stats inline */
+    .as-row { display: flex; gap: 16px; margin-top: 16px; }
+    .as-item { flex: 1; padding: 14px; background: rgba(190,255,1,.07); }
+    .as-num { font-size: 20px; font-weight: 900; color: var(--lime); }
+    .as-lbl { font-size: 10px; color: rgba(255,255,255,.3); margin-top: 2px; }
+
+    @media(max-width:768px){
+      .coverage-grid,.diag-grid,.savings-row { grid-template-columns: 1fr; }
+      .rev-flow { flex-direction: column; }
+      .rev-arrow { transform: rotate(90deg); }
+      .phase-track { grid-template-columns: 1fr 1fr; }
+      .result-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- GLOW CURSOR -->
+<div id="glow"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" fill="#beff01"/>
+        <circle cx="16" cy="16" r="4" fill="#0d0d0d"/>
+        <circle cx="7" cy="10" r="2.5" fill="#0d0d0d"/>
+        <circle cx="25" cy="10" r="2.5" fill="#0d0d0d"/>
+        <circle cx="7" cy="22" r="2.5" fill="#0d0d0d"/>
+        <circle cx="25" cy="22" r="2.5" fill="#0d0d0d"/>
+        <line x1="16" y1="12" x2="8.7" y2="11.2" stroke="#0d0d0d" stroke-width="1.2"/>
+        <line x1="16" y1="12" x2="23.3" y2="11.2" stroke="#0d0d0d" stroke-width="1.2"/>
+        <line x1="16" y1="20" x2="8.7" y2="20.8" stroke="#0d0d0d" stroke-width="1.2"/>
+        <line x1="16" y1="20" x2="23.3" y2="20.8" stroke="#0d0d0d" stroke-width="1.2"/>
+      </svg>
+      <span class="nav-logo-text">Neural<em>Ops</em></span>
+    </a>
+        <div class="nav-links">
+      <a href="/#problema" class="nav-link">O Problema</a>
+      <a href="/#infraestrutura" class="nav-link">Infraestrutura</a>
+      <a href="/#processo" class="nav-link">Processo</a>
+      <a href="/#resultados" class="nav-link">Resultados</a>
+      <a href="/cases/" class="nav-link active">Cases & Insights</a>
+    </div>
+    <a href="/#cta" class="nav-cta">Diagnóstico Neural™ →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="case-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow-r"></div>
+
+  <!-- Animated neural SVG background -->
+  <div class="hero-neural-bg">
+    <svg width="100%" height="100%" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" style="opacity:.35;">
+      <defs>
+        <radialGradient id="ng1" cx="50%" cy="50%">
+          <stop offset="0%" stop-color="#beff01" stop-opacity=".15"/>
+          <stop offset="100%" stop-color="#beff01" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- nodes -->
+      <g fill="none" stroke="rgba(190,255,1,.25)" stroke-width="1">
+        <line x1="900" y1="100" x2="1050" y2="200"/><line x1="900" y1="100" x2="820" y2="280"/>
+        <line x1="1050" y1="200" x2="1100" y2="380"/><line x1="820" y1="280" x2="1100" y2="380"/>
+        <line x1="820" y1="280" x2="700" y2="450"/><line x1="1100" y1="380" x2="700" y2="450"/>
+        <line x1="950" y1="50" x2="900" y2="100"/><line x1="1150" y1="120" x2="1050" y2="200"/>
+      </g>
+      <circle cx="900" cy="100" r="5" fill="#beff01" opacity=".5"/>
+      <circle cx="1050" cy="200" r="4" fill="#beff01" opacity=".4"/>
+      <circle cx="820" cy="280" r="6" fill="#beff01" opacity=".6"/>
+      <circle cx="1100" cy="380" r="4" fill="#beff01" opacity=".35"/>
+      <circle cx="700" cy="450" r="8" fill="#beff01" opacity=".7"/>
+      <circle cx="950" cy="50" r="3" fill="#beff01" opacity=".3"/>
+      <circle cx="1150" cy="120" r="3" fill="#beff01" opacity=".25"/>
+      <!-- animated signal -->
+      <circle r="3" fill="#beff01" opacity=".8">
+        <animateMotion dur="4s" repeatCount="indefinite" path="M900,100 L1050,200 L1100,380 L700,450"/>
+      </circle>
+      <circle r="3" fill="#beff01" opacity=".6">
+        <animateMotion dur="5.5s" repeatCount="indefinite" begin="-2s" path="M950,50 L900,100 L820,280 L700,450"/>
+      </circle>
+    </svg>
+  </div>
+
+  <div class="wrap" style="position:relative;z-index:2;">
+    <div class="breadcrumb fu">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/cases/">Cases &amp; Insights</a>
+      <span>/</span>
+      <span class="current">MedPrev APGO</span>
+    </div>
+
+    <div class="tag fu d1">Case Real · Saúde · Clínica Médica</div>
+
+    <h1 class="hero-title fu d2">MedPrev APGO —<br>De 900 para 1.148<br>atendimentos<em>/mês</em><br>com 3 Agentes de IA</h1>
+
+    <div class="hero-metrics fu d3">
+      <div class="hm-item">
+        <div class="hm-num" data-count="+27,5%">+27,5%</div>
+        <div class="hm-label">Atendimentos</div>
+        <div class="hm-sub">900 → 1.148/mês</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-num" data-count="422h">422h</div>
+        <div class="hm-label">Economizadas/mês</div>
+        <div class="hm-sub">Equivalente a 2,6 FTEs</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-num" data-count="+R$37.200">+R$37.200</div>
+        <div class="hm-label">Receita adicional/mês</div>
+        <div class="hm-sub">+R$446.400/ano</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-num" data-count="24/7">24/7</div>
+        <div class="hm-label">Cobertura total</div>
+        <div class="hm-sub">168h/semana</div>
+      </div>
+    </div>
+
+    <div class="case-meta-bar fu d4">
+      <div class="case-meta-item">
+        <span class="case-meta-label">Setor</span>
+        <span class="case-meta-val">Saúde</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Segmento</span>
+        <span class="case-meta-val">Clínica Médica</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Prazo de Implementação</span>
+        <span class="case-meta-val">45 dias</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Ferramentas</span>
+        <span class="case-meta-val">WhatsApp API · CRM · GPT-4o · Google Calendar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1: O CONTEXTO -->
+<section class="content-section">
+  <div class="wrap">
+    <div class="section-eyebrow fu">01 / O Contexto</div>
+    <div class="two-col" style="margin-top:0;">
+      <div>
+        <h2 class="section-title fu">A Máquina de<br>Geração de Demanda<br>Já Funcionava</h2>
+        <p class="section-lead fu d1" style="margin-bottom:24px;">A MedPrev APGO já tinha resolvido o lado da captação. Com campanhas no Instagram Ads, chegavam regularmente <strong style="color:#fff;">1.400 leads qualificados por mês</strong> direto no WhatsApp — pessoas buscando ativamente consultas médicas e exames.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,.4);line-height:1.75;" class="fu d2">O problema era o que acontecia depois. Com apenas 3 atendentes humanos, a clínica conseguia converter em atendimentos 900 desses leads — e fazia isso operando exclusivamente em horário comercial, das 8h às 18h. Os demais 500 leads? Desapareciam.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,.4);line-height:1.75;margin-top:16px;" class="fu d3">A equipe trabalhava no limite. Cada atendente gastava em torno de 10 minutos por agendamento manual, entre perguntar sobre o tipo de serviço, verificar a agenda, confirmar data, passar instruções e registrar. Com ticket médio de R$150, a receita mensal era de R$135.000 — mas o potencial real era significativamente maior.</p>
+
+        <div class="highlight fu d4" style="margin-top:28px;">
+          <p>"O problema não era falta de demanda. Era a infraestrutura de atendimento que não suportava o volume."</p>
+        </div>
+      </div>
+
+      <div class="fu d2">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,.06);">
+          <div class="info-card">
+            <div class="card-num">1.400</div>
+            <div class="card-label">Leads/mês</div>
+            <div class="card-desc">Via Instagram Ads direto no WhatsApp</div>
+          </div>
+          <div class="info-card">
+            <div class="card-num">900</div>
+            <div class="card-label">Atendimentos/mês</div>
+            <div class="card-desc">64,3% dos leads — o resto se perdia</div>
+          </div>
+          <div class="info-card">
+            <div class="card-num">R$150</div>
+            <div class="card-label">Ticket Médio</div>
+            <div class="card-desc">Por consulta ou exame realizado</div>
+          </div>
+          <div class="info-card">
+            <div class="card-num">R$135k</div>
+            <div class="card-label">Receita/mês</div>
+            <div class="card-desc">Operando abaixo da capacidade real</div>
+          </div>
+        </div>
+
+        <!-- Inline SVG mini-chart -->
+        <div class="chart-box" style="margin-top:2px;">
+          <div class="chart-box-title">Leads x Atendimentos (situação inicial)</div>
+          <svg viewBox="0 0 320 120" width="100%" style="display:block;">
+            <defs>
+              <linearGradient id="gr1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#beff01" stop-opacity=".3"/>
+                <stop offset="100%" stop-color="#beff01" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="gr2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="rgba(255,255,255,.2)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,.02)"/>
+              </linearGradient>
+            </defs>
+            <!-- Leads bar -->
+            <rect x="40" y="20" width="80" height="80" fill="url(#gr2)" rx="1"/>
+            <rect x="40" y="20" width="80" height="2" fill="rgba(255,255,255,.3)" rx="1"/>
+            <text x="80" y="14" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.4)" font-family="Inter" font-weight="700">1.400</text>
+            <!-- Atendimentos bar -->
+            <rect x="150" y="46" width="80" height="54" fill="url(#gr1)" rx="1"/>
+            <rect x="150" y="46" width="80" height="2" fill="#beff01" rx="1"/>
+            <text x="190" y="40" text-anchor="middle" font-size="10" fill="#beff01" font-family="Inter" font-weight="700">900</text>
+            <!-- Labels -->
+            <text x="80" y="114" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter" font-weight="600" letter-spacing="1">LEADS</text>
+            <text x="190" y="114" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter" font-weight="600" letter-spacing="1">ATENDIMENTOS</text>
+            <!-- Gap label -->
+            <line x1="124" y1="50" x2="146" y2="50" stroke="rgba(255,255,255,.15)" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="135" y="46" text-anchor="middle" font-size="9" fill="rgba(255,100,100,.6)" font-family="Inter" font-weight="700">-35,7%</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: DIAGNÓSTICO NEURAL -->
+<section class="content-section" style="background:rgba(255,255,255,.01);">
+  <div class="wrap">
+    <div class="section-eyebrow fu">02 / Diagnóstico Neural™</div>
+    <h2 class="section-title fu">O Que Encontramos<br>em 7 Dias de Análise</h2>
+    <p class="section-lead fu d1">Antes de propor qualquer solução, mapeamos cada gargalo com dados. O Diagnóstico Neural™ revelou seis pontos críticos que juntos explicavam 100% da perda de receita.</p>
+
+    <!-- Animated SVG diagnostic signal -->
+    <div style="position:relative;height:80px;overflow:hidden;margin:32px 0;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);" class="fu d2">
+      <svg width="100%" height="80" viewBox="0 0 1200 80" preserveAspectRatio="none">
+        <polyline points="0,40 100,40 140,10 180,70 220,15 260,65 300,40 400,40 440,20 480,60 520,20 560,60 600,40 700,40 740,25 780,55 820,25 860,55 900,40 1000,40 1040,15 1080,65 1120,20 1160,60 1200,40"
+          fill="none" stroke="#beff01" stroke-width="1.5" stroke-dasharray="1800" stroke-dashoffset="1800" opacity=".6">
+          <animate attributeName="stroke-dashoffset" from="1800" to="0" dur="3s" fill="freeze"/>
+        </polyline>
+        <text x="20" y="20" font-size="9" fill="rgba(190,255,1,.4)" font-family="Inter" font-weight="700" letter-spacing="2">DIAGNÓSTICO NEURAL™ — ANÁLISE DE FLUXO ATIVO</text>
+      </svg>
+    </div>
+
+    <div class="diag-grid fu d2">
+      <div class="diag-item">
+        <div class="diag-finding">Problema #01 — Cobertura</div>
+        <div class="diag-stat">38%</div>
+        <div class="diag-desc">dos leads chegavam fora do horário comercial — sem nenhuma resposta, sem nenhum atendimento. Eles tentavam uma vez e iam para o concorrente.</div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-finding">Problema #02 — Velocidade</div>
+        <div class="diag-stat">4,2h</div>
+        <div class="diag-desc">era o tempo médio de resposta durante o horário comercial. Leads que chegam quentes ficavam esfriando nas filas de atendimento. A cada hora de espera, a conversão cai 40%.</div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-finding">Problema #03 — Conversão</div>
+        <div class="diag-stat">64,3%</div>
+        <div class="diag-desc">taxa de conversão de leads em atendimentos — respeitável, mas a benchmark do setor com automação inteligente é 80%+. Havia 500 leads/mês caindo pelo caminho.</div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-finding">Problema #04 — Triagem Manual</div>
+        <div class="diag-stat">528h</div>
+        <div class="diag-desc">por mês gastas pelos 3 atendentes em triagem manual — classificar se o lead queria consulta ou exame, qual especialidade, qual plano de saúde, disponibilidade. Trabalho zero-valor.</div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-finding">Problema #05 — Sem CRM</div>
+        <div class="diag-stat">0%</div>
+        <div class="diag-desc">do histórico dos pacientes estava acessível em tempo real. Tudo em planilhas. Sem histórico de atendimentos anteriores, os atendentes partiam do zero em cada conversa.</div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-finding">Problema #06 — Agendamento</div>
+        <div class="diag-stat">10min</div>
+        <div class="diag-desc">por agendamento, 100% manual. Verificar agenda, propor horário, confirmar, registrar, passar instruções. Um processo que IA faz em 90 segundos consumia 10 minutos de um humano qualificado.</div>
+      </div>
+    </div>
+
+    <div class="insight-bar fu d3" style="margin-top:40px;">
+      <div class="insight-icon">→</div>
+      <div class="insight-text">
+        <strong>A conclusão do diagnóstico foi clara:</strong> a clínica estava deixando aproximadamente R$52.500/mês de receita acessível na mesa — não por falta de demanda, mas por incapacidade operacional de atender o volume que já chegava.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: ARQUITETURA DE SOLUÇÃO -->
+<section class="content-section">
+  <div class="wrap">
+    <div class="section-eyebrow fu">03 / A Arquitetura</div>
+    <h2 class="section-title fu">3 Agentes Especializados,<br>1 Fluxo Unificado</h2>
+    <p class="section-lead fu d1">Em vez de um bot genérico que tenta fazer tudo, projetamos três agentes especializados — cada um treinado para uma etapa específica da jornada do paciente, conectados numa arquitetura de fluxo inteligente.</p>
+
+    <!-- Flow diagram -->
+    <div class="flow-diagram fu d2">
+      <div class="fd-track">
+        <div class="fd-node">
+          <div class="fd-box start">Lead<br>WhatsApp</div>
+        </div>
+        <div class="fd-arrow">→</div>
+        <div class="fd-node">
+          <div class="fd-box" style="border-color:rgba(190,255,1,.3);color:#fff;background:rgba(190,255,1,.04);">Agente<br>Triagem</div>
+        </div>
+        <div class="fd-arrow">→</div>
+        <div class="fd-node">
+          <div class="fd-fork">
+            <div class="fd-box" style="font-size:10px;">Agente<br>Consultas</div>
+            <div class="fd-box" style="font-size:10px;">Agente<br>Exames</div>
+          </div>
+        </div>
+        <div class="fd-arrow">→</div>
+        <div class="fd-node">
+          <div class="fd-box" style="border-color:rgba(190,255,1,.3);color:#fff;">Agendado<br>no CRM</div>
+        </div>
+        <div class="fd-arrow">→</div>
+        <div class="fd-node">
+          <div class="fd-box end">Atendido<br>na Clínica</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="three-col fu d3" style="margin-top:32px;">
+      <!-- Agente 1 -->
+      <div class="agent-box">
+        <div class="agent-box-num">AGENTE 01 · ENTRADA</div>
+        <div class="agent-box-title">Triagem Inteligente</div>
+        <div class="agent-box-desc">Porta de entrada 24/7. Recebe todos os leads, classifica a intenção em menos de 30 segundos e direciona para o agente especialista correto — sem o lead perceber a transição.</div>
+        <ul>
+          <li>Classificação automática: consulta vs. exame</li>
+          <li>Identificação de especialidade necessária</li>
+          <li>NLP avançado com GPT-4o fine-tuned</li>
+          <li>Captura de nome, telefone, convênio</li>
+          <li>Escalação para humano quando necessário</li>
+        </ul>
+        <div class="as-row">
+          <div class="as-item">
+            <div class="as-num">&lt;30seg</div>
+            <div class="as-lbl">Tempo de resposta</div>
+          </div>
+          <div class="as-item">
+            <div class="as-num">100%</div>
+            <div class="as-lbl">Leads respondidos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agente 2 -->
+      <div class="agent-box">
+        <div class="agent-box-num">AGENTE 02 · CONSULTAS</div>
+        <div class="agent-box-title">Especialista em Consultas</div>
+        <div class="agent-box-desc">Recebe o lead qualificado pelo Agente de Triagem, coleta anamnese prévia, apresenta especialistas disponíveis e finaliza o agendamento no Google Calendar com confirmação automática.</div>
+        <ul>
+          <li>Coleta de anamnese estruturada</li>
+          <li>Apresentação de médicos e horários</li>
+          <li>Agendamento no Calendar em tempo real</li>
+          <li>Preparo de prontuário prévio para o médico</li>
+          <li>Lembretes automáticos 24h antes</li>
+        </ul>
+        <div class="as-row">
+          <div class="as-item">
+            <div class="as-num">82%</div>
+            <div class="as-lbl">Taxa de conversão</div>
+          </div>
+          <div class="as-item">
+            <div class="as-num">4min</div>
+            <div class="as-lbl">Antes eram 18min</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agente 3 -->
+      <div class="agent-box">
+        <div class="agent-box-num">AGENTE 03 · EXAMES</div>
+        <div class="agent-box-title">Especialista em Exames</div>
+        <div class="agent-box-desc">Cuida do fluxo de exames do início ao fim: identifica o exame solicitado, informa as instruções de preparo, agenda, confirma presença e faz follow-up automático após a realização.</div>
+        <ul>
+          <li>Base de conhecimento com 200+ tipos de exames</li>
+          <li>Instruções de preparo personalizadas por exame</li>
+          <li>Agendamento e confirmação 48h antes</li>
+          <li>Envio de link para resultado digital</li>
+          <li>Follow-up pós-exame para retorno médico</li>
+        </ul>
+        <div class="as-row">
+          <div class="as-item">
+            <div class="as-num">95%</div>
+            <div class="as-lbl">Taxa de confirmação</div>
+          </div>
+          <div class="as-item">
+            <div class="as-num">Auto</div>
+            <div class="as-lbl">Follow-up pós-exame</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech stack -->
+    <div class="highlight dark fu d4" style="margin-top:32px;">
+      <p><strong>Stack técnico:</strong> WhatsApp Business API · GPT-4o (fine-tuned no contexto médico) · CRM customizado com histórico de pacientes · Google Calendar sync bidirecional · Dashboard de monitoramento em tempo real para a equipe médica.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: 24/7 COVERAGE -->
+<section class="content-section" style="background:rgba(255,255,255,.01);">
+  <div class="wrap">
+    <div class="section-eyebrow fu">04 / A Matemática da Cobertura</div>
+    <h2 class="section-title fu">24/7 vs. Horário Comercial:<br>168h vs. 40h por Semana</h2>
+    <p class="section-lead fu d1">O impacto mais imediato da implementação não foi tecnológico — foi temporal. Passar de 40h de cobertura semanal para 168h foi como adicionar três turnos extras sem contratar ninguém.</p>
+
+    <div class="coverage-grid fu d2" style="margin-top:40px;">
+      <!-- ANTES -->
+      <div class="cov-block">
+        <div class="cov-head bad">▪ ANTES — Atendimento Humano</div>
+        <div class="cov-num bad">40h</div>
+        <div class="cov-sub">de cobertura por semana · 57% do potencial</div>
+        <div class="week-grid" style="margin-top:20px;">
+          <!-- SEG -->
+          <div class="wg-col">
+            <div class="wg-day">SEG</div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+            <div class="wg-cell partial"></div><div class="wg-cell partial"></div><div class="wg-cell on"></div>
+            <div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div>
+            <div class="wg-cell on"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+          </div>
+          <!-- TER -->
+          <div class="wg-col">
+            <div class="wg-day">TER</div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+            <div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div>
+            <div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div>
+            <div class="wg-cell on"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+          </div>
+          <!-- QUA -->
+          <div class="wg-col">
+            <div class="wg-day">QUA</div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+            <div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div>
+            <div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div>
+            <div class="wg-cell on"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+          </div>
+          <!-- QUI -->
+          <div class="wg-col">
+            <div class="wg-day">QUI</div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+            <div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div>
+            <div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div>
+            <div class="wg-cell on"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+          </div>
+          <!-- SEX -->
+          <div class="wg-col">
+            <div class="wg-day">SEX</div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+            <div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div>
+            <div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell off"></div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+          </div>
+          <!-- SAB -->
+          <div class="wg-col">
+            <div class="wg-day">SAB</div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+          </div>
+          <!-- DOM -->
+          <div class="wg-col">
+            <div class="wg-day">DOM</div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+            <div class="wg-cell off"></div><div class="wg-cell off"></div><div class="wg-cell off"></div>
+          </div>
+        </div>
+        <p style="font-size:12px;color:rgba(255,100,100,.6);margin-top:16px;font-weight:700;">✗ 38% dos leads sem resposta · 2 dias sem cobertura</p>
+      </div>
+
+      <!-- DEPOIS -->
+      <div class="cov-block after">
+        <div class="cov-head good">▶ DEPOIS — Com IA Neural Ops</div>
+        <div class="cov-num good">168h</div>
+        <div class="cov-sub">de cobertura por semana · 100% do potencial</div>
+        <div class="week-grid" style="margin-top:20px;">
+          <!-- SEG a DOM — todos on -->
+          <div class="wg-col"><div class="wg-day">SEG</div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div></div>
+          <div class="wg-col"><div class="wg-day">TER</div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div></div>
+          <div class="wg-col"><div class="wg-day">QUA</div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div></div>
+          <div class="wg-col"><div class="wg-day">QUI</div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div></div>
+          <div class="wg-col"><div class="wg-day">SEX</div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div></div>
+          <div class="wg-col"><div class="wg-day">SAB</div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div></div>
+          <div class="wg-col"><div class="wg-day">DOM</div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div><div class="wg-cell on"></div></div>
+        </div>
+        <p style="font-size:12px;color:var(--lime);margin-top:16px;font-weight:700;">✓ 100% dos leads respondidos · 7 dias de cobertura</p>
+      </div>
+    </div>
+
+    <!-- Key insight box -->
+    <div class="highlight fu d3" style="margin-top:32px;">
+      <p><strong>30% dos leads chegam entre 18h e 22h. 100% deles eram perdidos antes da IA.</strong> Com a implementação da Neural Ops: 100% respondidos em menos de 30 segundos, independente do horário. Isso sozinho representou 120 novos atendimentos por mês.</p>
+    </div>
+
+    <!-- Leads by hour SVG chart -->
+    <div class="chart-box fu d4" style="margin-top:32px;">
+      <div class="chart-box-title">Volume de Leads por Hora do Dia — com Zona de Perda Destacada</div>
+      <svg viewBox="0 0 800 160" width="100%" style="display:block;margin-top:8px;">
+        <defs>
+          <linearGradient id="grHour" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#beff01" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#beff01" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="grLost" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ef4444" stop-opacity=".2"/>
+            <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- Lost zone background (18h-22h = approx x:567 to x:700) -->
+        <rect x="567" y="0" width="133" height="130" fill="url(#grLost)" rx="2"/>
+        <text x="617" y="14" text-anchor="middle" font-size="8" fill="rgba(239,68,68,.7)" font-family="Inter" font-weight="700" letter-spacing="1">ZONA PERDIDA</text>
+
+        <!-- Hour bars -->
+        <!-- 6h=5, 7h=15, 8h=35, 9h=55, 10h=65, 11h=60, 12h=45, 13h=50, 14h=55, 15h=60, 16h=50, 17h=45, 18h=70, 19h=80, 20h=75, 21h=60, 22h=35, 23h=15 -->
+        <g>
+          <rect x="18"  y="125" width="24" height="5"  fill="rgba(190,255,1,.35)" rx="1"/>
+          <rect x="52"  y="115" width="24" height="15" fill="rgba(190,255,1,.35)" rx="1"/>
+          <rect x="86"  y="95"  width="24" height="35" fill="rgba(190,255,1,.5)"  rx="1"/>
+          <rect x="120" y="75"  width="24" height="55" fill="rgba(190,255,1,.6)"  rx="1"/>
+          <rect x="154" y="65"  width="24" height="65" fill="rgba(190,255,1,.65)" rx="1"/>
+          <rect x="188" y="70"  width="24" height="60" fill="rgba(190,255,1,.6)"  rx="1"/>
+          <rect x="222" y="85"  width="24" height="45" fill="rgba(190,255,1,.5)"  rx="1"/>
+          <rect x="256" y="80"  width="24" height="50" fill="rgba(190,255,1,.55)" rx="1"/>
+          <rect x="290" y="75"  width="24" height="55" fill="rgba(190,255,1,.6)"  rx="1"/>
+          <rect x="324" y="70"  width="24" height="60" fill="rgba(190,255,1,.6)"  rx="1"/>
+          <rect x="358" y="80"  width="24" height="50" fill="rgba(190,255,1,.55)" rx="1"/>
+          <rect x="392" y="85"  width="24" height="45" fill="rgba(190,255,1,.5)"  rx="1"/>
+          <!-- zona perdida começa aqui = 18h -->
+          <rect x="426" y="60"  width="24" height="70" fill="rgba(239,68,68,.5)"  rx="1"/>
+          <rect x="460" y="50"  width="24" height="80" fill="rgba(239,68,68,.55)" rx="1"/>
+          <rect x="494" y="55"  width="24" height="75" fill="rgba(239,68,68,.5)"  rx="1"/>
+          <rect x="528" y="70"  width="24" height="60" fill="rgba(239,68,68,.4)"  rx="1"/>
+          <rect x="562" y="95"  width="24" height="35" fill="rgba(239,68,68,.3)"  rx="1"/>
+          <rect x="596" y="115" width="24" height="15" fill="rgba(239,68,68,.25)" rx="1"/>
+        </g>
+        <!-- Hour labels -->
+        <g font-size="8" fill="rgba(255,255,255,.25)" font-family="Inter" text-anchor="middle">
+          <text x="30"  y="148">6h</text><text x="64"  y="148">7h</text><text x="98"  y="148">8h</text>
+          <text x="132" y="148">9h</text><text x="166" y="148">10h</text><text x="200" y="148">11h</text>
+          <text x="234" y="148">12h</text><text x="268" y="148">13h</text><text x="302" y="148">14h</text>
+          <text x="336" y="148">15h</text><text x="370" y="148">16h</text><text x="404" y="148">17h</text>
+          <text x="438" y="148" fill="rgba(239,68,68,.6)">18h</text>
+          <text x="472" y="148" fill="rgba(239,68,68,.6)">19h</text>
+          <text x="506" y="148" fill="rgba(239,68,68,.6)">20h</text>
+          <text x="540" y="148" fill="rgba(239,68,68,.6)">21h</text>
+          <text x="574" y="148" fill="rgba(239,68,68,.5)">22h</text>
+          <text x="608" y="148">23h</text>
+        </g>
+        <!-- Axis -->
+        <line x1="10" y1="130" x2="640" y2="130" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: IMPACTO FINANCEIRO -->
+<section class="content-section">
+  <div class="wrap">
+    <div class="section-eyebrow fu">05 / Impacto Financeiro</div>
+    <h2 class="section-title fu">A Matemática<br>do Crescimento</h2>
+    <p class="section-lead fu d1">Cada novo atendimento viabilizado pelos agentes de IA adicionou R$150 direto na receita. Em escala, o resultado é transformador — e o investimento se paga em menos de 6 meses.</p>
+
+    <!-- Revenue flow -->
+    <div class="rev-flow fu d2">
+      <div class="rev-box">
+        <div class="rev-label">Receita Anterior</div>
+        <div class="rev-val">R$135.000</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.25);margin-top:8px;">900 atend. × R$150</div>
+      </div>
+      <div class="rev-arrow">→</div>
+      <div class="rev-box" style="flex:0.4;border-color:rgba(190,255,1,.2);background:rgba(190,255,1,.04);">
+        <div class="rev-label" style="color:rgba(190,255,1,.6);">+27,5%</div>
+        <div style="font-size:28px;font-weight:900;color:var(--lime);line-height:1;">+248</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:4px;">atendimentos</div>
+      </div>
+      <div class="rev-arrow">→</div>
+      <div class="rev-box highlight-box">
+        <div class="rev-label" style="color:rgba(190,255,1,.6);">Nova Receita</div>
+        <div class="rev-val lime">R$172.200</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:8px;">1.148 atend. × R$150</div>
+      </div>
+    </div>
+
+    <!-- Savings and bar chart -->
+    <div class="savings-row fu d3">
+      <!-- Bar chart atendimentos -->
+      <div class="chart-box">
+        <div class="chart-box-title">Atendimentos / Mês — Antes vs. Depois</div>
+        <div class="bar-group" style="height:200px;">
+          <div class="bar-item">
+            <div class="bar-fill gray" style="height:78.5%;">
+              <span class="bv">900</span>
+            </div>
+            <div class="bar-name">Antes</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-fill lime" style="height:100%;">
+              <span class="bv" style="color:#0d0d0d;">1.148</span>
+            </div>
+            <div class="bar-name">Depois</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-fill mid" style="height:21.6%;">
+              <span class="bv">+248</span>
+            </div>
+            <div class="bar-name">Delta</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Time savings -->
+      <div class="chart-box">
+        <div class="chart-box-title">Horas de Trabalho Manual / Mês</div>
+        <div style="padding-top:12px;">
+          <div class="hbar-item">
+            <div class="hbar-label"><span>Horas antes (triagem manual)</span><span style="color:#fff;font-weight:700;">528h</span></div>
+            <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:rgba(255,255,255,.2);"></div></div>
+          </div>
+          <div class="hbar-item" style="margin-top:20px;">
+            <div class="hbar-label"><span>Horas restantes (supervisão)</span><span style="color:rgba(255,255,255,.5);font-weight:600;">106h</span></div>
+            <div class="hbar-track"><div class="hbar-fill" style="width:20%;background:rgba(190,255,1,.3);"></div></div>
+          </div>
+          <div class="hbar-item" style="margin-top:20px;">
+            <div class="hbar-label"><span style="color:var(--lime);font-weight:700;">Horas economizadas</span><span style="color:var(--lime);font-weight:900;">422h</span></div>
+            <div class="hbar-track"><div class="hbar-fill" style="width:80%;background:var(--lime);"></div></div>
+          </div>
+          <p style="font-size:12px;color:rgba(255,255,255,.3);margin-top:20px;">422h/mês = <strong style="color:rgba(255,255,255,.6);">2,6 FTEs equivalentes</strong> liberados para atividades de maior valor: atendimento especializado, gestão clínica, relacionamento com convênios.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROI box -->
+    <div class="roi-box fu d4">
+      <div class="roi-num">4,8×</div>
+      <div class="roi-label">Retorno sobre o Investimento · Payback em 5,8 meses</div>
+      <p style="font-size:14px;margin-top:16px;color:rgba(0,0,0,.5);">+R$37.200/mês adicional · +R$446.400/ano · ROI calculado sobre 12 meses de operação</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: CRONOGRAMA -->
+<section class="content-section" style="background:rgba(255,255,255,.01);">
+  <div class="wrap">
+    <div class="section-eyebrow fu">06 / Implementação</div>
+    <h2 class="section-title fu">45 Dias do Diagnóstico<br>ao Go-Live</h2>
+    <p class="section-lead fu d1">Implementações de IA não precisam ser projetos de 6 meses. Com metodologia própria, a Neural Ops entrega infraestrutura funcional e validada em 45 dias corridos.</p>
+
+    <div class="phase-track fu d2">
+      <div class="phase-item">
+        <div class="phase-days">Dias 1–7</div>
+        <div class="phase-name">Diagnóstico Neural™ e Mapeamento</div>
+        <div class="phase-desc">Auditoria completa dos fluxos de atendimento. Análise de histórico de conversas. Identificação de padrões e gargalos. Definição da arquitetura de agentes.</div>
+      </div>
+      <div class="phase-item">
+        <div class="phase-days">Dias 8–15</div>
+        <div class="phase-name">Desenvolvimento e Treinamento</div>
+        <div class="phase-desc">Desenvolvimento dos 3 agentes. Fine-tuning do modelo com contexto médico da clínica. Criação da base de conhecimento com protocolos e especialidades.</div>
+      </div>
+      <div class="phase-item">
+        <div class="phase-days">Dias 16–22</div>
+        <div class="phase-name">Integração de Sistemas</div>
+        <div class="phase-desc">Conexão com WhatsApp Business API. Integração com CRM. Sync bidirecional com Google Calendar. Migração dos históricos de planilhas para o CRM.</div>
+      </div>
+      <div class="phase-item">
+        <div class="phase-days">Dias 23–35</div>
+        <div class="phase-name">Testes e Treinamento da Equipe</div>
+        <div class="phase-desc">Testes com volume real. Ajustes de NLP e fluxo. Treinamento da equipe médica no uso do dashboard. Calibração dos gatilhos de escalação humana.</div>
+      </div>
+      <div class="phase-item final">
+        <div class="phase-days">Dias 36–45</div>
+        <div class="phase-name">Go-Live e Monitoramento</div>
+        <div class="phase-desc">Ativação completa em produção. Monitoramento intensivo 24/7 pelos primeiros 10 dias. Ajustes finos em tempo real.</div>
+        <div class="phase-result">→ +248 atendimentos na primeira semana completa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: RESULTADOS CONSOLIDADOS -->
+<section class="content-section">
+  <div class="wrap">
+    <div class="section-eyebrow fu">07 / Resultados Consolidados</div>
+    <h2 class="section-title fu">O Que Mudou para a<br>MedPrev APGO</h2>
+
+    <div class="result-grid fu d1">
+      <div class="result-item">
+        <div class="result-num">+27,5%</div>
+        <div class="result-label">Crescimento em Atendimentos</div>
+        <div class="result-before">900 → 1.148/mês</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">422h</div>
+        <div class="result-label">Economizadas por Mês</div>
+        <div class="result-before">Equivalente a 2,6 FTEs</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">+R$37.200</div>
+        <div class="result-label">Receita Adicional/Mês</div>
+        <div class="result-before">+R$446.400 no primeiro ano</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">64→82%</div>
+        <div class="result-label">Taxa de Conversão</div>
+        <div class="result-before">+17,7 pontos percentuais</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">&lt;30seg</div>
+        <div class="result-label">Tempo de Resposta</div>
+        <div class="result-before">Antes: 4,2 horas em média</div>
+      </div>
+      <div class="result-item" style="background:rgba(190,255,1,.04);border-top:2px solid var(--lime);">
+        <div class="result-num">24/7</div>
+        <div class="result-label">Cobertura de Atendimento</div>
+        <div class="result-before">168h/semana · 7 dias</div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:56px;gap:40px;">
+      <div class="fu d2">
+        <h3 style="font-size:20px;font-weight:900;text-transform:uppercase;letter-spacing:-0.5px;margin-bottom:16px;">O Que Não Mudou</h3>
+        <p style="font-size:14px;color:rgba(255,255,255,.4);line-height:1.8;margin-bottom:12px;">A equipe de 3 atendentes continuou no mesmo tamanho. O que mudou foi a natureza do trabalho: de triagem manual repetitiva para supervisão de qualidade, relacionamento com pacientes complexos e gestão das exceções que os agentes encaminham para atendimento humano.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,.4);line-height:1.8;">Os médicos passaram a receber prontuários prévios estruturados antes de cada consulta — informação coletada pelos agentes na etapa de agendamento. A consulta ficou mais eficiente. A satisfação do paciente aumentou.</p>
+      </div>
+      <div class="fu d3">
+        <blockquote class="case-quote">
+          <p>"Em 45 dias, a IA da Neural Ops fez o que contratarmos 2 atendentes a mais nunca conseguiria: estar disponível às 2h da manhã quando um paciente ansioso precisa agendar um exame urgente."</p>
+          <cite>— Gestão Operacional, MedPrev APGO</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED CASES -->
+<section class="section-sm" style="border-bottom:1px solid rgba(255,255,255,.05);">
+  <div class="wrap">
+    <div class="section-eyebrow fu" style="margin-bottom:24px;">Outros Cases</div>
+    <div class="related-grid fu d1">
+      <a href="/cases/estetica/" class="related-card">
+        <div class="related-sector">Saúde · Estética</div>
+        <div class="related-title">Clínica de Estética — Agenda Cheia com IA de Relacionamento</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.3);margin-top:8px;">-68% cancelamentos · +41% ticket médio · +R$38k/mês</div>
+        <div class="related-arrow">→</div>
+      </a>
+      <a href="/cases/odontologia/" class="related-card">
+        <div class="related-sector">Saúde · Odontologia</div>
+        <div class="related-title">Clínica Odontológica — Recepção Automatizada 24/7</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.3);margin-top:8px;">+35% agendamentos · -90% no-show · R$0 de hora extra</div>
+        <div class="related-arrow">→</div>
+      </a>
+      <a href="/cases/consorcios/" class="related-card">
+        <div class="related-sector">Financeiro · Consórcios</div>
+        <div class="related-title">Consórcio Nacional — SDR com IA para Qualificação de Leads</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.3);margin-top:8px;">12× mais leads qualificados · +R$180k MRR em 60 dias</div>
+        <div class="related-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-block">
+  <div class="cta-title">Sua Clínica Tem<br>o Mesmo Problema?</div>
+  <p class="cta-sub">Leads chegando e equipe sem capacidade de atender. Faça o Diagnóstico Neural™ — em 7 dias mapeamos seus gargalos e calculamos o retorno exato que você está deixando na mesa.</p>
+  <a href="/#cta" class="cta-btn">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#beff01" stroke-width="1.5"/><path d="M6 8h4M8 6l2 2-2 2" stroke="#beff01" stroke-width="1.5" stroke-linecap="round"/></svg>
+    Quero meu Diagnóstico Neural™
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" fill="#beff01"/>
+        <circle cx="16" cy="16" r="4" fill="#0d0d0d"/>
+        <circle cx="7" cy="10" r="2.5" fill="#0d0d0d"/>
+        <circle cx="25" cy="10" r="2.5" fill="#0d0d0d"/>
+        <circle cx="7" cy="22" r="2.5" fill="#0d0d0d"/>
+        <circle cx="25" cy="22" r="2.5" fill="#0d0d0d"/>
+      </svg>
+      <span class="nav-logo-text" style="font-size:16px;">Neural<em>Ops</em></span>
+    </a>
+    <p style="font-size:12px;color:rgba(255,255,255,.2);">© 2026 Neural Ops · Infraestrutura de IA para Empresas</p>
+    <div style="display:flex;gap:24px;">
+      <a href="/cases/" style="font-size:11px;color:rgba(255,255,255,.25);text-decoration:none;font-weight:600;letter-spacing:.5px;">CASES</a>
+      <a href="/#servicos" style="font-size:11px;color:rgba(255,255,255,.25);text-decoration:none;font-weight:600;letter-spacing:.5px;">SERVIÇOS</a>
+      <a href="/#cta" style="font-size:11px;color:rgba(255,255,255,.25);text-decoration:none;font-weight:600;letter-spacing:.5px;">CONTATO</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Glow cursor
+  const glow = document.getElementById('glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // IntersectionObserver for .fu
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fu').forEach(el => io.observe(el));
+
+  // Animated bar chart heights
+  const bars = document.querySelectorAll('.bar-fill');
+  const barIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const h = el.style.height;
+        el.style.height = '0';
+        requestAnimationFrame(() => {
+          el.style.transition = 'height 1s ease';
+          el.style.height = h;
+        });
+        barIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3 });
+  bars.forEach(b => barIO.observe(b));
+
+  // Animated hbar fills
+  const hbars = document.querySelectorAll('.hbar-fill');
+  const hbarIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const w = el.style.width;
+        el.style.width = '0';
+        requestAnimationFrame(() => {
+          el.style.transition = 'width 1.2s ease';
+          el.style.width = w;
+        });
+        hbarIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3 });
+  hbars.forEach(h => hbarIO.observe(h));
+</script>
+</body>
+</html>
