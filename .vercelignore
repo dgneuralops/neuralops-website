@@ -2,3 +2,8 @@ CLAUDE.md
 tests/
 .env.example
 og-gen.html
+ADS-*
+ads-data*.json
+.DS_Store
+.env
+.claude/
