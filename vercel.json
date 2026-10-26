@@ -169,42 +169,82 @@
   ],
   "redirects": [
     {
-      "source": "/cases/medprev-apgo/:x*",
+      "source": "/cases/medprev-apgo",
       "destination": "/cases/medprev/",
       "permanent": true
     },
     {
-      "source": "/cases/estetica/:x*",
+      "source": "/cases/medprev-apgo/:path(.*)",
+      "destination": "/cases/medprev/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/estetica",
       "destination": "/cases/",
       "permanent": true
     },
     {
-      "source": "/cases/odontologia/:x*",
+      "source": "/cases/estetica/:path(.*)",
       "destination": "/cases/",
       "permanent": true
     },
     {
-      "source": "/cases/consorcios/:x*",
+      "source": "/cases/odontologia",
       "destination": "/cases/",
       "permanent": true
     },
     {
-      "source": "/cases/imobiliaria/:x*",
+      "source": "/cases/odontologia/:path(.*)",
       "destination": "/cases/",
       "permanent": true
     },
     {
-      "source": "/cases/advocacia-crm/:x*",
+      "source": "/cases/consorcios",
       "destination": "/cases/",
       "permanent": true
     },
     {
-      "source": "/cases/advocacia-peticoes/:x*",
+      "source": "/cases/consorcios/:path(.*)",
       "destination": "/cases/",
       "permanent": true
     },
     {
-      "source": "/cases/insights/:x*",
+      "source": "/cases/imobiliaria",
+      "destination": "/cases/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/imobiliaria/:path(.*)",
+      "destination": "/cases/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/advocacia-crm",
+      "destination": "/cases/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/advocacia-crm/:path(.*)",
+      "destination": "/cases/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/advocacia-peticoes",
+      "destination": "/cases/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/advocacia-peticoes/:path(.*)",
+      "destination": "/cases/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/insights",
+      "destination": "/cases/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/insights/:path(.*)",
       "destination": "/cases/",
       "permanent": true
     }

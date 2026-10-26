@@ -7,3 +7,11 @@ ads-data*.json
 .DS_Store
 .env
 .claude/
+cases/estetica/
+cases/odontologia/
+cases/consorcios/
+cases/imobiliaria/
+cases/advocacia-crm/
+cases/advocacia-peticoes/
+cases/insights/
+cases/medprev-apgo/
