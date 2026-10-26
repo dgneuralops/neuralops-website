@@ -176,6 +176,41 @@ async function toWebhook(lead, url) {
   return 'ok'
 }
 
+// Webhook do GHL por vertical (workflow "Inbound Webhook"). Campos planos para mapear direto no workflow.
+const GHL_WEBHOOKS = {
+  saude: process.env.GHL_WEBHOOK_SAUDE || 'https://services.leadconnectorhq.com/hooks/o9LtB6haFl99RD67rloF/webhook-trigger/91OSdKdjQnrIznqXrD4A',
+  geral: process.env.GHL_WEBHOOK_GERAL || null,
+}
+function flatLead(lead, url) {
+  const [first, ...rest] = lead.name.split(/\s+/)
+  const phone = lead.whatsapp.startsWith('55') && lead.whatsapp.length >= 12 ? `+${lead.whatsapp}` : `+55${lead.whatsapp}`
+  const f = {
+    first_name: first, last_name: rest.join(' '), full_name: lead.name, email: lead.email, phone,
+    company_name: lead.company, instagram: lead.instagram ? '@' + lead.instagram : '', role: ROLES[lead.role],
+    quiz_type: lead.quizType, quiz_name: QUIZ[lead.quizType].name, quiz_version: lead.quizVersion, diagnostic_id: lead.diagnosticId,
+    result_url: url, top_dimension: lead.topDimension || 'nenhuma acima de 25', main_pain: lead.mainPain || '', confidence: lead.confidence,
+    summary_title: lead.summary.title, recommendations: lead.summary.recommendations.join(' | '),
+    commercial_score: lead.commercial.total, commercial_tier: lead.commercial.tier, commercial_review_complexity: lead.commercial.reviewComplexity ? 'sim' : 'nao',
+    marketing_opt_in: lead.marketingOptIn ? 'sim' : 'nao', privacy_accepted_at: lead.consents.privacy.at,
+    started_at: lead.startedAt || '', completed_at: lead.completedAt || '', submitted_at: lead.submittedAt,
+    first_page: lead.firstPage || '', referrer: lead.referrer || '', source: 'neuralops.com.br',
+  }
+  ;['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'].forEach(k => { f[k] = lead.utm[k] || '' })
+  lead.scores.forEach(sc => { f[`score_${sc.id}`] = sc.score == null ? '' : sc.score })
+  lead.profile.forEach(p => { f[`perfil_${p[0].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '_')}`] = p[1] })
+  lead.answers.forEach(a => { f[`resposta_${a.id.toLowerCase()}`] = a.answer; f[`pergunta_${a.id.toLowerCase()}`] = a.question })
+  f.respostas_texto = lead.answers.map(a => `${a.question}: ${a.answer}`).join('\n')
+  f.scores_texto = lead.scores.map(sc => `${sc.label}: ${sc.score == null ? '—' : sc.score + '/100'}`).join('\n')
+  return f
+}
+async function toGhlWebhook(lead, url) {
+  const hook = GHL_WEBHOOKS[lead.quizType]
+  if (!hook) return 'off'
+  const r = await fetch(hook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(flatLead(lead, url)) })
+  if (!r.ok) throw new Error(`ghl webhook ${r.status}`)
+  return 'ok'
+}
+
 const escHtml = s => String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
 
 async function sendEmail(lead, url) {
@@ -231,20 +266,21 @@ export default async function handler(req, res) {
   const { lead, error } = validate(b)
   if (error) return res.status(400).json({ error })
 
-  if (!process.env.GHL_API_KEY && !process.env.LEAD_WEBHOOK_URL) {
+  if (!process.env.GHL_API_KEY && !process.env.LEAD_WEBHOOK_URL && !GHL_WEBHOOKS[lead.quizType]) {
     console.error('[diagnostico-lead] nenhum destino configurado (GHL_API_KEY ou LEAD_WEBHOOK_URL)')
     return res.status(503).json({ error: 'Armazenamento de leads não configurado' })
   }
 
   const url = resultUrl(lead)
-  const [crm, webhook] = await Promise.all([
+  const [crm, webhook, ghlHook] = await Promise.all([
     toGHL(lead, url).catch(e => { console.error('[diagnostico-lead] GHL:', e.message); return 'error' }),
     toWebhook(lead, url).catch(e => { console.error('[diagnostico-lead] webhook:', e.message); return 'error' }),
+    toGhlWebhook(lead, url).catch(e => { console.error('[diagnostico-lead] ghl webhook:', e.message); return 'error' }),
   ])
-  if (crm !== 'ok' && webhook !== 'ok') return res.status(502).json({ error: 'Não foi possível registrar o lead' })
+  if (crm !== 'ok' && webhook !== 'ok' && ghlHook !== 'ok') return res.status(502).json({ error: 'Não foi possível registrar o lead' })
 
   let email = 'skipped'
   try { email = await sendEmail(lead, url) } catch (e) { console.error('[diagnostico-lead] email:', e.message); email = 'error' }
 
-  return res.status(200).json({ ok: true, crm, webhook, email })
+  return res.status(200).json({ ok: true, crm, webhook, ghlHook, email })
 }
