@@ -123,20 +123,28 @@
   }
 
   // ───────────────────────── Contato, envio e geração ─────────────────────────
-  function field(id, label, type, ac, val) {
-    return '<div class="field"><label for="f-' + id + '">' + label + '</label><input id="f-' + id + '" name="' + id + '" type="' + type + '" autocomplete="' + ac + '" required maxlength="120" value="' + esc(val || '') + '" /><span class="err" id="e-' + id + '"></span></div>';
+  function field(id, label, type, ac, val, ph, opt) {
+    return '<div class="field full"><label for="f-' + id + '">' + label + (opt ? ' <em>(opcional)</em>' : ' *') + '</label><input id="f-' + id + '" name="' + id + '" type="' + type + '" autocomplete="' + ac + '"' + (opt ? '' : ' required') + ' maxlength="120" placeholder="' + esc(ph) + '" value="' + esc(val || '') + '" /><span class="err" id="e-' + id + '"></span></div>';
   }
   function leadFormHtml(cfg, prev) {
     prev = prev || {};
-    return '<form id="lead-form" novalidate><div class="form-grid">' +
-      field('nome', 'Seu nome', 'text', 'name', prev.name) + field('empresa', cfg.companyLabel, 'text', 'organization', prev.company) +
-      field('email', 'E-mail', 'email', 'email', prev.email) + field('whatsapp', 'WhatsApp com DDD', 'tel', 'tel', prev.whatsapp) +
-      '<div class="field full"><label for="f-cargo">Seu cargo</label><select id="f-cargo" name="cargo" required><option value="">Selecione</option><option value="dono">Dono(a) ou sócio(a)</option><option value="diretor">Diretor(a) ou gestor(a) responsável</option><option value="coord">Coordenação ou supervisão</option><option value="colab">Colaborador(a)</option><option value="outro">Outro</option></select><span class="err" id="e-cargo"></span></div>' +
+    return '<div class="lead-card"><span class="done-badge">Diagnóstico concluído ✓</span>' +
+      '<h1 class="lead-h" id="qz-title" tabindex="-1">Seu diagnóstico está pronto.</h1>' +
+      '<p class="lead-p">' + esc(cfg.leadHelp || 'Antes de liberar o relatório completo, precisamos de algumas informações.') + '</p>' +
+      '<form id="lead-form" novalidate><div class="form-grid">' +
+      field('nome', 'Nome completo', 'text', 'name', prev.name, 'Seu nome completo') +
+      field('email', 'E-mail profissional', 'email', 'email', prev.email, 'seu@email.com.br') +
+      field('whatsapp', 'WhatsApp', 'tel', 'tel', prev.whatsapp, '(11) 99999-9999') +
+      '<div class="field full"><label for="f-cargo">Cargo *</label><select id="f-cargo" name="cargo" required><option value="">Selecione seu cargo…</option><option value="dono">Dono(a) ou sócio(a)</option><option value="diretor">Diretor(a) ou gestor(a) responsável</option><option value="coord">Coordenação ou supervisão</option><option value="colab">Colaborador(a)</option><option value="outro">Outro</option></select><span class="err" id="e-cargo"></span></div>' +
+      field('empresa', cfg.companyLabel, 'text', 'organization', prev.company, cfg.companyPlaceholder || 'Ex.: Acme Ltda') +
+      field('instagram', 'Instagram da ' + cfg.entity, 'text', 'off', prev.instagram, '@sua' + (cfg.entity === 'clínica' ? 'clinica' : 'empresa'), true) +
       '<div class="hp" aria-hidden="true"><label for="f-site">Site</label><input id="f-site" name="site" tabindex="-1" autocomplete="off" /></div>' +
-      '<label class="consent full"><input type="checkbox" id="f-termos" required /><span>Li e aceito a <a href="/privacidade/" target="_blank" rel="noopener">política de privacidade</a>. Meus dados serão usados para enviar o diagnóstico e para contato sobre ele.</span></label>' +
+      '<label class="consent full"><input type="checkbox" id="f-termos" required /><span>Aceito a <a href="/privacidade/" target="_blank" rel="noopener">política de privacidade</a> e o contato da NeuralOps sobre este diagnóstico.</span></label>' +
       '<span class="err full" id="e-termos"></span>' +
-      '<label class="consent full"><input type="checkbox" id="f-mkt" /><span>Opcional: quero receber conteúdos e novidades da NeuralOps por e-mail. Posso cancelar quando quiser.</span></label>' +
-      '<div class="full"><button type="submit" class="btn btn-lime" id="f-submit" style="width:100%">Gerar meu diagnóstico' + ARROW + '</button></div></div></form>';
+      '<label class="consent full"><input type="checkbox" id="f-mkt" /><span>Quero receber conteúdos da NeuralOps por e-mail (opcional).</span></label>' +
+      '<div class="full"><button type="submit" class="btn btn-lime" id="f-submit" style="width:100%">Ver meu diagnóstico' + ARROW + '</button></div></div></form>' +
+      '<p class="lead-safe"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Seus dados são protegidos e usados apenas para este diagnóstico.</p>' +
+      '<div class="form-msg" id="f-msg" role="status" aria-live="polite"></div></div>';
   }
   function readForm(cfg) {
     var v = function (id) { return ($('#f-' + id).value || '').trim(); };
@@ -147,14 +155,16 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email'))) errs.email = 'Confira o e-mail: ele precisa ter o formato nome@empresa.com.br.';
     var digits = v('whatsapp').replace(/\D/g, '');
     if (digits.length < 10 || digits.length > 13) errs.whatsapp = 'Informe o WhatsApp com DDD, por exemplo (11) 99999-9999.';
+    var ig = v('instagram').replace(/^@+/, '');
+    if (ig && !/^[A-Za-z0-9._]{1,30}$/.test(ig)) errs.instagram = 'Use só o nome do perfil, por exemplo @suaclinica.';
     if (!$('#f-termos').checked) errs.termos = 'Para gerar o diagnóstico, é preciso aceitar a política de privacidade.';
-    ['nome', 'empresa', 'cargo', 'email', 'whatsapp', 'termos'].forEach(function (k) {
+    ['nome', 'email', 'whatsapp', 'cargo', 'empresa', 'instagram', 'termos'].forEach(function (k) {
       var el = $('#e-' + k); if (el) el.textContent = errs[k] || '';
       var inp = $('#f-' + k); if (inp && k !== 'termos') inp.setAttribute('aria-invalid', errs[k] ? 'true' : 'false');
     });
     var first = Object.keys(errs)[0];
     if (first) { var fe = $('#f-' + first); if (fe) fe.focus(); return null; }
-    return { name: v('nome'), company: v('empresa'), role: v('cargo'), email: v('email'), whatsapp: digits, marketing: $('#f-mkt').checked, hp: v('site') };
+    return { name: v('nome'), company: v('empresa'), role: v('cargo'), email: v('email'), whatsapp: digits, instagram: ig ? '@' + ig : '', marketing: $('#f-mkt').checked, hp: v('site') };
   }
 
   function sendLead(cfg, answers, meta, contact, formMs) {
@@ -163,7 +173,7 @@
     var now = new Date().toISOString();
     var payload = {
       quizType: cfg.id, quizVersion: cfg.version, diagnosticId: meta.id,
-      contact: { name: contact.name, company: contact.company, role: contact.role, email: contact.email, whatsapp: contact.whatsapp },
+      contact: { name: contact.name, company: contact.company, role: contact.role, email: contact.email, whatsapp: contact.whatsapp, instagram: contact.instagram },
       answers: questionList(cfg).map(function (q) { return { id: q.id, question: q.reportLabel || q.title, answer: answerLabel(cfg, q.id, answers) }; }).filter(function (a) { return a.answer !== 'Não respondida'; }),
       answerCode: encode(cfg, answers),
       profile: cfg.profileRows(answers),
@@ -189,21 +199,23 @@
 
   // Tela de geração: tempo mínimo para a pessoa ler o que está acontecendo; o envio roda em paralelo.
   function generating(cfg, host, contact, work) {
-    var steps = (cfg.generatingSteps || ['Organizando suas respostas', 'Calculando os sinais por área', 'Identificando o principal ponto de atenção', 'Montando as recomendações']);
-    host.innerHTML = '<div class="gen" role="status" aria-live="polite"><div class="gen-orb" aria-hidden="true"><i></i><i></i><i></i></div>' +
-      '<span class="kicker">' + esc(cfg.shortName) + '</span>' +
-      '<h1 class="qz-q gen-title">Analisando os dados e gerando o diagnóstico da <span class="green">' + esc(contact.company) + '</span></h1>' +
-      '<ul class="gen-steps">' + steps.map(function (s, i) { return '<li data-i="' + i + '">' + esc(s) + '</li>'; }).join('') + '</ul></div>';
+    var steps = cfg.generatingSteps || ['Organizando suas respostas', 'Calculando os sinais por área', 'Identificando o principal ponto de atenção', 'Montando as recomendações'];
+    steps = steps.concat(['Gerando o diagnóstico da ' + contact.company + '…']);
+    var per = 1050, total = steps.length * per + 300;
+    host.innerHTML = '<div class="gen" role="status" aria-live="polite">' +
+      '<svg class="gen-orbit" viewBox="0 0 200 200" aria-hidden="true">' +
+      '<circle cx="100" cy="100" r="96" class="ring"/><circle cx="100" cy="100" r="74" class="ring"/><circle cx="100" cy="100" r="48" class="ring"/>' +
+      '<g class="spin s1"><circle cx="100" cy="26" r="3.6"/><circle cx="164" cy="137" r="3"/><circle cx="36" cy="137" r="3.2"/></g>' +
+      '<g class="spin s2"><circle cx="100" cy="4" r="2.6"/><circle cx="183" cy="148" r="2.4"/></g>' +
+      '<circle cx="100" cy="100" r="26" class="halo"/><circle cx="100" cy="100" r="11" class="core"/></svg>' +
+      '<p class="gen-title">Analisando os dados de <b>' + esc(contact.company) + '</b></p>' +
+      '<ul class="gen-steps">' + steps.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' +
+      '<div class="gen-bar"><i style="transition-duration:' + total + 'ms"></i></div></div>';
     window.scrollTo({ top: 0 });
     var items = host.querySelectorAll('.gen-steps li');
-    var per = 1100;
-    items.forEach(function (li, i) {
-      setTimeout(function () { li.classList.add('on'); if (i) items[i - 1].classList.add('done'); }, i * per + 150);
-    });
-    return Promise.all([work, sleep(items.length * per + 400)]).then(function (r) {
-      items[items.length - 1].classList.add('done');
-      return sleep(350).then(function () { return r[0]; });
-    });
+    requestAnimationFrame(function () { setTimeout(function () { host.querySelector('.gen-bar i').style.width = '100%'; }, 30); });
+    items.forEach(function (li, i) { setTimeout(function () { li.classList.add('on'); if (i) items[i - 1].classList.replace('on', 'done'); }, i * per + 100); });
+    return Promise.all([work, sleep(total)]).then(function (r) { return sleep(300).then(function () { return r[0]; }); });
   }
 
   // ───────────────────────── Quiz ─────────────────────────
@@ -348,12 +360,7 @@
     function showLead() {
       onLead = true;
       var prev = lsGet('nx_contact') || {};
-      host.innerHTML = '<div class="qz-top"><span>' + esc(cfg.shortName) + '</span><span>Último passo</span></div>' +
-        '<div class="qz-progress" aria-hidden="true"><i style="width:' + Math.round(mainTotal / (mainTotal + 1) * 100) + '%"></i></div>' +
-        '<div class="qz-card"><h1 class="qz-q" id="qz-title" tabindex="-1">' + esc(cfg.leadTitle || 'Para quem vamos gerar o diagnóstico?') + '</h1>' +
-        '<p class="qz-help">' + esc(cfg.leadHelp || 'Usamos estes dados para personalizar o relatório e enviar uma cópia por e-mail. Não pedimos informações confidenciais.') + '</p>' +
-        leadFormHtml(cfg, prev) + '<div class="form-msg" id="f-msg" role="status" aria-live="polite"></div></div>' +
-        '<div class="qz-nav"><button type="button" class="qz-back" id="qz-back">← Voltar</button><span></span></div>';
+      host.innerHTML = leadFormHtml(cfg, prev) + '<div class="lead-back"><button type="button" class="qz-back" id="qz-back">← Voltar às perguntas</button></div>';
       var shownAt = Date.now();
       NX.track('lead_capture_view', { quiz_type: cfg.id, placement: 'before_report' });
       $('#qz-back').addEventListener('click', back);
@@ -367,7 +374,7 @@
         st.completedAt = Date.now(); save();
         var sc = score(cfg, st.answers);
         NX.track('quiz_complete', { quiz_type: cfg.id, quiz_version: cfg.version, top_dimension: sc.top ? sc.top.id : 'nenhuma', confidence: sc.confidence, duration_s: Math.round((st.completedAt - st.startedAt) / 1000) });
-        lsSet('nx_contact', { name: contact.name, company: contact.company, email: contact.email, whatsapp: contact.whatsapp, role: contact.role });
+        lsSet('nx_contact', { name: contact.name, company: contact.company, email: contact.email, whatsapp: contact.whatsapp, role: contact.role, instagram: contact.instagram });
         var meta = { id: st.id, completedAt: st.completedAt, startedAt: st.startedAt };
         var work = sendLead(cfg, st.answers, meta, contact, Date.now() - shownAt);
         generating(cfg, host, contact, work).then(function (res) {
@@ -423,17 +430,14 @@
     if (lead || /[?&]s=1/.test(location.search)) return renderReport(cfg, host, answers, meta, lead);
 
     var prev = lsGet('nx_contact') || {};
-    host.innerHTML = '<section class="rp-hero" style="border-bottom:0"><div class="gridbg"></div><div class="wrap narrow" style="position:relative">' +
-      '<span class="eyebrow">' + esc(cfg.reportName) + '</span><h1 class="h-lg">Seu diagnóstico está pronto.</h1>' +
-      '<p class="lead">Informe para quem é o relatório. Usamos estes dados para personalizar a análise e enviar uma cópia por e-mail.</p>' +
-      '<div class="lead-box" style="margin-top:32px">' + leadFormHtml(cfg, prev) + '<div class="form-msg" id="f-msg" role="status"></div></div></div></section>';
+    host.innerHTML = '<div class="qz-shell" style="padding-top:120px">' + leadFormHtml(cfg, prev) + '</div>';
     if (prev.role) $('#f-cargo').value = prev.role;
     var shownAt = Date.now();
     NX.track('lead_capture_view', { quiz_type: cfg.id, placement: 'shared_link' });
     $('#lead-form').addEventListener('submit', function (e) {
       e.preventDefault();
       var contact = readForm(cfg); if (!contact) return;
-      lsSet('nx_contact', { name: contact.name, company: contact.company, email: contact.email, whatsapp: contact.whatsapp, role: contact.role });
+      lsSet('nx_contact', { name: contact.name, company: contact.company, email: contact.email, whatsapp: contact.whatsapp, role: contact.role, instagram: contact.instagram });
       var shell = document.createElement('div'); shell.className = 'qz-shell'; host.innerHTML = ''; host.appendChild(shell);
       generating(cfg, shell, contact, sendLead(cfg, answers, meta, contact, Date.now() - shownAt)).then(function (res) {
         var rec = { at: Date.now(), company: contact.company, name: contact.name, sent: !!res.ok, email: res.email || null, to: contact.email };
@@ -451,6 +455,20 @@
     var bookingHref = NX.withUtm(NX.config.bookingUrl || '/agendar/', { diag: meta.id, quiz: cfg.id });
     var who = lead.company ? esc(lead.company) : '';
 
+    var valid = sc.dims.filter(function (d) { return d.score != null; });
+    var overall = valid.length ? Math.round(valid.reduce(function (n, d) { return n + d.score; }, 0) / valid.length) : 0;
+    var lvColor = ['#beff01', '#e3e86b', '#ffb547', '#ff6b5b'];
+    var ov = level(overall), C = 2 * Math.PI * 52;
+    var gauge = '<div class="gauge"><svg viewBox="0 0 120 120" role="img" aria-label="Índice geral de atenção: ' + overall + ' de 100"><circle cx="60" cy="60" r="52" class="g-bg"/><circle cx="60" cy="60" r="52" class="g-fg" style="stroke:' + lvColor[ov] + ';stroke-dasharray:' + C.toFixed(1) + ';stroke-dashoffset:' + C.toFixed(1) + '" data-off="' + (C * (1 - overall / 100)).toFixed(1) + '"/></svg><div class="g-num"><b>' + overall + '</b><span>/100</span></div></div>' +
+      '<span class="g-badge" style="color:' + lvColor[ov] + ';border-color:' + lvColor[ov] + '55">' + esc(['Poucos sinais', 'Pontos de atenção', 'Gargalos a investigar', 'Alta concentração de sinais'][ov]) + '</span><p class="g-cap">Índice geral de atenção: média das áreas. Quanto maior, mais sinais de fragilidade.</p>';
+    var n = sc.dims.length, cx = 160, cy = 130, rad = 92;
+    var pt = function (i, r) { var ang = -Math.PI / 2 + i * 2 * Math.PI / n; return [cx + r * Math.cos(ang), cy + r * Math.sin(ang)]; };
+    var grid = [0.25, 0.5, 0.75, 1].map(function (f) { return '<polygon class="rd-grid" points="' + sc.dims.map(function (d, i) { return pt(i, rad * f).map(function (x) { return x.toFixed(1); }).join(','); }).join(' ') + '"/>'; }).join('');
+    var axes = sc.dims.map(function (d, i) { var p = pt(i, rad); return '<line class="rd-axis" x1="' + cx + '" y1="' + cy + '" x2="' + p[0].toFixed(1) + '" y2="' + p[1].toFixed(1) + '"/>'; }).join('');
+    var shape = '<polygon class="rd-shape" points="' + sc.dims.map(function (d, i) { return pt(i, rad * Math.max(0.04, (d.score || 0) / 100)).map(function (x) { return x.toFixed(1); }).join(','); }).join(' ') + '"/>';
+    var labels = sc.dims.map(function (d, i) { var p = pt(i, rad + 22); var anchor = Math.abs(p[0] - cx) < 8 ? 'middle' : (p[0] > cx ? 'start' : 'end'); return '<text x="' + p[0].toFixed(1) + '" y="' + (p[1] + 4).toFixed(1) + '" text-anchor="' + anchor + '">' + esc(d.label) + '</text>'; }).join('');
+    var radar = '<svg class="radar" viewBox="-60 0 440 262" role="img" aria-label="Gráfico de radar dos sinais por área">' + grid + axes + shape + labels + '</svg>' +
+      '<div class="rd-nums">' + sc.dims.map(function (d) { return '<div><b style="color:' + (d.score == null ? 'var(--text-4)' : lvColor[d.level]) + '">' + (d.score == null ? '—' : d.score) + '</b><span>' + esc(d.label) + '</span></div>'; }).join('') + '</div>';
     var dimsHtml = sc.dims.map(function (d) {
       if (d.score == null) return '<div class="dim-row"><div class="lbl">' + esc(d.label) + ' <span class="chip">Sem dados suficientes</span></div><div class="val">—</div><div class="track" role="img" aria-label="' + esc(d.label) + ': sem dados suficientes"></div></div>';
       var chips = '';
@@ -483,8 +501,9 @@
       (sentNote ? '<p class="small" style="margin-top:18px">' + sentNote + '</p>' : '') +
       '</div></section>' +
 
+      '<section class="rp-sec rp-visual"><div class="wrap"><div class="rp-grid"><div class="gauge-box">' + gauge + '</div><div class="radar-box"><span class="kicker">Mapa de pontos de atenção</span><p class="small" style="margin:6px 0 4px">Quanto mais preenchido, mais sinais de fragilidade na área.</p>' + radar + '</div></div></div></section>' +
       '<section class="rp-sec"><div class="wrap"><div class="rp-grid">' +
-      '<div><span class="kicker">Mapa de pontos de atenção</span><h2 class="h-md" style="margin:12px 0 28px">' + esc(cfg.dimsTitle) + '</h2><div class="dims">' + dimsHtml + '</div>' +
+      '<div><span class="kicker">Detalhe por área</span><h2 class="h-md" style="margin:12px 0 28px">' + esc(cfg.dimsTitle) + '</h2><div class="dims">' + dimsHtml + '</div>' +
       '<div class="scale" aria-hidden="true"><span><i style="background:rgba(190,255,1,.45)"></i>0–24</span><span><i style="background:#e3e86b"></i>25–49</span><span><i style="background:var(--warn)"></i>50–74</span><span><i style="background:var(--crit)"></i>75–100</span></div>' +
       '<p class="note" style="margin-top:20px">Pontuação mais alta significa mais sinais de fragilidade nas respostas. Não é percentual de dinheiro perdido, ineficiência medida, probabilidade de fracasso nem retorno esperado.</p></div>' +
       '<div><div class="focus"><span class="kicker">' + esc(R.focusKicker) + '</span><h3>' + esc(R.focusTitle) + '</h3><p>' + esc(R.focusText) + '</p>' + (R.focusRec ? '<p style="margin-top:14px"><b style="color:#fff">Recomendação inicial:</b> ' + esc(R.focusRec) + '</p>' : '') + '<span class="tagline">Interpretação a partir das respostas</span></div>' +
@@ -509,7 +528,7 @@
       (sc.lowAnswers ? '<li>' + sc.lowAnswers + ' resposta(s) foram marcadas como “não sei”, o que reduz a confiança desta triagem.</li>' : '') +
       '</ul><div class="btn-row" style="margin-top:32px"><a class="btn btn-lime" href="' + bookingHref + '" data-track="result_booking_bottom">Agendar análise com a NeuralOps' + ARROW + '</a><button type="button" class="btn btn-ghost" onclick="window.print()">Imprimir / salvar PDF</button><a class="btn btn-ghost" href="' + NX.withUtm(cfg.paths.quiz) + '" id="redo">Refazer</a></div></div></section>';
 
-    requestAnimationFrame(function () { setTimeout(function () { host.querySelectorAll('.track i').forEach(function (i) { i.style.width = i.getAttribute('data-w') + '%'; }); }, 120); });
+    requestAnimationFrame(function () { setTimeout(function () { host.querySelectorAll('.track i').forEach(function (i) { i.style.width = i.getAttribute('data-w') + '%'; }); var g = host.querySelector('.g-fg'); if (g) g.style.strokeDashoffset = g.getAttribute('data-off'); }, 120); });
     var redo = $('#redo'); if (redo) redo.addEventListener('click', function () { lsDel(cfg.storageKey); });
     window.scrollTo({ top: 0 });
     NX.track('result_view', { quiz_type: cfg.id, quiz_version: cfg.version, top_dimension: sc.top ? sc.top.id : 'nenhuma', confidence: sc.confidence });

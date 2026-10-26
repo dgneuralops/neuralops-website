@@ -56,6 +56,7 @@ function validate(b) {
     email: str(c.email, 120).toLowerCase(),
     whatsapp: str(c.whatsapp, 20).replace(/\D/g, ''),
     answerCode: str(b.answerCode, 40),
+    instagram: (str(c.instagram, 40).replace(/^@+/, '').match(/^[A-Za-z0-9._]{1,30}$/) || [''])[0],
   }
   if (lead.name.length < 2) return { error: 'Nome inválido' }
   if (lead.company.length < 2) return { error: 'Empresa inválida' }
@@ -114,7 +115,7 @@ function noteBody(lead, url) {
   const L = []
   L.push(`📊 ${QUIZ[lead.quizType].name.toUpperCase()} (${lead.quizVersion})`)
   L.push(`ID: ${lead.diagnosticId} · Enviado: ${new Date(lead.submittedAt).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })}`)
-  L.push(`Empresa: ${lead.company} · Cargo: ${ROLES[lead.role]}`)
+  L.push(`Empresa: ${lead.company} · Cargo: ${ROLES[lead.role]}${lead.instagram ? ' · Instagram: @' + lead.instagram : ''}`)
   lead.profile.forEach(p => L.push(`${p[0]}: ${p[1]}`))
   L.push('', `━━ SCORE COMERCIAL: ${lead.commercial.total}/12 · prioridade ${lead.commercial.tier}${lead.commercial.reviewComplexity ? ' · avaliar complexidade (fat. > R$1,5mi)' : ''}`)
   if (lead.commercial.points) L.push(`faturamento ${lead.commercial.points.faturamento} · urgência ${lead.commercial.points.urgencia} · complexidade ${lead.commercial.points.complexidade} · papel ${lead.commercial.points.papel}`)
@@ -152,7 +153,7 @@ async function toGHL(lead, url) {
       locationId: process.env.GHL_LOCATION_ID || DEFAULT_LOCATION,
       email: lead.email, phone, firstName, lastName: rest.join(' ') || undefined,
       companyName: lead.company, source: QUIZ[lead.quizType].name, tags,
-      customFields: [{ key: 'nome_da_sua_empresa', field_value: lead.company }],
+      customFields: [{ key: 'nome_da_sua_empresa', field_value: lead.company }].concat(lead.instagram ? [{ key: 'instagram', field_value: '@' + lead.instagram }] : []),
     }),
   })
   const data = await up.json().catch(() => ({}))

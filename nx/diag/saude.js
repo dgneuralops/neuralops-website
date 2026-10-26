@@ -23,7 +23,8 @@
     footNote: 'Não pedimos dados de pacientes · Resultado orientativo, baseado nas suas respostas.',
     dimsTitle: 'Sinais por etapa do atendimento',
     leadTitle: 'Para qual clínica vamos gerar o diagnóstico?',
-    leadHelp: 'Usamos estes dados para personalizar o relatório da sua clínica e enviar uma cópia por e-mail. Não pedimos dados de pacientes.',
+    leadHelp: 'Antes de liberar o relatório da sua clínica, precisamos de algumas informações. Não pedimos dados de pacientes.',
+    companyPlaceholder: 'Ex.: Clínica Vida',
     generatingSteps: ['Organizando as respostas sobre o atendimento', 'Calculando velocidade, triagem, continuidade e dados', 'Identificando onde oportunidades podem ficar sem continuidade', 'Montando as recomendações para a clínica'],
 
     questions: [

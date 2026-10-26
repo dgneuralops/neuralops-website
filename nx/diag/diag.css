@@ -120,3 +120,63 @@
 .gen-steps li.done{color:var(--text-2)}
 .gen-steps li.done::before{animation:none;border-color:var(--lime);background:var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2 5 8.5 9.5 3.5' fill='none' stroke='%230d0d0d' stroke-width='1.8'/%3E%3C/svg%3E") center/10px no-repeat}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── Cartão de contato ── */
+.lead-card{max-width:600px;margin:0 auto;background:#141414;border:1px solid var(--line);border-radius:14px;padding:40px 44px 32px;text-align:center;animation:qzIn .4s ease both}
+.lead-card .form-grid{grid-template-columns:1fr;text-align:left;gap:18px}
+.done-badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--lime);background:rgba(190,255,1,.1);border:1px solid rgba(190,255,1,.3);border-radius:100px;padding:9px 18px;margin-bottom:22px}
+.lead-h{font-size:clamp(26px,3vw,36px);font-weight:900;letter-spacing:-1px;line-height:1.1;margin-bottom:14px}
+.lead-p{font-size:15px;line-height:1.6;color:var(--text-3);max-width:44ch;margin:0 auto 30px}
+.lead-card .field label em{font-style:normal;text-transform:none;letter-spacing:.4px;color:var(--text-4);font-weight:500}
+.lead-card .field input,.lead-card .field select{background:#1c1c1c;border-color:rgba(255,255,255,.08);border-radius:6px}
+.lead-card .field input::placeholder{color:rgba(255,255,255,.3)}
+.lead-card .btn{border-radius:4px}
+.lead-card .consent{font-size:12px}
+.lead-safe{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--text-4);margin-top:20px}
+.lead-back{text-align:center;margin-top:20px}
+.lead-back .qz-back{display:inline-flex}
+@media (max-width:560px){.lead-card{padding:30px 20px 24px;border-radius:10px}}
+
+/* ── Transição ── */
+.gen{min-height:70vh;max-width:none;align-items:center;text-align:center;background:radial-gradient(circle at 50% 35%,rgba(190,255,1,.05),transparent 55%)}
+.gen-orbit{width:190px;height:190px;margin-bottom:30px;overflow:visible}
+.gen-orbit .ring{fill:none;stroke:rgba(190,255,1,.16);stroke-width:1}
+.gen-orbit .halo{fill:rgba(190,255,1,.16);animation:halo 2s ease-in-out infinite;transform-origin:100px 100px}
+.gen-orbit .core{fill:var(--lime);filter:drop-shadow(0 0 10px rgba(190,255,1,.8))}
+.gen-orbit .spin{fill:rgba(190,255,1,.75);transform-origin:100px 100px}
+.gen-orbit .s1{animation:spin 6s linear infinite}
+.gen-orbit .s2{animation:spin 10s linear infinite reverse}
+@keyframes halo{50%{transform:scale(1.25);opacity:.55}}
+.gen-title{font-size:15px;color:var(--text-3);margin-bottom:28px}
+.gen-title b{color:#fff}
+.gen .gen-steps{text-align:left;gap:16px;margin-bottom:34px}
+.gen .gen-steps li{font-size:16px;color:rgba(255,255,255,.22)}
+.gen .gen-steps li::before{width:12px;height:12px;border:0;background:rgba(190,255,1,.22);box-shadow:0 0 0 5px rgba(190,255,1,.07)}
+.gen .gen-steps li.on{color:#fff}
+.gen .gen-steps li.on::before{animation:none;background:var(--lime);box-shadow:0 0 0 5px rgba(190,255,1,.18),0 0 12px var(--lime)}
+.gen .gen-steps li.done{color:rgba(255,255,255,.4)}
+.gen .gen-steps li.done::before{background:rgba(190,255,1,.55)}
+.gen-bar{width:min(420px,90%);height:2px;background:rgba(255,255,255,.07);overflow:hidden}
+.gen-bar i{display:block;height:100%;width:0;background:var(--lime);transition-property:width;transition-timing-function:linear}
+
+/* ── Anel e radar ── */
+.rp-visual .rp-grid{align-items:center}
+.gauge-box{text-align:center}
+.gauge{position:relative;width:210px;height:210px;margin:0 auto 18px}
+.gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+.g-bg{fill:none;stroke:rgba(255,255,255,.07);stroke-width:7}
+.g-fg{fill:none;stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset 1.4s cubic-bezier(.2,.8,.2,1)}
+.g-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.g-num b{font-size:58px;font-weight:900;letter-spacing:-2px;line-height:1;font-variant-numeric:tabular-nums}
+.g-num span{font-size:12px;color:var(--text-4);margin-top:4px}
+.g-badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;border:1px solid;border-radius:100px;padding:8px 16px;background:rgba(255,255,255,.03)}
+.g-cap{font-size:12px;color:var(--text-4);margin-top:12px;max-width:34ch;margin-left:auto;margin-right:auto;line-height:1.5}
+.radar-box{background:#121212;border:1px solid var(--line);border-radius:12px;padding:24px}
+.radar{width:100%;height:auto;margin-top:6px}
+.radar text{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;fill:var(--text-3)}
+.rd-grid{fill:none;stroke:rgba(255,255,255,.07)}
+.rd-axis{stroke:rgba(255,255,255,.06)}
+.rd-shape{fill:rgba(190,255,1,.16);stroke:var(--lime);stroke-width:1.6;stroke-linejoin:round}
+.rd-nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:12px;margin-top:14px;text-align:center}
+.rd-nums b{display:block;font-size:24px;font-weight:900;font-variant-numeric:tabular-nums}
+.rd-nums span{display:block;font-size:11px;line-height:1.35;color:var(--text-4);margin-top:4px}
