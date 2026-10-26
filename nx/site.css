@@ -187,10 +187,27 @@ a.cell:hover .bar{transform:scaleX(1)}
 .sysviz-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .sysviz-top span{font-size:10px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:var(--text-4)}
 .sysviz svg text{font-family:'Inter',sans-serif}
+.sysviz-bare{background:none;border:0;padding:0}
+.sysviz-bare svg{width:100%;height:auto;overflow:visible}
+.sysviz-bare figcaption{text-align:right;opacity:.8}
+.hero-home{grid-template-columns:.9fr 1.1fr;gap:40px}
+.hero-title{font-size:clamp(30px,3.3vw,48px);line-height:1;letter-spacing:-1.2px}
+@media (min-width:861px){.hero-home .sysviz-bare{margin-right:-24px}}
+@media (max-width:860px){.hero-home{grid-template-columns:1fr}}
 .flow{stroke-dasharray:5 6;animation:flow 2.4s linear infinite}
 @keyframes flow{to{stroke-dashoffset:-22}}
 .pulse{animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* ── Fundo com arte ── */
+.art{position:absolute;inset:0;background-size:cover;background-position:right center;opacity:.75;pointer-events:none}
+.art::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(13,13,13,.85) 35%,rgba(13,13,13,.1) 75%),linear-gradient(0deg,var(--bg) 0%,transparent 30%)}
+.art-center::after{background:radial-gradient(ellipse at center,rgba(13,13,13,.92) 0%,rgba(13,13,13,.55) 60%,rgba(13,13,13,.2) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 25%)}
+.page-hero .art{left:46%}
+.page-hero .art::after{background:linear-gradient(90deg,var(--bg) 0%,rgba(13,13,13,.4) 30%,transparent 60%),linear-gradient(0deg,var(--bg) 0%,transparent 30%)}
+.art-rede{background-image:url(/assets/nx-img/bg-rede.jpg)}
+.art-saude{background-image:url(/assets/nx-img/bg-saude.jpg)}
+@media (max-width:860px){.art{opacity:.4;background-position:70% center}}
 
 /* ── Logos ── */
 .logos{position:relative;overflow:hidden}
