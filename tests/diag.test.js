@@ -65,7 +65,7 @@ t('saúde: "Não sabemos" no tempo de resposta não pontua risco', () => {
 });
 
 t('saúde: perfis A–E mapeados pela área principal', () => {
-  const base = { S01: 'popular', S02: '100a300', S03: '1001a2500', S04: 'whatsapp', S05: 'ate5', S06: 'estruturado', S07: 'estruturado', S08: 'estruturado', S09: 'painel', S10: 'estruturado', S11: 'sim', S12: 'sim', S13a: 'rapido', S13b: 'imediato' };
+  const base = { S01: 'popular', S02: '100a300', S03: '1001a2500', S04: ['whatsapp'], S05: 'ate5', S06: 'estruturado', S07: 'estruturado', S08: 'estruturado', S09: 'painel', S10: 'estruturado', S11: 'sim', S12: 'sim', S13a: 'rapido', S13b: 'imediato' };
   const prof = a => G && S.report(a, D._score(S, a)).focusKicker;
   assert.match(prof(base), /Perfil E/);
   assert.match(prof(Object.assign({}, base, { S05: '60mais', S06: 'semFluxo' })), /Perfil A/);
@@ -99,7 +99,7 @@ t('score comercial: máximo 12 e faixas', () => {
 t('codificação do relatório: ida e volta sem perda', () => {
   const code = D._encode(G, geralWorst);
   assert.deepStrictEqual(JSON.parse(JSON.stringify(D._decode(G, code))), geralWorst);
-  const sa = { S01: 'rede', S04: 'varios', S04b: 'chatwoot', S13a: 'integrar', S13b: 'avaliando' };
+  const sa = { S01: 'rede', S04: ['whatsapp', 'site'], S04b: ['chatwoot', 'crm', 'outra'], S13a: 'integrar', S13b: 'avaliando' };
   assert.deepStrictEqual(JSON.parse(JSON.stringify(D._decode(S, D._encode(S, sa)))), sa);
   assert.strictEqual(D._decode(G, 'abc'), null);
 });
@@ -110,6 +110,12 @@ t('recomendações sem duplicar a de medição', () => {
   assert.strictEqual(new Set(R.recs).size, R.recs.length);
   assert.ok(!R.recs.includes(G.dimensions.find(d => d.id === 'gestao').content.rec));
   assert.ok(R.recs.length >= 3);
+});
+
+t('relatório personalizado com o nome da clínica, escapado', () => {
+  const a = { S05: '60mais', S06: 'semFluxo', S07: 'estruturado', S08: 'estruturado', S09: 'painel', S10: 'estruturado', S11: 'sim', S12: 'sim' };
+  const R = S.report(a, D._score(S, a), { company: 'Clínica <b>X</b>' });
+  assert.match(R.heroTitle, /^Clínica &lt;b&gt;X&lt;\/b&gt; pode ter/);
 });
 
 console.log(`\n${pass} testes passaram.`);

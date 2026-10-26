@@ -10,9 +10,10 @@
     estruturada: { code: 'E', name: 'Operação mais estruturada', text: 'As respostas mostram que sua clínica já possui alguns processos organizados.', recs: ['Avaliar eficiência, qualidade dos dados e oportunidades de integração e melhoria contínua.'] }
   };
 
+  var E = function (s) { return String(s || '').replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var cfg = {
     id: 'saude',
-    version: 'saude-1.0',
+    version: 'saude-1.1',
     shortName: 'Diagnóstico de Vazamentos Comerciais',
     reportName: 'NeuralOps Saúde',
     entity: 'clínica',
@@ -21,6 +22,9 @@
     paths: { landing: '/saude/diagnostico/', quiz: '/saude/diagnostico/quiz/', result: '/saude/diagnostico/resultado/' },
     footNote: 'Não pedimos dados de pacientes · Resultado orientativo, baseado nas suas respostas.',
     dimsTitle: 'Sinais por etapa do atendimento',
+    leadTitle: 'Para qual clínica vamos gerar o diagnóstico?',
+    leadHelp: 'Usamos estes dados para personalizar o relatório da sua clínica e enviar uma cópia por e-mail. Não pedimos dados de pacientes.',
+    generatingSteps: ['Organizando as respostas sobre o atendimento', 'Calculando velocidade, triagem, continuidade e dados', 'Identificando onde oportunidades podem ficar sem continuidade', 'Montando as recomendações para a clínica'],
 
     questions: [
       { id: 'S01', title: 'Qual tipo de operação melhor descreve sua clínica?', reportLabel: 'Tipo de operação',
@@ -29,10 +33,10 @@
         options: [{ v: 'ate50', l: 'Até R$ 50 mil', cs: 0 }, { v: '50a100', l: 'R$ 50 mil a R$ 100 mil', cs: 1 }, { v: '100a300', l: 'R$ 100 mil a R$ 300 mil', cs: 2 }, { v: '300a700', l: 'R$ 300 mil a R$ 700 mil', cs: 3 }, { v: '700a1500', l: 'R$ 700 mil a R$ 1,5 milhão', cs: 3 }, { v: 'acima1500', l: 'Acima de R$ 1,5 milhão', cs: 2, review: true }, { v: 'naoinformar', l: 'Prefiro não informar', cs: 0 }] },
       { id: 'S03', title: 'Quantos contatos sua clínica recebe aproximadamente por mês?', help: 'Conte mensagens, ligações e formulários de pessoas interessadas em consultas ou exames. Volume alto não é problema por si só.', reportLabel: 'Contatos por mês',
         options: [{ v: 'm200', l: 'Menos de 200' }, { v: '200a500', l: '200 a 500' }, { v: '501a1000', l: '501 a 1.000' }, { v: '1001a2500', l: '1.001 a 2.500' }, { v: '2500mais', l: 'Mais de 2.500' }, { v: 'naosei', l: 'Não sabemos', lowConf: true }] },
-      { id: 'S04', title: 'Por onde chegam a maioria das solicitações?', reportLabel: 'Canal principal',
-        options: [{ v: 'whatsapp', l: 'WhatsApp' }, { v: 'telefone', l: 'Telefone' }, { v: 'redes', l: 'Instagram ou redes sociais' }, { v: 'site', l: 'Site ou formulário' }, { v: 'varios', l: 'Vários canais com volumes semelhantes' }] },
-      { id: 'S04b', optional: true, showIf: function (a) { return !!a.S04; }, title: 'Qual ferramenta sua equipe utiliza para atender?', help: 'Pergunta opcional. Ajuda a entender o ponto de partida; nenhuma ferramenta específica é obrigatória.', reportLabel: 'Ferramenta de atendimento',
-        options: [{ v: 'wabusiness', l: 'WhatsApp Business' }, { v: 'chatwoot', l: 'Chatwoot' }, { v: 'crm', l: 'CRM ou plataforma de atendimento' }, { v: 'proprio', l: 'Sistema próprio' }, { v: 'outra', l: 'Outra' }, { v: 'naosei', l: 'Não sei' }] },
+      { id: 'S04', multi: true, title: 'Por onde chegam a maioria das solicitações?', help: 'Marque todos os canais que trazem um volume relevante de contatos.', reportLabel: 'Canais principais',
+        options: [{ v: 'whatsapp', l: 'WhatsApp' }, { v: 'telefone', l: 'Telefone' }, { v: 'redes', l: 'Instagram ou redes sociais' }, { v: 'site', l: 'Site ou formulário' }] },
+      { id: 'S04b', optional: true, multi: true, showIf: function (a) { return !!a.S04; }, title: 'Quais ferramentas sua equipe utiliza para atender?', help: 'Pergunta opcional. Ajuda a entender o ponto de partida; nenhuma ferramenta específica é obrigatória.', reportLabel: 'Ferramentas de atendimento',
+        options: [{ v: 'wabusiness', l: 'WhatsApp Business' }, { v: 'chatwoot', l: 'Chatwoot' }, { v: 'crm', l: 'CRM ou plataforma de atendimento' }, { v: 'proprio', l: 'Sistema próprio' }, { v: 'outra', l: 'Outra' }, { v: 'naosei', l: 'Não sei', exclusive: true }] },
       { id: 'S05', scored: true, title: 'Quanto tempo um paciente costuma esperar pela primeira resposta humana durante o expediente?', help: 'Uma estimativa já ajuda. Se a clínica não mede, tudo bem responder “não sabemos”.', reportLabel: 'Espera pela primeira resposta humana (estimativa)',
         options: [{ v: 'ate5', l: 'Até 5 minutos', risk: 0 }, { v: '6a15', l: 'De 6 a 15 minutos', risk: 1 }, { v: '16a60', l: 'De 16 a 60 minutos', risk: 2 }, { v: '60mais', l: 'Mais de 60 minutos', risk: 3 }, { v: 'naosei', l: 'Não sabemos', lowConf: true }],
         insight: function (v, o) { return o && o.lowConf ? 'Tudo bem. Medir o tempo real em uma amostra de conversas é um bom primeiro passo para saber onde a espera acontece.' : null; } },
@@ -93,18 +97,19 @@
     },
 
     profileRows: function (a) {
-      var pick = function (qi, v) { var o = cfg.questions[qi].options.filter(function (x) { return x.v === v; })[0]; return o ? o.l : '—'; };
-      return [['Operação', pick(0, a.S01)], ['Contatos/mês', pick(2, a.S03)], ['Canal principal', pick(3, a.S04)]];
+      var pick = function (qi, v) { var ls = cfg.questions[qi].options.filter(function (x) { return Array.isArray(v) ? v.indexOf(x.v) >= 0 : x.v === v; }).map(function (x) { return x.l; }); return ls.length ? ls.join(', ') : '—'; };
+      return [['Operação', pick(0, a.S01)], ['Contatos/mês', pick(2, a.S03)], [a.S04 && a.S04.length > 1 ? 'Canais' : 'Canal principal', pick(3, a.S04)]];
     },
 
-    report: function (a, sc) {
+    report: function (a, sc, lead) {
       var top = sc.top, second = sc.second, R = { recs: [], strengths: [] };
+      var who = lead && lead.company ? E(lead.company) : 'Sua clínica';
       var p = sc.structured ? PROFILES.estruturada : PROFILES[top.id];
       if (sc.structured) {
-        R.heroTitle = 'Sua clínica mostra <span class="green">processos já organizados</span> nas respostas.';
+        R.heroTitle = who + ' mostra <span class="green">processos já organizados</span> nas respostas.';
         R.heroSub = 'Nenhuma etapa ficou acima de 25 pontos. Ainda assim, vale avaliar eficiência, qualidade dos dados e oportunidades de melhoria contínua.';
       } else {
-        R.heroTitle = 'Sua clínica pode ter oportunidades de melhoria em <span class="green">' + top.short + '.</span>';
+        R.heroTitle = who + ' pode ter oportunidades de melhoria em <span class="green">' + top.short + '.</span>';
         R.heroSub = 'Analisamos suas respostas e identificamos aspectos da operação que merecem investigação.';
       }
       R.focusKicker = 'Perfil ' + p.code + ' · ' + (sc.structured ? 'Leitura geral' : 'Principal hipótese de gargalo');

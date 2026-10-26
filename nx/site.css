@@ -248,7 +248,7 @@ a.cell:hover .bar{transform:scaleX(1)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
 /* ── Responsive ── */
-@media (max-width:1080px){
+@media (max-width:1240px){
   .nav-links{display:none}
   .nav-burger{display:inline-flex}
   .nav-cta{display:none}

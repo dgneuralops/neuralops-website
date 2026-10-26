@@ -14,6 +14,7 @@
   var DIM_FROM_PRIORITY = { atender: 'atendimento', manual: 'eficiencia', integrar: 'integracao', dados: 'gestao', depend: 'dependencia' };
   var DIM_FROM_PAIN = { atendimento: 'atendimento', manual: 'eficiencia', sistemas: 'integracao', dados: 'gestao', pessoas: 'dependencia' };
 
+  var E = function (s) { return String(s || '').replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var cfg = {
     id: 'geral',
     version: 'geral-1.0',
@@ -25,6 +26,7 @@
     paths: { landing: '/diagnostico/', quiz: '/diagnostico/quiz/', result: '/diagnostico/resultado/' },
     footNote: 'Gratuito · Sem cadastro para começar · Resultado orientativo, não é um diagnóstico técnico definitivo.',
     dimsTitle: 'Sinais por área da operação',
+    leadTitle: 'Para qual empresa vamos gerar o diagnóstico?',
 
     questions: [
       { id: 'G01', title: 'Qual destas opções melhor descreve sua empresa?', reportLabel: 'Setor', noAuto: false,
@@ -100,21 +102,22 @@
       return [['Setor', pick(0, a.G01)], ['Equipe operacional', pick(2, a.G03)]];
     },
 
-    report: function (a, sc) {
+    report: function (a, sc, lead) {
+      var co = lead && lead.company ? E(lead.company) : null;
       var top = sc.top, second = sc.second;
       var dimById = function (id) { return sc.dims.filter(function (d) { return d.id === id; })[0]; };
       var R = { recs: [], strengths: [] };
       var sector = { saude: 'saúde', comercio: 'comércio', servicos: 'serviços', industria: 'indústria', agro: 'agro', tecnologia: 'tecnologia' }[a.G01];
 
       if (sc.structured) {
-        R.heroTitle = 'Suas respostas mostram <span class="green">poucos sinais de fragilidade</span> na operação.';
+        R.heroTitle = (co ? 'A operação da ' + co + ' mostra' : 'Suas respostas mostram') + ' <span class="green">poucos sinais de fragilidade</span>' + (co ? ' nas respostas.' : ' na operação.');
         R.heroSub = 'Nenhuma área ficou acima de 25 pontos. O próximo passo é avaliar eficiência, qualidade dos dados e oportunidades de integração e melhoria contínua.';
         R.focusKicker = 'Leitura geral'; R.focusTitle = 'Operação com bases organizadas.';
         R.focusText = 'Pelas respostas, os processos principais já têm alguma estrutura. Isso não descarta oportunidades: em operações organizadas, os ganhos costumam vir de otimização e de análises sobre dados que já existem.';
         R.focusRec = 'Avaliar eficiência, qualidade dos dados e oportunidades de integração e melhoria contínua.';
       } else {
         var c = top.def.content;
-        R.heroTitle = 'Seu principal ponto de atenção pode estar em <span class="green">' + top.short + '.</span>';
+        R.heroTitle = (co ? 'Na ' + co + ', o principal ponto de atenção pode estar em' : 'Seu principal ponto de atenção pode estar em') + ' <span class="green">' + top.short + '.</span>';
         R.heroSub = 'Com base nas respostas, identificamos áreas que merecem uma análise mais detalhada antes de priorizar investimentos em tecnologia.';
         R.focusKicker = 'Principal ponto de atenção · ' + top.label;
         R.focusTitle = c.title; R.focusText = c.diag; R.focusRec = null;

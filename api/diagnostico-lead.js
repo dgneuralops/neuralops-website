@@ -107,7 +107,7 @@ function validate(b) {
 
 function resultUrl(lead) {
   const site = (process.env.SITE_URL || 'https://neuralops.com.br').replace(/\/$/, '')
-  return `${site}${QUIZ[lead.quizType].path}#r=${lead.answerCode}&v=${encodeURIComponent(lead.quizVersion)}&id=${lead.diagnosticId}`
+  return `${site}${QUIZ[lead.quizType].path}?s=1#r=${lead.answerCode}&v=${encodeURIComponent(lead.quizVersion)}&id=${lead.diagnosticId}`
 }
 
 function noteBody(lead, url) {
