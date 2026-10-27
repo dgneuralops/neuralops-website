@@ -282,5 +282,6 @@ export default async function handler(req, res) {
   let email = 'skipped'
   try { email = await sendEmail(lead, url) } catch (e) { console.error('[diagnostico-lead] email:', e.message); email = 'error' }
 
+  console.log(`[diagnostico-lead] ok quiz=${lead.quizType} id=${lead.diagnosticId} crm=${crm} ghlWebhook=${ghlHook} webhook=${webhook} email=${email} tier=${lead.commercial.tier}`)
   return res.status(200).json({ ok: true, crm, webhook, ghlHook, email })
 }
