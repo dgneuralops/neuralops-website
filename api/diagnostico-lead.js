@@ -179,7 +179,7 @@ async function toWebhook(lead, url) {
 // Webhook do GHL por vertical (workflow "Inbound Webhook"). Campos planos para mapear direto no workflow.
 const GHL_WEBHOOKS = {
   saude: process.env.GHL_WEBHOOK_SAUDE || 'https://services.leadconnectorhq.com/hooks/o9LtB6haFl99RD67rloF/webhook-trigger/91OSdKdjQnrIznqXrD4A',
-  geral: process.env.GHL_WEBHOOK_GERAL || null,
+  geral: process.env.GHL_WEBHOOK_GERAL || 'https://services.leadconnectorhq.com/hooks/o9LtB6haFl99RD67rloF/webhook-trigger/zgNi6ksKK25ULrD884ca',
 }
 function flatLead(lead, url) {
   const [first, ...rest] = lead.name.split(/\s+/)
