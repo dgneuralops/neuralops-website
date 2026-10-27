@@ -46,6 +46,8 @@
     var payload = Object.assign({ event: event, page_path: location.pathname }, params || {});
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(payload);
+    if (typeof window.gtag === 'function') { var p = Object.assign({}, params || {}); window.gtag('event', event, p); }
+    if (typeof window.clarity === 'function' && /quiz_complete|lead_submitted|booking_click/.test(event)) window.clarity('event', event);
     if (window.NX_DEBUG) console.log('[nx]', payload);
   }
 
